@@ -3,7 +3,10 @@ class Shoppe::AttachmentsController < Shoppe::ApplicationController
   def destroy
     @attachment = Shoppe::Attachment.find(params[:id])
     @attachment.destroy
-    redirect_to request.referer, :notice => "Attachment removed successfully"
+    respond_to do |wants|
+      wants.html { redirect_to request.referer, :notice => "Attachment removed successfully" }
+      wants.json { render :status => 'complete' }
+    end
   end
   
 end
