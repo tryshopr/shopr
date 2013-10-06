@@ -1,4 +1,4 @@
-= form_for [:shoppe, @product_category] do |f|
+= form_for @product_category do |f|
   = f.error_messages
   = field_set_tag 'Category Details' do
     %dl
@@ -20,6 +20,6 @@
 
   %p.submit
     = f.submit :class => 'button green'
-    = link_to "Cancel", :shoppe_products, :class => 'button'
+    = link_to "Cancel", :products, :class => 'button'
     - unless @product_category.new_record?
-      = link_to "Delete", [:shoppe, @product_category], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this category?"}
+      = link_to "Delete", @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this category?"}

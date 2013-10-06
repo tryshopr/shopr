@@ -1,14 +1,14 @@
 class Shoppe::ProductCategoriesController < Shoppe::ApplicationController
 
   before_filter { @active_nav = :products }  
-  before_filter { params[:id] && @product_category = ProductCategory.find(params[:id]) }
+  before_filter { params[:id] && @product_category = Shoppe::ProductCategory.find(params[:id]) }
   
   def new
-    @product_category = ProductCategory.new
+    @product_category = Shoppe::ProductCategory.new
   end
   
   def create
-    @product_category = ProductCategory.new(safe_params)
+    @product_category = Shoppe::ProductCategory.new(safe_params)
     if @product_category.save
       redirect_to :products, :flash => {:notice => "Category has been created successfully"}
     else
