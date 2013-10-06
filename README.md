@@ -1,3 +1,5 @@
+<img src="http://s.adamcooke.io/j5Pia.png" style="float:right;">
+
 # Shoppe
 
 **This is still under very active development and I do not recommend using it
