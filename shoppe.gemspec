@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["adam@niftyware.io"]
   s.homepage    = "http://shoppe.niftyware.io"
   s.summary     = "Just an e-commerce platform."
-  s.description = "Just an e-commerce platform."
+  s.description = "A full Rails engine providing e-commerce functionality for any Rails 4 application."
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
