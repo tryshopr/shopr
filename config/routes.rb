@@ -16,6 +16,5 @@ Shoppe::Engine.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  root :to => redirect('/shoppe/products')
-  
+  root :to => redirect('products')
 end

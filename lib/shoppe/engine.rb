@@ -6,8 +6,16 @@ module Shoppe
       config.autoload_paths << File.join(Shoppe.root, 'lib')
     end
     
+    # We don't want any automatic generators in the engine.
+    config.generators do |g|
+      g.orm             :active_record
+      g.test_framework  false
+      g.stylesheets     false
+      g.javascripts     false
+      g.helper          false
+    end
+    
     initializer 'shoppe.initialize' do |app|
-      
       # Preload the config
       Shoppe.config
       
@@ -15,7 +23,6 @@ module Shoppe
       config.paths["db/migrate"].expanded.each do |expanded_path|
         app.config.paths["db/migrate"] << expanded_path
       end
-      
     end
     
   end
