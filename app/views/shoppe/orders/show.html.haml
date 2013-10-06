@@ -52,8 +52,8 @@
       - if @order.paid?
         %li.payment
           %h4 Payment Received
-          %p on #{@order.paid_at.to_s(:short)} using #{@order.payment_gateway.name}
-          %p Reference <b>#{@order.payment_gateway.payment_reference}</b>
+          %p on #{@order.paid_at.to_s(:short)} using #{@order.payment_method}
+          %p Reference <b>#{@order.payment_reference}</b>
 
       - if @order.accepted?
         %li.accepted

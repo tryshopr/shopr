@@ -3,9 +3,12 @@ require 'bcrypt'
 require 'dynamic_form'
 require 'kaminari'
 require 'ransack'
+require 'nifty/utils'
 
 require 'nifty/key_value_store'
-require 'nifty/utils'
+require 'nifty/key_value_store/key_value_pair'
+Nifty::KeyValueStore::KeyValuePair.table_name = 'shoppe_key_value_store'
+
 
 module Shoppe
   

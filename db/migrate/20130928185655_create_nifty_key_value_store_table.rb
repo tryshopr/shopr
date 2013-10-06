@@ -1,7 +1,7 @@
 class CreateNiftyKeyValueStoreTable < ActiveRecord::Migration
   
   def up
-    create_table :nifty_key_value_store do |t|
+    create_table :shoppe_key_value_store do |t|
       t.integer :parent_id
       t.string  :parent_type, :group, :name, :value
     end

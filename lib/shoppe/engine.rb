@@ -2,9 +2,12 @@ module Shoppe
   class Engine < ::Rails::Engine
     isolate_namespace Shoppe
     
-    config.autoload_paths << File.join(Shoppe.root, 'lib')
+    if Shoppe.respond_to?(:root)
+      config.autoload_paths << File.join(Shoppe.root, 'lib')
+    end
     
     initializer 'shoppe.initialize' do |app|
+      
       # Preload the config
       Shoppe.config
       

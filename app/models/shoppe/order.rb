@@ -31,7 +31,6 @@
 #  delivery_tax_rate      :decimal(8, 2)
 #  delivery_tax_amount    :decimal(8, 2)
 #  consignment_number     :string(255)
-#  payment_gateway_module :string(255)
 #  ip_address             :string(255)
 #
 
@@ -40,6 +39,8 @@ class Shoppe::Order < ActiveRecord::Base
   STATUSES = ['building', 'confirming', 'received', 'accepted', 'rejected', 'shipped']
   
   key_value_store :properties
+  
+  define_model_callbacks :confirmation, :acceptance, :rejection, :ship
   
   belongs_to :delivery_service
   belongs_to :accepter, :class_name => 'User', :foreign_key => 'accepted_by'
@@ -69,16 +70,8 @@ class Shoppe::Order < ActiveRecord::Base
   before_validation do
     self.status                   = 'building'                      if self.status.blank?
     self.token                    = SecureRandom.uuid               if self.token.blank?
-    self.payment_gateway_module   = Shoppe.config[:payment_gateway] if self.payment_gateway_module.blank?
   end
   
-  #
-  # Return the payment gateway instance for the order
-  #
-  def payment_gateway
-    @payment_gateway ||= self.payment_gateway_module.constantize.new(self)
-  end
-    
   #
   # Is this order still being built by the user?
   #
@@ -341,20 +334,18 @@ class Shoppe::Order < ActiveRecord::Base
       write_attribute :delivery_tax_rate, self.delivery_tax_rate
     end
     
-    # Attempt to charge the card and store the payment reference
-    self.payment_gateway.on_receive
-    self.paid_at = Time.now
-    
-    # If we have successfully charged the card (i.e. no exception) we can go ahead and mark this
-    # order as 'received' which means it can be accepted by staff.
-    self.status = 'received'
-    self.received_at = Time.now
-    self.save!
-    
-    self.order_items.each(&:confirm!)
-    
-    # Send an email to the customer
-    Shoppe::OrderMailer.received(self).deliver
+    run_callbacks :confirmation do
+      # If we have successfully charged the card (i.e. no exception) we can go ahead and mark this
+      # order as 'received' which means it can be accepted by staff.
+      self.status = 'received'
+      self.received_at = Time.now
+      self.save!
+
+      self.order_items.each(&:confirm!)
+
+      # Send an email to the customer
+      Shoppe::OrderMailer.received(self).deliver
+    end
     
     # We're all good.
     true
@@ -365,12 +356,13 @@ class Shoppe::Order < ActiveRecord::Base
   # parameter). It will capture the payment using the payment gateway too.
   #
   def accept!(user)
-    payment_gateway.on_accept
-    self.accepted_at = Time.now
-    self.accepted_by = user.id
-    self.status = 'accepted'
-    self.save!
-    Shoppe::OrderMailer.accepted(self).deliver
+    run_callbacks :acceptance do
+      self.accepted_at = Time.now
+      self.accepted_by = user.id
+      self.status = 'accepted'
+      self.save!
+      Shoppe::OrderMailer.accepted(self).deliver
+    end
   end
   
   #
@@ -378,12 +370,13 @@ class Shoppe::Order < ActiveRecord::Base
   # It will refund any payments which have already been taken.
   #
   def reject!(user)
-    payment_gateway.on_reject
-    self.rejected_at = Time.now
-    self.rejected_by = user.id
-    self.status = 'rejected'
-    self.save!
-    Shoppe::OrderMailer.rejected(self).deliver
+    run_callbacks :rejection do
+      self.rejected_at = Time.now
+      self.rejected_by = user.id
+      self.status = 'rejected'
+      self.save!
+      Shoppe::OrderMailer.rejected(self).deliver
+    end
   end
   
   #
@@ -391,12 +384,14 @@ class Shoppe::Order < ActiveRecord::Base
   # order for use later in tracking.
   #
   def ship!(user, consignment_number)
-    self.shipped_at = Time.now
-    self.shipped_by = user.id
-    self.status = 'shipped'
-    self.consignment_number = consignment_number
-    self.save!
-    Shoppe::OrderMailer.shipped(self).deliver
+    run_callbacks :ship do
+      self.shipped_at = Time.now
+      self.shipped_by = user.id
+      self.status = 'shipped'
+      self.consignment_number = consignment_number
+      self.save!
+      Shoppe::OrderMailer.shipped(self).deliver
+    end
   end
   
   #

@@ -16,8 +16,8 @@
 
 class Shoppe::OrderItem < ActiveRecord::Base
   
-  belongs_to :order
-  belongs_to :product
+  belongs_to :order, :class_name => 'Shoppe::Order'
+  belongs_to :product, :class_name => 'Shoppe::Product'
   
   validates :quantity, :numericality => true
   
