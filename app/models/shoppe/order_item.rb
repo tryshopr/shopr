@@ -1,19 +1,3 @@
-# == Schema Information
-#
-# Table name: order_items
-#
-#  id         :integer          not null, primary key
-#  order_id   :integer
-#  product_id :integer
-#  quantity   :integer          default(1)
-#  unit_price :decimal(8, 2)
-#  tax_amount :decimal(8, 2)
-#  tax_rate   :decimal(8, 2)
-#  weight     :decimal(8, 3)    default(0.0)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Shoppe::OrderItem < ActiveRecord::Base
   
   belongs_to :order, :class_name => 'Shoppe::Order'

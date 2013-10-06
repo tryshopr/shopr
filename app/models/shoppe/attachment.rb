@@ -1,19 +1,3 @@
-# == Schema Information
-#
-# Table name: attachments
-#
-#  id          :integer          not null, primary key
-#  parent_id   :integer
-#  parent_type :string(255)
-#  token       :string(255)
-#  role        :string(255)
-#  file_name   :string(255)
-#  file_type   :string(255)
-#  data        :binary(16777215)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
 class Shoppe::Attachment < ActiveRecord::Base
   
   attr_accessor :uploaded_file

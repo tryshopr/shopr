@@ -1,39 +1,3 @@
-# == Schema Information
-#
-# Table name: orders
-#
-#  id                     :integer          not null, primary key
-#  token                  :string(255)
-#  first_name             :string(255)
-#  last_name              :string(255)
-#  company                :string(255)
-#  address1               :string(255)
-#  address2               :string(255)
-#  address3               :string(255)
-#  address4               :string(255)
-#  postcode               :string(255)
-#  country                :string(255)
-#  email_address          :string(255)
-#  phone_number           :string(255)
-#  status                 :string(255)
-#  received_at            :datetime
-#  paid_at                :datetime
-#  accepted_at            :datetime
-#  accepted_by            :integer
-#  rejected_at            :datetime
-#  rejected_by            :integer
-#  shipped_at             :datetime
-#  shipped_by             :integer
-#  created_at             :datetime
-#  updated_at             :datetime
-#  delivery_service_id    :integer
-#  delivery_price         :decimal(8, 2)
-#  delivery_tax_rate      :decimal(8, 2)
-#  delivery_tax_amount    :decimal(8, 2)
-#  consignment_number     :string(255)
-#  ip_address             :string(255)
-#
-
 class Shoppe::Order < ActiveRecord::Base
   
   STATUSES = ['building', 'confirming', 'received', 'accepted', 'rejected', 'shipped']

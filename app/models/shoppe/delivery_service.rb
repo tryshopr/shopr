@@ -1,18 +1,3 @@
-# == Schema Information
-#
-# Table name: delivery_services
-#
-#  id           :integer          not null, primary key
-#  name         :string(255)
-#  code         :string(255)
-#  default      :boolean          default(FALSE)
-#  active       :boolean          default(TRUE)
-#  created_at   :datetime
-#  updated_at   :datetime
-#  courier      :string(255)
-#  tracking_url :string(255)
-#
-
 class Shoppe::DeliveryService < ActiveRecord::Base
   
   self.table_name = 'shoppe_delivery_services'

@@ -1,25 +1,3 @@
-# == Schema Information
-#
-# Table name: products
-#
-#  id                  :integer          not null, primary key
-#  product_category_id :integer
-#  title               :string(255)
-#  sku                 :string(255)
-#  permalink           :string(255)
-#  description         :text
-#  short_description   :text
-#  active              :boolean          default(TRUE)
-#  weight              :decimal(8, 3)    default(0.0)
-#  price               :decimal(8, 2)    default(0.0)
-#  tax_rate            :decimal(8, 2)    default(0.0)
-#  stock               :integer          default(0)
-#  created_at          :datetime
-#  updated_at          :datetime
-#  featured            :boolean          default(FALSE)
-#  in_the_box          :text
-#
-
 class Shoppe::Product < ActiveRecord::Base
   
   include HasAttachments
