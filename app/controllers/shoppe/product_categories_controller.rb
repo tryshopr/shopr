@@ -10,7 +10,7 @@ class Shoppe::ProductCategoriesController < Shoppe::ApplicationController
   def create
     @product_category = ProductCategory.new(safe_params)
     if @product_category.save
-      redirect_to :shoppe_products, :flash => {:notice => "Category has been created successfully"}
+      redirect_to :products, :flash => {:notice => "Category has been created successfully"}
     else
       render :action => "new"
     end
@@ -21,7 +21,7 @@ class Shoppe::ProductCategoriesController < Shoppe::ApplicationController
   
   def update
     if @product_category.update(safe_params)
-      redirect_to [:edit, :shoppe, @product_category], :flash => {:notice => "Category has been updated successfully"}
+      redirect_to [:edit, @product_category], :flash => {:notice => "Category has been updated successfully"}
     else
       render :action => "edit"
     end
@@ -29,7 +29,7 @@ class Shoppe::ProductCategoriesController < Shoppe::ApplicationController
   
   def destroy
     @product_category.destroy
-    redirect_to :shoppe_products, :flash => {:notice => "Category has been removed successfully"}
+    redirect_to :products, :flash => {:notice => "Category has been removed successfully"}
   end
   
   private

@@ -1,5 +1,6 @@
 Shoppe::Engine.routes.draw do
-
+  
+  get 'attachment/:id/:filename.:extension' => 'attachments#show'
   resources :product_categories
   resources :products
   resources :orders do
@@ -16,5 +17,5 @@ Shoppe::Engine.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  root :to => redirect('products')
+  root :to => 'dashboard#home'
 end

@@ -15,9 +15,9 @@ module Shoppe::ShoppeHelper
         s << "<div class='attachmentPreview #{attachment.image? ? 'image' : 'doc'}'>"
         s << "<div class='imgContainer'><div class='img' #{style}></div></div>"
         s << "<div class='desc'>"
-        s << "<span class='filename'><a href='#{attachment.path}'>#{attachment.file_name}</a></span>"
+        s << "<span class='filename'><a href='#{attachment_path(attachment)}'>#{attachment.file_name}</a></span>"
         s << "<span class='delete'>"
-        s << link_to("Delete this file?", shoppe_attachment_path(attachment), :method => :delete, :data => {:confirm => "Are you sure you wish to remove this attachment?"})
+        s << link_to("Delete this file?", attachment_path(attachment), :method => :delete, :data => {:confirm => "Are you sure you wish to remove this attachment?"})
         s << "</span>"
         s << "</div>"
         s << "</div>"

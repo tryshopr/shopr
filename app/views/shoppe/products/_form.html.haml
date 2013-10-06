@@ -1,9 +1,9 @@
-= form_for [:shoppe, @product], :html => {:multipart => true} do |f|
+= form_for @product, :html => {:multipart => true} do |f|
   = f.error_messages
   = field_set_tag "Category" do
     %dl
       %dt= f.label :product_category_id
-      %dd= f.collection_select :product_category_id, ProductCategory.ordered, :id, :name, :include_blank => true
+      %dd= f.collection_select :product_category_id, Shoppe::ProductCategory.ordered, :id, :name, :include_blank => true
   = field_set_tag "Product Information" do
     %dl
       %dt= f.label :title
@@ -66,6 +66,6 @@
   
   %p.submit
     = f.submit :class => 'button green'
-    = link_to "Cancel", :shoppe_products, :class => 'button'
+    = link_to "Cancel", :products, :class => 'button'
     - unless @product.new_record?
-      = link_to "Delete", [:shoppe, @product], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this product?"}
+      = link_to "Delete", @product, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this product?"}

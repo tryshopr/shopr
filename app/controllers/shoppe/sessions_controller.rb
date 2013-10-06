@@ -5,7 +5,7 @@ class Shoppe::SessionsController < Shoppe::ApplicationController
   def create
     if user = Shoppe::User.authenticate(params[:email_address], params[:password])
       session[:shoppe_user_id] = user.id
-      redirect_to :products
+      redirect_to :orders
     else
       flash.now[:alert] = "The email address and/or password you have entered is invalid. Please check and try again."
       render :action => "new"

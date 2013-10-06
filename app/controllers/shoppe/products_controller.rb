@@ -14,7 +14,7 @@ class Shoppe::ProductsController < Shoppe::ApplicationController
   def create
     @product = Product.new(safe_params)
     if @product.save
-      redirect_to :shoppe_products, :flash => {:notice => "Product has been created successfully"}
+      redirect_to :products, :flash => {:notice => "Product has been created successfully"}
     else
       render :action => "new"
     end
@@ -25,7 +25,7 @@ class Shoppe::ProductsController < Shoppe::ApplicationController
   
   def update
     if @product.update(safe_params)
-      redirect_to [:edit, :shoppe, @product], :flash => {:notice => "Product has been updated successfully"}
+      redirect_to [:edit, @product], :flash => {:notice => "Product has been updated successfully"}
     else
       render :action => "edit"
     end
@@ -33,7 +33,7 @@ class Shoppe::ProductsController < Shoppe::ApplicationController
   
   def destroy
     @product.destroy
-    redirect_to :shoppe_products, :flash => {:notice => "Product has been removed successfully"}
+    redirect_to :products, :flash => {:notice => "Product has been removed successfully"}
   end
   
   private
