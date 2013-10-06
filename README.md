@@ -1,5 +1,9 @@
 # Shoppe
 
+**This is still under very active development and I do not recommend using it
+for anything at all at the moment. Anything could change and we will be releasing
+an example store shortly.**
+
 Shoppe is an Rails-based e-commerce platform which allows you to easily introduce a
 catalogue-based store into your Rails 4 applications. 
 
