@@ -1,0 +1,27 @@
+- @page_title = "Products"
+
+= content_for :header do
+  %p.buttons
+    = link_to "New product", :new_product, :class => 'button green'
+    = link_to "New category", :new_product_category, :class => 'button green'
+  
+  %h2 Products
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th SKU
+        %th Name
+        %th Price
+        %th Stock
+    %tbody
+      - for category, products in @products
+        %tr
+          %th{:colspan => 4}= link_to category.name, [:edit, category]
+        - for product in products
+          %tr
+            %td= product.sku
+            %td= link_to product.title, [:edit, product]
+            %td= number_to_currency product.price
+            %td= product.stock

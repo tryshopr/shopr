@@ -1,0 +1,110 @@
+- @page_title = 'Order #' + @order.number
+
+= content_for :header do
+  %p.buttons= link_to "Back to orders", :orders, :class => 'button'
+  %h2 Order ##{@order.number}
+
+#order
+  .details
+    .left
+      %dl
+        %dt Name
+        %dd= @order.first_name + ' ' + @order.last_name
+        %dt Company
+        %dd= @order.company.blank? ? '-' : @order.company
+        %dt Address
+        %dd= @order.address1
+        %dd= @order.address2
+        %dd= @order.address3
+        %dd= @order.address4
+        %dt Postcode
+        %dd= @order.postcode
+        %dd= @order.country
+    .right
+      %dl
+        %dt E-Mail Address
+        %dd= @order.email_address
+        %dt Telephone
+        %dd= @order.phone_number
+        %dt Weight
+        %dd #{@order.total_weight}kg
+        %dt Build Time
+        %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
+        
+      - if @order.accepted? && !@order.shipped?
+        = form_tag [:ship, @order] do
+          %p.ship
+            = text_field_tag 'consignment_number', '', :placeholder => "Enter consignment number..."
+            = submit_tag "Ship", :class => 'button green'
+      
+      - unless @order.accepted? || @order.rejected?
+        %p.acceptreject
+          = link_to 'Accept order', [:accept, @order], :method => :post, :class => 'button green'
+          = link_to "Reject order", [:reject, @order], :method => :post, :class => 'button purple'
+  
+  .status-bar
+    %ul
+      - if @order.received?
+        %li.received
+          %h4 Order Received
+          %p on #{@order.received_at.to_s(:short)} from #{@order.ip_address}
+
+      - if @order.paid?
+        %li.payment
+          %h4 Payment Received
+          %p on #{@order.paid_at.to_s(:short)} using #{@order.payment_gateway.name}
+          %p Reference <b>#{@order.payment_gateway.payment_reference}</b>
+
+      - if @order.accepted?
+        %li.accepted
+          %h4 Order Accepted
+          %p on #{@order.accepted_at.to_s(:short)} by #{@order.accepter.try(:short_name) || 'Unknown'}
+          
+      - elsif @order.rejected?
+        %li.rejected
+          %h4 Order rejected
+          %p on #{@order.rejected_at.to_s(:short)} by #{@order.rejecter.try(:short_name) || 'Unknown'}
+
+      - if @order.shipped?
+        %li.shipped
+          %h4 Order Shipped
+          %p on #{@order.shipped_at.to_s(:short)} by #{@order.shipper.try(:short_name) || 'Unknown'}
+          - if @order.courier_tracking_url
+            %p= link_to "Tracking URL", @order.courier_tracking_url
+          - else
+            %p Consignment # <b>#{@order.consignment_number}</b>
+ 
+  .order_items
+    .table
+      %table.data
+        %thead
+          %tr
+            %th Qty
+            %th Item
+            %th SKU
+            %th Price
+            %th= Shoppe.config[:tax_name]
+            %th Sub-Total
+        %tbody
+          - for item in @order.order_items
+            %tr
+              %td= item.quantity
+              %td= link_to item.product.title, [:edit, item.product]
+              %td= item.product.sku
+              %td= number_to_currency item.sub_total
+              %td= number_to_currency item.tax_amount
+              %td= number_to_currency item.total
+        %tfoot
+          %tr
+            %td.right.bold{:colspan => 5}= link_to @order.delivery_service.name, [:edit, @order.delivery_service]
+            %td= number_to_currency @order.delivery_price
+          %tr
+            %td.right.bold{:colspan => 5} Total (excluding #{Shoppe.config[:tax_name]})
+            %td= number_to_currency @order.total_before_tax
+          %tr
+            %td.right.bold{:colspan => 5}= Shoppe.config[:tax_name]
+            %td= number_to_currency @order.tax
+          %tr
+            %td.right.bold{:colspan => 5} Total
+            %td= number_to_currency @order.total
+

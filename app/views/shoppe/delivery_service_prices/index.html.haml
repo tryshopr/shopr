@@ -1,0 +1,22 @@
+- @page_title = "Delivery Services"
+
+= content_for :header do
+  %p.buttons
+    = link_to "New price", [:new, @delivery_service, :delivery_service_price], :class => 'button green'
+    = link_to "Back to delivery services", :delivery_services, :class => 'button'
+  %h2 Delivery Pricing for #{@delivery_service.name}
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th Price
+        %th Weight Allowance
+        %th Code
+    %tbody
+      - for price in @delivery_service_prices
+        %tr
+          %td= link_to number_to_currency(price.price), [:edit, @delivery_service, price]
+          %td #{price.min_weight}kg &rarr; #{price.max_weight}kg
+          %td= price.code
+          

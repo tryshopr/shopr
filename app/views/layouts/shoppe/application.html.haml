@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title #{@page_title} - Shoppe
+    = stylesheet_link_tag 'shoppe/application'
+    = javascript_include_tag 'shoppe/application'
+    = csrf_meta_tags
+  %body
+    %nav.sidebar
+      %header.logo
+        %h1= link_to "Shoppe", root_path
+        %p Just e-commerce.
+      %p.logged
+        Logged in as #{current_user.full_name}
+      %ul
+        %li= link_to "Products", [:products], :class => @active_nav == :products ? 'active' : ''
+        %li
+          %span.pending= Shoppe::Order.received.count
+          = link_to "Orders", [:orders], :class => @active_nav == :orders ? 'active' : ''
+        %li= link_to "Delivery Services", [:delivery_services], :class => @active_nav == :delivery_services ? 'active' : ''
+        %li= link_to "Users", [:users], :class => @active_nav == :users ? 'active' : ''
+        %li= link_to "Logout", [:logout], :method => :delete
+    
+    %header.main
+      = yield :header
+      
+    #content  
+      = display_flash
+      %section.main
+        = yield
+
+    %footer 
+      %p.store= link_to "Goto Storefront", root_path
+      

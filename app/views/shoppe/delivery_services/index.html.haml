@@ -1,0 +1,24 @@
+- @page_title = "Delivery Services"
+
+= content_for :header do
+  %p.buttons= link_to "New delivery service", :new_delivery_service, :class => 'button green'
+  %h2 Delivery Services
+  
+.table
+  %table.data
+    %thead
+      %tr
+        %th Name
+        %th Prices
+        %th Courier
+        %th Active?
+        %th Default?
+    %tbody
+      - for delivery_service in @delivery_services
+        %tr
+          %td= link_to delivery_service.name, [:edit, delivery_service]
+          %td= link_to "Set Prices", [delivery_service, :delivery_service_prices]
+          %td= delivery_service.courier
+          %td= boolean_tag :active
+          %td= boolean_tag :default
+          

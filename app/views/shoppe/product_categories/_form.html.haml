@@ -1,0 +1,25 @@
+= form_for [:shoppe, @product_category] do |f|
+  = f.error_messages
+  = field_set_tag 'Category Details' do
+    %dl
+      %dt= f.label :name
+      %dd= f.text_field :name
+    %dl
+      %dt= f.label :permalink
+      %dd= f.text_field :permalink
+    %dl
+      %dt= f.label :description
+      %dd= f.text_area :description
+  = field_set_tag "Attachments" do
+
+    %dl
+      %dt= f.label :image_file, "Image"
+      %dd
+        = attachment_preview @product_category.image
+        %p= f.file_field :image_file
+
+  %p.submit
+    = f.submit :class => 'button green'
+    = link_to "Cancel", :shoppe_products, :class => 'button'
+    - unless @product_category.new_record?
+      = link_to "Delete", [:shoppe, @product_category], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this category?"}

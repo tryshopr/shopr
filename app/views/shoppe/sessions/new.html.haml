@@ -1,0 +1,12 @@
+- @page_title = 'Admin Login'
+= display_flash
+.loginArea
+  = form_tag :login, :class => 'login' do
+    %p.field
+      = text_field_tag 'email_address', params[:email_address], :class => 'focus', :placeholder => 'E-Mail Address'
+    %p.field
+      = password_field_tag 'password', params[:password], :class => '', :placeholder => 'Password'
+    %p.submit
+      = submit_tag "Login", :class => 'button green'
+    %p.reset
+      = link_to "Reset your password?"
