@@ -4,9 +4,9 @@ class Shoppe::Product < ActiveRecord::Base
   attachment :default_image
   attachment :data_sheet
     
-  belongs_to :product_category
-  has_many :order_items, :dependent => :restrict_with_exception
-  has_many :orders, :through => :order_items
+  belongs_to :product_category, :class_name => 'Shoppe::ProductCategory'
+  has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem'
+  has_many :orders, :through => :order_items, :class_name => 'Shoppe::Order'
   
   validates :product_category_id, :presence => true
   validates :title, :presence => true

@@ -3,7 +3,7 @@ class Shoppe::ProductCategory < ActiveRecord::Base
   include HasAttachments
   attachment :image
   
-  has_many :products, :dependent => :restrict_with_exception
+  has_many :products, :dependent => :restrict_with_exception, :class_name => 'Shoppe::Product'
   
   scope :ordered, -> { order(:name) }
   

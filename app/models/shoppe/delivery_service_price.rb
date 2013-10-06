@@ -1,6 +1,6 @@
 class Shoppe::DeliveryServicePrice < ActiveRecord::Base
   
-  belongs_to :delivery_service
+  belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
   
   validates :price, :numericality => true
   validates :tax_rate, :numericality => true

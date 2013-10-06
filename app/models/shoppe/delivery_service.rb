@@ -5,8 +5,8 @@ class Shoppe::DeliveryService < ActiveRecord::Base
   validates :name, :presence => true
   validates :courier, :presence => true
   
-  has_many :orders, :dependent => :restrict_with_exception
-  has_many :delivery_service_prices, :dependent => :destroy
+  has_many :orders, :dependent => :restrict_with_exception, :class_name => 'Shoppe::Order'
+  has_many :delivery_service_prices, :dependent => :destroy, :class_name => 'Shoppe::DeliveryServicePrice'
   
   scope :active, -> { where(:active => true)}
   

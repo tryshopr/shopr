@@ -6,13 +6,13 @@ class Shoppe::Order < ActiveRecord::Base
   
   define_model_callbacks :confirmation, :acceptance, :rejection, :ship
   
-  belongs_to :delivery_service
-  belongs_to :accepter, :class_name => 'User', :foreign_key => 'accepted_by'
-  belongs_to :rejecter, :class_name => 'User', :foreign_key => 'rejected_by'
-  belongs_to :shipper, :class_name => 'User', :foreign_key => 'shipped_by'
+  belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
+  belongs_to :accepter, :class_name => 'Shoppe::User', :foreign_key => 'accepted_by'
+  belongs_to :rejecter, :class_name => 'Shoppe::User', :foreign_key => 'rejected_by'
+  belongs_to :shipper, :class_name => 'Shoppe::User', :foreign_key => 'shipped_by'
   
-  has_many :order_items, :dependent => :destroy
-  has_many :products, :through => :order_items
+  has_many :order_items, :dependent => :destroy, :class_name => 'Shoppe::OrderItem'
+  has_many :products, :through => :order_items, :class_name => 'Shoppe::Product'
   
   validates :token, :presence => true
   validates :status, :inclusion => {:in => STATUSES}
