@@ -1,7 +1,5 @@
 <img src="http://s.adamcooke.io/j5Pia.png" width="170">
 
-# Shoppe
-
 **This is still under very active development and I do not recommend using it
 for anything at all at the moment. Anything could change and we will be releasing
 an example store shortly.**
