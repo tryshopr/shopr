@@ -1,4 +1,4 @@
-<img src="http://s.adamcooke.io/j5Pia.png" style="float:right;">
+<img src="http://s.adamcooke.io/j5Pia.png" width="170">
 
 # Shoppe
 
