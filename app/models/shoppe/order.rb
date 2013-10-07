@@ -38,6 +38,7 @@ class Shoppe::Order < ActiveRecord::Base
   
   # Scopes
   scope :received, -> {where("received_at is not null")}
+  scope :pending, -> { where(:status => 'received') }
   scope :ordered, -> { order('id desc')}
   
   # Set some defaults

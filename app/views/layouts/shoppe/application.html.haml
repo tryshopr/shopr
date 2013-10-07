@@ -14,7 +14,7 @@
         Logged in as #{current_user.full_name}
       %ul
         %li
-          %span.pending= Shoppe::Order.received.count
+          %span.pending= Shoppe::Order.pending.count
           = link_to "Orders", [:orders], :class => @active_nav == :orders ? 'active' : ''
         %li= link_to "Products", [:products], :class => @active_nav == :products ? 'active' : ''
         %li= link_to "Delivery Services", [:delivery_services], :class => @active_nav == :delivery_services ? 'active' : ''
