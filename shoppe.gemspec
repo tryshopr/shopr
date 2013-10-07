@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency "haml"
   s.add_dependency "ransack"
   s.add_dependency "kaminari"
-  s.add_dependency "stripe"
   s.add_dependency "nifty-key-value-store"
   s.add_dependency "nifty-utils"
   s.add_dependency "nifty-attachments"
