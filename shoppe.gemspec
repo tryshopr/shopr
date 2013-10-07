@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "stripe"
   s.add_dependency "nifty-key-value-store"
   s.add_dependency "nifty-utils"
+  s.add_dependency "nifty-attachments"
   s.add_dependency "jquery-rails"
   s.add_dependency "coffee-rails"
   s.add_dependency "sass-rails"

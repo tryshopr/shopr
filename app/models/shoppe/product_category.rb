@@ -4,7 +4,6 @@ class Shoppe::ProductCategory < ActiveRecord::Base
   self.table_name = 'shoppe_product_categories'
   
   # Attachments
-  include HasAttachments
   attachment :image
   
   # Relationships

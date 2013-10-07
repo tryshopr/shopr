@@ -4,7 +4,6 @@ class Shoppe::Product < ActiveRecord::Base
   self.table_name = 'shoppe_products'  
   
   # Attachments
-  include HasAttachments
   attachment :default_image
   attachment :data_sheet
   

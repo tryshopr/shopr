@@ -8,6 +8,7 @@ PATH
       haml
       jquery-rails
       kaminari
+      nifty-attachments
       nifty-key-value-store
       nifty-utils
       rails (~> 4.0.0)
@@ -73,6 +74,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.1)
+    nifty-attachments (1.0.0)
     nifty-key-value-store (1.0.0)
     nifty-utils (1.0.0)
     polyamorous (0.6.4)
