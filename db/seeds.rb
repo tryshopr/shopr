@@ -81,5 +81,3 @@ pro.save!
 pro = cat1.products.create!(:title => 'Yealink W52P', :sku => 'TL-SIP-W52P', :description => lorem, :short_description => 'Wireless SIP phones are hard to come by but this beauty from Yealink is fab.', :weight => 1.280, :price => 99.99, :tax_rate => 20.0, :stock => 1, :featured => true)
 pro.default_image_file = get_file('w52p.jpg')
 pro.save!
-
-user = Shoppe::User.create!(:first_name => 'Adam', :last_name => 'Cooke', :email_address => 'adam@niftyware.io', :password => 'llamafarm', :password_confirmation => 'llamafarm')
