@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shoppe (0.0.2)
+    shoppe (0.0.3)
       bcrypt-ruby (~> 3.0.0)
       coffee-rails
       dynamic_form
