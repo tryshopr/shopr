@@ -5,6 +5,7 @@ require 'kaminari'
 require 'ransack'
 require 'nifty/utils'
 require 'nifty/key_value_store'
+require 'nifty/attachments'
 
 module Shoppe
   
