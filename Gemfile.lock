@@ -1,20 +1,20 @@
 PATH
   remote: .
   specs:
-    shoppe (0.0.6)
+    shoppe (0.0.7)
       bcrypt-ruby (~> 3.0.0)
-      coffee-rails
-      dynamic_form
-      haml
-      jquery-rails
-      kaminari
-      nifty-attachments
-      nifty-key-value-store
-      nifty-utils
+      coffee-rails (~> 4.0.0)
+      dynamic_form (~> 1.1.4)
+      haml (~> 4.0.3)
+      jquery-rails (~> 3.0.4)
+      kaminari (~> 0.14.1)
+      nifty-attachments (~> 1.0.0)
+      nifty-key-value-store (~> 1.0.0)
+      nifty-utils (~> 1.0.0)
       rails (~> 4.0.0)
-      ransack
-      sass-rails
-      uglifier
+      ransack (~> 1.0.0)
+      sass-rails (~> 4.0.0)
+      uglifier (~> 2.2.1)
 
 GEM
   remote: https://rubygems.org/
