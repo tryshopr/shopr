@@ -44,3 +44,8 @@ rake db:migrate shoppe:create_default_user
 # Start the server
 rails server
 ```
+
+## License
+
+Shoppe is licenced under the MIT license. Full details can be found in the MIT-LICENSE
+file in the root of the repository.
