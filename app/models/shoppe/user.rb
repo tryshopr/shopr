@@ -21,6 +21,14 @@ class Shoppe::User < ActiveRecord::Base
     "#{first_name} #{last_name[0,1]}"
   end
   
+  # Reset the user's password to something random and e-mail it to them
+  def reset_password!
+    self.password = SecureRandom.hex(8)
+    self.password_confirmation = self.password
+    self.save!
+    Shoppe::UserMailer.new_password(self).deliver
+  end
+  
   # Attempt to authenticate a user based on email & password. Returns the 
   # user if successful otherwise returns false.
   def self.authenticate(email_address, password)
