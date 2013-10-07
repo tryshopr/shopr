@@ -8,6 +8,7 @@ Shoppe::Engine.routes.draw do
     post :accept, :on => :member
     post :reject, :on => :member
     post :ship, :on => :member
+    post :pay, :on => :member
   end
   resources :delivery_services do
     resources :delivery_service_prices

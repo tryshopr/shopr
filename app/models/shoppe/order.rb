@@ -12,7 +12,7 @@ class Shoppe::Order < ActiveRecord::Base
   
   # These additional callbacks allow for applications to hook into other
   # parts of the order lifecycle.
-  define_model_callbacks :confirmation, :acceptance, :rejection, :ship
+  define_model_callbacks :confirmation, :payment, :acceptance, :rejection, :ship
   
   # Relationships
   belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
@@ -247,7 +247,7 @@ class Shoppe::Order < ActiveRecord::Base
       write_attribute :delivery_tax_amount, self.delivery_tax_amount
       write_attribute :delivery_tax_rate, self.delivery_tax_rate
     end
-    
+      
     run_callbacks :confirmation do
       # If we have successfully charged the card (i.e. no exception) we can go ahead and mark this
       # order as 'received' which means it can be accepted by staff.
@@ -263,6 +263,16 @@ class Shoppe::Order < ActiveRecord::Base
     
     # We're all good.
     true
+  end
+  
+  # This method will mark an order as paid.
+  def pay!(reference, method)
+    run_callbacks :payment do
+      self.paid_at = Time.now.utc
+      self.payment_reference = reference
+      self.payment_method = method
+      self.save!
+    end
   end
   
   # This method will accept the this order. It is called by a user (which is the only

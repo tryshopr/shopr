@@ -30,14 +30,21 @@
         %dd #{@order.total_weight}kg
         %dt Build Time
         %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
-        
+      
+      
+      - if !@order.paid?
+        = form_tag [:pay, @order] do
+          %p.ship
+            = text_field_tag 'payment_reference', '', :placeholder => "Enter payment reference..."
+            = submit_tag "Mark as paid", :class => 'button green'
+      
       - if @order.accepted? && !@order.shipped?
         = form_tag [:ship, @order] do
           %p.ship
             = text_field_tag 'consignment_number', '', :placeholder => "Enter consignment number..."
             = submit_tag "Ship", :class => 'button green'
       
-      - unless @order.accepted? || @order.rejected?
+      - if @order.paid? && !(@order.accepted? || @order.rejected?)
         %p.acceptreject
           = link_to 'Accept order', [:accept, @order], :method => :post, :class => 'button green'
           = link_to "Reject order", [:reject, @order], :method => :post, :class => 'button purple'

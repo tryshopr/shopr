@@ -28,4 +28,9 @@ class Shoppe::OrdersController < Shoppe::ApplicationController
     redirect_to @order, :notice => "Order has been shipped successfully"
   end
   
+  def pay
+    @order.pay!(params[:payment_reference], 'Manual')
+    redirect_to @order, :notice => "Order has been marked as paid successfully"
+  end
+  
 end
