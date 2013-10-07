@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Shoppe::VERSION
   s.authors     = ["Adam Cooke"]
   s.email       = ["adam@niftyware.io"]
-  s.homepage    = "http://shoppe.niftyware.io"
+  s.homepage    = "http://tryshoppe.com"
   s.summary     = "Just an e-commerce platform."
   s.description = "A full Rails engine providing e-commerce functionality for any Rails 4 application."
 
