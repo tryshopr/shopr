@@ -8,11 +8,11 @@ class Shoppe::ProductsController < Shoppe::ApplicationController
   end
   
   def new
-    @product = Product.new
+    @product = Shoppe::Product.new
   end
   
   def create
-    @product = Product.new(safe_params)
+    @product = Shoppe::Product.new(safe_params)
     if @product.save
       redirect_to :products, :flash => {:notice => "Product has been created successfully"}
     else

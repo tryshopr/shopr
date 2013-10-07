@@ -1,0 +1,6 @@
+# !! Remember to restart your server after making changes to this file.
+
+store_name: Shoppe
+email_address: sales@example.com
+currency_unit: '&pound;'
+tax_name: VAT

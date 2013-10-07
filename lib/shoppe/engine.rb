@@ -27,5 +27,9 @@ module Shoppe
       end
     end
     
+    generators do
+      require 'shoppe/setup_generator'
+    end
+    
   end
 end

@@ -19,3 +19,19 @@ payment gateway takes your fancy.
 * Delivery service management
 * A full admin interface with intergrated authentication
 
+## Installing Shoppe into a new Rails application
+
+To get up and running with Shoppe in a new Rails application is simple. Just follow the
+instructions below and you'll be up and running in minutes.
+
+```
+$ rails new my_store
+$ cd my_store
+# Add "gem 'shoppe'" to your Gemfile
+$ bundle
+$ rails generate shoppe:setup
+$ rails generate nifty:attachments:migration
+$ rails generate nifty:key_value_store:migration
+$ rake db:migrate shoppe:create_default_user
+$ rails server
+```

@@ -18,9 +18,15 @@ module Shoppe
     
     def config
       @config ||= begin
-        config = YAML.load_file(Rails.root.join('config', 'shoppe.yml')).with_indifferent_access
-        setup_config(config)
-        config
+        path = Rails.root.join('config', 'shoppe.yml')
+        if File.exist?(path)
+          config = YAML.load_file(path).with_indifferent_access
+          setup_config(config)
+          config
+        else
+          $stderr.puts "Shoppe configuration file missing at #{path}"
+          {}
+        end
       end
     end
     
