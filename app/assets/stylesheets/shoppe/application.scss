@@ -6,7 +6,7 @@
 
 @import 'variables';
 
-html { font-family:$font; font-size:12px; color:#333; -webkit-font-smoothing:antialiased; background-color:#F3F3F3;}
+html { font-family:$font; font-size:12px; color:#000; -webkit-font-smoothing:antialiased; background-color:#f7f9fc;}
 
 nav.sidebar {
 	width:200px;
@@ -92,15 +92,12 @@ header.main {
 	//
 	div.table {
 		table.data {
-			border:1px solid #ddd;
 			width:100%;
 			th, td { padding:10px;}
-			thead th { border:1px solid #ddd; background:#fafafa; text-align:left; font-weight:normal; font-size:0.9em; color:#999; }
-			tbody td { border:1px solid #ddd; background:#fafafa}
+			thead th { border:1px solid #40454D; background:#40454D; text-align:left; font-weight:normal; font-size:0.9em; color:#fff; }
+			tbody td { border:1px solid #cfd4dd; background:#fff;}
 			a { color:inherit;}
-			tbody th { text-align:left; background:#f0f6fa; border-bottom:1px solid #ddd;font-size:1.2em; color:#527287;}
-			tbody tr:nth-child(even) td { background:#fff;}
-			tbody tr:last-child td { border-bottom:0;}
+			tbody th { text-align:left; background:#5B6270; border:1px solid #5B6270;font-size:1.2em; color:#fff;}
 			tfoot td.right { text-align:right; }
 			tfoot td.bold { font-weight:bold;}
 			tfoot td { border-top:0 solid #ccc; background:#fafafa;}
@@ -133,22 +130,25 @@ header.main {
 	form {
 		fieldset {
 			border:1px solid #ddd;
-			background:#fafafa;
-			padding:15px;
+			background:#fff;
 			padding-top:22px;
+			padding-bottom:25px;
 			margin-bottom:15px;
-			legend { font-weight:bold; font-size:1.2em; color:#333}
+			border-bottom-left-radius:6px;
+			border-bottom-right-radius:6px;
+			legend { border-top-left-radius:8px; border-top-right-radius:8px; font-weight:bold; color:#fff;padding:1%;background:#40454D; width:98%;}
 			dl { 
+				margin:0 25px;
 				overflow:hidden;
 				margin-bottom:15px;
 				&:last-child { margin-bottom:0;}
 				dt { width:150px; float:left;}
 				dd { margin-left:170px; }
 				dd input[type=text], dd input[type=password], textarea {
-					width:97%; padding:6px; font-size:1.1em; border:1px solid #ccc;
+					width:97%; padding:8px; font-size:1.2em; border:1px solid #ccc;
 					font-family:$font;
-					font-weight:bold;
-					&:focus { border-color:#999; background-color:#fffffa;}
+					border-radius:6px;
+					&:focus { border-color:#999; background-color:#f6f9f0;}
 					&.short { width:100px;}
 				}
 				dd textarea { height:80px;	}
@@ -156,6 +156,7 @@ header.main {
 			}
 		}
 		p.submit {margin:30px 0 30px 185px; }
+		p.submit span.right { float:right;}
 		.errorExplanation {
 	    margin-bottom:25px;
 	    border:4px solid #e43c3c;

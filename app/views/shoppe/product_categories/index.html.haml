@@ -1,0 +1,15 @@
+- @page_title = "Product Categories"
+
+= content_for :header do
+  %p.buttons=link_to "New category", :new_product_category, :class => 'button green'
+  %h2 Product Categories
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th Name
+    %tbody
+      - for cat in @product_categories
+        %tr
+          %td= link_to cat.name, [:edit, cat]

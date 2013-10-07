@@ -18,7 +18,7 @@
     %tbody
       - for category, products in @products
         %tr
-          %th{:colspan => 4}= link_to category.name, [:edit, category]
+          %th{:colspan => 4}= category.name
         - for product in products
           %tr
             %td= product.sku

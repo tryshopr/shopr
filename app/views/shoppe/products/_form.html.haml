@@ -65,7 +65,7 @@
       %dd= f.text_field :stock
   
   %p.submit
+    - unless @product.new_record?
+      %span.right= link_to "Delete", @product, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this product?"}
     = f.submit :class => 'button green'
     = link_to "Cancel", :products, :class => 'button'
-    - unless @product.new_record?
-      = link_to "Delete", @product, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this product?"}

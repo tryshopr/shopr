@@ -19,7 +19,7 @@
         %p= f.file_field :image_file
 
   %p.submit
-    = f.submit :class => 'button green'
-    = link_to "Cancel", :products, :class => 'button'
     - unless @product_category.new_record?
-      = link_to "Delete", @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this category?"}
+      %span.right= link_to "Delete", @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this category?"}
+    = f.submit :class => 'button green'
+    = link_to "Cancel", :product_categories, :class => 'button'

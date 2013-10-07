@@ -1,7 +1,11 @@
 class Shoppe::ProductCategoriesController < Shoppe::ApplicationController
 
-  before_filter { @active_nav = :products }  
+  before_filter { @active_nav = :product_categories }  
   before_filter { params[:id] && @product_category = Shoppe::ProductCategory.find(params[:id]) }
+  
+  def index
+    @product_categories = Shoppe::ProductCategory.ordered.all
+  end
   
   def new
     @product_category = Shoppe::ProductCategory.new
@@ -10,7 +14,7 @@ class Shoppe::ProductCategoriesController < Shoppe::ApplicationController
   def create
     @product_category = Shoppe::ProductCategory.new(safe_params)
     if @product_category.save
-      redirect_to :products, :flash => {:notice => "Category has been created successfully"}
+      redirect_to :product_categories, :flash => {:notice => "Category has been created successfully"}
     else
       render :action => "new"
     end
@@ -29,7 +33,7 @@ class Shoppe::ProductCategoriesController < Shoppe::ApplicationController
   
   def destroy
     @product_category.destroy
-    redirect_to :products, :flash => {:notice => "Category has been removed successfully"}
+    redirect_to :product_categories, :flash => {:notice => "Category has been removed successfully"}
   end
   
   private
