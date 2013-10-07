@@ -1,5 +1,12 @@
-Your order has been accepted and payment has now been taken from your card.
+Hello <%=@order.first_name%>!
 
-Your number is: <%=@order.number%>
+Re: Order #<%=@order.number%>
 
-You can track your order</a> at any time using the link below:
+We're pleased to let you know that we have accepted your order and your payment of <%=number_to_currency @order.total%> has been taken from your card successfully.
+
+We will e-mail you again when we ship your order from our warehouse.
+
+Many thanks,
+
+<%=Shoppe.config[:store_name]%>
+<%=Shoppe.config[:email_address]%>

@@ -1,8 +1,10 @@
-Your order has been rejected - no payment has been taken from your card.
-This is most likely due an issue with payment  or our over-sensitive
-fraud checking systems.
+Hello <%=@order.first_name%>!
 
-If you wish to continue with the order, please contact us as soon as possible
-and we can discuss the situation in more detail.
+Re: Order #<%=@order.number%>
 
-Order Number: <%=@order.number%>
+Unfortunately, this attached order was rejected. This is most likely to our over-zealous fraud system so if you wish to continue with this order, please drop us an email or give us a call.
+
+Many thanks,
+
+<%=Shoppe.config[:store_name]%>
+<%=Shoppe.config[:email_address]%>

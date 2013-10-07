@@ -1,3 +1,16 @@
-Your order has been shipped and will be with you shortly.
+Hello <%=@order.first_name%>!
 
-Your number is: <%=@order.number%>
+Re: Order #<%=@order.number%>
+
+We're pleased to let you know your order has been shipped and
+will be with you shortly!
+
+<% if @order.courier_tracking_url -%>
+You can the delivery online at:
+<%=@order.courier_tracking_url%>
+<% end -%>
+
+Many thanks,
+
+<%=Shoppe.config[:store_name]%>
+<%=Shoppe.config[:email_address]%>

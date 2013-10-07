@@ -1,3 +1,12 @@
-***Thank you for your order!***
+Hello <%=@order.first_name%>!
 
-Your number is: <%=@order.number%>
+Re: Order #<%=@order.number%>
+
+We're pleased to let you know that we have received your order and one of our team will be accepting it shortly.
+
+We will e-mail you again when your order has been accepted.
+
+Many thanks,
+
+<%=Shoppe.config[:store_name]%>
+<%=Shoppe.config[:email_address]%>
