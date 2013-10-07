@@ -22,8 +22,7 @@
       %dd= f.text_field :code
 
   %p.submit
+    - unless @delivery_service_price.new_record?
+      %span.right= link_to "Delete", [@delivery_service, @delivery_service_price], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this price?"}
     = f.submit :class => 'button green'
     = link_to "Cancel", :delivery_services, :class => 'button'
-    - unless @delivery_service_price.new_record?
-      = link_to "Delete", [@delivery_service, @delivery_service_price], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this price?"}
-      

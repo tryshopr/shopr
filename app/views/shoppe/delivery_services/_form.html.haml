@@ -29,7 +29,7 @@
         %dt Pricing
         %dd= link_to "Set pricing for delivery service", [@delivery_service, :delivery_service_prices], :class => 'button button-mini'
   %p.submit
+    - unless @delivery_service.new_record?
+      %span.right= link_to "Delete", [@delivery_service], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this delivery service?"}
     = f.submit :class => 'button green'
     = link_to "Cancel", :delivery_services, :class => 'button'
-    - unless @delivery_service.new_record?
-      = link_to "Delete", [@delivery_service], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this delivery service?"}
