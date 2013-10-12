@@ -45,49 +45,87 @@ lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmo
 pro = cat1.products.create!(:title => 'Yealink T20P', :sku => 'YL-SIP-T20P', :description => lorem, :short_description => 'If cheap & cheerful is what you’re after, the Yealink T20P is what you’re looking for.', :weight => 1.119, :price => 54.99, :tax_rate => 20.0, :stock => 20, :featured => true)
 pro.default_image_file = get_file('t20p.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Yealink', 'Model' => 'T20P', 'Colour' => 'Black', 'Lines' => '3', 'Colour Screen' => 'No', 'Power over ethernet' => 'Yes')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Yealink', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'T20P', :position => 1)
+pro.product_attributes.create!(:key => 'Colour', :value => 'Black', :position => 1)
+pro.product_attributes.create!(:key => 'Lines', :value => '3', :position => 1)
+pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'No', :position => 1)
+pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
 pro = cat1.products.create!(:title => 'Yealink T22P', :sku => 'YL-SIP-T22P', :description => lorem, :short_description => lorem, :weight => 1.419, :price => 64.99, :tax_rate => 20.0, :stock => 12)
 pro.default_image_file = get_file('t22p.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Yealink', 'Model' => 'T20P', 'Colour' => 'Black', 'Lines' => '3', 'Colour Screen' => 'No', 'Power over ethernet' => 'Yes')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Yealink', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'T22P', :position => 1)
+pro.product_attributes.create!(:key => 'Colour', :value => 'Black', :position => 1)
+pro.product_attributes.create!(:key => 'Lines', :value => '4', :position => 1)
+pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'No', :position => 1)
+pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
+
 
 pro = cat1.products.create!(:title => 'Yealink T26P', :sku => 'YL-SIP-T26P', :description => lorem, :short_description => lorem, :weight => 2.23, :price => 88.99, :tax_rate => 20.0, :stock => 5)
 pro.default_image_file = get_file('t26p.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Yealink', 'Model' => 'T20P', 'Colour' => 'Black', 'Lines' => '6', 'Colour Screen' => 'No', 'Power over ethernet' => 'Yes')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Yealink', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'T26P', :position => 1)
+pro.product_attributes.create!(:key => 'Colour', :value => 'Black', :position => 1)
+pro.product_attributes.create!(:key => 'Lines', :value => '6', :position => 1)
+pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'No', :position => 1)
+pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
 pro = cat1.products.create!(:title => 'Yealink T46GN', :sku => 'YL-SIP-T46GN', :description => lorem, :short_description => 'Colourful, sharp, fast & down right sexy. The Yealink T46P will make your scream!', :weight => 2.23, :price => 149.99, :tax_rate => 20.0, :stock => 5, :featured => true)
 pro.default_image_file = get_file('t46gn.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Yealink', 'Model' => 'T20P', 'Colour' => 'Black', 'Lines' => '4', 'Colour Screen' => 'Yes', 'Power over ethernet' => 'Yes')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Yealink', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'T46GN', :position => 1)
+pro.product_attributes.create!(:key => 'Colour', :value => 'Black', :position => 1)
+pro.product_attributes.create!(:key => 'Lines', :value => '4', :position => 1)
+pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
+pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
 pro = cat1.products.create!(:title => 'Snom 870 (Grey)', :sku => 'SM-870-GREY', :description => lorem, :short_description => 'The perfect & beautiful VoIP phone for the discerning professional desk.', :weight => 2.4, :price => 235.00, :tax_rate => 20.0, :stock => 2)
 pro.default_image_file = get_file('snom-870-grey.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Snom', 'Model' => '870', 'Colour' => 'Grey', 'Lines' => '10', 'Colour Screen' => 'Yes', 'Power over ethernet' => 'Yes')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Snom', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => '870', :position => 1)
+pro.product_attributes.create!(:key => 'Colour', :value => 'Grey', :position => 1)
+pro.product_attributes.create!(:key => 'Lines', :value => '10', :position => 1)
+pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
+pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
 pro = cat1.products.create!(:title => 'Snom 870 (Black)', :sku => 'SM-870-BLK', :description => lorem, :short_description => 'The perfect & beautiful VoIP phone for the discerning professional desk.', :weight => 2.4, :price => 235.00, :tax_rate => 20.0, :stock => 0, :featured => true)
 pro.default_image_file = get_file('snom-870-blk.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Snom', 'Model' => '870', 'Colour' => 'Black', 'Lines' => '10', 'Colour Screen' => 'Yes', 'Power over ethernet' => 'Yes')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Snom', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => '870', :position => 1)
+pro.product_attributes.create!(:key => 'Colour', :value => 'Black', :position => 1)
+pro.product_attributes.create!(:key => 'Lines', :value => '10', :position => 1)
+pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
+pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
 pro = cat2.products.create!(:title => 'Yealink Mono Headset', :sku => 'YL-YHS32', :description => lorem, :short_description => 'If you\'re often on the phone, this headset will make your life 100x easier. Guaranteed*.', :weight => 0.890, :price => 34.99, :tax_rate => 20.0, :stock => 3, :featured => true)
 pro.default_image_file = get_file('yhs32.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Yealink', 'Model' => 'YHS32')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Yealink', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'YHS32', :position => 1)
 
 pro = cat2.products.create!(:title => 'Snom Wired Headset (MM2)', :sku => 'SM-MM2', :description => lorem, :short_description => lorem, :weight => 0.780, :price => 38.00, :tax_rate => 20.0, :stock => 0)
 pro.default_image_file = get_file('snom-mm2.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Snom', 'Model' => 'MM2')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Snom', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'MM2', :position => 1)
 
 pro = cat2.products.create!(:title => 'Snom Wired Headset (MM3)', :sku => 'SM-MM3', :description => lorem, :short_description => lorem, :weight => 0.780, :price => 38.00, :tax_rate => 20.0, :stock => 1)
 pro.default_image_file = get_file('snom-mm2.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Snom', 'Model' => 'MM3')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Snom', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'MM3', :position => 1)
 
 pro = cat1.products.create!(:title => 'Yealink W52P', :sku => 'TL-SIP-W52P', :description => lorem, :short_description => 'Wireless SIP phones are hard to come by but this beauty from Yealink is fab.', :weight => 1.280, :price => 99.99, :tax_rate => 20.0, :stock => 1, :featured => true)
 pro.default_image_file = get_file('w52p.jpg')
 pro.save!
-pro.product_attributes.update_from_hash('Manufacturer' => 'Yealink', 'Model' => 'W52P', 'Colour' => 'Black', 'Lines' => '4', 'Colour Screen' => 'Yes', 'Power over ethernet' => 'Base unit only')
+pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Snom', :position => 1)
+pro.product_attributes.create!(:key => 'Model', :value => 'W52P', :position => 1)
+pro.product_attributes.create!(:key => 'Lines', :value => '3', :position => 1)
+pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
+pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'No', :position => 1)
