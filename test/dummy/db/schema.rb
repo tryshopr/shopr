@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131006144849) do
+ActiveRecord::Schema.define(version: 20131012163301) do
 
   create_table "shoppe_delivery_service_prices", force: true do |t|
     t.integer  "delivery_service_id"
@@ -79,6 +79,17 @@ ActiveRecord::Schema.define(version: 20131006144849) do
     t.string   "country"
     t.string   "payment_reference"
     t.string   "payment_method"
+  end
+
+  create_table "shoppe_product_attributes", force: true do |t|
+    t.integer  "product_id"
+    t.string   "key"
+    t.string   "value"
+    t.integer  "position",   default: 1
+    t.boolean  "searchable", default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "public",     default: true
   end
 
   create_table "shoppe_product_categories", force: true do |t|

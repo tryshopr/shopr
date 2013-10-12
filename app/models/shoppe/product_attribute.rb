@@ -9,8 +9,9 @@ class Shoppe::ProductAttribute < ActiveRecord::Base
   # Relationships
   belongs_to :product, :class_name => 'Shoppe::Product'
   
-  # SCcopes
+  # Scopes
   scope :searchable, -> { where(:searchable => true) }
+  scope :public, -> { where(:public => true) }
   
   # Return the the available options as a hash
   def self.grouped_hash
@@ -28,7 +29,11 @@ class Shoppe::ProductAttribute < ActiveRecord::Base
     array.each do |hash|
       next if hash['key'].blank?
       index += 1
-      params = hash.merge({:searchable => hash['searchable'].to_s == '1', :position => index})
+      params = hash.merge({
+        :searchable => hash['searchable'].to_s == '1',
+        :public => hash['public'].to_s == '1',
+        :position => index
+      })
       if existing_attr = self.where(:key => hash['key']).first
         if hash['value'].blank?
           existing_attr.destroy

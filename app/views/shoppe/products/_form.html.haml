@@ -32,18 +32,21 @@
             %td Name
             %td Value
             %td.searchable Searchable?
+            %td.searchable Public?
             %td
         %tbody
           %tr.template{:style => 'display:none;'}
             %td= text_field_tag 'product[product_attributes_array][][key]', '', :placeholder => 'Name'
             %td= text_field_tag 'product[product_attributes_array][][value]', '', :placeholder => 'Value'
-            %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', ''
+            %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1'
+            %td.searchable= check_box_tag 'product[product_attributes_array][][public]', '1'
             %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
           - for attribute in @product.product_attributes
             %tr
               %td= text_field_tag 'product[product_attributes_array][][key]', attribute.key, :placeholder => 'Name'
               %td= text_field_tag 'product[product_attributes_array][][value]', attribute.value, :placeholder => 'Value'
               %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1', attribute.searchable?
+              %td.searchable= check_box_tag 'product[product_attributes_array][][public]', '1', attribute.public?
               %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
       %p.addAttribute= link_to "Add attribute", '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
       
