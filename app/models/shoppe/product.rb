@@ -3,6 +3,9 @@ class Shoppe::Product < ActiveRecord::Base
   # Set the table name
   self.table_name = 'shoppe_products'  
   
+  # Require some concerns
+  require_dependency 'shoppe/product/product_attributes'
+  
   # Attachments
   attachment :default_image
   attachment :data_sheet
@@ -30,7 +33,7 @@ class Shoppe::Product < ActiveRecord::Base
   # Scopes
   scope :active, -> { where(:active => true) }
   scope :featured, -> {where(:featured => true)}
-  
+
   # Is this product currently in stock?
   def in_stock?
     stock > 0
@@ -52,5 +55,14 @@ class Shoppe::Product < ActiveRecord::Base
     []
   end
   
+  # Search for products which include the guven attributes and return an active record
+  # scope of these products. Chainable with other scopes and with_attributes methods.
+  # For example:
+  #
+  #   Shoppe::Product.active.with_attribute('Manufacturer', 'Apple').with_attribute('Model', ['Macbook', 'iPhone'])
+  def self.with_attributes(key, values)
+    product_ids = Shoppe::ProductAttribute.searchable.where(:key => key, :value => values).pluck(:product_id).uniq
+    where(:id => product_ids)
+  end
   
 end

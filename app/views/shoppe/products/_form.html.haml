@@ -23,6 +23,30 @@
     %dl
       %dt= f.label :in_the_box, "What's in the box?"
       %dd= f.text_area :in_the_box
+  
+  = field_set_tag "Attributes" do
+    .margin
+      %table.productAttributes
+        %thead
+          %tr
+            %td Name
+            %td Value
+            %td.searchable Searchable?
+            %td
+        %tbody
+          %tr.template{:style => 'display:none;'}
+            %td= text_field_tag 'product[product_attributes_array][][key]', '', :placeholder => 'Name'
+            %td= text_field_tag 'product[product_attributes_array][][value]', '', :placeholder => 'Value'
+            %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', ''
+            %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
+          - for attribute in @product.product_attributes
+            %tr
+              %td= text_field_tag 'product[product_attributes_array][][key]', attribute.key, :placeholder => 'Name'
+              %td= text_field_tag 'product[product_attributes_array][][value]', attribute.value, :placeholder => 'Value'
+              %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1', attribute.searchable?
+              %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
+      %p.addAttribute= link_to "Add attribute", '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
+      
   = field_set_tag "Attachments" do
       
     %dl
