@@ -10,6 +10,10 @@
       %tr
         %th Name
     %tbody
-      - for cat in @product_categories
-        %tr
-          %td= link_to cat.name, [:edit, cat]
+      - if @product_categories.empty?
+        %tr.empty
+          %td No categories to display.
+      - else
+        - for cat in @product_categories
+          %tr
+            %td= link_to cat.name, [:edit, cat]

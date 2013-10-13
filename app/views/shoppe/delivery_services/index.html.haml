@@ -14,11 +14,15 @@
         %th Active?
         %th Default?
     %tbody
-      - for delivery_service in @delivery_services
-        %tr
-          %td= link_to delivery_service.name, [:edit, delivery_service]
-          %td= link_to "Set Prices", [delivery_service, :delivery_service_prices]
-          %td= delivery_service.courier
-          %td= boolean_tag :active
-          %td= boolean_tag :default
+      - if @delivery_services.empty?
+        %tr.empty
+          %td{:colspan => 5} No delivery services to display.
+      - else
+        - for delivery_service in @delivery_services
+          %tr
+            %td= link_to delivery_service.name, [:edit, delivery_service]
+            %td= link_to "Set Prices", [delivery_service, :delivery_service_prices]
+            %td= delivery_service.courier
+            %td= boolean_tag :active
+            %td= boolean_tag :default
           

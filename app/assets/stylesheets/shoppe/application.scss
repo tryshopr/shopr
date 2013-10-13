@@ -98,6 +98,7 @@ header.main {
 			tbody td { border:1px solid #cfd4dd; background:#fff;}
 			a { color:inherit;}
 			tbody th { text-align:left; background:#5B6270; border:1px solid #5B6270;font-size:1.2em; color:#fff;}
+			tbody tr.empty td { padding:50px 0; text-align:center; color:#999; font-style:italic;}
 			tfoot td.right { text-align:right; }
 			tfoot td.bold { font-weight:bold;}
 			tfoot td { border-top:0 solid #ccc; background:#fafafa;}
