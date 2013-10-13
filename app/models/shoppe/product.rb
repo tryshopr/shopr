@@ -42,8 +42,10 @@ class Shoppe::Product < ActiveRecord::Base
   
   # Remove the provided number of units from the current stock level of this product
   def update_stock_level(purchased = 1)
-    self.stock -= purchased
-    self.save!
+    if self.stock_control?
+      self.stock -= purchased
+      self.save!
+    end
   end
   
   # Specify which attributes can be searched

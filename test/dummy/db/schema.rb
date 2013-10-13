@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013123937) do
+ActiveRecord::Schema.define(version: 20131013131658) do
 
   create_table "shoppe_delivery_service_prices", force: true do |t|
     t.integer  "delivery_service_id"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20131013123937) do
     t.boolean  "featured",                                    default: false
     t.text     "in_the_box"
     t.decimal  "cost_price",          precision: 8, scale: 2
+    t.boolean  "stock_control",                               default: true
   end
 
   create_table "shoppe_users", force: true do |t|

@@ -91,6 +91,11 @@
       %dt= f.label :weight
       %dd= f.text_field :weight
     %dl
+      %dt= f.label :stock_control
+      %dd
+        = f.check_box :stock_control
+        = f.label :stock_control, "Enable stock control for this product?"
+    %dl
       %dt= f.label :stock, "Current stock"
       %dd= f.text_field :stock
   

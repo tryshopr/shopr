@@ -56,7 +56,7 @@ class Shoppe::OrderItem < ActiveRecord::Base
   def increase!(amount = 1)
     transaction do
       self.quantity += amount
-      if self.product.stock < self.quantity
+      if self.product.stock_control? && self.product.stock < self.quantity
         raise Shoppe::Errors::NotEnoughStock, :product => self.product, :requested_stock => self.quantity
       end
       self.save!
@@ -96,7 +96,7 @@ class Shoppe::OrderItem < ActiveRecord::Base
   
   # Do we have the stock needed to fulfil this order?
   def in_stock?
-    if self.product.respond_to?(:stock)
+    if self.product.stock_control?
       self.product.stock >= self.quantity
     else
       true
@@ -107,12 +107,12 @@ class Shoppe::OrderItem < ActiveRecord::Base
   # before an order is completed. If we have run out of this product, we will update the quantity to an
   # appropriate level (or remove the order item) and return the object.
   def validate_stock_levels
-    unless in_stock?
+    if in_stock?
+      false
+    else
       self.quantity = self.product.stock
       self.quantity == 0 ? self.destroy : self.save!
       self
-    else
-      false
     end
   end
   
