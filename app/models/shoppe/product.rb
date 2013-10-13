@@ -37,7 +37,7 @@ class Shoppe::Product < ActiveRecord::Base
 
   # Is this product currently in stock?
   def in_stock?
-    stock > 0
+    !stock_control? || stock > 0
   end
   
   # Remove the provided number of units from the current stock level of this product
