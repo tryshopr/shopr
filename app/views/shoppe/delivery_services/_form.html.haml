@@ -1,33 +1,35 @@
 = form_for @delivery_service do |f|
   = f.error_messages
   = field_set_tag "Details" do
-    %dl
-      %dt= f.label :name
-      %dd= f.text_field :name
-    %dl
-      %dt= f.label :code
-      %dd= f.text_field :code
-    %dl
-      %dt= f.label :active
-      %dd= f.check_box :active
-    %dl
-      %dt= f.label :default
-      %dd= f.check_box :default
+    .splitContainer
+      %dl.half
+        %dt= f.label :name
+        %dd= f.text_field :name
+      %dl.half
+        %dt= f.label :code
+        %dd= f.text_field :code
+    .splitContainer
+      %dl.half
+        %dt= f.label :active
+        %dd.checkbox
+          = f.check_box :active
+          = f.label :active, 'Service will be available for use'
+      %dl.half
+        %dt= f.label :default
+        %dd.checkbox
+          = f.check_box :default
+          = f.label :default, 'Service will be used by default (if possible)'
   = field_set_tag "Courier" do
-    %dl
-      %dt= f.label :courier, "Courier Name"
-      %dd= f.text_field :courier
-    %dl
-      %dt= f.label :tracking_url, "Tracking URL"
-      %dd
-        = f.text_field :tracking_url
-        %p.help Use <code>{{consignment_number}}</code> to insert the consignment number.
+    .splitContainer
+      %dl.half
+        %dt= f.label :courier, "Courier Name"
+        %dd= f.text_field :courier
+      %dl.half
+        %dt= f.label :tracking_url, "Tracking URL"
+        %dd
+          = f.text_field :tracking_url
+          %p.help Use <code>{{consignment_number}}</code> to insert the consignment number.
 
-  - unless @delivery_service.new_record?
-    = field_set_tag "Pricing" do
-      %dl
-        %dt Pricing
-        %dd= link_to "Set pricing for delivery service", [@delivery_service, :delivery_service_prices], :class => 'button button-mini'
   %p.submit
     - unless @delivery_service.new_record?
       %span.right= link_to "Delete", [@delivery_service], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this delivery service?"}

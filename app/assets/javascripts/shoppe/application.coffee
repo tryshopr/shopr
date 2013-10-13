@@ -20,7 +20,7 @@ $ ->
     false
   
   # Remove an attribute from a table
-  $('table.productAttributes tbody').on 'click', 'tr td:last a', -> 
+  $('table.productAttributes tbody').on 'click', 'tr td.remove a', -> 
     $(this).parents('tr').remove()
   
   # Sorting on the product attribtues table

@@ -1,19 +1,20 @@
 = form_for @product, :html => {:multipart => true} do |f|
   = f.error_messages
-  = field_set_tag "Category" do
+  = field_set_tag "Product Information" do
     %dl
       %dt= f.label :product_category_id
       %dd= f.collection_select :product_category_id, Shoppe::ProductCategory.ordered, :id, :name, :include_blank => true
-  = field_set_tag "Product Information" do
-    %dl
-      %dt= f.label :title
-      %dd= f.text_field :title
-    %dl
-      %dt= f.label :permalink
-      %dd= f.text_field :permalink
-    %dl
-      %dt= f.label :sku, 'SKU'
-      %dd= f.text_field :sku
+  
+    .splitContainer
+      %dl.third
+        %dt= f.label :title
+        %dd= f.text_field :title
+      %dl.third
+        %dt= f.label :permalink
+        %dd= f.text_field :permalink
+      %dl.third
+        %dt= f.label :sku, 'SKU'
+        %dd= f.text_field :sku
     %dl
       %dt= f.label :description
       %dd= f.text_area :description
@@ -54,53 +55,57 @@
       %p.addAttribute= link_to "Add attribute", '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
       
   = field_set_tag "Attachments" do
-      
-    %dl
-      %dt= f.label :default_image_file, "Default Image"
-      %dd
-        = attachment_preview @product.default_image
-        %p= f.file_field :default_image_file
-    %dl
-      %dt= f.label :data_sheet_file, "Datasheet"
-      %dd
-        = attachment_preview @product.data_sheet
-        %p= f.file_field :data_sheet_file
+    .splitContainer
+      %dl.half
+        %dt= f.label :default_image_file, "Default Image"
+        %dd
+          = attachment_preview @product.default_image
+          %p= f.file_field :default_image_file
+      %dl.half
+        %dt= f.label :data_sheet_file, "Datasheet"
+        %dd
+          = attachment_preview @product.data_sheet
+          %p= f.file_field :data_sheet_file
         
   = field_set_tag "Pricing" do
-    %dl
-      %dt= f.label :price
-      %dd= f.text_field :price
-    %dl
-      %dt= f.label :cost_price
-      %dd= f.text_field :cost_price
-    %dl
-      %dt= f.label :tax_rate
-      %dd= f.text_field :tax_rate
+    .splitContainer
+      %dl.third
+        %dt= f.label :price
+        %dd= f.text_field :price
+      %dl.third
+        %dt= f.label :cost_price
+        %dd= f.text_field :cost_price
+      %dl.third
+        %dt= f.label :tax_rate
+        %dd= f.text_field :tax_rate
       
   = field_set_tag "Website Properties" do
-    %dl
-      %dt= f.label :active, "On sale?"
-      %dd
-        = f.check_box :active
-        = f.label :active, "If checked, this product will be displayed within the public store"
-    %dl
-      %dt= f.label :featured, "Featured?"
-      %dd
-        = f.check_box :featured
-        = f.label :featured, "If checked, this product will appear on your homepage"
+    .splitContainer
+      
+      %dl.half
+        %dt= f.label :active, "On sale?"
+        %dd.checkbox
+          = f.check_box :active
+          = f.label :active, "If checked, this product will be displayed within the public store"
+      %dl.half
+        %dt= f.label :featured, "Featured?"
+        %dd.checkbox
+          = f.check_box :featured
+          = f.label :featured, "If checked, this product will appear on your homepage"
 
   = field_set_tag "Stock Control" do
-    %dl
-      %dt= f.label :weight
-      %dd= f.text_field :weight
-    %dl
-      %dt= f.label :stock_control
-      %dd
-        = f.check_box :stock_control
-        = f.label :stock_control, "Enable stock control for this product?"
-    %dl
-      %dt= f.label :stock, "Current stock"
-      %dd= f.text_field :stock
+    .splitContainer
+      %dl.third
+        %dt= f.label :stock_control
+        %dd.checkbox
+          = f.check_box :stock_control
+          = f.label :stock_control, "Enable stock control for this product?"
+      %dl.third
+        %dt= f.label :stock, "Current stock"
+        %dd= f.text_field :stock
+      %dl.third
+        %dt= f.label :weight
+        %dd= f.text_field :weight
   
   %p.submit
     - unless @product.new_record?

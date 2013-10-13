@@ -9,17 +9,16 @@
   background:none;
   text-decoration:none;
   font-size:12px;
-  font-weight:600;
+  font-weight:500 !important;
   text-transform:uppercase;
   font-family:$font;
   color:#fff !important;
-	letter-spacing:-0.5px;
-  padding:7px 20px;
-  border-radius:4px;
-  background-color:#888;
+  padding:8px 20px;
+	border-radius:30px;
+  background-color:#40454D;
   display:inline-block;
   &:active {
-    background:#999;
+    background:#40454D;
   }
   
   &.green {

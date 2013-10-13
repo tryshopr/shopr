@@ -1,22 +1,24 @@
 = form_for @user do |f|
   = f.error_messages
   = field_set_tag "User Details" do
-    %dl
-      %dt= f.label :first_name
-      %dd= f.text_field :first_name
-    %dl
-      %dt= f.label :last_name
-      %dd= f.text_field :last_name
+    .splitContainer
+      %dl.half
+        %dt= f.label :first_name
+        %dd= f.text_field :first_name
+      %dl.half
+        %dt= f.label :last_name
+        %dd= f.text_field :last_name
   = field_set_tag "Login" do
-    %dl
-      %dt= f.label :email_address
-      %dd= f.text_field :email_address
-    %dl
-      %dt= f.label :password
-      %dd= f.password_field :password
-    %dl
-      %dt= f.label :password_confirmation, "...and again"
-      %dd= f.password_field :password_confirmation
+    .splitContainer
+      %dl.third
+        %dt= f.label :email_address
+        %dd= f.text_field :email_address
+      %dl.third
+        %dt= f.label :password
+        %dd= f.password_field :password
+      %dl.third
+        %dt= f.label :password_confirmation, "...and again"
+        %dd= f.password_field :password_confirmation
 
 
   %p.submit

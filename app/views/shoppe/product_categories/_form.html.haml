@@ -1,12 +1,13 @@
 = form_for @product_category do |f|
   = f.error_messages
   = field_set_tag 'Category Details' do
-    %dl
-      %dt= f.label :name
-      %dd= f.text_field :name
-    %dl
-      %dt= f.label :permalink
-      %dd= f.text_field :permalink
+    .splitContainer
+      %dl.half
+        %dt= f.label :name
+        %dd= f.text_field :name
+      %dl.half
+        %dt= f.label :permalink
+        %dd= f.text_field :permalink
     %dl
       %dt= f.label :description
       %dd= f.text_area :description

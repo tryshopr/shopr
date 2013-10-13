@@ -1,31 +1,32 @@
 = form_for [@delivery_service, @delivery_service_price] do |f|
   = f.error_messages
-  = field_set_tag "Weight allowance" do
-    %dl
-      %dt= f.label :min_weight
-      %dd= f.text_field :min_weight
-    %dl
-      %dt= f.label :max_weight
-      %dd= f.text_field :max_weight
+  = field_set_tag "Identification & Weight" do
+    .splitContainer
+      %dl.third
+        %dt= f.label :code
+        %dd= f.text_field :code
+      
+      %dl.third
+        %dt= f.label :min_weight
+        %dd= f.text_field :min_weight
+      %dl.third
+        %dt= f.label :max_weight
+        %dd= f.text_field :max_weight
 
   = field_set_tag "Pricing" do
-    %dl
-      %dt= f.label :price
-      %dd= f.text_field :price
-    %dl
-      %dt= f.label :cost_price
-      %dd= f.text_field :cost_price
-    %dl
-      %dt= f.label :tax_rate
-      %dd= f.text_field :tax_rate
-    
-  = field_set_tag "Details" do
-    %dl
-      %dt= f.label :code
-      %dd= f.text_field :code
+    .splitContainer
+      %dl.third
+        %dt= f.label :price
+        %dd= f.text_field :price
+      %dl.third
+        %dt= f.label :cost_price
+        %dd= f.text_field :cost_price
+      %dl.third
+        %dt= f.label :tax_rate
+        %dd= f.text_field :tax_rate
 
   %p.submit
     - unless @delivery_service_price.new_record?
       %span.right= link_to "Delete", [@delivery_service, @delivery_service_price], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this price?"}
     = f.submit :class => 'button green'
-    = link_to "Cancel", :delivery_services, :class => 'button'
+    = link_to "Cancel", [@delivery_service, :delivery_service_prices], :class => 'button'

@@ -2,7 +2,7 @@
 
 = content_for :header do
   %p.buttons= link_to "Back to orders", :orders, :class => 'button'
-  %h2 Order ##{@order.number}
+  %h2.orders Order <b>##{@order.number}</b>
 
 #order
   .details
