@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require shoppe/jquery_ui
 #= require_tree .
 
 $ ->
@@ -21,3 +22,15 @@ $ ->
   # Remove an attribute from a table
   $('table.productAttributes tbody').on 'click', 'tr td:last a', -> 
     $(this).parents('tr').remove()
+  
+  # Sorting on the product attribtues table
+  $('table.productAttributes tbody').sortable
+    axis: 'y'
+    handle: '.handle'
+    cursor: 'move',
+    helper: (e,tr)->
+      originals = tr.children()
+      helper = tr.clone()
+      helper.children().each (index)->
+        $(this).width(originals.eq(index).width())
+      helper

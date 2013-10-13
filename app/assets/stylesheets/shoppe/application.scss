@@ -168,15 +168,16 @@ header.main {
 				width:100%;
 				margin-bottom:10px;
 				line-height:1.0;
-				thead td { background:#f7f7f7; color:#999;}
+				thead td { background:#f7f7f7; color:#999; font-size:0.9em;}
 				td {
 					border:1px solid #ccc;
 					padding:10px;
 					vertical-align:middle;
-					width:44%;
+					width:40%;
 					input[type=text] { width:100%; border:0; padding:0; margin:0; font-size:1.2em;}
-					&.remove { width:6%; text-align:center; background:#ffeff5;}
-					&.searchable {  width:6%; text-align:center; }
+					&.remove { width:8%; text-align:center; background:#ffeff5;}
+					&.searchable {  width:8%; text-align:center; }
+					&.handle { width:4%; background:image-url('shoppe/move.svg') no-repeat center; background-size:16px;}
 				}
 			}
 		}

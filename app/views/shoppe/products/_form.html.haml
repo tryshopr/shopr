@@ -33,6 +33,7 @@
             %td Value
             %td.searchable Searchable?
             %td.searchable Public?
+            %td.remove Remove
             %td
         %tbody
           %tr.template{:style => 'display:none;'}
@@ -41,6 +42,7 @@
             %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1'
             %td.searchable= check_box_tag 'product[product_attributes_array][][public]', '1'
             %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
+            %td.handle
           - for attribute in @product.product_attributes
             %tr
               %td= text_field_tag 'product[product_attributes_array][][key]', attribute.key, :placeholder => 'Name'
@@ -48,6 +50,7 @@
               %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1', attribute.searchable?
               %td.searchable= check_box_tag 'product[product_attributes_array][][public]', '1', attribute.public?
               %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
+              %td.handle
       %p.addAttribute= link_to "Add attribute", '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
       
   = field_set_tag "Attachments" do
