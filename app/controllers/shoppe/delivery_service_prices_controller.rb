@@ -36,7 +36,7 @@ class Shoppe::DeliveryServicePricesController < Shoppe::ApplicationController
   private
   
   def safe_params
-    params[:delivery_service_price].permit(:price, :tax_rate, :min_weight, :max_weight, :code)
+    params[:delivery_service_price].permit(:price, :cost_price, :tax_rate, :min_weight, :max_weight, :code)
   end
   
 end

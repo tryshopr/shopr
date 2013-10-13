@@ -109,6 +109,17 @@ class Shoppe::Order < ActiveRecord::Base
     @total_items ||= order_items.inject(0) { |t,i| t + i.quantity }
   end
   
+  # The total cost of the order
+  def total_cost
+    self.delivery_cost_price + 
+    order_items.inject(BigDecimal(0)) { |t, i| t + i.total_cost }
+  end
+  
+  # Return the price for the order
+  def profit
+    total_before_tax - total_cost
+  end
+  
   # The total price of the order before tax
   def total_before_tax
     self.delivery_price +
@@ -163,9 +174,14 @@ class Shoppe::Order < ActiveRecord::Base
     @delivery_service_price ||= self.delivery_service && self.delivery_service.delivery_service_prices.for_weight(self.total_weight).first
   end
   
-  # The cost of delivering this order in its current state
+  # The price for delivering this order in its current state
   def delivery_price
     @delivery_price ||= read_attribute(:delivery_price) || delivery_service_price.try(:price) || 0.0
+  end
+  
+  # The cost of delivering this order in its current state
+  def delivery_cost_price
+    @delivery_cost_price ||= read_attribute(:delivery_cost_price) || delivery_service_price.try(:cost_price) || 0.0
   end
   
   # The tax amount due for the delivery of this order in its current state
@@ -245,6 +261,7 @@ class Shoppe::Order < ActiveRecord::Base
     if self.delivery_service
       write_attribute :delivery_service_id, self.delivery_service.id
       write_attribute :delivery_price, self.delivery_price
+      write_attribute :delivery_cost_price, self.delivery_cost_price
       write_attribute :delivery_tax_amount, self.delivery_tax_amount
       write_attribute :delivery_tax_rate, self.delivery_tax_rate
     end

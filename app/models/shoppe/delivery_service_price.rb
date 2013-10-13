@@ -8,6 +8,7 @@ class Shoppe::DeliveryServicePrice < ActiveRecord::Base
   
   # Validations
   validates :price, :numericality => true
+  validates :cost_price, :numericality => true, :allow_blank => true
   validates :tax_rate, :numericality => true
   validates :min_weight, :numericality => true
   validates :max_weight, :numericality => true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012163301) do
+ActiveRecord::Schema.define(version: 20131013123937) do
 
   create_table "shoppe_delivery_service_prices", force: true do |t|
     t.integer  "delivery_service_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20131012163301) do
     t.decimal  "max_weight",          precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "cost_price",          precision: 8, scale: 2
   end
 
   create_table "shoppe_delivery_services", force: true do |t|
@@ -38,13 +39,14 @@ ActiveRecord::Schema.define(version: 20131012163301) do
   create_table "shoppe_order_items", force: true do |t|
     t.integer  "order_id"
     t.integer  "product_id"
-    t.integer  "quantity",                           default: 1
-    t.decimal  "unit_price", precision: 8, scale: 2
-    t.decimal  "tax_amount", precision: 8, scale: 2
-    t.decimal  "tax_rate",   precision: 8, scale: 2
-    t.decimal  "weight",     precision: 8, scale: 3, default: 0.0
+    t.integer  "quantity",                                default: 1
+    t.decimal  "unit_price",      precision: 8, scale: 2
+    t.decimal  "tax_amount",      precision: 8, scale: 2
+    t.decimal  "tax_rate",        precision: 8, scale: 2
+    t.decimal  "weight",          precision: 8, scale: 3, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "unit_cost_price", precision: 8, scale: 2
   end
 
   create_table "shoppe_orders", force: true do |t|
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 20131012163301) do
     t.string   "country"
     t.string   "payment_reference"
     t.string   "payment_method"
+    t.decimal  "delivery_cost_price", precision: 8, scale: 2
   end
 
   create_table "shoppe_product_attributes", force: true do |t|
@@ -116,6 +119,7 @@ ActiveRecord::Schema.define(version: 20131012163301) do
     t.datetime "updated_at"
     t.boolean  "featured",                                    default: false
     t.text     "in_the_box"
+    t.decimal  "cost_price",          precision: 8, scale: 2
   end
 
   create_table "shoppe_users", force: true do |t|

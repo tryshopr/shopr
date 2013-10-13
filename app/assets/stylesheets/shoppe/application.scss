@@ -259,6 +259,13 @@ header.main {
 		
 		.order_items {
 			margin:25px 0;
+			table.data {
+ 				.money { text-align:right; width:8%}
+				.product { width:42%;}
+				.sku { width:18%;}
+				.qty {text-align:center; width:5%;}
+				tfoot td { background:#5B6270; color:#fff; border:1px solid #5B6270; font-weight:bold; font-size:1.1em;}
+			}
 		}
 	}
 	

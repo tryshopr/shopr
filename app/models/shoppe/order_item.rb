@@ -14,6 +14,7 @@ class Shoppe::OrderItem < ActiveRecord::Base
   before_validation do
     if self.product
       self.unit_price = self.product.price      if self.unit_price.blank?
+      self.unit_cost_price = self.product.cost_price if self.unit_cost_price.blank?
       self.tax_rate   = self.product.tax_rate   if self.tax_rate.blank?
       if unit_price_changed? || quantity_changed?
         self.tax_amount = (self.sub_total / BigDecimal(100)) * self.tax_rate
@@ -70,6 +71,11 @@ class Shoppe::OrderItem < ActiveRecord::Base
       self.quantity == 0 ? self.destroy : self.save!
       self.order.remove_delivery_service_if_invalid
     end
+  end
+  
+  # Return the total cost for the product
+  def total_cost
+    quantity * unit_cost_price
   end
   
   # Return the sub total for the product

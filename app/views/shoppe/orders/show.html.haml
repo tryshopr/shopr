@@ -31,7 +31,6 @@
         %dt Build Time
         %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
       
-      
       - if !@order.paid?
         = form_tag [:pay, @order] do
           %p.ship
@@ -86,32 +85,36 @@
       %table.data
         %thead
           %tr
-            %th Qty
+            %th.qty Qty
             %th Item
             %th SKU
-            %th Price
-            %th= Shoppe.config[:tax_name]
-            %th Sub-Total
+            %th.money Cost
+            %th.money Price
+            %th.money= Shoppe.config[:tax_name]
+            %th.money Sub-Total
         %tbody
           - for item in @order.order_items
             %tr
-              %td= item.quantity
-              %td= link_to item.product.title, [:edit, item.product]
-              %td= item.product.sku
-              %td= number_to_currency item.sub_total
-              %td= number_to_currency item.tax_amount
-              %td= number_to_currency item.total
+              %td.qty= item.quantity
+              %td.product= link_to item.product.title, [:edit, item.product]
+              %td.sku= item.product.sku
+              %td.money= number_to_currency item.total_cost
+              %td.money= number_to_currency item.sub_total
+              %td.money= number_to_currency item.tax_amount
+              %td.money= number_to_currency item.total
+          - if @order.delivery_service
+            %td.qty
+            %td.product= link_to @order.delivery_service.name, [:edit, @order.delivery_service]
+            %td.sku
+            %td.money= number_to_currency @order.delivery_cost_price
+            %td.money= number_to_currency @order.delivery_price
+            %td.money= number_to_currency @order.delivery_tax_amount
+            %td.money= number_to_currency @order.delivery_price + @order.delivery_tax_amount
         %tfoot
           %tr
-            %td.right.bold{:colspan => 5}= link_to @order.delivery_service.name, [:edit, @order.delivery_service]
-            %td= number_to_currency @order.delivery_price
-          %tr
-            %td.right.bold{:colspan => 5} Total (excluding #{Shoppe.config[:tax_name]})
-            %td= number_to_currency @order.total_before_tax
-          %tr
-            %td.right.bold{:colspan => 5}= Shoppe.config[:tax_name]
-            %td= number_to_currency @order.tax
-          %tr
-            %td.right.bold{:colspan => 5} Total
-            %td= number_to_currency @order.total
-
+            %td.qty= @order.total_items
+            %td{:colspan => 2}
+            %td.money= number_to_currency @order.total_cost
+            %td.money= number_to_currency @order.total_before_tax
+            %td.money= number_to_currency @order.tax
+            %td.money= number_to_currency @order.total

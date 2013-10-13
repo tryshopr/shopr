@@ -24,6 +24,7 @@ class Shoppe::Product < ActiveRecord::Base
   validates :short_description, :presence => true
   validates :weight, :numericality => true
   validates :price, :numericality => true
+  validates :cost_price, :numericality => true, :allow_blank => true
   validates :tax_rate, :numericality => true
   validates :stock, :numericality => {:only_integer => true}
   
