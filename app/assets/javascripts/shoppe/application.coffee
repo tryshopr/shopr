@@ -22,6 +22,7 @@ $ ->
   # Remove an attribute from a table
   $('table.productAttributes tbody').on 'click', 'tr td.remove a', -> 
     $(this).parents('tr').remove()
+    false
   
   # Sorting on the product attribtues table
   $('table.productAttributes tbody').sortable
