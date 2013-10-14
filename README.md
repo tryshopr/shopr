@@ -1,6 +1,6 @@
 **This is still under very active development and I do not recommend using it
-for anything at all at the moment. Anything could change and we will be releasing
-an example store shortly.**
+for anything at all until the 1.0.0 release. You can check out the app in all
+it's glory in the [example store](http://github.com/tryshoppe/example-store).**
 
 Shoppe is an Rails-based e-commerce platform which allows you to easily introduce a
 catalogue-based store into your Rails 4 applications. 
