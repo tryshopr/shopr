@@ -240,12 +240,14 @@ header.main {
 		margin-bottom:15px;
 		div.imgContainer {  float:left;padding:4px;	 border:1px solid #ccc; background:#fff;}
 		div.imgContainer div.img { background-image:image-url('shoppe/document.svg'); width:40px; height:40px; display:block;background-size:contain; background-repeat:no-repeat; background-position: center center;}
+		div.imgContainer div.img.none { background-image:none;}
 		div.desc {margin-left:60px; padding-top:5px;}
 		div.desc span { display:block}
 		div.desc span.filename { font-size:1.1em; margin-bottom:5px;}
 		div.desc span.filename a { text-decoration:none; font-weight:bold;}
 		div.desc span.delete a  { color:#FF9781; font-size:0.9em; }
 		div.desc a { color:#000;}
+		div.desc.none { color:#999; font-style:italic;}
 	}
 	
 	//
@@ -271,6 +273,9 @@ header.main {
 				dt { float:left; width:30%; text-align:right; color:#888;white-space:nowrap}
 				dd { font-weight:bold; margin-left:35%; margin-bottom:6px; white-space:nowrap}
 			}
+			
+			p.ship { background:#fff; text-align:center;padding:15px;border:1px solid #CED2D8;}
+			p.ship input, p.ship a { margin:0 10px;}
 			
 		}
 		

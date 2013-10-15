@@ -44,7 +44,7 @@
             = submit_tag "Ship", :class => 'button green'
       
       - if @order.paid? && !(@order.accepted? || @order.rejected?)
-        %p.acceptreject
+        %p.ship
           = link_to 'Accept order', [:accept, @order], :method => :post, :class => 'button green'
           = link_to "Reject order", [:reject, @order], :method => :post, :class => 'button purple'
   
