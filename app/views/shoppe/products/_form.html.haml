@@ -3,7 +3,7 @@
   = field_set_tag "Product Information" do
     %dl
       %dt= f.label :product_category_id
-      %dd= f.collection_select :product_category_id, Shoppe::ProductCategory.ordered, :id, :name, :include_blank => true
+      %dd= f.collection_select :product_category_id, Shoppe::ProductCategory.ordered, :id, :name, {:include_blank => true}, {:class => 'select2'}
   
     .splitContainer
       %dl.third
