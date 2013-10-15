@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require shoppe/jquery_ui
+#= require shoppe/chosen.jquery
 #= require_tree .
 
 $ ->
@@ -35,3 +36,7 @@ $ ->
       helper.children().each (index)->
         $(this).width(originals.eq(index).width())
       helper
+  
+  # Chosen
+  $('select.chosen').chosen()
+  

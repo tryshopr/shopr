@@ -1,6 +1,7 @@
 /*
  *= require shoppe/reset
  *= require shoppe/elements
+ *= require shoppe/chosen
  *= require_self
  */
 
@@ -164,6 +165,7 @@ header.main {
 					&:focus { border-color:#9AC835; }
 					&.short { width:100px;}
 				}
+				dd select { width:200px;}
 				dd textarea { height:80px;	}
 				dd p.help { margin-top:15px; color:#333; background:image-url('shoppe/icons/support.svg') no-repeat 0 1px; background-size:13px; padding-left:15px;}
 				dd.checkbox { margin-top:10px; font-size:1.1em; color:#999;}
