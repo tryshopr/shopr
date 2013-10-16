@@ -24,8 +24,7 @@ module Shoppe
           setup_config(config)
           config
         else
-          $stderr.puts "Shoppe configuration file missing at #{path}"
-          {}
+          raise InvalidConfiguration, "Shoppe configuration file missing at #{path}"
         end
       end
     end
