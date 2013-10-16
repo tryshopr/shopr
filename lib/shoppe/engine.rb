@@ -19,6 +19,9 @@ module Shoppe
       # Preload the config
       Shoppe.config
       
+      # Validate the initial config
+      Shoppe.validate_live_config :store_name, :email_address, :currency_unit, :tax_name
+      
       # Load our migrations into the application's db/migrate path
       unless app.root.to_s.match root.to_s
         config.paths["db/migrate"].expanded.each do |expanded_path|
