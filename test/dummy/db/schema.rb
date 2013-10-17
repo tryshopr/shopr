@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017144430) do
+ActiveRecord::Schema.define(version: 20131017165222) do
+
+  create_table "nifty_attachments", force: true do |t|
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.string   "token"
+    t.string   "digest"
+    t.string   "role"
+    t.string   "file_name"
+    t.string   "file_type"
+    t.binary   "data",        limit: 16777215
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "nifty_key_value_store", force: true do |t|
+    t.integer "parent_id"
+    t.string  "parent_type"
+    t.string  "group"
+    t.string  "name"
+    t.string  "value"
+  end
 
   create_table "shoppe_delivery_service_prices", force: true do |t|
     t.integer  "delivery_service_id"

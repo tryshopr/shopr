@@ -20,7 +20,7 @@ module Shoppe
       @order.order_items.add_product(Product.find_by_sku('YL-SIP-T22P'))
       assert_equal true, @order.has_items?
       assert_equal 2, @order.total_items
-    end    
+    end
     
   end
 end
