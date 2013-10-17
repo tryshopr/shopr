@@ -22,8 +22,8 @@
         %dt= f.label :cost_price
         %dd= f.text_field :cost_price
       %dl.third
-        %dt= f.label :tax_rate
-        %dd= f.text_field :tax_rate
+        %dt= f.label :tax_rate_id
+        %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
 
   %p.submit
     - unless @delivery_service_price.new_record?

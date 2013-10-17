@@ -12,6 +12,7 @@ class Shoppe::Product < ActiveRecord::Base
   
   # Relationships
   belongs_to :product_category, :class_name => 'Shoppe::ProductCategory'
+  belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
   has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem'
   has_many :orders, :through => :order_items, :class_name => 'Shoppe::Order'
   has_many :stock_level_adjustments, :dependent => :destroy
@@ -26,7 +27,6 @@ class Shoppe::Product < ActiveRecord::Base
   validates :weight, :numericality => true
   validates :price, :numericality => true
   validates :cost_price, :numericality => true, :allow_blank => true
-  validates :tax_rate, :numericality => true
   
   # Set the permalink
   before_validation { self.permalink = self.title.parameterize if self.permalink.blank? && self.title.is_a?(String) }

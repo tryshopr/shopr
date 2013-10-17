@@ -39,4 +39,4 @@ $ ->
   
   # Chosen
   $('select.chosen').chosen()
-  
+  $('select.chosen-with-deselect').chosen({allow_single_deselect: true})

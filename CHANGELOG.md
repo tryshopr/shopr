@@ -11,6 +11,10 @@ and the full commit history can be found [on GitHub](http://github.com/tryshoppe
   countries to be imported (`rake shoppe:import_countries`). There is currently no way to manage countries
   from the Shoppe interface.
 
+* Items with prices are now assigned to a `Shoppe::TaxRate` object rather than specifying a percentage on each
+  item manually. This allows rates to be changed globally and allows us to change how tax should be charged based
+  on other factors (country?).
+
 ## v0.0.10
 
 * Improved stock control so that a journal is kept of all stock movement in and out of the system.

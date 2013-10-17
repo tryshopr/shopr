@@ -53,7 +53,7 @@ class Shoppe::ProductsController < Shoppe::ApplicationController
   private
   
   def safe_params
-    params[:product].permit(:product_category_id, :title, :sku, :permalink, :description, :short_description, :weight, :price, :cost_price, :tax_rate, :stock_control, :default_image_file, :data_sheet_file, :active, :featured, :in_the_box, :product_attributes_array => [:key, :value, :searchable, :public])
+    params[:product].permit(:product_category_id, :title, :sku, :permalink, :description, :short_description, :weight, :price, :cost_price, :tax_rate_id, :stock_control, :default_image_file, :data_sheet_file, :active, :featured, :in_the_box, :product_attributes_array => [:key, :value, :searchable, :public])
   end
   
 end

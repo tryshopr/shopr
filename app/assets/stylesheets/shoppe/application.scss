@@ -169,7 +169,7 @@ header.main {
 			margin-bottom:15px;
 			legend {color:#5B6270; margin:0 25px; font-weight:300; font-size:1.5em;}
 
-			.splitContainer { margin:0 25px; margin-bottom:15px;overflow:hidden;}
+			.splitContainer { margin:0 25px; margin-bottom:15px; height:50px;}
 			.splitContainer:last-child { margin-bottom:0;}
 			
 			dl { 
@@ -184,13 +184,12 @@ header.main {
 					-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 			    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
 			    box-sizing: border-box;         /* Opera/IE 8+ */
-			    
 					font-size:1.1em;
 					font-family:$font;
 					&:focus { border-color:#9AC835; }
 					&.short { width:100px;}
 				}
-				dd select { width:200px;}
+				dd select { width:100%;}
 				dd textarea { height:80px;	}
 				dd p.help { margin-top:15px; color:#333; background:image-url('shoppe/icons/support.svg') no-repeat 0 1px; background-size:13px; padding-left:15px;}
 				dd.checkbox { margin-top:14px; font-size:1.1em; color:#999;}

@@ -76,8 +76,8 @@
         %dt= f.label :cost_price
         %dd= f.text_field :cost_price
       %dl.third
-        %dt= f.label :tax_rate
-        %dd= f.text_field :tax_rate
+        %dt= f.label :tax_rate_id
+        %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect'}
       
   = field_set_tag "Website Properties" do
     .splitContainer

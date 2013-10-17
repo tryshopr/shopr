@@ -5,11 +5,11 @@ class Shoppe::DeliveryServicePrice < ActiveRecord::Base
   
   # Relationships
   belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
+  belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
   
   # Validations
   validates :price, :numericality => true
   validates :cost_price, :numericality => true, :allow_blank => true
-  validates :tax_rate, :numericality => true
   validates :min_weight, :numericality => true
   validates :max_weight, :numericality => true
   
