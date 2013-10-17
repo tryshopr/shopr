@@ -95,17 +95,15 @@
 
   = field_set_tag "Stock Control" do
     .splitContainer
-      %dl.third
+      %dl.half
+        %dt= f.label :weight
+        %dd= f.text_field :weight
+      
+      %dl.half
         %dt= f.label :stock_control
         %dd.checkbox
           = f.check_box :stock_control
           = f.label :stock_control, "Enable stock control for this product?"
-      %dl.third
-        %dt= f.label :stock, "Current stock"
-        %dd= f.text_field :stock
-      %dl.third
-        %dt= f.label :weight
-        %dd= f.text_field :weight
   
   %p.submit
     - unless @product.new_record?

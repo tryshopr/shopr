@@ -1,5 +1,7 @@
 - @page_title = "Products"
 = content_for :header do
-  %p.buttons= link_to "Back to products list", :products, :class => 'button'
+  %p.buttons
+    = link_to "Stock levels", [:stock_levels, @product], :class => 'button' 
+    = link_to "Back to products list", :products, :class => 'button'
   %h2.products Products
 = render 'form'

@@ -91,7 +91,9 @@ class Shoppe::OrderItem < ActiveRecord::Base
   # This method will be triggered when the parent order is confirmed. This should automatically
   # update the stock levels on the source product.
   def confirm!
-    self.product.update_stock_level(quantity)
+    if self.product.stock_control?
+      self.product.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
+    end
   end
   
   # Do we have the stock needed to fulfil this order?

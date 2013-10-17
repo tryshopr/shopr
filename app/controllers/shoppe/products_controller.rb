@@ -4,7 +4,7 @@ class Shoppe::ProductsController < Shoppe::ApplicationController
   before_filter { params[:id] && @product = Shoppe::Product.find(params[:id]) }
   
   def index
-    @products = Shoppe::Product.includes(:default_image, :product_category).order(:title).group_by(&:product_category).sort_by { |cat,pro| cat.name }
+    @products = Shoppe::Product.includes(:stock_level_adjustments, :default_image, :product_category).order(:title).group_by(&:product_category).sort_by { |cat,pro| cat.name }
   end
   
   def new
@@ -36,10 +36,18 @@ class Shoppe::ProductsController < Shoppe::ApplicationController
     redirect_to :products, :flash => {:notice => "Product has been removed successfully"}
   end
   
+  def stock_levels
+    @stock_level_adjustments = @product.stock_level_adjustments.ordered.page(params[:page])
+    if request.post?
+      @product.stock_level_adjustments.create!(params[:stock_level_adjustment].permit(:description, :adjustment))
+      redirect_to [:stock_levels, @product], :notice => "Stock level adjustment has been recorded"
+    end
+  end
+  
   private
   
   def safe_params
-    params[:product].permit(:product_category_id, :title, :sku, :permalink, :description, :short_description, :weight, :price, :cost_price, :tax_rate, :stock_control, :stock, :default_image_file, :data_sheet_file, :active, :featured, :in_the_box, :product_attributes_array => [:key, :value, :searchable, :public])
+    params[:product].permit(:product_category_id, :title, :sku, :permalink, :description, :short_description, :weight, :price, :cost_price, :tax_rate, :stock_control, :default_image_file, :data_sheet_file, :active, :featured, :in_the_box, :product_attributes_array => [:key, :value, :searchable, :public])
   end
   
 end

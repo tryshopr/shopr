@@ -14,6 +14,7 @@ class Shoppe::Product < ActiveRecord::Base
   belongs_to :product_category, :class_name => 'Shoppe::ProductCategory'
   has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem'
   has_many :orders, :through => :order_items, :class_name => 'Shoppe::Order'
+  has_many :stock_level_adjustments, :dependent => :destroy
   
   # Validations
   validates :product_category_id, :presence => true
@@ -26,7 +27,6 @@ class Shoppe::Product < ActiveRecord::Base
   validates :price, :numericality => true
   validates :cost_price, :numericality => true, :allow_blank => true
   validates :tax_rate, :numericality => true
-  validates :stock, :numericality => {:only_integer => true}
   
   # Set the permalink
   before_validation { self.permalink = self.title.parameterize if self.permalink.blank? && self.title.is_a?(String) }
@@ -37,15 +37,12 @@ class Shoppe::Product < ActiveRecord::Base
 
   # Is this product currently in stock?
   def in_stock?
-    !stock_control? || stock > 0
+    stock > 0
   end
   
-  # Remove the provided number of units from the current stock level of this product
-  def update_stock_level(purchased = 1)
-    if self.stock_control?
-      self.stock -= purchased
-      self.save!
-    end
+  # Return the total number of items currently in stock
+  def stock
+    @stock ||= self.stock_level_adjustments.sum(:adjustment)
   end
   
   # Specify which attributes can be searched

@@ -1,0 +1,34 @@
+- @page_title = "Stock Levels - #{@product.title}"
+= content_for :header do
+  %p.buttons
+    = link_to "Edit", [:edit, @product], :class => 'button'
+    = link_to "Back to list", :products, :class => 'button'
+  %h2.products= @product.title
+
+
+
+.table
+  %p.info
+    Current stock level is <b>#{@product.stock}</b>
+    %span.float-right= page_entries_info @stock_level_adjustments
+  = form_for Shoppe::StockLevelAdjustment.new, :url => [:stock_levels, @product] do |f|
+    %table.data
+      %thead
+        %tr
+          %th{:width => '25%'} Date
+          %th{:width => '50%'} Description
+          %th{:width => '25%'} Adjustment
+      %tbody
+        %tr.form
+          %td
+          %td.desc= f.text_field :description
+          %td.adjustment
+            = f.text_field :adjustment
+            = f.submit "Add", :class => 'button button-mini green'
+        - for sla in @stock_level_adjustments
+          %tr
+            %td= sla.created_at.to_s(:long)
+            %td= sla.description
+            %td= sla.adjustment > 0  ? "+#{sla.adjustment}" : sla.adjustment
+
+    = paginate @stock_level_adjustments
