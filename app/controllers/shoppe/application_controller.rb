@@ -4,6 +4,10 @@ module Shoppe
     # Require that a user is logged in for all parts of the Shoppe admin
     # interface.
     before_filter :login_required
+    
+    rescue_from ActiveRecord::DeleteRestrictionError do |e|
+      redirect_to request.referer || root_path, :alert => e.message
+    end
 
     private
 
