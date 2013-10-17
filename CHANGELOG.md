@@ -8,7 +8,8 @@ and the full commit history can be found [on GitHub](http://github.com/tryshoppe
 * All countries are now stored in the database which will allow for delivery & tax rate decisions to
   be made as appropriate. There is now no need to use things like `country_select` in applications. Any existing
   order which has a country will have this data lost. A rake task method is provide to allow a default set of 
-  countries to be imported (`rake shoppe:import_countries`).
+  countries to be imported (`rake shoppe:import_countries`). There is currently no way to manage countries
+  from the Shoppe interface.
 
 ## v0.0.10
 
