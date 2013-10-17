@@ -6,6 +6,7 @@ class Shoppe::OrderItem < ActiveRecord::Base
   # Relationships
   belongs_to :order, :class_name => 'Shoppe::Order'
   belongs_to :product, :class_name => 'Shoppe::Product'
+  has_many :stock_level_adjustments, :as => :parent, :dependent => :nullify
   
   # Validations
   validates :quantity, :numericality => true
@@ -94,6 +95,15 @@ class Shoppe::OrderItem < ActiveRecord::Base
     if self.product.stock_control?
       self.product.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
     end
+  end
+  
+  # This method will be trigger when the parent order is accepted.
+  def accept!
+  end
+  
+  # This method will be trigger when the parent order is rejected.
+  def reject!
+    self.stock_level_adjustments.destroy_all
   end
   
   # Do we have the stock needed to fulfil this order?

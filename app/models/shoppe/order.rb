@@ -301,6 +301,7 @@ class Shoppe::Order < ActiveRecord::Base
       self.accepted_by = user.id
       self.status = 'accepted'
       self.save!
+      self.order_items.each(&:accept!)
       Shoppe::OrderMailer.accepted(self).deliver
     end
   end
@@ -312,6 +313,7 @@ class Shoppe::Order < ActiveRecord::Base
       self.rejected_by = user.id
       self.status = 'rejected'
       self.save!
+      self.order_items.each(&:reject!)
       Shoppe::OrderMailer.rejected(self).deliver
     end
   end
