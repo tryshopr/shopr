@@ -5,13 +5,12 @@
     = link_to "Back to list", :products, :class => 'button'
   %h2.products= @product.title
 
-
-
 .table
   %p.info
     Current stock level is <b>#{@product.stock}</b>
     %span.float-right= page_entries_info @stock_level_adjustments
-  = form_for Shoppe::StockLevelAdjustment.new, :url => [:stock_levels, @product] do |f|
+
+  = form_for @new_sla, :url => [:stock_levels, @product] do |f|
     %table.data
       %thead
         %tr

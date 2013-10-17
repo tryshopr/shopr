@@ -7,7 +7,9 @@ module Shoppe
     
     # Validations
     validates :product_id, :presence => true
+    validates :description, :presence => true
     validates :adjustment, :numericality => true
+    validate { errors.add(:adjustment, "must be greater or less than zero") if adjustment == 0 }
     
     # Scopes
     scope :ordered, -> { order('created_at desc') }
