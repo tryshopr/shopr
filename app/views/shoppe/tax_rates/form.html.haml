@@ -1,0 +1,22 @@
+- @page_title = "Tax Rates"
+= content_for :header do
+  %p.buttons= link_to "Back to tax rates", :tax_rates, :class => 'button'
+  %h2.tax_rates Tax Rates
+
+= form_for @tax_rate do |f|
+  = f.error_messages
+  = field_set_tag "Rate Details" do
+    .splitContainer
+      %dl.half
+        %dt= f.label :name
+        %dd= f.text_field :name, :class => 'focus'
+      %dl.half
+        %dt= f.label :rate
+        %dd= f.text_field :rate
+
+
+  %p.submit
+    - unless @tax_rate.new_record?
+      %span.right= link_to "Delete", @tax_rate, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this tax_rate?"}
+    = f.submit :class => 'button green'
+    = link_to "Cancel", :tax_rates, :class => 'button'

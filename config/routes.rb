@@ -15,6 +15,7 @@ Shoppe::Engine.routes.draw do
   resources :delivery_services do
     resources :delivery_service_prices
   end
+  resources :tax_rates
   resources :users
   resources :attachments, :only => :destroy
   get 'login' => 'sessions#new'

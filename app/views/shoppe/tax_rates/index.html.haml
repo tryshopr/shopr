@@ -1,0 +1,17 @@
+- @page_title = "Tax Rates"
+
+= content_for :header do
+  %p.buttons=link_to "New tax rate", :new_tax_rate, :class => 'button green'
+  %h2.tax_rates Tax Rates
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th Name
+        %th Rate
+    %tbody
+      - for tax_rate in @tax_rates
+        %tr
+          %td= link_to tax_rate.name, [:edit, tax_rate]
+          %td= tax_rate.rate

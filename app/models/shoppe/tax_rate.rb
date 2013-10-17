@@ -5,6 +5,7 @@ module Shoppe
     self.table_name = 'shoppe_tax_rates'
     
     # Validations
+    validates :name, :presence => true
     validates :rate, :numericality => true
     
     # Relationships
