@@ -14,4 +14,9 @@ namespace :shoppe do
     puts "    Password........: password"
     puts
   end
+  
+  desc "Import default set of countries"
+  task :import_countries => :environment do
+    Shoppe::CountryImporter.import
+  end
 end

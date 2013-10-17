@@ -16,6 +16,7 @@ class Shoppe::Order < ActiveRecord::Base
   
   # Relationships
   belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
+  belongs_to :country, :class_name => 'Shoppe::Country'
   belongs_to :accepter, :class_name => 'Shoppe::User', :foreign_key => 'accepted_by'
   belongs_to :rejecter, :class_name => 'Shoppe::User', :foreign_key => 'rejected_by'
   belongs_to :shipper, :class_name => 'Shoppe::User', :foreign_key => 'shipped_by'

@@ -19,7 +19,7 @@
         %dd= @order.address4
         %dt Postcode
         %dd= @order.postcode
-        %dd= @order.country
+        %dd= @order.country.try(:name)
     .right
       %dl
         %dt E-Mail Address
