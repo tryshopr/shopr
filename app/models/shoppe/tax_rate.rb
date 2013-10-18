@@ -19,5 +19,9 @@ module Shoppe
       "#{name} (#{rate}%)"
     end
     
+    def rate_for(order)
+      self.rate
+    end
+    
   end
 end

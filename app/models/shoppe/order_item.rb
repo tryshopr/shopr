@@ -14,9 +14,9 @@ class Shoppe::OrderItem < ActiveRecord::Base
   # Set some values based on the selected product on validation
   before_validation do
     if self.product
-      self.unit_price         = self.product.price            if self.unit_price.blank?
-      self.unit_cost_price    = self.product.cost_price       if self.unit_cost_price.blank?
-      self.tax_rate           = self.product.tax_rate.rate    if self.tax_rate.blank? && self.product.tax_rate
+      self.unit_price         = self.product.price                          if self.unit_price.blank?
+      self.unit_cost_price    = self.product.cost_price                     if self.unit_cost_price.blank?
+      self.tax_rate           = self.product.tax_rate.rate_for(self.order)  if self.tax_rate.blank? && self.product.tax_rate
 
       if unit_price_changed? || quantity_changed? || tax_rate_changed?
         self.tax_amount = (self.sub_total / BigDecimal(100)) * self.tax_rate

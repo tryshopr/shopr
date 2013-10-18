@@ -198,7 +198,7 @@ class Shoppe::Order < ActiveRecord::Base
   def delivery_tax_rate
     @delivery_tax_rate ||= begin
       read_attribute(:delivery_tax_rate) ||
-      delivery_service_price.try(:tax_rate).try(:rate) ||
+      delivery_service_price.try(:tax_rate).try(:rate_for, self) ||
       0.0
     end
   end
