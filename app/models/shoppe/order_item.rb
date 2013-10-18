@@ -13,19 +13,24 @@ class Shoppe::OrderItem < ActiveRecord::Base
   
   # Set some values based on the selected product on validation
   before_validation do
-    if self.product
-      self.unit_price         = self.product.price                          if self.unit_price.blank?
-      self.unit_cost_price    = self.product.cost_price                     if self.unit_cost_price.blank?
-      self.tax_rate           = self.product.tax_rate.rate_for(self.order)  if self.tax_rate.blank? && self.product.tax_rate
-
-      if unit_price_changed? || quantity_changed? || tax_rate_changed?
-        self.tax_amount = (self.sub_total / BigDecimal(100)) * self.tax_rate
-      end
-      
-      if product_id_changed? || quantity_changed?
-        self.weight = self.quantity * self.product.weight
-      end
+    unless order.received?
+      copy_pricing
     end
+  end
+  
+  # Copy prices and calculate tax for the order item
+  def copy_pricing
+    self.unit_price      = self.product.price
+    self.unit_cost_price = self.product.cost_price  
+    self.tax_rate        = self.product.tax_rate.rate_for(self.order)
+    self.tax_amount      = (self.sub_total / BigDecimal(100)) * self.tax_rate
+    self.weight          = self.quantity * self.product.weight
+  end
+  
+  # Copy prices and save the record
+  def copy_pricing!
+    copy_pricing
+    save!
   end
   
   # This allows you to add a product to the scoped order. For example Order.first.order_items.add_product(...).
