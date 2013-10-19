@@ -3,6 +3,13 @@
 This document outlines key changes which are introduced in each version. Each item is tagged as appropriate
 and the full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v0.0.12
+
+* Don't persist order item pricing until the order is confirmed. While an order is being built
+  all prices will be calculated live from the parent product and these values will be persisted
+  (in case of any future changes to the product) at the point of confirmation. This makes way for
+  changes to the tax rates based on order itself to be introduced.
+
 ## v0.0.11
 
 * All countries are now stored in the database which will allow for delivery & tax rate decisions to
