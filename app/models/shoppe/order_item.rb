@@ -13,24 +13,7 @@ class Shoppe::OrderItem < ActiveRecord::Base
   
   # Set some values based on the selected product on validation
   before_validation do
-    unless order.received?
-      copy_pricing
-    end
-  end
-  
-  # Copy prices and calculate tax for the order item
-  def copy_pricing
-    self.unit_price      = self.product.price
-    self.unit_cost_price = self.product.cost_price  
-    self.tax_rate        = self.product.tax_rate.rate_for(self.order)
-    self.tax_amount      = (self.sub_total / BigDecimal(100)) * self.tax_rate
     self.weight          = self.quantity * self.product.weight
-  end
-  
-  # Copy prices and save the record
-  def copy_pricing!
-    copy_pricing
-    save!
   end
   
   # This allows you to add a product to the scoped order. For example Order.first.order_items.add_product(...).
@@ -80,6 +63,26 @@ class Shoppe::OrderItem < ActiveRecord::Base
     end
   end
   
+  # Return the unit price for the item
+  def unit_price
+    @unit_price ||= read_attribute(:unit_price) || product.try(:price) || 0.0
+  end
+  
+  # Return the cost price for the item
+  def unit_cost_price
+    @unit_cost_price ||= read_attribute(:unit_cost_price) || product.try(:cost_price) || 0.0
+  end
+  
+  # Return the tax rate for the item
+  def tax_rate
+    @tax_rate ||= read_attribute(:tax_rate) || product.try(:tax_rate).try(:rate_for, self.order) || 0.0 
+  end
+  
+  # Return the total tax for the item
+  def tax_amount
+    @tax_amount ||= read_attribute(:tax_amount) || (self.sub_total / BigDecimal(100)) * self.tax_rate
+  end
+  
   # Return the total cost for the product
   def total_cost
     quantity * unit_cost_price
@@ -98,6 +101,12 @@ class Shoppe::OrderItem < ActiveRecord::Base
   # This method will be triggered when the parent order is confirmed. This should automatically
   # update the stock levels on the source product.
   def confirm!
+    write_attribute :unit_price, self.unit_price
+    write_attribute :unit_cost_price, self.unit_cost_price
+    write_attribute :tax_rate, self.tax_rate
+    write_attribute :tax_amount, self.tax_amount
+    save!
+    
     if self.product.stock_control?
       self.product.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
     end
