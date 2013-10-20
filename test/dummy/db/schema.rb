@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017165222) do
+ActiveRecord::Schema.define(version: 20131020204719) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -34,16 +34,27 @@ ActiveRecord::Schema.define(version: 20131017165222) do
     t.string  "value"
   end
 
+  create_table "shoppe_countries", force: true do |t|
+    t.string  "name"
+    t.string  "code2"
+    t.string  "code3"
+    t.string  "continent"
+    t.string  "tld"
+    t.string  "currency"
+    t.boolean "eu_member", default: false
+  end
+
   create_table "shoppe_delivery_service_prices", force: true do |t|
     t.integer  "delivery_service_id"
     t.string   "code"
     t.decimal  "price",               precision: 8, scale: 2
-    t.decimal  "tax_rate",            precision: 8, scale: 2
+    t.integer  "tax_rate_id"
     t.decimal  "min_weight",          precision: 8, scale: 2
     t.decimal  "max_weight",          precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "cost_price",          precision: 8, scale: 2
+    t.text     "country_ids"
   end
 
   create_table "shoppe_delivery_services", force: true do |t|
@@ -80,6 +91,7 @@ ActiveRecord::Schema.define(version: 20131017165222) do
     t.string   "address3"
     t.string   "address4"
     t.string   "postcode"
+    t.integer  "country_id"
     t.string   "email_address"
     t.string   "phone_number"
     t.string   "status"
@@ -99,7 +111,6 @@ ActiveRecord::Schema.define(version: 20131017165222) do
     t.datetime "rejected_at"
     t.integer  "rejected_by"
     t.string   "ip_address"
-    t.string   "country"
     t.string   "payment_reference"
     t.string   "payment_method"
     t.decimal  "delivery_cost_price", precision: 8, scale: 2
@@ -134,7 +145,7 @@ ActiveRecord::Schema.define(version: 20131017165222) do
     t.boolean  "active",                                      default: true
     t.decimal  "weight",              precision: 8, scale: 3, default: 0.0
     t.decimal  "price",               precision: 8, scale: 2, default: 0.0
-    t.decimal  "tax_rate",            precision: 8, scale: 2, default: 0.0
+    t.integer  "tax_rate_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "featured",                                    default: false
@@ -151,6 +162,14 @@ ActiveRecord::Schema.define(version: 20131017165222) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "shoppe_tax_rates", force: true do |t|
+    t.string   "name"
+    t.decimal  "rate",        precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "country_ids"
   end
 
   create_table "shoppe_users", force: true do |t|

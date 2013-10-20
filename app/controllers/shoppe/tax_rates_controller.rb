@@ -41,7 +41,7 @@ class Shoppe::TaxRatesController < Shoppe::ApplicationController
   private
   
   def safe_params
-    params[:tax_rate].permit(:name, :rate)
+    params[:tax_rate].permit(:name, :rate, :country_ids => [])
   end
   
 end

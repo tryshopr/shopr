@@ -25,6 +25,12 @@
         %dt= f.label :tax_rate_id
         %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
 
+  = field_set_tag "Countries" do
+    %dl
+      %dd
+        = f.collection_select :country_ids, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen', :multiple => true, :data => {:placeholder => "All countries"}}
+        %p.help This delivery rate will only be available to orders where the country selected is listed here.
+
   %p.submit
     - unless @delivery_service_price.new_record?
       %span.right= link_to "Delete", [@delivery_service, @delivery_service_price], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this price?"}

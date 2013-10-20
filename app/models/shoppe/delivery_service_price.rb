@@ -3,6 +3,9 @@ class Shoppe::DeliveryServicePrice < ActiveRecord::Base
   # Set the table name
   self.table_name = 'shoppe_delivery_service_prices'
   
+  # Store countries as arrays
+  serialize :country_ids, Array
+  
   # Relationships
   belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
   belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
@@ -16,5 +19,8 @@ class Shoppe::DeliveryServicePrice < ActiveRecord::Base
   # Scopes
   scope :ordered, -> { order('price asc')}
   scope :for_weight, -> weight { where("min_weight <= ? AND max_weight >= ?", weight, weight) }
+  
+  # Ensure all country IDs are integers
+  before_validation { self.country_ids = self.country_ids.map(&:to_i).select { |i| i > 0} if self.country_ids.is_a?(Array) }
   
 end
