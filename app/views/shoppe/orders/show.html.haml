@@ -79,7 +79,7 @@
             %p= link_to "Tracking URL", @order.courier_tracking_url
           - else
             %p Consignment # <b>#{@order.consignment_number}</b>
- 
+  
   .order_items
     .table
       %table.data
@@ -118,3 +118,10 @@
             %td.money= number_to_currency @order.total_before_tax
             %td.money= number_to_currency @order.tax
             %td.money= number_to_currency @order.total
+  .notes
+    = form_for @order do |f|
+      %h4
+        = f.submit "Save Notes", :class => 'button button-mini green'
+        Order Notes
+      %p= f.text_area :notes
+

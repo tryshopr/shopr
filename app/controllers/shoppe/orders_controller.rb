@@ -8,6 +8,11 @@ class Shoppe::OrdersController < Shoppe::ApplicationController
     @orders = @query.result
   end
   
+  def update
+    @order.update_attributes!(params[:order].permit(:notes))
+    redirect_to @order, :notice => "Order has been saved successfully"
+  end
+  
   def search
     index
     render :action => "index"

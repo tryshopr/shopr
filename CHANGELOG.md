@@ -2,6 +2,10 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v0.0.13
+
+* Orders have notes which can be viewed & editted through the Shoppe UI.
+
 ## v0.0.12
 
 * Don't persist order item pricing until the order is confirmed. While an order is being built
