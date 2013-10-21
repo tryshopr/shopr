@@ -330,7 +330,7 @@ header.main {
 			background:#fff;
 			border:1px solid #CED2D8;
 			p { padding:15px;}
-			p textarea { border:0; padding:0; width:100%; resize:none; height:120px;}
+			p textarea { border:0; padding:0; width:100%; resize:none; height:100px; font-family:$font; font-size:1.1em}
 			h4 { background:#F7F9FC; padding:10px 15px; font-weight:500;}
 			h4 input { float:right; margin-top:-3px;}
 		}
