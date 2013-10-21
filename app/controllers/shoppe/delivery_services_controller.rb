@@ -13,7 +13,7 @@ module Shoppe
     end
   
     def create
-      @delivery_service = DeliveryService.new(safe_params)
+      @delivery_service = Shoppe::DeliveryService.new(safe_params)
       if @delivery_service.save
         redirect_to :delivery_services, :flash => {:notice => "Delivery Service has been created successfully"}
       else
