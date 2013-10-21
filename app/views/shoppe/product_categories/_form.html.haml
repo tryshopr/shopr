@@ -4,13 +4,13 @@
     .splitContainer
       %dl.half
         %dt= f.label :name
-        %dd= f.text_field :name
+        %dd= f.text_field :name, :class => 'text'
       %dl.half
         %dt= f.label :permalink
-        %dd= f.text_field :permalink
+        %dd= f.text_field :permalink, :class => 'text'
     %dl
       %dt= f.label :description
-      %dd= f.text_area :description
+      %dd= f.text_area :description, :class => 'text'
   = field_set_tag "Attachments" do
 
     %dl

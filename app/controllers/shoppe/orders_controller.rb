@@ -34,7 +34,7 @@ class Shoppe::OrdersController < Shoppe::ApplicationController
   end
   
   def pay
-    @order.pay!(params[:payment_reference], 'Manual')
+    @order.pay!(params[:payment_reference], params[:payment_method].blank? ? 'Unknown' : params[:payment_method])
     redirect_to @order, :notice => "Order has been marked as paid successfully"
   end
   

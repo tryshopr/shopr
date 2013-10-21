@@ -4,10 +4,10 @@
     .splitContainer
       %dl.half
         %dt= f.label :name
-        %dd= f.text_field :name
+        %dd= f.text_field :name, :class => 'text'
       %dl.half
         %dt= f.label :code
-        %dd= f.text_field :code
+        %dd= f.text_field :code, :class => 'text'
     .splitContainer
       %dl.half
         %dt= f.label :active
@@ -23,11 +23,11 @@
     .splitContainer
       %dl.half
         %dt= f.label :courier, "Courier Name"
-        %dd= f.text_field :courier
+        %dd= f.text_field :courier, :class => 'text'
       %dl.half
         %dt= f.label :tracking_url, "Tracking URL"
         %dd
-          = f.text_field :tracking_url
+          = f.text_field :tracking_url, :class => 'text'
           %p.help Use <code>{{consignment_number}}</code> to insert the consignment number.
 
   %p.submit

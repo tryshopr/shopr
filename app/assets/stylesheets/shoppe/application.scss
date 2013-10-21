@@ -182,14 +182,6 @@ header.main {
 				dt label { font-weight:500;}
 				dd {  }
 				dd input[type=text], dd input[type=password], textarea {
-					width:100%; padding:5px; border:1px solid #ccc;
-					-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-			    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-			    box-sizing: border-box;         /* Opera/IE 8+ */
-					font-size:1.1em;
-					font-family:$font;
-					&:focus { border-color:#9AC835; }
-					&.short { width:100px;}
 				}
 				dd select { width:100%;}
 				dd textarea { height:80px;	}
@@ -292,16 +284,20 @@ header.main {
 				p.acceptreject { text-align:center; margin-top:22px; }
 				p.acceptreject a { margin: 0 5px;}
 				p.ship { text-align:center; margin-top:22px;}
-				p.ship input[type=text] { padding:5px; width:200px;  }
+				p.ship input[type=text] {  }
 			}
 			
 			dl {
 				dt { float:left; width:30%; text-align:right; color:#888;white-space:nowrap}
 				dd { font-weight:bold; margin-left:35%; margin-bottom:6px; white-space:nowrap}
+				dt.padding { padding-top:6px;}
 			}
 			
-			p.ship { background:#fff; text-align:center;padding:15px;border:1px solid #CED2D8;}
-			p.ship input, p.ship a { margin:0 10px;}
+			dl.form {
+				margin-top:15px;
+				input.text { width:70%}
+				a.button { margin-right:5px;}
+			}
 			
 		}
 		
@@ -417,3 +413,17 @@ span.boolean span.false { color:#c04a4a}
 .float-right { float:right;}
 
 div.field_with_errors { display:inline;}
+
+//
+// standard text input box
+//
+input.text, textarea.text {
+	width:100%; padding:5px; border:1px solid #ccc;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+	font-size:1.1em;
+	font-family:$font;
+	&:focus { border-color:#9AC835; }
+	&.short { width:100px;}
+}

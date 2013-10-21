@@ -9,10 +9,10 @@
     .splitContainer
       %dl.half
         %dt= f.label :name
-        %dd= f.text_field :name, :class => 'focus'
+        %dd= f.text_field :name, :class => 'focus text'
       %dl.half
         %dt= f.label :rate
-        %dd= f.text_field :rate
+        %dd= f.text_field :rate, :class => 'text'
   
   = field_set_tag "Countries" do
     %dl

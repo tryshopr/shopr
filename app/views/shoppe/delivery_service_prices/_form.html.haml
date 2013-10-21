@@ -4,23 +4,23 @@
     .splitContainer
       %dl.third
         %dt= f.label :code
-        %dd= f.text_field :code
+        %dd= f.text_field :code, :class => 'text'
       
       %dl.third
         %dt= f.label :min_weight
-        %dd= f.text_field :min_weight
+        %dd= f.text_field :min_weight, :class => 'text'
       %dl.third
         %dt= f.label :max_weight
-        %dd= f.text_field :max_weight
+        %dd= f.text_field :max_weight, :class => 'text'
 
   = field_set_tag "Pricing" do
     .splitContainer
       %dl.third
         %dt= f.label :price
-        %dd= f.text_field :price
+        %dd= f.text_field :price, :class => 'text'
       %dl.third
         %dt= f.label :cost_price
-        %dd= f.text_field :cost_price
+        %dd= f.text_field :cost_price, :class => 'text'
       %dl.third
         %dt= f.label :tax_rate_id
         %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}

@@ -8,22 +8,22 @@
     .splitContainer
       %dl.third
         %dt= f.label :title
-        %dd= f.text_field :title
+        %dd= f.text_field :title, :class => 'text'
       %dl.third
         %dt= f.label :permalink
-        %dd= f.text_field :permalink
+        %dd= f.text_field :permalink, :class => 'text'
       %dl.third
         %dt= f.label :sku, 'SKU'
-        %dd= f.text_field :sku
+        %dd= f.text_field :sku, :class => 'text'
     %dl
       %dt= f.label :description
-      %dd= f.text_area :description
+      %dd= f.text_area :description, :class => 'text'
     %dl
       %dt= f.label :short_description
-      %dd= f.text_area :short_description
+      %dd= f.text_area :short_description, :class => 'text'
     %dl
       %dt= f.label :in_the_box, "What's in the box?"
-      %dd= f.text_area :in_the_box
+      %dd= f.text_area :in_the_box, :class => 'text'
   
   = field_set_tag "Attributes" do
     .margin
@@ -71,10 +71,10 @@
     .splitContainer
       %dl.third
         %dt= f.label :price
-        %dd= f.text_field :price
+        %dd= f.text_field :price, :class => 'text'
       %dl.third
         %dt= f.label :cost_price
-        %dd= f.text_field :cost_price
+        %dd= f.text_field :cost_price, :class => 'text'
       %dl.third
         %dt= f.label :tax_rate_id
         %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
@@ -97,7 +97,7 @@
     .splitContainer
       %dl.half
         %dt= f.label :weight
-        %dd= f.text_field :weight
+        %dd= f.text_field :weight, :class => 'text'
       
       %dl.half
         %dt= f.label :stock_control

@@ -33,20 +33,28 @@
       
       - if !@order.paid?
         = form_tag [:pay, @order] do
-          %p.ship
-            = text_field_tag 'payment_reference', '', :placeholder => "Enter payment reference..."
-            = submit_tag "Mark as paid", :class => 'button green'
+          %dl.form
+            %dt.padding= label_tag 'payment_reference', 'Payment Reference'
+            %dd= text_field_tag 'payment_reference', '', :class => 'text'
+          %dl
+            %dt.padding= label_tag 'payment_method', 'Payment Method'
+            %dd= text_field_tag 'payment_method', '', :class => 'text'
+          %dl
+            %dd= submit_tag "Mark as paid", :class => 'button green button-mini'
       
       - if @order.accepted? && !@order.shipped?
         = form_tag [:ship, @order] do
-          %p.ship
-            = text_field_tag 'consignment_number', '', :placeholder => "Enter consignment number..."
-            = submit_tag "Ship", :class => 'button green'
+          %dl.form
+            %dt.padding= label_tag 'consignment_number', 'Consignment Number'
+            %dd= text_field_tag 'consignment_number', '', :class => 'text'
+          %dl
+            %dd= submit_tag "Mark as shipped", :class => 'button green button-mini'
       
       - if @order.paid? && !(@order.accepted? || @order.rejected?)
-        %p.ship
-          = link_to 'Accept order', [:accept, @order], :method => :post, :class => 'button green'
-          = link_to "Reject order", [:reject, @order], :method => :post, :class => 'button purple'
+        %dl.form
+          %dd
+            = link_to "Accept", [:accept, @order], :method => :post, :class => 'button green'
+            = link_to "Reject", [:reject, @order], :method => :post, :class => 'button purple'
   
   .status-bar
     %ul
