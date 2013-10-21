@@ -4,21 +4,21 @@
     .splitContainer
       %dl.half
         %dt= f.label :first_name
-        %dd= f.text_field :first_name
+        %dd= f.text_field :first_name, :class => 'text'
       %dl.half
         %dt= f.label :last_name
-        %dd= f.text_field :last_name
+        %dd= f.text_field :last_name, :class => 'text'
   = field_set_tag "Login" do
     .splitContainer
       %dl.third
         %dt= f.label :email_address
-        %dd= f.text_field :email_address
+        %dd= f.text_field :email_address, :class => 'text'
       %dl.third
         %dt= f.label :password
-        %dd= f.password_field :password
+        %dd= f.password_field :password, :class => 'text'
       %dl.third
         %dt= f.label :password_confirmation, "...and again"
-        %dd= f.password_field :password_confirmation
+        %dd= f.password_field :password_confirmation, :class => 'text'
 
 
   %p.submit
