@@ -2,7 +2,7 @@ module Shoppe
   class StockLevelAdjustment < ActiveRecord::Base
     
     # Relationships
-    belongs_to :product
+    belongs_to :product, :class_name => 'Shoppe::Product'
     belongs_to :parent, :polymorphic => true
     
     # Validations

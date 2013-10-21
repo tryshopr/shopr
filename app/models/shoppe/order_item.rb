@@ -6,7 +6,7 @@ class Shoppe::OrderItem < ActiveRecord::Base
   # Relationships
   belongs_to :order, :class_name => 'Shoppe::Order'
   belongs_to :product, :class_name => 'Shoppe::Product'
-  has_many :stock_level_adjustments, :as => :parent, :dependent => :nullify
+  has_many :stock_level_adjustments, :as => :parent, :dependent => :nullify, :class_name => 'Shoppe::StockLevelAdjustment'
   
   # Validations
   validates :quantity, :numericality => true

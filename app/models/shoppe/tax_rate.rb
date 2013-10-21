@@ -12,8 +12,8 @@ module Shoppe
     validates :rate, :numericality => true
     
     # Relationships
-    has_many :products, :dependent => :restrict_with_exception
-    has_many :delivery_service_prices, :dependent => :restrict_with_exception
+    has_many :products, :dependent => :restrict_with_exception, :class_name => 'Shoppe::Product'
+    has_many :delivery_service_prices, :dependent => :restrict_with_exception, :class_name => 'Shoppe::DeliveryServicePrice'
     
     # Scopes
     scope :ordered, -> { order("shoppe_tax_rates.id")}

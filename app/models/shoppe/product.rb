@@ -15,7 +15,7 @@ class Shoppe::Product < ActiveRecord::Base
   belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
   has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem'
   has_many :orders, :through => :order_items, :class_name => 'Shoppe::Order'
-  has_many :stock_level_adjustments, :dependent => :destroy
+  has_many :stock_level_adjustments, :dependent => :destroy, :class_name => 'Shoppe::StockLevelAdjustment'
   
   # Validations
   validates :product_category_id, :presence => true
