@@ -41,7 +41,7 @@ nav.sidebar {
 	
 	ul {
 		li {
-			span.pending { float:right; font-size:0.9em;  font-weight:bold;background:#5B6270; color:#fff;padding:2px 7px; border-radius:16px; margin-top:9px; margin-right:10px;}
+			span.pending { float:right; font-size:0.9em;  font-weight:bold;background:#5B6270; color:#fff; padding:2px 10px; border-radius:16px; margin-top:9px; margin-right:10px;}
 			a {
 				display:block;
 				border-bottom:1px solid rgba(255,255,255,0.05);
@@ -50,11 +50,12 @@ nav.sidebar {
 				padding:10px 20px;
 				font-size:1.1em;
 				&:hover {
-					background:rgba(0,0,0,0.1);
+					background:rgba(0,0,0,0.05);
 				}
 				&.active {
 					font-weight:bold;
 					color:#fff;
+					background:rgba(0,0,0,0.08);
 				}
 			}
 		}
