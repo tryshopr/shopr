@@ -1,8 +1,8 @@
 - @page_title = "Stock Levels - #{@product.title}"
 = content_for :header do
   %p.buttons
-    = link_to "Edit", [:edit, @product], :class => 'button'
-    = link_to "Back to list", :products, :class => 'button'
+    = link_to "Edit product", [:edit, @product], :class => 'button'
+    = link_to "Back to product list", :products, :class => 'button'
   %h2.products= @product.title
 
 .table
