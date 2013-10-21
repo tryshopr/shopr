@@ -189,7 +189,7 @@ class Shoppe::Order < ActiveRecord::Base
   def delivery_tax_amount
     @delivery_tax_amount ||= begin
       read_attribute(:delivery_tax_amount) ||
-      (delivery_service_price && delivery_service_price.tax_rate ? delivery_price / BigDecimal(100) * delivery_service_price.tax_rate.rate : 0.0) ||
+      delivery_price / BigDecimal(100) * delivery_tax_rate ||
       0.0
     end
   end

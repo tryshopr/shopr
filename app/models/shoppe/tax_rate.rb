@@ -4,8 +4,8 @@ module Shoppe
     # Set the table name
     self.table_name = 'shoppe_tax_rates'
     
-    # Store countries as arrays
-    serialize :country_ids, Array
+    # Tax rates are associated with countries
+    include Shoppe::AssociatedCountries
     
     # Validations
     validates :name, :presence => true
@@ -18,15 +18,16 @@ module Shoppe
     # Scopes
     scope :ordered, -> { order("shoppe_tax_rates.id")}
     
-    # Ensure all country IDs are integers
-    before_validation { self.country_ids = self.country_ids.map(&:to_i).select { |i| i > 0} if self.country_ids.is_a?(Array) }
-    
     def description
       "#{name} (#{rate}%)"
     end
     
     def rate_for(order)
-      self.rate
+      if countries.empty? || order.country.nil? || country?(order.country)
+        self.rate
+      else
+        0.0
+      end
     end
     
   end
