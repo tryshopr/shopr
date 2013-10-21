@@ -5,6 +5,7 @@ This document outlines key changes which are introduced in each version. The ful
 ## v0.0.13
 
 * Orders have notes which can be viewed & editted through the Shoppe UI.
+* Adjustments to the design in the Shoppe UI.
 
 ## v0.0.12
 
