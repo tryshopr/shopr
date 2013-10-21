@@ -36,6 +36,11 @@ class Shoppe::Order < ActiveRecord::Base
     order.validates :email_address, :format => {:with => /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i}
     order.validates :phone_number, :format => {:with => /\A[\d\ ]{7,}\z/}
   end
+  validate do
+    unless available_delivery_services.include?(self.delivery_service)
+      errors.add :delivery_service_id, "is not suitable for this order"
+    end
+  end
   
   # Scopes
   scope :received, -> {where("received_at is not null")}
@@ -153,7 +158,9 @@ class Shoppe::Order < ActiveRecord::Base
   # An array of all the delivery service prices which can be applied to this order.
   def delivery_service_prices
     @delivery_service_prices ||= begin
-      Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
+      prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
+      prices = prices.select { |p| p.countries.empty? || p.country?(self.country) }
+      prices
     end
   end
   
