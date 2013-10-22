@@ -17,5 +17,10 @@ module Shoppe
       !variants.empty?
     end
     
+    def default_variant
+      return nil if self.parent
+      @default_variant ||= self.variants.first
+    end
+    
   end
 end

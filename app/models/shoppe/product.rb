@@ -42,7 +42,7 @@ module Shoppe
     
     # Return the name of the product
     def full_name
-      name
+      self.parent ? "#{self.parent.name} (#{name})" : name
     end
     
     # Is this product actually orderable?
@@ -50,10 +50,15 @@ module Shoppe
       return false if self.has_variants?
       true
     end
+    
+    # Return the price for the product
+    def price
+      self.default_variant ? self.default_variant.price : read_attribute(:price)
+    end
 
     # Is this product currently in stock?
     def in_stock?
-      stock > 0
+      self.default_variant ? self.default_variant.in_stock? : stock > 0
     end
   
     # Return the total number of items currently in stock
