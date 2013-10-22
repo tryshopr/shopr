@@ -16,5 +16,5 @@ currency_unit: '&pound;'
 tax_name: VAT
 
 # If enabled, Shoppe will behave in demo mode. This removes the requirement
-# to login to the Shoppe interface and disabled editting of users.
+# to login to the Shoppe interface and disabled editting of users. 
 demo_mode: false
