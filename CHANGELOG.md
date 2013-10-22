@@ -4,7 +4,7 @@ This document outlines key changes which are introduced in each version. The ful
 
 ## v0.0.15 - The break everything release
 
-* **Breaking Change:** The `Shoppe::OrderItem` model no longer responds to `product` as part 
+* **Breaking change:** The `Shoppe::OrderItem` model no longer responds to `product` as part 
   of a change to allow items other than products to be ordered. Order items will now respond
   to `ordered_item` which is a polymorphic association to any model which implements the 
   `Shoppe::OrderableItem` protocol (see /lib/shoppe/orderable_item.rb). Base applications
@@ -14,6 +14,11 @@ This document outlines key changes which are introduced in each version. The ful
 * **Breaking change:** `Shoppe::Product#title` has been renamed to `Shoppe::Product#name`
   as title was a stupid name for a product. Base application will need to use `name` to 
   display the name of a product.
+  
+* **Breaking change:** `Shoppe::StockLevelAdjustment` is now polymorphic rather than only
+  beloning to a product. `StockLevelAdjustment#product` has been replaced with 
+  `StockLevelAdjustment#item`. This shouldn't require any adjustments to base applications
+  unless they interact with the stock level adjustments model directly.
 
 ## v0.0.14
 
