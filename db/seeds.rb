@@ -91,10 +91,9 @@ pro.product_attributes.create!(:key => 'Lines', :value => '4', :position => 1)
 pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
 pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
-pro = cat1.products.create!(:name => 'Snom 870 (Grey)', :sku => 'SM-870-GREY', :description => lorem, :short_description => 'The perfect & beautiful VoIP phone for the discerning professional desk.', :weight => 2.4, :price => 235.00, :cost_price => 225.00, :tax_rate => tax_rate)
+pro = cat1.products.create!(:name => 'Snom 870', :sku => 'SM-870', :description => lorem, :short_description => 'The perfect & beautiful VoIP phone for the discerning professional desk.', :featured => true)
 pro.default_image_file = get_file('snom-870-grey.jpg')
 pro.save!
-pro.stock_level_adjustments.create(:description => 'Initial Stock', :adjustment => 4)
 pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Snom', :position => 1)
 pro.product_attributes.create!(:key => 'Model', :value => '870', :position => 1)
 pro.product_attributes.create!(:key => 'Colour', :value => 'Grey', :position => 1)
@@ -102,16 +101,17 @@ pro.product_attributes.create!(:key => 'Lines', :value => '10', :position => 1)
 pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
 pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
-pro = cat1.products.create!(:name => 'Snom 870 (Black)', :sku => 'SM-870-BLK', :description => lorem, :short_description => 'The perfect & beautiful VoIP phone for the discerning professional desk.', :weight => 2.4, :price => 235.00, :cost_price => 225.00, :tax_rate => tax_rate, :featured => true)
-pro.default_image_file = get_file('snom-870-blk.jpg')
-pro.save!
-pro.stock_level_adjustments.create(:description => 'Initial Stock', :adjustment => 4)
-pro.product_attributes.create!(:key => 'Manufacturer', :value => 'Snom', :position => 1)
-pro.product_attributes.create!(:key => 'Model', :value => '870', :position => 1)
-pro.product_attributes.create!(:key => 'Colour', :value => 'Black', :position => 1)
-pro.product_attributes.create!(:key => 'Lines', :value => '10', :position => 1)
-pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
-pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
+v1 = pro.variants.create(:name => "White/Grey", :sku => "SM-870-GREY", :price => 230.00, :cost_price => 220, :tax_rate => tax_rate)
+v1.default_image_file = get_file('snom-870-grey.jpg')
+v1.save!
+v1.stock_level_adjustments.create(:description => 'Initial Stock', :adjustment => 4)
+
+
+v2 = pro.variants.create(:name => "Black", :sku => "SM-870-BLK", :price => 230.00, :cost_price => 220, :tax_rate => tax_rate)
+v2.default_image_file = get_file('snom-870-blk.jpg')
+v2.save!
+v2.stock_level_adjustments.create(:description => 'Initial Stock', :adjustment => 2)
+
 
 pro = cat2.products.create!(:name => 'Yealink Mono Headset', :sku => 'YL-YHS32', :description => lorem, :short_description => 'If you\'re often on the phone, this headset will make your life 100x easier. Guaranteed*.', :weight => 0.890, :price => 34.99, :cost_price => 24.99, :tax_rate => tax_rate, :featured => true)
 pro.default_image_file = get_file('yhs32.jpg')

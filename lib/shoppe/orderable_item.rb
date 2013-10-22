@@ -8,6 +8,9 @@ module Shoppe
     def full_name
     end
     
+    def orderable?
+    end
+    
     def sku
     end
     

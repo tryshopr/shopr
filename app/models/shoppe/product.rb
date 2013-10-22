@@ -44,6 +44,12 @@ module Shoppe
     def full_name
       name
     end
+    
+    # Is this product actually orderable?
+    def orderable?
+      return false if self.has_variants?
+      true
+    end
 
     # Is this product currently in stock?
     def in_stock?

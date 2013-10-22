@@ -20,6 +20,7 @@ module Shoppe
     # This will either increase the quantity of the value in the order or create a new item if one does not
     # exist already.
     def self.add_item(ordered_item, quantity = 1)
+      raise Errors::UnorderableItem, :ordered_item => ordered_item unless ordered_item.orderable?
       transaction do
         if existing = self.where(:ordered_item_id => ordered_item.id, :ordered_item_type => ordered_item.class.to_s).first
           existing.increase!(quantity)
