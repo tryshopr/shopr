@@ -2,7 +2,7 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
-## v0.0.15- The break everything release
+## v0.0.15 - The break everything release
 
 * **Breaking Change:** The `Shoppe::OrderItem` model no longer responds to `product` as part 
   of a change to allow items other than products to be ordered. Order items will now respond
