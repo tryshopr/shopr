@@ -36,10 +36,10 @@
           %dl.form
             %dt.padding= label_tag 'payment_method', 'Payment Method'
             %dd= text_field_tag 'payment_method', '', :class => 'text'
-          %dl
+          %dl.form
             %dt.padding= label_tag 'payment_reference', 'Payment Reference'
             %dd= text_field_tag 'payment_reference', '', :class => 'text'
-          %dl
+          %dl.form
             %dd= submit_tag "Mark as paid", :class => 'button green button-mini'
       
       - if @order.accepted? && !@order.shipped?
@@ -47,7 +47,7 @@
           %dl.form
             %dt.padding= label_tag 'consignment_number', 'Consignment Number'
             %dd= text_field_tag 'consignment_number', '', :class => 'text'
-          %dl
+          %dl.form
             %dd= submit_tag "Mark as shipped", :class => 'button green button-mini'
       
       - if @order.paid? && !(@order.accepted? || @order.rejected?)
