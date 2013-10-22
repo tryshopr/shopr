@@ -36,21 +36,7 @@ module Shoppe
       @product.destroy
       redirect_to :products, :flash => {:notice => "Product has been removed successfully"}
     end
-  
-    def stock_levels
-      @stock_level_adjustments = @product.stock_level_adjustments.ordered.page(params[:page])
-      if request.post?
-        @new_sla = @product.stock_level_adjustments.build(params[:stock_level_adjustment].permit(:description, :adjustment))
-        if @new_sla.save
-          redirect_to [:stock_levels, @product], :notice => "Stock level adjustment has been recorded"
-        else
-          flash.now[:alert] = @new_sla.errors.full_messages.to_sentence
-        end
-      else
-        @new_sla = @product.stock_level_adjustments.build
-      end
-    end
-  
+    
     private
   
     def safe_params

@@ -1,16 +1,22 @@
-- @page_title = "Stock Levels - #{@product.name}"
+- @page_title = "Stock Levels - #{@item.name}"
 = content_for :header do
   %p.buttons
-    = link_to "Edit product", [:edit, @product], :class => 'button'
-    = link_to "Back to product list", :products, :class => 'button'
-  %h2.products= @product.name
+    - case @item
+    - when Shoppe::Product
+      - @active_nav = :products
+      = link_to "Edit product", [:edit, @item], :class => 'button'
+      = link_to "Back to product list", :products, :class => 'button'
+      
+  %h2.products Stock Levels for #{@item.name}
 
 .table
   %p.info
-    Current stock level is <b>#{@product.stock}</b>
+    Current stock level is <b>#{@item.stock}</b>
     %span.float-right= page_entries_info @stock_level_adjustments
 
-  = form_for @new_sla, :url => [:stock_levels, @product] do |f|
+  = form_for @new_sla do |f|
+    = hidden_field_tag 'item_type', params[:item_type]
+    = hidden_field_tag 'item_id', params[:item_id]
     %table.data
       %thead
         %tr

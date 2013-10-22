@@ -2,9 +2,7 @@ Shoppe::Engine.routes.draw do
   
   get 'attachment/:id/:filename.:extension' => 'attachments#show'
   resources :product_categories
-  resources :products do
-    match :stock_levels, :on => :member, :via => [:get, :post]
-  end
+  resources :products
   resources :orders do
     post :search, :on => :collection
     post :accept, :on => :member
@@ -12,6 +10,7 @@ Shoppe::Engine.routes.draw do
     post :ship, :on => :member
     post :pay, :on => :member
   end
+  resources :stock_level_adjustments, :only => [:index, :create]
   resources :delivery_services do
     resources :delivery_service_prices
   end

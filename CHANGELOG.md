@@ -19,6 +19,8 @@ This document outlines key changes which are introduced in each version. The ful
   beloning to a product. `StockLevelAdjustment#product` has been replaced with 
   `StockLevelAdjustment#item`. This shouldn't require any adjustments to base applications
   unless they interact with the stock level adjustments model directly.
+  
+* Moves stock level adjustments into their own polymorphic accessible controller
 
 ## v0.0.14
 

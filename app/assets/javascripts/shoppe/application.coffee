@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require shoppe/jquery_ui
 #= require shoppe/chosen.jquery
+#= require nifty/dialog
 #= require_tree .
 
 $ ->
@@ -40,3 +41,24 @@ $ ->
   # Chosen
   $('select.chosen').chosen()
   $('select.chosen-with-deselect').chosen({allow_single_deselect: true})
+  
+  # Open AJAX dialogs
+  $('a[rel=dialog]').on 'click', ->
+    element = $(this)
+    options = {}
+    options.width = element.data('dialog-width') if element.data('dialog-width')
+    options.offset = element.data('dialog-offset') if element.data('dialog-offset')
+    options.behavior = element.data('dialog-behavior') if element.data('dialog-behavior')
+    options.id = 'ajax'
+    options.url = element.attr('href')
+    Nifty.Dialog.open(options)
+    false
+
+#
+# Stock Level Adjustment dialog beavior
+#
+Nifty.Dialog.addBehavior
+  name: 'stockLevelAdjustments'
+  onLoad: (dialog,options)->
+    alert 'hello'
+    

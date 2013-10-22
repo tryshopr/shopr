@@ -3,9 +3,11 @@ require 'bcrypt'
 require 'dynamic_form'
 require 'kaminari'
 require 'ransack'
+
 require 'nifty/utils'
 require 'nifty/key_value_store'
 require 'nifty/attachments'
+require 'nifty/dialog'
 
 module Shoppe
   
