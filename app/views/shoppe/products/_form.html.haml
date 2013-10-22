@@ -66,22 +66,35 @@
         %dd
           = attachment_preview @product.data_sheet
           %p= f.file_field :data_sheet_file
-        
-  = field_set_tag "Pricing" do
-    .splitContainer
-      %dl.third
-        %dt= f.label :price
-        %dd= f.text_field :price, :class => 'text'
-      %dl.third
-        %dt= f.label :cost_price
-        %dd= f.text_field :cost_price, :class => 'text'
-      %dl.third
-        %dt= f.label :tax_rate_id
-        %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
+     
+  - unless @product.has_variants?   
+    = field_set_tag "Pricing" do
+      .splitContainer
+        %dl.third
+          %dt= f.label :price
+          %dd= f.text_field :price, :class => 'text'
+        %dl.third
+          %dt= f.label :cost_price
+          %dd= f.text_field :cost_price, :class => 'text'
+        %dl.third
+          %dt= f.label :tax_rate_id
+          %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
+  
+    = field_set_tag "Stock Control" do
+      .splitContainer
+        %dl.half
+          %dt= f.label :weight
+          %dd= f.text_field :weight, :class => 'text'
       
+        %dl.half
+          %dt= f.label :stock_control
+          %dd.checkbox
+            = f.check_box :stock_control
+            = f.label :stock_control, "Enable stock control for this product?"
+
   = field_set_tag "Website Properties" do
     .splitContainer
-      
+
       %dl.half
         %dt= f.label :active, "On sale?"
         %dd.checkbox
@@ -93,18 +106,6 @@
           = f.check_box :featured
           = f.label :featured, "If checked, this product will appear on your homepage"
 
-  = field_set_tag "Stock Control" do
-    .splitContainer
-      %dl.half
-        %dt= f.label :weight
-        %dd= f.text_field :weight, :class => 'text'
-      
-      %dl.half
-        %dt= f.label :stock_control
-        %dd.checkbox
-          = f.check_box :stock_control
-          = f.label :stock_control, "Enable stock control for this product?"
-  
   %p.submit
     - unless @product.new_record?
       %span.right= link_to "Delete", @product, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this product?"}
