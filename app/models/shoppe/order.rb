@@ -36,7 +36,7 @@ module Shoppe
       order.validates :postcode, :presence => true
       order.validates :country, :presence => true
       order.validates :email_address, :format => {:with => /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i}
-      order.validates :phone_number, :format => {:with => /\A[\d\ \-x]{7,}\z/}
+      order.validates :phone_number, :format => {:with => /\A[\d\ \-x\(\)]{7,}\z/}
     end
     validate do
       unless available_delivery_services.include?(self.delivery_service)
