@@ -20,7 +20,9 @@ This document outlines key changes which are introduced in each version. The ful
   `StockLevelAdjustment#item`. This shouldn't require any adjustments to base applications
   unless they interact with the stock level adjustments model directly.
   
-* Moves stock level adjustments into their own polymorphic accessible controller
+* Moves stock level adjustments into their own polymorphic accessible controller.
+
+* Stock level adjustments are now managable from within a dialog (as well as without)
 
 ## v0.0.14
 
