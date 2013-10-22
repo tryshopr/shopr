@@ -57,7 +57,7 @@
             %td
               %ul
                 - for item in order.order_items
-                  %li #{item.quantity} x #{item.product.title}
+                  %li #{item.quantity} x #{item.ordered_item.title}
             %td= number_to_currency order.total
             %td= boolean_tag order.paid?
 

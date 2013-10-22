@@ -2,6 +2,15 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v0.0.15- The break everything release
+
+* **Breaking Change:** The `Shoppe::OrderItem` model no longer responds to `product` as part 
+  of a change to allow items other than products to be ordered. Order items will now respond
+  to `ordered_item` which is a polymorphic association to any model which implements the 
+  `Shoppe::OrderableItem` protocol (see /lib/shoppe/orderable_item.rb). Base applications
+  which work with this will need to be updated to use this new association name. Also, the
+  `Shoppe::OrderItem.add_product` has been renamed to `Shoppe::OrderItem.add_item`.
+
 ## v0.0.14
 
 * Fixes serious styling issue with the user form.

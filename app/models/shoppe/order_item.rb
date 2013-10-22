@@ -6,28 +6,27 @@ module Shoppe
   
     # Relationships
     belongs_to :order, :class_name => 'Shoppe::Order'
-    belongs_to :product, :class_name => 'Shoppe::Product'
+    belongs_to :ordered_item, :polymorphic => true
     has_many :stock_level_adjustments, :as => :parent, :dependent => :nullify, :class_name => 'Shoppe::StockLevelAdjustment'
   
     # Validations
     validates :quantity, :numericality => true
   
-    # Set some values based on the selected product on validation
     before_validation do
-      self.weight          = self.quantity * self.product.weight
+      self.weight = self.quantity * self.ordered_item.weight
     end
   
     # This allows you to add a product to the scoped order. For example Order.first.order_items.add_product(...).
     # This will either increase the quantity of the value in the order or create a new item if one does not
     # exist already.
-    def self.add_product(product, quantity = 1)
+    def self.add_item(ordered_item, quantity = 1)
       transaction do
-        if existing = self.where(:product_id => product.id).first
+        if existing = self.where(:ordered_item_id => ordered_item.id, :ordered_item_type => ordered_item.class.to_s).first
           existing.increase!(quantity)
           existing
         else
-          item = self.create(:product => product, :quantity => 0)
-          item.increase!(quantity)
+          new_item = self.create(:ordered_item => ordered_item, :quantity => 0)
+          new_item.increase!(quantity)
         end
       end
     end
@@ -47,8 +46,8 @@ module Shoppe
     def increase!(amount = 1)
       transaction do
         self.quantity += amount
-        if self.product.stock_control? && self.product.stock < self.quantity
-          raise Shoppe::Errors::NotEnoughStock, :product => self.product, :requested_stock => self.quantity
+        unless self.in_stock?
+          raise Shoppe::Errors::NotEnoughStock, :ordered_item => self.ordered_item, :requested_stock => self.quantity
         end
         self.save!
         self.order.remove_delivery_service_if_invalid
@@ -66,17 +65,17 @@ module Shoppe
   
     # Return the unit price for the item
     def unit_price
-      @unit_price ||= read_attribute(:unit_price) || product.try(:price) || 0.0
+      @unit_price ||= read_attribute(:unit_price) || ordered_item.try(:price) || 0.0
     end
   
     # Return the cost price for the item
     def unit_cost_price
-      @unit_cost_price ||= read_attribute(:unit_cost_price) || product.try(:cost_price) || 0.0
+      @unit_cost_price ||= read_attribute(:unit_cost_price) || ordered_item.try(:cost_price) || 0.0
     end
   
     # Return the tax rate for the item
     def tax_rate
-      @tax_rate ||= read_attribute(:tax_rate) || product.try(:tax_rate).try(:rate_for, self.order) || 0.0 
+      @tax_rate ||= read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, self.order) || 0.0 
     end
   
     # Return the total tax for the item
@@ -108,8 +107,8 @@ module Shoppe
       write_attribute :tax_amount, self.tax_amount
       save!
     
-      if self.product.stock_control?
-        self.product.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
+      if self.ordered_item.stock_control?
+        self.ordered_item.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
       end
     end
   
@@ -124,8 +123,8 @@ module Shoppe
   
     # Do we have the stock needed to fulfil this order?
     def in_stock?
-      if self.product.stock_control?
-        self.product.stock >= self.quantity
+      if self.ordered_item.stock_control?
+        self.ordered_item.stock >= self.quantity
       else
         true
       end
@@ -138,7 +137,7 @@ module Shoppe
       if in_stock?
         false
       else
-        self.quantity = self.product.stock
+        self.quantity = self.ordered_item.stock
         self.quantity == 0 ? self.destroy : self.save!
         self
       end

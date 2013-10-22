@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021135208) do
+ActiveRecord::Schema.define(version: 20131022090919) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -70,15 +70,16 @@ ActiveRecord::Schema.define(version: 20131021135208) do
 
   create_table "shoppe_order_items", force: true do |t|
     t.integer  "order_id"
-    t.integer  "product_id"
-    t.integer  "quantity",                                default: 1
-    t.decimal  "unit_price",      precision: 8, scale: 2
-    t.decimal  "tax_amount",      precision: 8, scale: 2
-    t.decimal  "tax_rate",        precision: 8, scale: 2
-    t.decimal  "weight",          precision: 8, scale: 3, default: 0.0
+    t.integer  "ordered_item_id"
+    t.integer  "quantity",                                  default: 1
+    t.decimal  "unit_price",        precision: 8, scale: 2
+    t.decimal  "tax_amount",        precision: 8, scale: 2
+    t.decimal  "tax_rate",          precision: 8, scale: 2
+    t.decimal  "weight",            precision: 8, scale: 3, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "unit_cost_price", precision: 8, scale: 2
+    t.decimal  "unit_cost_price",   precision: 8, scale: 2
+    t.string   "ordered_item_type"
   end
 
   create_table "shoppe_orders", force: true do |t|

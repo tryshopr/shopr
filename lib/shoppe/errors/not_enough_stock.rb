@@ -7,7 +7,7 @@ module Shoppe
       end
       
       def available_stock
-        @options[:product].stock
+        @options[:ordered_item].stock
       end
       
       def requested_stock

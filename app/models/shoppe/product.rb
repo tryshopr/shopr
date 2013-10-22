@@ -14,7 +14,7 @@ module Shoppe
     # Relationships
     belongs_to :product_category, :class_name => 'Shoppe::ProductCategory'
     belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
-    has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem'
+    has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem', :as => :ordered_item
     has_many :orders, :through => :order_items, :class_name => 'Shoppe::Order'
     has_many :stock_level_adjustments, :dependent => :destroy, :class_name => 'Shoppe::StockLevelAdjustment'
   
