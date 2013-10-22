@@ -8,6 +8,11 @@ module Shoppe
     rescue_from ActiveRecord::DeleteRestrictionError do |e|
       redirect_to request.referer || root_path, :alert => e.message
     end
+    
+    rescue_from Shoppe::Error do |e|
+      @exception = e
+      render :layout => 'shoppe/sub', :template => 'shoppe/shared/error'
+    end
 
     private
 
@@ -26,13 +31,20 @@ module Shoppe
     
     # Returns the currently logged in user
     def current_user
-      @current_user ||= login_from_session || :false
+      @current_user ||= login_from_session || login_with_demo_mdoe || :false
     end
 
     # Attempt to find a user based on the value stored in the local session
     def login_from_session
       if session[:shoppe_user_id]
         @user = User.find_by_id(session[:shoppe_user_id])
+      end
+    end
+    
+    # Attempt to login using the demo mode
+    def login_with_demo_mdoe
+      if Shoppe.config[:demo_mode]
+        @user = User.first
       end
     end
     

@@ -29,6 +29,8 @@ This document outlines key changes which are introduced in each version. The ful
 
 * When accessing the name of an orderable item, you should use `full_name` rather than just
   `name`.
+  
+* Adds a demo mode to allow for auto logins and no user editting
 
 ## v0.0.14
 
