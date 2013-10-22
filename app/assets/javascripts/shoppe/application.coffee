@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require shoppe/mousetrap
 #= require shoppe/jquery_ui
 #= require shoppe/chosen.jquery
 #= require nifty/dialog
@@ -60,5 +61,38 @@ $ ->
 Nifty.Dialog.addBehavior
   name: 'stockLevelAdjustments'
   onLoad: (dialog,options)->
-    alert 'hello'
-    
+    $('input[type=text]:first', dialog).focus()
+    $(dialog).on 'submit', 'form', ->
+      form = $(this)
+      $.ajax
+        url: form.attr('action')
+        method: 'POST'
+        data: form.serialize()
+        dataType: 'text'
+        success: (data)->
+          $('div.table', dialog).replaceWith(data)
+          $('input[type=text]:first', dialog).focus()
+        error: (xhr)->
+          if xhr.status == 422
+            alert xhr.responseText
+          else
+            alert 'An error occurred while saving the stock level.'
+      false
+    $(dialog).on 'click', 'nav.pagination a', ->
+      $.ajax
+        url: $(this).attr('href')
+        success: (data)->
+          $('div.table', dialog).replaceWith(data)
+      false
+      
+#
+# Always fire keyboard shortcuts when focused on fields
+#
+Mousetrap.stopCallback = -> false
+
+#
+# Close dialogs on escape
+#
+Mousetrap.bind 'escape', ->
+  Nifty.Dialog.closeTopDialog()
+  false
