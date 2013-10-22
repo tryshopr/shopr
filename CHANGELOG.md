@@ -27,6 +27,9 @@ This document outlines key changes which are introduced in each version. The ful
 * Add's product variants which products to have sub-products which can be purchased as
   normal products.
 
+* When accessing the name of an orderable item, you should use `full_name` rather than just
+  `name`.
+
 ## v0.0.14
 
 * Fixes serious styling issue with the user form.

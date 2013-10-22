@@ -104,7 +104,7 @@
           - for item in @order.order_items
             %tr
               %td.qty= item.quantity
-              %td.product= link_to item.ordered_item.name, [:edit, item.ordered_item]
+              %td.product= link_to item.ordered_item.full_name, [:edit, item.ordered_item]
               %td.sku= item.ordered_item.sku
               %td.money= number_to_currency item.total_cost
               %td.money= number_to_currency item.sub_total

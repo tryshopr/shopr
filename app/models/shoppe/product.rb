@@ -39,6 +39,11 @@ module Shoppe
     scope :active, -> { where(:active => true) }
     scope :featured, -> {where(:featured => true)}
     scope :ordered, -> {order('name asc')}
+    
+    # Return the name of the product
+    def full_name
+      name
+    end
 
     # Is this product currently in stock?
     def in_stock?
