@@ -5,7 +5,7 @@ module Shoppe
     
     # stock_level_adjustments must be an association
     
-    def title
+    def name
     end
     
     def sku

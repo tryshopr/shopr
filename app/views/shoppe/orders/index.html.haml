@@ -23,9 +23,8 @@
         &rarr;
         = f.text_field :received_at_lteq, :class => 'small'
     %dl.right
-      %dt= f.label :products_title_cont, "Contains product"
-      %dd= f.text_field :products_title_cont
-
+      %dt= f.label :products_name_cont, "Contains product"
+      %dd= f.text_field :products_name_cont
       %dt= f.label :email_address_cont, "E-Mail Address"
       %dd= f.text_field :email_address_cont
       %dt= f.label :phone_number_cont, "Phone Number"
@@ -57,7 +56,7 @@
             %td
               %ul
                 - for item in order.order_items
-                  %li #{item.quantity} x #{item.ordered_item.title}
+                  %li #{item.quantity} x #{item.ordered_item.name}
             %td= number_to_currency order.total
             %td= boolean_tag order.paid?
 

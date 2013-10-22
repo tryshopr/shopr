@@ -20,7 +20,7 @@ module Shoppe
   
     # Validations
     validates :product_category_id, :presence => true
-    validates :title, :presence => true
+    validates :name, :presence => true
     validates :permalink, :presence => true, :uniqueness => true
     validates :sku, :presence => true
     validates :description, :presence => true
@@ -30,7 +30,7 @@ module Shoppe
     validates :cost_price, :numericality => true, :allow_blank => true
   
     # Set the permalink
-    before_validation { self.permalink = self.title.parameterize if self.permalink.blank? && self.title.is_a?(String) }
+    before_validation { self.permalink = self.name.parameterize if self.permalink.blank? && self.name.is_a?(String) }
   
     # Scopes
     scope :active, -> { where(:active => true) }
@@ -48,7 +48,7 @@ module Shoppe
   
     # Specify which attributes can be searched
     def self.ransackable_attributes(auth_object = nil)
-      ["id", "title", "sku"] + _ransackers.keys
+      ["id", "name", "sku"] + _ransackers.keys
     end
   
     # Specify which associations can be searched

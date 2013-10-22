@@ -11,6 +11,10 @@ This document outlines key changes which are introduced in each version. The ful
   which work with this will need to be updated to use this new association name. Also, the
   `Shoppe::OrderItem.add_product` has been renamed to `Shoppe::OrderItem.add_item`.
 
+* **Breaking change:** `Shoppe::Product#title` has been renamed to `Shoppe::Product#name`
+  as title was a stupid name for a product. Base application will need to use `name` to 
+  display the name of a product.
+
 ## v0.0.14
 
 * Fixes serious styling issue with the user form.
