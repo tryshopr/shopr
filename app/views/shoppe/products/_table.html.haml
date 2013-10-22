@@ -1,0 +1,42 @@
+.table
+  %table.data
+    %thead
+      %tr
+        %th{:width => '20%'} SKU
+        %th{:width => '40%'} Name
+        %th{:width => '25%'} Price/Variants
+        %th{:width => '15%'} Stock
+    %tbody
+      - if products.empty?
+        %tr.empty
+          %td{:colspan => 4} No products to display.
+      - else
+        - for category, products in products
+          %tr
+            %th{:colspan => 4}= category.name
+          - for product in products
+            %tr
+              %td= product.sku
+              %td= link_to product.name, [:edit, product]
+              - if product.has_variants?
+                %td.table{:colspan => 2}
+                  %table.data
+                    - for variant in product.variants
+                      %tr
+                        %td{:width => '40%'}= link_to variant.name, edit_product_variant_path(product, variant)
+                        %td{:width => '30%'}= number_to_currency variant.price
+                        %td{:width => '30%'}
+                          - if variant.stock_control?
+                            %span.float-right= link_to "Edit", stock_level_adjustments_path(:item_type => variant.class, :item_id => variant.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}
+                            = boolean_tag(variant.in_stock?, nil, :true_text => variant.stock, :false_text => 'No stock')
+                          - else
+                            &#8734;
+              - else
+                %td= number_to_currency product.price
+                %td
+                  - if product.stock_control?
+                    %span.float-right= link_to "Edit", stock_level_adjustments_path(:item_type => product.class, :item_id => product.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}
+                    = boolean_tag(product.in_stock?, nil, :true_text => product.stock, :false_text => 'No stock')
+                  - else
+                    &#8734;
+                  

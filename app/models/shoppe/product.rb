@@ -6,6 +6,7 @@ module Shoppe
   
     # Require some concerns
     require_dependency 'shoppe/product/product_attributes'
+    require_dependency 'shoppe/product/variants'
   
     # Attachments
     attachment :default_image
@@ -19,12 +20,14 @@ module Shoppe
     has_many :stock_level_adjustments, :dependent => :destroy, :class_name => 'Shoppe::StockLevelAdjustment', :as => :item
   
     # Validations
-    validates :product_category_id, :presence => true
+    with_options :if => Proc.new { |p| p.parent.nil? } do |product|
+      product.validates :product_category_id, :presence => true
+      product.validates :description, :presence => true
+      product.validates :short_description, :presence => true
+    end
     validates :name, :presence => true
     validates :permalink, :presence => true, :uniqueness => true
     validates :sku, :presence => true
-    validates :description, :presence => true
-    validates :short_description, :presence => true
     validates :weight, :numericality => true
     validates :price, :numericality => true
     validates :cost_price, :numericality => true, :allow_blank => true
@@ -35,6 +38,7 @@ module Shoppe
     # Scopes
     scope :active, -> { where(:active => true) }
     scope :featured, -> {where(:featured => true)}
+    scope :ordered, -> {order('name asc')}
 
     # Is this product currently in stock?
     def in_stock?

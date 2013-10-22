@@ -24,6 +24,9 @@ This document outlines key changes which are introduced in each version. The ful
 
 * Stock level adjustments are now managable from within a dialog (as well as without)
 
+* Add's product variants which products to have sub-products which can be purchased as
+  normal products.
+
 ## v0.0.14
 
 * Fixes serious styling issue with the user form.

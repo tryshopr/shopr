@@ -4,7 +4,7 @@ module Shoppe::ShoppeHelper
     content_tag :span, status, :class => "status-tag #{status}"
   end
   
-  def attachment_preview(attachment)
+  def attachment_preview(attachment, options = {})
     if attachment
       String.new.tap do |s|
         if attachment.image?
@@ -22,7 +22,7 @@ module Shoppe::ShoppeHelper
         s << "</div>"
         s << "</div>"
       end.html_safe
-    else
+    elsif !options[:hide_if_blank]
       "<div class='attachmentPreview'><div class='imgContainer'><div class='img none'></div></div><div class='desc none'>No attachment</div></div>".html_safe
     end
   end

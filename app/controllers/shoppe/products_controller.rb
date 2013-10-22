@@ -2,10 +2,10 @@ module Shoppe
   class ProductsController < Shoppe::ApplicationController
   
     before_filter { @active_nav = :products }
-    before_filter { params[:id] && @product = Shoppe::Product.find(params[:id]) }
+    before_filter { params[:id] && @product = Shoppe::Product.root.find(params[:id]) }
   
     def index
-      @products = Shoppe::Product.includes(:stock_level_adjustments, :default_image, :product_category).order(:name).group_by(&:product_category).sort_by { |cat,pro| cat.name }
+      @products = Shoppe::Product.root.includes(:stock_level_adjustments, :default_image, :product_category, :variants).order(:name).group_by(&:product_category).sort_by { |cat,pro| cat.name }
     end
   
     def new

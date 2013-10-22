@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131022093538) do
+ActiveRecord::Schema.define(version: 20131022145653) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20131022093538) do
   end
 
   create_table "shoppe_products", force: true do |t|
+    t.integer  "parent_id"
     t.integer  "product_category_id"
     t.string   "name"
     t.string   "sku"
@@ -152,7 +153,7 @@ ActiveRecord::Schema.define(version: 20131022093538) do
     t.datetime "updated_at"
     t.boolean  "featured",                                    default: false
     t.text     "in_the_box"
-    t.decimal  "cost_price",          precision: 8, scale: 2
+    t.decimal  "cost_price",          precision: 8, scale: 2, default: 0.0
     t.boolean  "stock_control",                               default: true
   end
 
