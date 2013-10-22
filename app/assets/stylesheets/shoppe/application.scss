@@ -398,9 +398,11 @@ div.table {
 		tbody td a.edit { background:image-url('shoppe/icons/edit.svg') no-repeat; margin-top:3px;width:16px; width:16px; background-size:13px; display:inline-block; text-indent:-40000px; opacity:0.3}
 		tbody td a.edit:hover { opacity:0.5}
 		tbody td.table {
-			background-color:#f4f6fa;
+			padding:0;
 			table.data {
-				td { padding:5px; }
+				td { padding:10px; border-width:0; border-right-width:1px; border-bottom-width:1px;}
+				td:last-child { border-right-width:0;}
+				tr:last-child td { border-bottom-width:0;}
 			}
 		} 
 		tbody tr.form {
