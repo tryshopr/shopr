@@ -1,17 +1,29 @@
 class CreateShoppeInitialSchema < ActiveRecord::Migration
   def up
-    create_table "shoppe_delivery_service_prices", force: true do |t|
+    create_table "shoppe_countries" do |t|
+      t.string  "name"
+      t.string  "code2"
+      t.string  "code3"
+      t.string  "continent"
+      t.string  "tld"
+      t.string  "currency"
+      t.boolean "eu_member", default: false
+    end
+
+    create_table "shoppe_delivery_service_prices" do |t|
       t.integer  "delivery_service_id"
       t.string   "code"
       t.decimal  "price",               precision: 8, scale: 2
-      t.decimal  "tax_rate",            precision: 8, scale: 2
+      t.integer  "tax_rate_id"
+      t.decimal  "cost_price",          precision: 8, scale: 2
       t.decimal  "min_weight",          precision: 8, scale: 2
       t.decimal  "max_weight",          precision: 8, scale: 2
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.text     "country_ids"
     end
 
-    create_table "shoppe_delivery_services", force: true do |t|
+    create_table "shoppe_delivery_services" do |t|
       t.string   "name"
       t.string   "code"
       t.boolean  "default",      default: false
@@ -22,19 +34,21 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.string   "tracking_url"
     end
 
-    create_table "shoppe_order_items", force: true do |t|
+    create_table "shoppe_order_items" do |t|
       t.integer  "order_id"
-      t.integer  "product_id"
-      t.integer  "quantity",                           default: 1
-      t.decimal  "unit_price", precision: 8, scale: 2
-      t.decimal  "tax_amount", precision: 8, scale: 2
-      t.decimal  "tax_rate",   precision: 8, scale: 2
-      t.decimal  "weight",     precision: 8, scale: 3, default: 0.0
+      t.integer  "ordered_item_id"
+      t.integer  "quantity",                                  default: 1
+      t.decimal  "unit_price",        precision: 8, scale: 2
+      t.decimal  "unit_cost_price",   precision: 8, scale: 2
+      t.decimal  "tax_amount",        precision: 8, scale: 2
+      t.decimal  "tax_rate",          precision: 8, scale: 2
+      t.decimal  "weight",            precision: 8, scale: 3, default: 0.0
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "ordered_item_type"
     end
 
-    create_table "shoppe_orders", force: true do |t|
+    create_table "shoppe_orders" do |t|
       t.string   "token"
       t.string   "first_name"
       t.string   "last_name"
@@ -44,6 +58,7 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.string   "address3"
       t.string   "address4"
       t.string   "postcode"
+      t.integer  "country_id"
       t.string   "email_address"
       t.string   "phone_number"
       t.string   "status"
@@ -54,6 +69,7 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.datetime "updated_at"
       t.integer  "delivery_service_id"
       t.decimal  "delivery_price",      precision: 8, scale: 2
+      t.decimal  "delivery_cost_price", precision: 8, scale: 2
       t.decimal  "delivery_tax_rate",   precision: 8, scale: 2
       t.decimal  "delivery_tax_amount", precision: 8, scale: 2
       t.datetime "paid_at"
@@ -63,12 +79,23 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.datetime "rejected_at"
       t.integer  "rejected_by"
       t.string   "ip_address"
-      t.string   "country"
       t.string   "payment_reference"
       t.string   "payment_method"
+      t.text     "notes"
     end
 
-    create_table "shoppe_product_categories", force: true do |t|
+    create_table "shoppe_product_attributes" do |t|
+      t.integer  "product_id"
+      t.string   "key"
+      t.string   "value"
+      t.integer  "position",   default: 1
+      t.boolean  "searchable", default: true
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.boolean  "public",     default: true
+    end
+
+    create_table "shoppe_product_categories" do |t|
       t.string   "name"
       t.string   "permalink"
       t.text     "description"
@@ -76,9 +103,10 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    create_table "shoppe_products", force: true do |t|
+    create_table "shoppe_products" do |t|
+      t.integer  "parent_id"
       t.integer  "product_category_id"
-      t.string   "title"
+      t.string   "name"
       t.string   "sku"
       t.string   "permalink"
       t.text     "description"
@@ -86,15 +114,36 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.boolean  "active",                                      default: true
       t.decimal  "weight",              precision: 8, scale: 3, default: 0.0
       t.decimal  "price",               precision: 8, scale: 2, default: 0.0
-      t.decimal  "tax_rate",            precision: 8, scale: 2, default: 0.0
-      t.integer  "stock",                                       default: 0
+      t.integer  "tax_rate_id"
+      t.decimal  "cost_price",          precision: 8, scale: 2, default: 0.0
       t.datetime "created_at"
       t.datetime "updated_at"
       t.boolean  "featured",                                    default: false
       t.text     "in_the_box"
+      t.boolean  "stock_control",                               default: true
+      t.boolean  "default",                                     default: false
     end
 
-    create_table "shoppe_users", force: true do |t|
+    create_table "shoppe_stock_level_adjustments" do |t|
+      t.integer  "item_id"
+      t.string   "item_type"
+      t.string   "description"
+      t.integer  "adjustment",  default: 0
+      t.string   "parent_type"
+      t.integer  "parent_id"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+
+    create_table "shoppe_tax_rates" do |t|
+      t.string   "name"
+      t.decimal  "rate",        precision: 8, scale: 2
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.text     "country_ids"
+    end
+
+    create_table "shoppe_users" do |t|
       t.string   "first_name"
       t.string   "last_name"
       t.string   "email_address"
@@ -105,12 +154,8 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
   end
   
   def down
-    drop_table :shoppe_delivery_service_prices
-    drop_table :shoppe_delivery_services
-    drop_table :shoppe_order_items
-    drop_table :shoppe_orders
-    drop_table :shoppe_product_categories
-    drop_table :shoppe_products
-    drop_table :shoppe_users
+    [:users, :tax_rates, :stock_level_adjustments, :products, :product_categories, :product_attributes, :orders, :order_items, :delivery_services, :delivery_service_prices, :countries].each do |table|
+      drop_table "shoppe_#{table}"
+    end
   end
 end

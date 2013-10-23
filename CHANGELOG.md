@@ -8,6 +8,9 @@ This document outlines key changes which are introduced in each version. The ful
 
 * Adds a default to product variants
 
+* **Breaking change:** all migrations have been collapsed. You will need to reset your database
+  when upgrading to this version.
+
 ## v0.0.15 - The break everything release
 
 * **Breaking change:** The `Shoppe::OrderItem` model no longer responds to `product` as part 
