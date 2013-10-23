@@ -56,6 +56,10 @@
           = f.check_box :active
           = f.label :active, "If checked, this product will be displayed within the public store"
       %dl.half
+        %dt= f.label :default, "Default varient?"
+        %dd.checkbox
+          = f.check_box :default
+          = f.label :default, "If checked, this varient will be the default"
   
   %p.submit
     - unless @variant.new_record?

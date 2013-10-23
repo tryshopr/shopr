@@ -38,7 +38,7 @@ module Shoppe
     # Scopes
     scope :active, -> { where(:active => true) }
     scope :featured, -> {where(:featured => true)}
-    scope :ordered, -> {order('name asc')}
+    scope :ordered, -> {order('`default` desc, name asc')}
     
     # Return the name of the product
     def full_name

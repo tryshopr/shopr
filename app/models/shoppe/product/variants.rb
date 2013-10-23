@@ -2,7 +2,7 @@ module Shoppe
   class Product
     
     # Relationships
-    has_many :variants, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id', :dependent => :destroy
+    has_many :variants, -> { order("`default` desc, name asc")}, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id', :dependent => :destroy
     belongs_to :parent, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id'
     
     # Validations
@@ -19,7 +19,7 @@ module Shoppe
     
     def default_variant
       return nil if self.parent
-      @default_variant ||= self.variants.first
+      @default_variant ||= self.variants.select { |v| v.default? }.first
     end
     
   end
