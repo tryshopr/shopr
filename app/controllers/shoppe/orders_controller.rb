@@ -38,6 +38,10 @@ module Shoppe
       @order.pay!(params[:payment_reference], params[:payment_method].blank? ? 'Unknown' : params[:payment_method])
       redirect_to @order, :notice => "Order has been marked as paid successfully"
     end
+    
+    def despatch_note
+      render :layout => 'shoppe/printable'
+    end
   
   end
 end

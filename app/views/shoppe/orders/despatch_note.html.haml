@@ -1,0 +1,47 @@
+- @page_title = "Order #{@order.number}"
+
+.despatchNote
+  %header
+    %h1= Shoppe.config[:store_name]
+    %h2= t('.despatch_note')
+  .address
+    %p.name= @order.full_name
+    - unless @order.company.blank?
+      %p.company= @order.company
+    %p= @order.address1
+    %p= @order.address2
+    %p= @order.address3
+    %p= @order.address4
+    %p= @order.postcode
+    %p= @order.country.name
+  
+  %table.details
+    %tr
+      %th= t('.order_number')
+      %th= t('.order_placed')
+      %th= t('.total_weight')
+      %th= t('.telephone')
+    %tr
+      %td= @order.number
+      %td= @order.received_at.to_s(:long)
+      %td= number_to_weight @order.total_weight
+      %td= @order.phone_number
+  
+  %table.items
+    %thead
+      %tr
+        %th= t('.quantity')
+        %th= t('.product')
+        %th= t('.sku')
+        %th= t('.weight')
+        %th= t('.packed?')
+    %tbody
+      - for item in @order.order_items
+        %tr
+          %td= item.quantity
+          %td= item.ordered_item.full_name
+          %td= item.ordered_item.sku
+          %td= number_to_weight item.weight
+          %td.check
+    
+  %p.footer= t('.footer', :default => "Thank you for your order!")

@@ -7,4 +7,8 @@ module Shoppe::ApplicationHelper
     super
   end
   
+  def number_to_weight(kg)
+    "#{kg}#{t('shoppe.helpers.number_to_weight.kg', :default => 'kg')}"
+  end
+  
 end

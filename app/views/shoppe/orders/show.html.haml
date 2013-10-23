@@ -1,7 +1,9 @@
 - @page_title = 'Order #' + @order.number
 
 = content_for :header do
-  %p.buttons= link_to "Back to orders", :orders, :class => 'button'
+  %p.buttons
+    = link_to "Despatch Note", [:despatch_note, @order], :class => 'button', :rel => 'print'
+    = link_to "Back to orders", :orders, :class => 'button grey'
   %h2.orders Order <b>##{@order.number}</b>
 
 #order
@@ -27,7 +29,7 @@
         %dt Telephone
         %dd= @order.phone_number
         %dt Weight
-        %dd #{@order.total_weight}kg
+        %dd= number_to_weight @order.total_weight
         %dt Build Time
         %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
       

@@ -43,6 +43,11 @@ $ ->
   $('select.chosen').chosen()
   $('select.chosen-with-deselect').chosen({allow_single_deselect: true})
   
+  # Printables
+  $('a[rel=print]').on 'click', ->
+    window.open($(this).attr('href'), 'despatchnote', 'width=700,height=800')
+    false
+  
   # Open AJAX dialogs
   $('a[rel=dialog]').on 'click', ->
     element = $(this)

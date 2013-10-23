@@ -99,7 +99,12 @@ module Shoppe
   
     # The name of the customer
     def customer_name
-      company.blank? ? "#{first_name} #{last_name}" : "#{company} (#{first_name} #{last_name})"
+      company.blank? ? full_name : "#{company} (#{full_name})"
+    end
+    
+    # The full anme of the customer
+    def full_name
+      "#{first_name} #{last_name}"
     end
   
     # Is this order empty? (i.e. doesn't have any items associated with it)

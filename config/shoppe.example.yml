@@ -4,6 +4,18 @@
 # The name of your Shoppe store.
 store_name: Ye Old Widget Shoppe
 
+# The address of the store which will be used on Shoppe produced documents.
+store_address:
+  line1: Unit 9 Winchester Place
+  line2: North Street
+  line3: Poole
+  line4: Dorset
+  postcode: BH15 1NX
+  country: United Kingdom
+
+# The phone number for the store
+store_phone: 01202 912 123
+
 # The e-mail address used to send all ourbound messages through Shoppe.
 email_address: sales@example.com
 
