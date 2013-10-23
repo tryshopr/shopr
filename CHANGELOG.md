@@ -2,6 +2,12 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v0.0.16
+
+* Adds despatch notes to orders
+
+* Adds a default to product variants
+
 ## v0.0.15 - The break everything release
 
 * **Breaking change:** The `Shoppe::OrderItem` model no longer responds to `product` as part 
