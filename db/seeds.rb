@@ -101,7 +101,7 @@ pro.product_attributes.create!(:key => 'Lines', :value => '10', :position => 1)
 pro.product_attributes.create!(:key => 'Colour Screen?', :value => 'Yes', :position => 1)
 pro.product_attributes.create!(:key => 'Power over ethernet?', :value => 'Yes', :position => 1)
 
-v1 = pro.variants.create(:name => "White/Grey", :sku => "SM-870-GREY", :price => 230.00, :cost_price => 220, :tax_rate => tax_rate, :weight => 1.35)
+v1 = pro.variants.create(:name => "White/Grey", :sku => "SM-870-GREY", :price => 230.00, :cost_price => 220, :tax_rate => tax_rate, :weight => 1.35, :default => true)
 v1.default_image_file = get_file('snom-870-grey.jpg')
 v1.save!
 v1.stock_level_adjustments.create(:description => 'Initial Stock', :adjustment => 4)
