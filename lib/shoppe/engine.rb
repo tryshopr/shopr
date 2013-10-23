@@ -15,7 +15,7 @@ module Shoppe
       g.helper          false
     end
     
-    config.assets.precompile += ['shoppe/sub.css']
+    config.assets.precompile += ['shoppe/sub.css', 'shoppe/printable.css']
     
     initializer 'shoppe.initialize' do |app|
       # Preload the config
