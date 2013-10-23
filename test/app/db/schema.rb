@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20131022145653) do
     t.integer  "delivery_service_id"
     t.string   "code"
     t.decimal  "price",               precision: 8, scale: 2
+    t.decimal  "cost_price",          precision: 8, scale: 2
     t.integer  "tax_rate_id"
     t.decimal  "min_weight",          precision: 8, scale: 2
     t.decimal  "max_weight",          precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "cost_price",          precision: 8, scale: 2
     t.text     "country_ids"
   end
 
@@ -71,15 +71,15 @@ ActiveRecord::Schema.define(version: 20131022145653) do
   create_table "shoppe_order_items", force: true do |t|
     t.integer  "order_id"
     t.integer  "ordered_item_id"
+    t.string   "ordered_item_type"
     t.integer  "quantity",                                  default: 1
     t.decimal  "unit_price",        precision: 8, scale: 2
+    t.decimal  "unit_cost_price",   precision: 8, scale: 2
     t.decimal  "tax_amount",        precision: 8, scale: 2
     t.decimal  "tax_rate",          precision: 8, scale: 2
     t.decimal  "weight",            precision: 8, scale: 3, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "unit_cost_price",   precision: 8, scale: 2
-    t.string   "ordered_item_type"
   end
 
   create_table "shoppe_orders", force: true do |t|
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20131022145653) do
     t.datetime "updated_at"
     t.integer  "delivery_service_id"
     t.decimal  "delivery_price",      precision: 8, scale: 2
+    t.decimal  "delivery_cost_price", precision: 8, scale: 2
     t.decimal  "delivery_tax_rate",   precision: 8, scale: 2
     t.decimal  "delivery_tax_amount", precision: 8, scale: 2
     t.datetime "paid_at"
@@ -114,7 +115,6 @@ ActiveRecord::Schema.define(version: 20131022145653) do
     t.string   "ip_address"
     t.string   "payment_reference"
     t.string   "payment_method"
-    t.decimal  "delivery_cost_price", precision: 8, scale: 2
     t.text     "notes"
   end
 
@@ -148,24 +148,24 @@ ActiveRecord::Schema.define(version: 20131022145653) do
     t.boolean  "active",                                      default: true
     t.decimal  "weight",              precision: 8, scale: 3, default: 0.0
     t.decimal  "price",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "cost_price",          precision: 8, scale: 2, default: 0.0
     t.integer  "tax_rate_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "featured",                                    default: false
     t.text     "in_the_box"
-    t.decimal  "cost_price",          precision: 8, scale: 2, default: 0.0
     t.boolean  "stock_control",                               default: true
   end
 
   create_table "shoppe_stock_level_adjustments", force: true do |t|
     t.integer  "item_id"
+    t.string   "item_type"
     t.string   "description"
     t.integer  "adjustment",  default: 0
     t.string   "parent_type"
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "item_type"
   end
 
   create_table "shoppe_tax_rates", force: true do |t|
