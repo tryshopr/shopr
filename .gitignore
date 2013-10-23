@@ -1,10 +1,10 @@
 .bundle/
 log/*.log
 pkg/
-test/dummy/db/*.sqlite3
-test/dummy/db/*.sqlite3-journal
-test/dummy/config/database.yml
-test/dummy/log/*.log
-test/dummy/tmp/
-test/dummy/.sass-cache
+test/app/db/*.sqlite3
+test/app/db/*.sqlite3-journal
+test/app/config/database.yml
+test/app/log/*.log
+test/app/tmp/
+test/app/.sass-cache
 *.gem
