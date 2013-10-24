@@ -31,8 +31,8 @@ module Shoppe
     end
     
     def add_settings_group(group, fields = [])
-      setting_groups[group]  ||= []
-      setting_groups[group]    = setting_groups[group] | fields
+      settings_groups[group]  ||= []
+      settings_groups[group]    = settings_groups[group] | fields
     end
     
     def settings_groups
