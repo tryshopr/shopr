@@ -234,7 +234,7 @@ module Shoppe
     def delivery_service_prices
       @delivery_service_prices ||= begin
         prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
-        prices = prices.select { |p| p.countries.empty? || p.country?(self.billing_country) }
+        prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
         prices
       end
     end
