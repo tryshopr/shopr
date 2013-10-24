@@ -14,8 +14,8 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.integer  "delivery_service_id"
       t.string   "code"
       t.decimal  "price",               precision: 8, scale: 2
-      t.integer  "tax_rate_id"
       t.decimal  "cost_price",          precision: 8, scale: 2
+      t.integer  "tax_rate_id"
       t.decimal  "min_weight",          precision: 8, scale: 2
       t.decimal  "max_weight",          precision: 8, scale: 2
       t.datetime "created_at"
@@ -37,6 +37,7 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
     create_table "shoppe_order_items" do |t|
       t.integer  "order_id"
       t.integer  "ordered_item_id"
+      t.string   "ordered_item_type"
       t.integer  "quantity",                                  default: 1
       t.decimal  "unit_price",        precision: 8, scale: 2
       t.decimal  "unit_cost_price",   precision: 8, scale: 2
@@ -45,7 +46,6 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.decimal  "weight",            precision: 8, scale: 3, default: 0.0
       t.datetime "created_at"
       t.datetime "updated_at"
-      t.string   "ordered_item_type"
     end
 
     create_table "shoppe_orders" do |t|
@@ -53,12 +53,12 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.string   "first_name"
       t.string   "last_name"
       t.string   "company"
-      t.string   "address1"
-      t.string   "address2"
-      t.string   "address3"
-      t.string   "address4"
-      t.string   "postcode"
-      t.integer  "country_id"
+      t.string   "billing_address1"
+      t.string   "billing_address2"
+      t.string   "billing_address3"
+      t.string   "billing_address4"
+      t.string   "billing_postcode"
+      t.integer  "billing_country_id"
       t.string   "email_address"
       t.string   "phone_number"
       t.string   "status"
@@ -68,10 +68,10 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "delivery_service_id"
-      t.decimal  "delivery_price",      precision: 8, scale: 2
-      t.decimal  "delivery_cost_price", precision: 8, scale: 2
-      t.decimal  "delivery_tax_rate",   precision: 8, scale: 2
-      t.decimal  "delivery_tax_amount", precision: 8, scale: 2
+      t.decimal  "delivery_price",            precision: 8, scale: 2
+      t.decimal  "delivery_cost_price",       precision: 8, scale: 2
+      t.decimal  "delivery_tax_rate",         precision: 8, scale: 2
+      t.decimal  "delivery_tax_amount",       precision: 8, scale: 2
       t.datetime "paid_at"
       t.integer  "accepted_by"
       t.integer  "shipped_by"
@@ -82,6 +82,14 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.string   "payment_reference"
       t.string   "payment_method"
       t.text     "notes"
+      t.boolean  "separate_delivery_address",                         default: false
+      t.string   "delivery_name"
+      t.string   "delivery_address1"
+      t.string   "delivery_address2"
+      t.string   "delivery_address3"
+      t.string   "delivery_address4"
+      t.string   "deilvery_postcode"
+      t.integer  "delivery_country_id"
     end
 
     create_table "shoppe_product_attributes" do |t|
@@ -114,8 +122,8 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.boolean  "active",                                      default: true
       t.decimal  "weight",              precision: 8, scale: 3, default: 0.0
       t.decimal  "price",               precision: 8, scale: 2, default: 0.0
-      t.integer  "tax_rate_id"
       t.decimal  "cost_price",          precision: 8, scale: 2, default: 0.0
+      t.integer  "tax_rate_id"
       t.datetime "created_at"
       t.datetime "updated_at"
       t.boolean  "featured",                                    default: false

@@ -8,6 +8,9 @@ This document outlines key changes which are introduced in each version. The ful
 
 * Adds a default to product variants
 
+* **Breaking change:** `Shoppe::Order#address` has been split into `Shoppe::Order#billing_address`
+  and `Shoppe::Order#delivery_address`.
+
 * **Breaking change:** all migrations have been collapsed. You will need to reset your database
   when upgrading to this version.
 
