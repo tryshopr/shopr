@@ -36,7 +36,7 @@ module Shoppe
     end
     
     def settings_groups
-      @setting_groups ||= {}
+      @settings_groups ||= {}
     end
     
   end
