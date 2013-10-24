@@ -13,6 +13,7 @@ In the meantime, why not:
 * [View the demo site](http://demo.tryshoppe.com)
 * [Check out the demo site source](http://github.com/tryshoppe/example-store)
 * [Read the release notes](https://github.com/tryshoppe/core/blob/master/CHANGELOG.md)
+* [Read API documentation](http://api.tryshoppe.com)
 
 ## Features
 
