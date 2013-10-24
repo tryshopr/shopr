@@ -30,12 +30,12 @@ module Shoppe
       Thread.current[:shoppe_settings] = nil
     end
     
-    def add_setting_group(group, fields = [])
+    def add_settings_group(group, fields = [])
       setting_groups[group]  ||= []
       setting_groups[group]    = setting_groups[group] | fields
     end
     
-    def setting_groups
+    def settings_groups
       @setting_groups ||= {}
     end
     
