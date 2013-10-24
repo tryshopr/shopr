@@ -5,14 +5,15 @@
 
 = form_tag :url => settings_path do |f|
 
-  = field_set_tag "System Settings" do
-    - [:store_name, :email_address, :currency_unit, :tax_name, :demo_mode].each do |f|
-      %dl.sided
-        %dt= settings_label f
-        %dd
-          = settings_field f
-          - if v = t("shoppe.settings.help")[f]
-            %p.help= v
+  - Shoppe.setting_groups.each do |group, fields|
+    = field_set_tag t(group) do
+      - fields.each do |f|
+        %dl.sided
+          %dt= settings_label f
+          %dd
+            = settings_field f
+            - if v = t("shoppe.settings.help")[f]
+              %p.help= v
         
   %p.submit.sided
     = submit_tag "Save Settings", :class => 'button green'

@@ -17,6 +17,7 @@ module Shoppe
   class Error < StandardError; end
   
   class << self
+    
     def root
       File.expand_path('../../', __FILE__)
     end
@@ -27,6 +28,15 @@ module Shoppe
     
     def reset_settings
       Thread.current[:shoppe_settings] = nil
+    end
+    
+    def add_setting_group(group, fields = [])
+      setting_groups[group]  ||= []
+      setting_groups[group]    = setting_groups[group] | fields
+    end
+    
+    def setting_groups
+      @setting_groups ||= {}
     end
     
   end
