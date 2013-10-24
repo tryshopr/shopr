@@ -35,7 +35,7 @@ module Shoppe
     end
     
     def rate_for(order)
-      if countries.empty? || order.country.nil? || country?(order.country)
+      if countries.empty? || order.billing_country.nil? || country?(order.billing_country)
         self.rate
       else
         0.0

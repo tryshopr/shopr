@@ -19,7 +19,9 @@ module Shoppe
     self.table_name = 'shoppe_countries'
 
     # Relationships
-    has_many :orders, :dependent => :restrict_with_exception, :class_name => 'Shoppe::Order'
+    has_many :billed_orders, :dependent => :restrict_with_exception, :class_name => 'Shoppe::Order', :foreign_key => 'billing_country_id'
+    has_many :delivered_orders, :dependent => :restrict_with_exception, :class_name => 'Shoppe::Order', :foreign_key => 'delivery_country_id'
+    
     
     # Scopes
     scope :ordered, -> { order('shoppe_countries.name asc') }

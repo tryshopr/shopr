@@ -14,14 +14,22 @@
         %dd= @order.first_name + ' ' + @order.last_name
         %dt Company
         %dd= @order.company.blank? ? '-' : @order.company
-        %dt Address
-        %dd= @order.address1
-        %dd= @order.address2
-        %dd= @order.address3
-        %dd= @order.address4
-        %dt Postcode
-        %dd= @order.postcode
-        %dd= @order.country.try(:name)
+        %dt Billing#{@order.separate_delivery_address? ? '' : '/Delivery'} Address
+        %dd= @order.billing_address1
+        %dd= @order.billing_address2
+        %dd= @order.billing_address3
+        %dd= @order.billing_address4
+        %dd= @order.billing_postcode
+        %dd= @order.billing_country.try(:name)
+        - if @order.separate_delivery_address?
+          %dt Delivery Address
+          %dd= @order.delivery_name
+          %dd= @order.delivery_address1
+          %dd= @order.delivery_address2
+          %dd= @order.delivery_address3
+          %dd= @order.delivery_address4
+          %dd= @order.delivery_postcode
+          %dd= @order.delivery_country.try(:name)
     .right
       %dl
         %dt E-Mail Address

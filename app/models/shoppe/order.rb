@@ -2,40 +2,47 @@
 #
 # Table name: shoppe_orders
 #
-#  id                  :integer          not null, primary key
-#  token               :string(255)
-#  first_name          :string(255)
-#  last_name           :string(255)
-#  company             :string(255)
-#  address1            :string(255)
-#  address2            :string(255)
-#  address3            :string(255)
-#  address4            :string(255)
-#  postcode            :string(255)
-#  country_id          :integer
-#  email_address       :string(255)
-#  phone_number        :string(255)
-#  status              :string(255)
-#  received_at         :datetime
-#  accepted_at         :datetime
-#  shipped_at          :datetime
-#  created_at          :datetime
-#  updated_at          :datetime
-#  delivery_service_id :integer
-#  delivery_price      :decimal(8, 2)
-#  delivery_cost_price :decimal(8, 2)
-#  delivery_tax_rate   :decimal(8, 2)
-#  delivery_tax_amount :decimal(8, 2)
-#  paid_at             :datetime
-#  accepted_by         :integer
-#  shipped_by          :integer
-#  consignment_number  :string(255)
-#  rejected_at         :datetime
-#  rejected_by         :integer
-#  ip_address          :string(255)
-#  payment_reference   :string(255)
-#  payment_method      :string(255)
-#  notes               :text
+#  id                        :integer          not null, primary key
+#  token                     :string(255)
+#  first_name                :string(255)
+#  last_name                 :string(255)
+#  company                   :string(255)
+#  billing_address1          :string(255)
+#  billing_address2          :string(255)
+#  billing_address3          :string(255)
+#  billing_address4          :string(255)
+#  billing_postcode          :string(255)
+#  billing_country_id        :integer
+#  email_address             :string(255)
+#  phone_number              :string(255)
+#  status                    :string(255)
+#  received_at               :datetime
+#  accepted_at               :datetime
+#  shipped_at                :datetime
+#  created_at                :datetime
+#  updated_at                :datetime
+#  delivery_service_id       :integer
+#  delivery_price            :decimal(8, 2)
+#  delivery_cost_price       :decimal(8, 2)
+#  delivery_tax_rate         :decimal(8, 2)
+#  delivery_tax_amount       :decimal(8, 2)
+#  paid_at                   :datetime
+#  accepted_by               :integer
+#  shipped_by                :integer
+#  consignment_number        :string(255)
+#  rejected_at               :datetime
+#  rejected_by               :integer
+#  ip_address                :string(255)
+#  payment_reference         :string(255)
+#  payment_method            :string(255)
+#  notes                     :text
+#  separate_delivery_address :boolean          default(FALSE)
+#  delivery_address1         :string(255)
+#  delivery_address2         :string(255)
+#  delivery_address3         :string(255)
+#  delivery_address4         :string(255)
+#  deilvery_postcode         :string(255)
+#  delivery_country_id       :integer
 #
 
 module Shoppe
@@ -57,7 +64,8 @@ module Shoppe
   
     # Relationships
     belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
-    belongs_to :country, :class_name => 'Shoppe::Country'
+    belongs_to :billing_country, :class_name => 'Shoppe::Country', :foreign_key => 'billing_country_id'
+    belongs_to :delivery_country, :class_name => 'Shoppe::Country', :foreign_key => 'delivery_country_id'
     belongs_to :accepter, :class_name => 'Shoppe::User', :foreign_key => 'accepted_by'
     belongs_to :rejecter, :class_name => 'Shoppe::User', :foreign_key => 'rejected_by'
     belongs_to :shipper, :class_name => 'Shoppe::User', :foreign_key => 'shipped_by'
@@ -70,14 +78,23 @@ module Shoppe
     with_options :if => Proc.new { |o| !o.building? } do |order|
       order.validates :first_name, :presence => true
       order.validates :last_name, :presence => true
-      order.validates :address1, :presence => true
-      order.validates :address3, :presence => true
-      order.validates :address4, :presence => true
-      order.validates :postcode, :presence => true
-      order.validates :country, :presence => true
+      order.validates :billing_address1, :presence => true
+      order.validates :billing_address3, :presence => true
+      order.validates :billing_address4, :presence => true
+      order.validates :billing_postcode, :presence => true
+      order.validates :billing_country, :presence => true
       order.validates :email_address, :format => {:with => /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i}
       order.validates :phone_number, :format => {:with => /\A[\d\ \-x\(\)]{7,}\z/}
     end
+    with_options :if => :separate_delivery_address? do |order|
+      order.validates :delivery_name, :presence => true
+      order.validates :delivery_address1, :presence => true
+      order.validates :delivery_address3, :presence => true
+      order.validates :delivery_address4, :presence => true
+      order.validates :delivery_postcode, :presence => true
+      order.validates :delivery_country, :presence => true
+    end
+    
     validate do
       unless available_delivery_services.include?(self.delivery_service)
         errors.add :delivery_service_id, "is not suitable for this order"
@@ -93,6 +110,12 @@ module Shoppe
     before_validation do
       self.status = 'building' if self.status.blank?
       self.token = SecureRandom.uuid if self.token.blank?
+    end
+    
+    [:delivery_name, :delivery_address1, :delivery_address2, :delivery_address3, :delivery_address4, :delivery_postcode, :delivery_country].each do |f|
+      define_method(f) do
+        separate_delivery_address? ? super() : send(f.to_s.gsub('delivery_', 'billing_'))
+      end
     end
   
     # Is this order still being built by the user?
@@ -140,6 +163,11 @@ module Shoppe
     # The name of the customer
     def customer_name
       company.blank? ? full_name : "#{company} (#{full_name})"
+    end
+    
+    # The name for billing purposes
+    def billing_name
+      company.blank? ? full_name : "#{full_name} (#{company})"
     end
     
     # The full anme of the customer
@@ -206,7 +234,7 @@ module Shoppe
     def delivery_service_prices
       @delivery_service_prices ||= begin
         prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
-        prices = prices.select { |p| p.countries.empty? || p.country?(self.country) }
+        prices = prices.select { |p| p.countries.empty? || p.country?(self.billing_country) }
         prices
       end
     end
@@ -388,7 +416,7 @@ module Shoppe
   
     # Specify which attributes can be searched
     def self.ransackable_attributes(auth_object = nil) 
-      ["id", "postcode", "address1", "address2", "address3", "address4", "first_name", "last_name", "company", "email_address", "phone_number", "consignment_number", "status", "received_at"] + _ransackers.keys
+      ["id", "billing_postcode", "billing_address1", "billing_address2", "billing_address3", "billing_address4", "first_name", "last_name", "company", "email_address", "phone_number", "consignment_number", "status", "received_at"] + _ransackers.keys
     end
   
     # Specify which associations can be searched

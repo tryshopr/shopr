@@ -5,15 +5,13 @@
     %h1= Shoppe.config[:store_name]
     %h2= t('.despatch_note')
   .address
-    %p.name= @order.full_name
-    - unless @order.company.blank?
-      %p.company= @order.company
-    %p= @order.address1
-    %p= @order.address2
-    %p= @order.address3
-    %p= @order.address4
-    %p= @order.postcode
-    %p= @order.country.name
+    %p.name= @order.delivery_name
+    %p= @order.delivery_address1
+    %p= @order.delivery_address2
+    %p= @order.delivery_address3
+    %p= @order.delivery_address4
+    %p= @order.delivery_postcode
+    %p= @order.delivery_country.try(:name)
   
   %table.details
     %tr

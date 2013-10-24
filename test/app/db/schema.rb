@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023122504) do
+ActiveRecord::Schema.define(version: 20131024090533) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(version: 20131023122504) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "company"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "address3"
-    t.string   "address4"
-    t.string   "postcode"
-    t.integer  "country_id"
+    t.string   "billing_address1"
+    t.string   "billing_address2"
+    t.string   "billing_address3"
+    t.string   "billing_address4"
+    t.string   "billing_postcode"
+    t.integer  "billing_country_id"
     t.string   "email_address"
     t.string   "phone_number"
     t.string   "status"
@@ -102,10 +102,10 @@ ActiveRecord::Schema.define(version: 20131023122504) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "delivery_service_id"
-    t.decimal  "delivery_price",      precision: 8, scale: 2
-    t.decimal  "delivery_cost_price", precision: 8, scale: 2
-    t.decimal  "delivery_tax_rate",   precision: 8, scale: 2
-    t.decimal  "delivery_tax_amount", precision: 8, scale: 2
+    t.decimal  "delivery_price",            precision: 8, scale: 2
+    t.decimal  "delivery_cost_price",       precision: 8, scale: 2
+    t.decimal  "delivery_tax_rate",         precision: 8, scale: 2
+    t.decimal  "delivery_tax_amount",       precision: 8, scale: 2
     t.datetime "paid_at"
     t.integer  "accepted_by"
     t.integer  "shipped_by"
@@ -116,6 +116,14 @@ ActiveRecord::Schema.define(version: 20131023122504) do
     t.string   "payment_reference"
     t.string   "payment_method"
     t.text     "notes"
+    t.boolean  "separate_delivery_address",                         default: false
+    t.string   "delivery_name"
+    t.string   "delivery_address1"
+    t.string   "delivery_address2"
+    t.string   "delivery_address3"
+    t.string   "delivery_address4"
+    t.string   "deilvery_postcode"
+    t.integer  "delivery_country_id"
   end
 
   create_table "shoppe_product_attributes", force: true do |t|
