@@ -8,3 +8,4 @@ test/app/log/*.log
 test/app/tmp/
 test/app/.sass-cache
 *.gem
+doc/

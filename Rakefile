@@ -16,3 +16,23 @@ Rake::TestTask.new(:test) do |t|
   t.pattern = 'test/**/*_test.rb'
   t.verbose = false
 end
+
+namespace :shoppe do
+  
+  desc "Generate RDoc documentation into doc/"
+  task :generate_docs do
+    system("rm -Rf doc")
+    system("bundle exec sdoc app/models lib README.rdoc")
+  end
+  
+  desc "Publish RDoc documentation from doc to api.tryshoppe.com"
+  task :publish_docs do
+    if File.exist?("doc")
+      system "ssh root@tryshoppe.com rm -Rf /var/www/shoppe-api"
+      system "scp -r doc root@tryshoppe.com:/var/www/shoppe-api"
+    else
+      puts "No doc/ folder found to publish."
+    end
+  end
+end
+
