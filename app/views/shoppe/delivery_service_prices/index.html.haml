@@ -10,13 +10,15 @@
   %table.data
     %thead
       %tr
-        %th Price
-        %th Weight Allowance
         %th Code
+        %th Weight Allowance
+        %th Price
+        %th Cost
     %tbody
       - for price in @delivery_service_prices
         %tr
-          %td= link_to number_to_currency(price.price), [:edit, @delivery_service, price]
-          %td #{number_to_weight price.min_weight} &rarr; #{number_to_weight price.max_weight}
           %td= price.code
+          %td #{number_to_weight price.min_weight} &rarr; #{number_to_weight price.max_weight}
+          %td= link_to number_to_currency(price.price), [:edit, @delivery_service, price]
+          %td= number_to_currency price.cost_price
           
