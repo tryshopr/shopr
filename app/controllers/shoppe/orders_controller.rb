@@ -10,8 +10,11 @@ module Shoppe
     end
   
     def update
-      @order.update_attributes!(params[:order].permit(:notes))
-      redirect_to @order, :notice => "Order has been saved successfully"
+      if @order.update_attributes(params[:order].permit(:notes, :first_name, :last_name, :company, :billing_address1, :billing_address2, :billing_address3, :billing_address4, :billing_postcode, :billing_country_id, :separate_delivery_address,:delivery_name, :delivery_address1, :delivery_address2, :delivery_address3, :delivery_address4, :delivery_postcode, :delivery_country_id, :email_address, :phone_number))
+        redirect_to @order, :notice => "Order has been saved successfully"
+      else
+        render :action => "edit"
+      end
     end
   
     def search

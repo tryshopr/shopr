@@ -48,6 +48,14 @@ $ ->
     window.open($(this).attr('href'), 'despatchnote', 'width=700,height=800')
     false
   
+  # Order editting
+  toggleDeliveryFieldsetForOrder = ->
+    fieldset = $('form.edit_order fieldset.delivery')
+    if $('form.edit_order input#order_separate_delivery_address').prop('checked') then fieldset.show() else fieldset.hide()
+  $('form.edit_order input#order_separate_delivery_address').on 'change', toggleDeliveryFieldsetForOrder
+  toggleDeliveryFieldsetForOrder()
+  
+  
   # Open AJAX dialogs
   $('a[rel=dialog]').on 'click', ->
     element = $(this)

@@ -162,6 +162,8 @@ header.main {
 					padding-top:4px;
 					input,label { margin-right:10px;}
 				}
+				dd.space { margin-bottom:5px;}
+				dd.space:last-child { margin-bottom:0;}
 				&.half {
 					width:49%;
 					margin:0;

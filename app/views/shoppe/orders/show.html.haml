@@ -2,6 +2,7 @@
 
 = content_for :header do
   %p.buttons
+    = link_to "Edit", [:edit, @order], :class => 'button'
     = link_to "Despatch Note", [:despatch_note, @order], :class => 'button', :rel => 'print'
     = link_to "Back to orders", :orders, :class => 'button grey'
   %h2.orders Order <b>##{@order.number}</b>
