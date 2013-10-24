@@ -17,10 +17,16 @@
     .splitContainer
       %dl.third
         %dt= f.label :price
-        %dd= f.text_field :price, :class => 'text'
+        %dd
+          .moneyInput
+            .currency= Shoppe.settings.currency_unit.html_safe
+            = f.text_field :price, :class => 'text'
       %dl.third
         %dt= f.label :cost_price
-        %dd= f.text_field :cost_price, :class => 'text'
+        %dd
+          .moneyInput
+            .currency= Shoppe.settings.currency_unit.html_safe
+            = f.text_field :cost_price, :class => 'text'
       %dl.third
         %dt= f.label :tax_rate_id
         %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
