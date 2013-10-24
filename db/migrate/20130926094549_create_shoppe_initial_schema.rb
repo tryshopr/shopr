@@ -132,6 +132,12 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.boolean  "default",                                     default: false
     end
 
+    create_table "shoppe_settings" do |t|
+      t.string "key"
+      t.string "value"
+      t.string "value_type"
+    end
+
     create_table "shoppe_stock_level_adjustments" do |t|
       t.integer  "item_id"
       t.string   "item_type"
@@ -162,7 +168,7 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
   end
   
   def down
-    [:users, :tax_rates, :stock_level_adjustments, :products, :product_categories, :product_attributes, :orders, :order_items, :delivery_services, :delivery_service_prices, :countries].each do |table|
+    [:users, :tax_rates, :stock_level_adjustments, :settings, :products, :product_categories, :product_attributes, :orders, :order_items, :delivery_services, :delivery_service_prices, :countries].each do |table|
       drop_table "shoppe_#{table}"
     end
   end
