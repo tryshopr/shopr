@@ -1,5 +1,5 @@
 module Shoppe
-  class Product
+  class Product < ActiveRecord::Base
   
     # Relationships
     has_many :product_attributes, -> { order(:position) }, :class_name => 'Shoppe::ProductAttribute'

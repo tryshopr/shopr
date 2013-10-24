@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: shoppe_delivery_service_prices
+#
+#  id                  :integer          not null, primary key
+#  delivery_service_id :integer
+#  code                :string(255)
+#  price               :decimal(8, 2)
+#  cost_price          :decimal(8, 2)
+#  tax_rate_id         :integer
+#  min_weight          :decimal(8, 2)
+#  max_weight          :decimal(8, 2)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  country_ids         :text
+#
+
 module Shoppe
   class DeliveryServicePrice < ActiveRecord::Base
 

@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: shoppe_order_items
+#
+#  id                :integer          not null, primary key
+#  order_id          :integer
+#  ordered_item_id   :integer
+#  ordered_item_type :string(255)
+#  quantity          :integer          default(1)
+#  unit_price        :decimal(8, 2)
+#  unit_cost_price   :decimal(8, 2)
+#  tax_amount        :decimal(8, 2)
+#  tax_rate          :decimal(8, 2)
+#  weight            :decimal(8, 3)    default(0.0)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 module Shoppe
   class OrderItem < ActiveRecord::Base
   

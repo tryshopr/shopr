@@ -33,4 +33,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "mysql2"
   s.add_development_dependency "sdoc"
+  s.add_development_dependency "annotate"
 end

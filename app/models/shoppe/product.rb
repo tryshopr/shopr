@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: shoppe_products
+#
+#  id                  :integer          not null, primary key
+#  parent_id           :integer
+#  product_category_id :integer
+#  name                :string(255)
+#  sku                 :string(255)
+#  permalink           :string(255)
+#  description         :text
+#  short_description   :text
+#  active              :boolean          default(TRUE)
+#  weight              :decimal(8, 3)    default(0.0)
+#  price               :decimal(8, 2)    default(0.0)
+#  cost_price          :decimal(8, 2)    default(0.0)
+#  tax_rate_id         :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#  featured            :boolean          default(FALSE)
+#  in_the_box          :text
+#  stock_control       :boolean          default(TRUE)
+#  default             :boolean          default(FALSE)
+#
+
 module Shoppe
   class Product < ActiveRecord::Base
   

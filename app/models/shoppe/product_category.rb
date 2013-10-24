@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: shoppe_product_categories
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  permalink   :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 module Shoppe
   class ProductCategory < ActiveRecord::Base
   

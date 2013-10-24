@@ -1,5 +1,5 @@
 module Shoppe
-  class Product
+  class Product < ActiveRecord::Base
     
     # Relationships
     has_many :variants, -> { order("`default` desc, name asc")}, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id', :dependent => :destroy

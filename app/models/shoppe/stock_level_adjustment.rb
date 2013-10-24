@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: shoppe_stock_level_adjustments
+#
+#  id          :integer          not null, primary key
+#  item_id     :integer
+#  item_type   :string(255)
+#  description :string(255)
+#  adjustment  :integer          default(0)
+#  parent_type :string(255)
+#  parent_id   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 module Shoppe
   class StockLevelAdjustment < ActiveRecord::Base
     

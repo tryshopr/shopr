@@ -1,3 +1,43 @@
+# == Schema Information
+#
+# Table name: shoppe_orders
+#
+#  id                  :integer          not null, primary key
+#  token               :string(255)
+#  first_name          :string(255)
+#  last_name           :string(255)
+#  company             :string(255)
+#  address1            :string(255)
+#  address2            :string(255)
+#  address3            :string(255)
+#  address4            :string(255)
+#  postcode            :string(255)
+#  country_id          :integer
+#  email_address       :string(255)
+#  phone_number        :string(255)
+#  status              :string(255)
+#  received_at         :datetime
+#  accepted_at         :datetime
+#  shipped_at          :datetime
+#  created_at          :datetime
+#  updated_at          :datetime
+#  delivery_service_id :integer
+#  delivery_price      :decimal(8, 2)
+#  delivery_cost_price :decimal(8, 2)
+#  delivery_tax_rate   :decimal(8, 2)
+#  delivery_tax_amount :decimal(8, 2)
+#  paid_at             :datetime
+#  accepted_by         :integer
+#  shipped_by          :integer
+#  consignment_number  :string(255)
+#  rejected_at         :datetime
+#  rejected_by         :integer
+#  ip_address          :string(255)
+#  payment_reference   :string(255)
+#  payment_method      :string(255)
+#  notes               :text
+#
+
 module Shoppe
   class Order < ActiveRecord::Base
 
