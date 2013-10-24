@@ -17,7 +17,6 @@ module Shoppe
     end
     
     initializer 'shoppe.initialize' do |app|
-      
       # Add the default settings
       Shoppe.add_settings_group :system_settings, [:store_name, :email_address, :currency_unit, :tax_name, :demo_mode]
       
@@ -29,6 +28,12 @@ module Shoppe
         config.paths["db/migrate"].expanded.each do |expanded_path|
           app.config.paths["db/migrate"] << expanded_path
         end
+      end
+      
+      # Load view helpers for the base application
+      ActiveSupport.on_load(:action_view) do
+        require 'shoppe/view_helpers'
+        ActionView::Base.send :include, Shoppe::ViewHelpers
       end
     end
     

@@ -1,15 +1,6 @@
 module Shoppe
   module ApplicationHelper
   
-    def number_to_currency(number, options = {})
-      options[:unit] ||= Shoppe.settings.currency_unit
-      super
-    end
-  
-    def number_to_weight(kg)
-      "#{kg}#{t('shoppe.helpers.number_to_weight.kg', :default => 'kg')}"
-    end
-  
     def status_tag(status)
       content_tag :span, status, :class => "status-tag #{status}"
     end
