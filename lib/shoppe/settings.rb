@@ -15,8 +15,6 @@ module Shoppe
         value
       elsif I18n.translate("shoppe.settings.defaults").keys.include?(key.to_sym)
         I18n.translate("shoppe.settings.defaults")[key.to_sym]
-      else
-        super
       end
     end
     
