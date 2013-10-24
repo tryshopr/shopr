@@ -4,8 +4,9 @@
   %h2.settings Settings
 
 = form_tag :url => settings_path do |f|
+
   = field_set_tag "System Settings" do
-    - t("shoppe.settings.defaults").keys.each do |f|
+    - [:store_name, :email_address, :currency_unit, :tax_name, :demo_mode].each do |f|
       %dl.sided
         %dt= settings_label f
         %dd
