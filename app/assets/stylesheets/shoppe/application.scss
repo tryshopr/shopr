@@ -81,6 +81,7 @@ header.main {
 	h2.delivery_services { background-image:image-url('shoppe/icons/box.svg'); background-position: 0 3px; background-size:20px;}
 	h2.tax_rates { background-image:image-url('shoppe/icons/currency.svg'); background-position: 0 2px; background-size:22px;}
 	h2.users { background-image:image-url('shoppe/icons/id.svg'); background-position: 0 2px; background-size:22px;}
+	h2.settings { background-image:image-url('shoppe/icons/toolbox.svg'); background-position: 0 2px; background-size:22px;}
 
 }
 
@@ -154,10 +155,13 @@ header.main {
 				}
 				dd select { width:100%;}
 				dd textarea { height:80px;	}
-				dd p.help { margin-top:15px; color:#333; background:image-url('shoppe/icons/support.svg') no-repeat 0 1px; background-size:13px; padding-left:15px;}
+				dd p.help { margin-top:15px; color:#333; background:image-url('shoppe/icons/support.svg') no-repeat 0 3px; line-height:1.5; background-size:13px; padding-left:18px; opacity:0.7;}
 				dd.checkbox { margin-top:14px; font-size:1.1em; color:#999;}
 				dd.checkbox input { float:left; margin-right:10px; margin-top:2px; }
-				
+				dd div.radios {
+					padding-top:4px;
+					input,label { margin-right:10px;}
+				}
 				&.half {
 					width:49%;
 					margin:0;
@@ -172,8 +176,16 @@ header.main {
 					&:nth-child(2) { margin-left:2%; width:32%;}
 					&:last-child { float:right; width:33%;}
 				}
-				
 			}
+			
+			dl.sided {
+				clear:both;
+				dt { float:left; width:25%; text-align:right; padding-top:4px;}
+				dd { margin-left:30%; }
+				dd p.help { margin-top:10px;}
+				dd div.checkbox { padding-top:5px;}
+			}
+			
 			
 			//
 			// margined container
@@ -204,6 +216,7 @@ header.main {
 		p.submit .button { margin-right:5px;}
 		p.submit .right .button {margin-left:5px; margin-right:0;}
 		p.submit span.right { float:right;}
+		p.submit.sided { padding-left:30%;}
 		.errorExplanation {
 	    margin-bottom:25px;
 	    border:1px solid #EB2732;

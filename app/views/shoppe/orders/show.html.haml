@@ -108,7 +108,7 @@
             %th SKU
             %th.money Cost
             %th.money Price
-            %th.money= Shoppe.config[:tax_name]
+            %th.money= Shoppe.settings.tax_name
             %th.money Sub-Total
         %tbody
           - for item in @order.order_items

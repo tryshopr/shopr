@@ -2,7 +2,7 @@
 
 .despatchNote
   %header
-    %h1= Shoppe.config[:store_name]
+    %h1= Shoppe.settings.store_name
     %h2= t('.despatch_note')
   .address
     %p.name= @order.delivery_name

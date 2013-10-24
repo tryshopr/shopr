@@ -1,11 +1,9 @@
 module Shoppe
   class UserMailer < ActionMailer::Base
 
-    default :from => "#{Shoppe.config[:store_name]} <#{Shoppe.config[:email_address]}>"
-
     def new_password(user)
       @user = user
-      mail :to => user.email_address, :subject => "Your new Shoppe password"
+      mail :from => Shoppe.settings.outbound_email_address, :to => user.email_address, :subject => "Your new Shoppe password"
     end
     
   end

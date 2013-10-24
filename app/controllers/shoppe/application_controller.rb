@@ -35,7 +35,7 @@ module Shoppe
     end
     
     def login_with_demo_mdoe
-      if Shoppe.config[:demo_mode]
+      if Shoppe.settings.demo_mode?
         @user = User.first
       end
     end

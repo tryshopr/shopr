@@ -9,9 +9,4 @@ class ShoppeTest < ActiveSupport::TestCase
     assert_equal File.expand_path('../../', __FILE__), Shoppe.root
   end
   
-  test "configuration is loaded" do
-    assert Shoppe.config.is_a?(Hash)
-    assert_equal 'Example Store',  Shoppe.config[:store_name]
-  end
-  
 end

@@ -3,8 +3,8 @@ module Shoppe
   
     before_filter { @active_nav = :users }
     before_filter { params[:id] && @user = Shoppe::User.find(params[:id]) }
-    if Shoppe.config[:demo_mode]
-      before_filter(:only => [:create, :update, :destroy]) do
+    before_filter(:only => [:create, :update, :destroy]) do
+      if Shoppe.settings.demo_mode?
         raise Shoppe::Error, "You cannot make changes to user in demo mode. Sorry about that."
       end
     end

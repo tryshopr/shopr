@@ -21,6 +21,7 @@
         %li= link_to "Delivery Services", [:delivery_services], :class => @active_nav == :delivery_services ? 'active' : ''
         %li= link_to "Tax Rates", :tax_rates, :class => @active_nav == :tax_rates ? 'active' : ''
         %li= link_to "Users", [:users], :class => @active_nav == :users ? 'active' : ''
+        %li= link_to "Settings", :settings, :class => @active_nav == :settings ? 'active' : ''
         %li= link_to "Logout", [:logout], :method => :delete
     
     %header.main
@@ -32,5 +33,5 @@
         = yield
 
     %footer 
-      %p.store= link_to "Goto Storefront", '/'
+      %p.store= link_to "&larr; Goto #{Shoppe.settings.store_name}".html_safe, '/'
       

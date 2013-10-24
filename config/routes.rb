@@ -20,6 +20,10 @@ Shoppe::Engine.routes.draw do
   resources :tax_rates
   resources :users
   resources :attachments, :only => :destroy
+
+  get 'settings'=> 'settings#edit'
+  post 'settings' => 'settings#update'
+  
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   match 'login/reset' => 'sessions#reset', :via => [:get, :post]

@@ -2,7 +2,7 @@ module Shoppe
   module ApplicationHelper
   
     def number_to_currency(number, options = {})
-      options[:unit] ||= Shoppe.config[:currency_unit]
+      options[:unit] ||= Shoppe.settings.currency_unit
       super
     end
   
@@ -34,6 +34,30 @@ module Shoppe
         end.html_safe
       elsif !options[:hide_if_blank]
         "<div class='attachmentPreview'><div class='imgContainer'><div class='img none'></div></div><div class='desc none'>No attachment</div></div>".html_safe
+      end
+    end
+    
+    def settings_label(field)
+      "<label for='settings_#{field}'>#{t("shoppe.settings.labels.#{field}")}</label>".html_safe
+    end
+    
+    def settings_field(field, options = {})
+      default = t("shoppe.settings.defaults")[field.to_sym]
+      value = (params[:settings] && params[:settings][field]) || Shoppe.settings[field.to_s]
+      type = t("shoppe.settings.types")[field.to_sym] || 'string'
+      case type
+      when 'boolean'
+        String.new.tap do |s|
+          value = default if value.blank?
+          s << "<div class='radios'>"
+          s << radio_button_tag("settings[#{field}]", 'true', value == true, :id => "settings_#{field}_true")
+          s << label_tag("settings_#{field}_true", t("shoppe.settings.options.#{field}.affirmative", :default => 'Yes'))
+          s << radio_button_tag("settings[#{field}]", 'false', value == false, :id => "settings_#{field}_false")
+          s << label_tag("settings_#{field}_false", t("shoppe.settings.options.#{field}.negative", :default => 'No'))
+          s << "</div>"
+        end.html_safe
+      else
+        text_field_tag "settings[#{field}]", value, options.merge(:placeholder => default, :class => 'text')
       end
     end
   

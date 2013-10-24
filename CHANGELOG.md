@@ -13,6 +13,11 @@ This document outlines key changes which are introduced in each version. The ful
 
 * **Breaking change:** all migrations have been collapsed. You will need to reset your database
   when upgrading to this version.
+  
+* **Breaking change:** settings are now all stored in the database and set up using the 
+  Settings page within the Shoppe interface. There is no need for a `shoppe.yml` config
+  file. If you have settings in such a file, they should be transferred to your database
+  version on upgrade.
 
 ## v0.0.15 - The break everything release
 
