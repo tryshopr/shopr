@@ -52,7 +52,11 @@
       %dd.space= f.text_field :delivery_address4, :class => 'text'
       %dd.space= f.text_field :delivery_postcode, :class => 'text short', :placeholder => "Postcode"
       %dd.space= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen'}
-    
+  
+  = field_set_tag "Notes" do
+    %dl
+      %dd= f.text_area :notes, :class => 'text'
+  
   %p.submit
     = f.submit "Save Order", :class => 'button green'
     = link_to "Cancel", @order, :class => 'button'

@@ -137,10 +137,4 @@
             %td.money= number_to_currency @order.total_before_tax
             %td.money= number_to_currency @order.tax
             %td.money= number_to_currency @order.total
-  .notes
-    = form_for @order do |f|
-      %h4
-        = f.submit "Save Notes", :class => 'button button-mini green'
-        Order Notes
-      %p= f.text_area :notes
 
