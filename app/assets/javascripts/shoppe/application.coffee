@@ -59,6 +59,11 @@ $ ->
     options.url = element.attr('href')
     Nifty.Dialog.open(options)
     false
+  
+  # Format money values to 2 decimal places
+  formatMoneyField = -> $(this).val(parseFloat($(this).val()).toFixed(2))
+  $('div.moneyInput input').each formatMoneyField
+  $('div.moneyInput input').on('blur', formatMoneyField)
 
 #
 # Stock Level Adjustment dialog beavior
