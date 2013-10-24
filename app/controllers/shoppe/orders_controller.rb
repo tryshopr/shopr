@@ -8,6 +8,10 @@ module Shoppe
       @query = Shoppe::Order.ordered.received.includes(:order_items => :ordered_item).page(params[:page]).search(params[:q])
       @orders = @query.result
     end
+    
+    def show
+      @payments = @order.payments.to_a
+    end
   
     def update
       if @order.update_attributes(params[:order].permit(:notes, :first_name, :last_name, :company, :billing_address1, :billing_address2, :billing_address3, :billing_address4, :billing_postcode, :billing_country_id, :separate_delivery_address,:delivery_name, :delivery_address1, :delivery_address2, :delivery_address3, :delivery_address4, :delivery_postcode, :delivery_country_id, :email_address, :phone_number))
@@ -37,11 +41,6 @@ module Shoppe
       redirect_to @order, :notice => "Order has been shipped successfully"
     end
   
-    def pay
-      @order.pay!(params[:payment_reference], params[:payment_method].blank? ? 'Unknown' : params[:payment_method])
-      redirect_to @order, :notice => "Order has been marked as paid successfully"
-    end
-    
     def despatch_note
       render :layout => 'shoppe/printable'
     end

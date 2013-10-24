@@ -41,18 +41,8 @@
         %dd= number_to_weight @order.total_weight
         %dt Build Time
         %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
-      
-      - if !@order.paid?
-        = form_tag [:pay, @order] do
-          %dl.form
-            %dt.padding= label_tag 'payment_method', 'Payment Method'
-            %dd= text_field_tag 'payment_method', '', :class => 'text'
-          %dl.form
-            %dt.padding= label_tag 'payment_reference', 'Payment Reference'
-            %dd= text_field_tag 'payment_reference', '', :class => 'text'
-          %dl.form
-            %dd= submit_tag "Mark as paid", :class => 'button green button-mini'
-      
+        %dt Balance
+        %dd= number_to_currency @order.balance
       - if @order.accepted? && !@order.shipped?
         = form_tag [:ship, @order] do
           %dl.form
@@ -61,7 +51,7 @@
           %dl.form
             %dd= submit_tag "Mark as shipped", :class => 'button green button-mini'
       
-      - if @order.paid? && !(@order.accepted? || @order.rejected?)
+      - unless @order.accepted? || @order.rejected?
         %dl.form
           %dd
             = link_to "Accept", [:accept, @order], :method => :post, :class => 'button green'
@@ -73,12 +63,6 @@
         %li.received
           %h4 Order Received
           %p on #{@order.received_at.to_s(:short)} from #{@order.ip_address}
-
-      - if @order.paid?
-        %li.payment
-          %h4 Payment Received
-          %p on #{@order.paid_at.to_s(:short)} using #{@order.payment_method}
-          %p Reference <b>#{@order.payment_reference}</b>
 
       - if @order.accepted?
         %li.accepted
@@ -99,42 +83,77 @@
           - else
             %p Consignment # <b>#{@order.consignment_number}</b>
   
-  .order_items
-    .table
-      %table.data
-        %thead
-          %tr
-            %th.qty Qty
-            %th Item
-            %th SKU
-            %th.money Cost
-            %th.money Price
-            %th.money= Shoppe.settings.tax_name
-            %th.money Sub-Total
-        %tbody
-          - for item in @order.order_items
+  = field_set_tag "Order Items", :class => 'padded' do
+    .order_items
+      .table
+        %table.data
+          %thead
             %tr
-              %td.qty= item.quantity
-              %td.product= item.ordered_item.full_name
-              %td.sku= item.ordered_item.sku
-              %td.money= number_to_currency item.total_cost
-              %td.money= number_to_currency item.sub_total
-              %td.money= number_to_currency item.tax_amount
-              %td.money= number_to_currency item.total
-          - if @order.delivery_service
-            %td.qty
-            %td.product= link_to @order.delivery_service.name, [:edit, @order.delivery_service]
-            %td.sku
-            %td.money= number_to_currency @order.delivery_cost_price
-            %td.money= number_to_currency @order.delivery_price
-            %td.money= number_to_currency @order.delivery_tax_amount
-            %td.money= number_to_currency @order.delivery_price + @order.delivery_tax_amount
-        %tfoot
-          %tr
-            %td.qty= @order.total_items
-            %td{:colspan => 2}
-            %td.money= number_to_currency @order.total_cost
-            %td.money= number_to_currency @order.total_before_tax
-            %td.money= number_to_currency @order.tax
-            %td.money= number_to_currency @order.total
+              %th.qty Qty
+              %th Item
+              %th SKU
+              %th.money Cost
+              %th.money Price
+              %th.money= Shoppe.settings.tax_name
+              %th.money Sub-Total
+          %tbody
+            - for item in @order.order_items
+              %tr
+                %td.qty= item.quantity
+                %td.product= item.ordered_item.full_name
+                %td.sku= item.ordered_item.sku
+                %td.money= number_to_currency item.total_cost
+                %td.money= number_to_currency item.sub_total
+                %td.money= number_to_currency item.tax_amount
+                %td.money= number_to_currency item.total
+            - if @order.delivery_service
+              %td.qty
+              %td.product= link_to @order.delivery_service.name, [:edit, @order.delivery_service]
+              %td.sku
+              %td.money= number_to_currency @order.delivery_cost_price
+              %td.money= number_to_currency @order.delivery_price
+              %td.money= number_to_currency @order.delivery_tax_amount
+              %td.money= number_to_currency @order.delivery_price + @order.delivery_tax_amount
+          %tfoot
+            %tr
+              %td.qty= @order.total_items
+              %td{:colspan => 2}
+              %td.money= number_to_currency @order.total_cost
+              %td.money= number_to_currency @order.total_before_tax
+              %td.money= number_to_currency @order.tax
+              %td.money= number_to_currency @order.total
 
+  = field_set_tag "Payments", :class => 'padded orderPayments' do
+    - unless @payments.empty?
+      .table
+        %table.data
+          %thead
+            %tr
+              %th Method
+              %th Reference
+              %th Amount
+          %tbody
+            - for payment in @payments
+              %tr
+                %td= payment.method
+                %td= payment.reference
+                %td= number_to_currency payment.amount
+    - else
+      %p.notice There are no payments recorded for this order...
+      
+    = form_for [@order, Shoppe::Payment.new(:amount => @order.balance)] do |f|
+      %dl.text
+        %dt= f.label :method
+        %dd= f.text_field :method, :class => 'text'
+      %dl.text
+        %dt= f.label :reference
+        %dd= f.text_field :reference, :class => 'text'
+      %dl.amount
+        %dt= f.label :amount
+        %dd
+          .moneyInput
+            .currency= Shoppe.settings.currency_unit.html_safe
+            = f.text_field :amount, :class => 'text'
+      %dl.submit
+        %dd= f.submit "Add Payment", :class => 'button green'
+        

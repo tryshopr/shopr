@@ -26,23 +26,22 @@
 #  delivery_cost_price       :decimal(8, 2)
 #  delivery_tax_rate         :decimal(8, 2)
 #  delivery_tax_amount       :decimal(8, 2)
-#  paid_at                   :datetime
 #  accepted_by               :integer
 #  shipped_by                :integer
 #  consignment_number        :string(255)
 #  rejected_at               :datetime
 #  rejected_by               :integer
 #  ip_address                :string(255)
-#  payment_reference         :string(255)
-#  payment_method            :string(255)
 #  notes                     :text
 #  separate_delivery_address :boolean          default(FALSE)
+#  delivery_name             :string(255)
 #  delivery_address1         :string(255)
 #  delivery_address2         :string(255)
 #  delivery_address3         :string(255)
 #  delivery_address4         :string(255)
 #  deilvery_postcode         :string(255)
 #  delivery_country_id       :integer
+#  exported                  :boolean          default(FALSE)
 #
 
 module Shoppe
@@ -60,7 +59,7 @@ module Shoppe
   
     # These additional callbacks allow for applications to hook into other
     # parts of the order lifecycle.
-    define_model_callbacks :confirmation, :payment, :acceptance, :rejection, :ship
+    define_model_callbacks :confirmation, :acceptance, :rejection, :ship
   
     # Relationships
     belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
@@ -71,6 +70,7 @@ module Shoppe
     belongs_to :shipper, :class_name => 'Shoppe::User', :foreign_key => 'shipped_by'
     has_many :order_items, :dependent => :destroy, :class_name => 'Shoppe::OrderItem'
     has_many :products, :through => :order_items, :class_name => 'Shoppe::Product'
+    has_many :payments, :dependent => :destroy, :class_name => 'Shoppe::Payment'
   
     # Validations
     validates :token, :presence => true
@@ -219,6 +219,16 @@ module Shoppe
       self.delivery_tax_amount + 
       order_items.inject(BigDecimal(0)) { |t, i| t + i.total }
     end
+    
+    # The total of the invoice which has been paid
+    def total_paid
+      self.payments.sum(:amount)
+    end
+    
+    # The total amount due on the order
+    def balance
+      total - total_paid
+    end
   
     # The total of the order including tax in pence
     def total_in_pence
@@ -304,11 +314,6 @@ module Shoppe
       @courier_tracking_url ||= self.delivery_service.tracking_url_for(self.consignment_number)
     end
   
-    # Has this order been fully paid for?
-    def paid?
-      !paid_at.blank?
-    end
-  
     # This method is called by the customer when they submit their details in the first step of
     # the checkout process. It will update the status to 'confirmed' as well as updating their 
     # details. Any issues with validation will cause false to be returned otherwise true. Any
@@ -364,16 +369,6 @@ module Shoppe
     
       # We're all good.
       true
-    end
-  
-    # This method will mark an order as paid.
-    def pay!(reference, method)
-      run_callbacks :payment do
-        self.paid_at = Time.now.utc
-        self.payment_reference = reference
-        self.payment_method = method
-        self.save!
-      end
     end
   
     # This method will accept the this order. It is called by a user (which is the only

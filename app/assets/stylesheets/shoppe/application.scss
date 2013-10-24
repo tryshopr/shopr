@@ -130,16 +130,24 @@ header.main {
 	}
 	
 	//
+	// fieldset
+	//
+	fieldset {
+		border:1px solid #dce2eb;
+		background:#fff;
+		padding-top:15px;
+		padding-bottom:25px;
+		margin-bottom:15px;
+		legend {color:#5B6270; margin:0 25px; font-weight:300; font-size:1.5em;}
+		&.padded { padding:15px 25px 25px 25px;}
+		&.padded legend { margin:0;}
+	}
+	
+	//
 	// forms
 	//
 	form {
 		fieldset {
-			border:1px solid #dce2eb;
-			background:#fff;
-			padding-top:15px;
-			padding-bottom:25px;
-			margin-bottom:15px;
-			legend {color:#5B6270; margin:0 25px; font-weight:300; font-size:1.5em;}
 
 			.splitContainer { margin:0 25px; margin-bottom:15px; height:50px;}
 			.splitContainer:last-child { margin-bottom:0;}
@@ -291,7 +299,7 @@ header.main {
 			margin:45px 0;
 			overflow:hidden;
 			ul {
-				li { width:25%;float:left; text-align:center; background:image-url('shoppe/statuses/shipped.svg') no-repeat center 0; background-size:36px; padding-top:42px;z-index:10;}
+				li { width:33%;float:left; text-align:center; background:image-url('shoppe/statuses/shipped.svg') no-repeat center 0; background-size:36px; padding-top:42px;z-index:10;}
 				h4 { color:#E32479;}
 				li p { margin-top:5px; font-size:0.9em; color:#999;}
 				li a { color:inherit;}
@@ -307,19 +315,39 @@ header.main {
 		}
 		
 		.order_items {
-			margin:25px 0;
 			table.data {
  				.money { text-align:right; width:8%}
 				.product { width:42%;}
 				.sku { width:18%;}
 				.qty {text-align:center; width:5%;}
-				tfoot td { background:#5B6270; color:#fff; border:1px solid #5B6270; font-weight:bold; font-size:1.1em;}
 			}
 		}
 	}
 	
 	//
-	// orer search
+	// payments
+	//
+	fieldset.orderPayments {
+		h4 { font-weight:bold; text-transform:uppercase; color:#5B6270;}
+		.table { margin-bottom:20px;}
+		dl {
+			width:23%;float:left;
+			dt {  margin-bottom:4px; color:#999;}
+			&.text { width:27%;margin-right:2%;}
+			&.amount { width:25%;}
+			&.submit { width:15%; text-align:right; margin-top:15px;}
+		}
+		p.notice {
+			background:#fffff3;
+			padding:10px;
+			color:#F67C00;
+			border:1px solid #F6B721;
+			margin-bottom:15px;
+		}
+	}
+	
+	//
+	// order search
 	//
 	div.orderSearch {
 		overflow:hidden;
@@ -427,6 +455,7 @@ div.table {
 			td.desc input[type=text] { width:95%;}
 			td.adjustment input[type=text] { width:50px; margin-right:5px;}
 		}
+		tfoot td { background:#5B6270; color:#fff; border:1px solid #5B6270; font-weight:bold; font-size:1.1em;}
 	}
 }
 

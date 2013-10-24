@@ -10,8 +10,8 @@ Shoppe::Engine.routes.draw do
     post :accept, :on => :member
     post :reject, :on => :member
     post :ship, :on => :member
-    post :pay, :on => :member
     get :despatch_note, :on => :member
+    resources :payments, :only => [:create]
   end
   resources :stock_level_adjustments, :only => [:index, :create]
   resources :delivery_services do

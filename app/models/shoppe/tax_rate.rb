@@ -2,12 +2,13 @@
 #
 # Table name: shoppe_tax_rates
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  rate        :decimal(8, 2)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  country_ids :text
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  rate         :decimal(8, 2)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  country_ids  :text
+#  address_type :string(255)
 #
 
 module Shoppe

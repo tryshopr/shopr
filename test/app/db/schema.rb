@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024201501) do
+ActiveRecord::Schema.define(version: 20131024204815) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -106,15 +106,12 @@ ActiveRecord::Schema.define(version: 20131024201501) do
     t.decimal  "delivery_cost_price",       precision: 8, scale: 2
     t.decimal  "delivery_tax_rate",         precision: 8, scale: 2
     t.decimal  "delivery_tax_amount",       precision: 8, scale: 2
-    t.datetime "paid_at"
     t.integer  "accepted_by"
     t.integer  "shipped_by"
     t.string   "consignment_number"
     t.datetime "rejected_at"
     t.integer  "rejected_by"
     t.string   "ip_address"
-    t.string   "payment_reference"
-    t.string   "payment_method"
     t.text     "notes"
     t.boolean  "separate_delivery_address",                         default: false
     t.string   "delivery_name"
@@ -124,6 +121,17 @@ ActiveRecord::Schema.define(version: 20131024201501) do
     t.string   "delivery_address4"
     t.string   "deilvery_postcode"
     t.integer  "delivery_country_id"
+    t.boolean  "exported",                                          default: false
+  end
+
+  create_table "shoppe_payments", force: true do |t|
+    t.integer  "order_id"
+    t.decimal  "amount",     precision: 8, scale: 2
+    t.string   "reference"
+    t.string   "method"
+    t.boolean  "exported",                           default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "shoppe_product_attributes", force: true do |t|

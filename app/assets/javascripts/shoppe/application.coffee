@@ -70,7 +70,10 @@ $ ->
     false
   
   # Format money values to 2 decimal places
-  formatMoneyField = -> $(this).val(parseFloat($(this).val()).toFixed(2))
+  formatMoneyField = ->
+    value = $(this).val()
+    if value.length
+      $(this).val(parseFloat(value).toFixed(2))
   $('div.moneyInput input').each formatMoneyField
   $('div.moneyInput input').on('blur', formatMoneyField)
 
