@@ -197,17 +197,12 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   width: 100%;
   height: auto !important;
   height: 1%;
   border: 1px solid #ccc;
   background-color: #fff;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background-image: -webkit-linear-gradient(#eeeeee 1%, #ffffff 15%);
-  background-image: -moz-linear-gradient(#eeeeee 1%, #ffffff 15%);
-  background-image: -o-linear-gradient(#eeeeee 1%, #ffffff 15%);
-  background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
   cursor: text;
 }
 .chosen-container-multi .chosen-choices li {
@@ -298,7 +293,7 @@
 /* @group Active  */
 .chosen-container-active .chosen-single {
   border: 1px solid #9AC835;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  //box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 .chosen-container-active.chosen-with-drop .chosen-single {
   border: 1px solid #ccc;
@@ -322,7 +317,6 @@
 }
 .chosen-container-active .chosen-choices {
   border: 1px solid #9AC835;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 .chosen-container-active .chosen-choices li.search-field input[type="text"] {
   color: #111 !important;
