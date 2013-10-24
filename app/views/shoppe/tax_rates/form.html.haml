@@ -1,6 +1,6 @@
 - @page_title = "Tax Rates"
 = content_for :header do
-  %p.buttons= link_to "Back to tax rates", :tax_rates, :class => 'button'
+  %p.buttons= link_to "Back to tax rates", :tax_rates, :class => 'button grey'
   %h2.tax_rates Tax Rates
 
 = form_for @tax_rate do |f|
@@ -14,12 +14,13 @@
         %dt= f.label :rate
         %dd= f.text_field :rate, :class => 'text'
   
-  = field_set_tag "Countries" do
+  = field_set_tag "Country Restriction" do
+    %dl
+      %dd
+        = f.select :address_type, Shoppe::TaxRate::ADDRESS_TYPES.map { |a| ["Apply to orders where the #{a} address matches one of the countries below".html_safe, a]}, {}, :class => 'chosen-basic'
     %dl
       %dd
         = f.collection_select :country_ids, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen', :multiple => true, :data => {:placeholder => "All countries"}}
-        %p.help This tax rate will only apply to orders which are billed to addresses of the countries  listed above.
-  
   %p.submit
     - unless @tax_rate.new_record?
       %span.right= link_to "Delete", @tax_rate, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this tax_rate?"}

@@ -19,8 +19,12 @@ module Shoppe
     # Tax rates are associated with countries
     include Shoppe::AssociatedCountries
     
+    # The order addresses which may be 
+    ADDRESS_TYPES = ['billing', 'delivery']
+    
     # Validations
     validates :name, :presence => true
+    validates :address_type, :inclusion => {:in => ADDRESS_TYPES}
     validates :rate, :numericality => true
     
     # Relationships
@@ -35,11 +39,10 @@ module Shoppe
     end
     
     def rate_for(order)
-      if countries.empty? || order.billing_country.nil? || country?(order.billing_country)
-        self.rate
-      else
-        0.0
-      end
+      return rate if countries.empty?
+      return rate if address_type == 'billing'  && (order.billing_country.nil?   || country?(order.billing_country))
+      return rate if address_type == 'delivery' && (order.delivery_country.nil?  || country?(order.delivery_country))
+      0.0
     end
     
   end

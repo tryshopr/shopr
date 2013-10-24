@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024101520) do
+ActiveRecord::Schema.define(version: 20131024201501) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -185,10 +185,11 @@ ActiveRecord::Schema.define(version: 20131024101520) do
 
   create_table "shoppe_tax_rates", force: true do |t|
     t.string   "name"
-    t.decimal  "rate",        precision: 8, scale: 2
+    t.decimal  "rate",         precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "country_ids"
+    t.string   "address_type"
   end
 
   create_table "shoppe_users", force: true do |t|

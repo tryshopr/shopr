@@ -42,6 +42,7 @@ $ ->
   # Chosen
   $('select.chosen').chosen()
   $('select.chosen-with-deselect').chosen({allow_single_deselect: true})
+  $('select.chosen-basic').chosen({disable_search_threshold:100})
   
   # Printables
   $('a[rel=print]').on 'click', ->
