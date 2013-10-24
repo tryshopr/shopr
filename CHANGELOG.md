@@ -2,6 +2,14 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v0.0.17
+
+* Adds `number_to_currency` view helper which will use the correct currency as defined in the
+  Shoppe settings.
+
+* Adds `number_to_weight` which accpets a number of kilogramts and returns the number with the
+  appropriate 'kg' suffix.
+
 ## v0.0.16
 
 * Adds despatch notes to orders
