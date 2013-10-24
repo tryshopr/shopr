@@ -9,6 +9,10 @@ This document outlines key changes which are introduced in each version. The ful
 
 * Adds `number_to_weight` which accpets a number of kilogramts and returns the number with the
   appropriate 'kg' suffix.
+  
+* Tax rates can choose whether to work with the delivery or billing address on the order
+
+* Order details can be editted through the Shoppe UI
 
 ## v0.0.16
 
