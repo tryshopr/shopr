@@ -14,6 +14,17 @@ This document outlines key changes which are introduced in each version. The ful
 
 * Order details can be editted through the Shoppe UI
 
+* Orders now have multiple payments associated with them which can be refunded as appropriate
+  and module can hook into this as appropriate.
+
+* `Shoppe::Order` and `Shoppe::Payment` models now have `exported` booleans in their schema
+  which module can use to record when an object has been exported to an external system. 
+  Shoppe does not enforce these and they are data-only attributes. 
+
+* `Shoppe::Order` now has a `invoice_number` attribute which can be used by external systems
+  to store the invoice number along with the order if one is created. This is displayed with the
+  order details in the Shoppe UI.
+
 ## v0.0.16
 
 * Adds despatch notes to orders

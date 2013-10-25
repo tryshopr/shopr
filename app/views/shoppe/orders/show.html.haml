@@ -34,15 +34,18 @@
     .right
       %dl
         %dt E-Mail Address
-        %dd= @order.email_address
+        %dd= mail_to @order.email_address
         %dt Telephone
         %dd= @order.phone_number
         %dt Weight
         %dd= number_to_weight @order.total_weight
         %dt Build Time
         %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
-        %dt Balance
-        %dd= number_to_currency @order.balance
+        - if @order.invoiced?
+          %dt Invoice Number
+          %dd= @order.invoice_number
+        %dt Order Balance
+        %dd= boolean_tag @order.paid_in_full?, nil, :true_text => number_to_currency(@order.balance), :false_text => number_to_currency(@order.balance)
       - if @order.accepted? && !@order.shipped?
         = form_tag [:ship, @order] do
           %dl.form
@@ -129,15 +132,36 @@
         %table.data
           %thead
             %tr
+              %th ID
+              %th Type
               %th Method
               %th Reference
               %th Amount
+              %th Refunded?
+              %th
           %tbody
             - for payment in @payments
               %tr
+                %td= payment.id
+                %td
+                  = payment.refund? ? 'Refund' : 'Payment'
+                  %span.float-right= boolean_tag payment.confirmed?
                 %td= payment.method
                 %td= payment.reference
-                %td= number_to_currency payment.amount
+                
+                - if payment.refund?
+                  %td{:colspan => 2}
+                    %b= number_to_currency payment.amount
+                    from payment ##{payment.parent_payment_id}
+                - else
+                  %td= number_to_currency payment.amount
+                  %td= boolean_tag payment.refunded?, nil, :true_text => number_to_currency(payment.amount_refunded)
+                %td.refund
+                  - if payment.refundable?
+                    = link_to "Refund", [:refund, @order, payment], :class => 'button purple button-mini', :rel => 'dialog'
+                  - else
+                    = link_to "Delete", [@order, payment], :class => 'button purple button-mini', :data => {:confirm => "Are you sure you wish to remove this payment?"}, :method => :delete
+                    
     - else
       %p.notice There are no payments recorded for this order...
       

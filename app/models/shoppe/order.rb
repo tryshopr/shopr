@@ -220,16 +220,19 @@ module Shoppe
       order_items.inject(BigDecimal(0)) { |t, i| t + i.total }
     end
     
-    # The total of the invoice which has been paid
-    def total_paid
-      self.payments.sum(:amount)
-    end
-    
     # The total amount due on the order
     def balance
-      total - total_paid
+      @balance ||= total - amount_paid
     end
-  
+    
+    def payment_outstanding?
+      balance > BigDecimal(0)
+    end
+    
+    def paid_in_full?
+      !payment_outstanding?
+    end
+    
     # The total of the order including tax in pence
     def total_in_pence
       (total * BigDecimal(100)).to_i
@@ -238,6 +241,11 @@ module Shoppe
     # The total weight of the order
     def total_weight
       order_items.inject(BigDecimal(0)) { |t,i| t + i.weight}
+    end
+    
+    # Is the order invoiced?
+    def invoiced?
+      !invoice_number.blank?
     end
   
     # An array of all the delivery service prices which can be applied to this order.

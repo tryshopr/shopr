@@ -121,15 +121,21 @@ ActiveRecord::Schema.define(version: 20131024204815) do
     t.string   "delivery_address4"
     t.string   "deilvery_postcode"
     t.integer  "delivery_country_id"
+    t.decimal  "amount_paid",               precision: 8, scale: 2, default: 0.0
     t.boolean  "exported",                                          default: false
+    t.string   "invoice_number"
   end
 
   create_table "shoppe_payments", force: true do |t|
     t.integer  "order_id"
-    t.decimal  "amount",     precision: 8, scale: 2
+    t.decimal  "amount",            precision: 8, scale: 2, default: 0.0
     t.string   "reference"
     t.string   "method"
-    t.boolean  "exported",                           default: false
+    t.boolean  "confirmed",                                 default: true
+    t.boolean  "refundable",                                default: false
+    t.decimal  "amount_refunded",   precision: 8, scale: 2, default: 0.0
+    t.integer  "parent_payment_id"
+    t.boolean  "exported",                                  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -56,6 +56,8 @@ $ ->
   $('form.edit_order input#order_separate_delivery_address').on 'change', toggleDeliveryFieldsetForOrder
   toggleDeliveryFieldsetForOrder()
   
+  # Close dialog
+  $('body').on 'click', 'a[rel=closeDialog]', Nifty.Dialog.closeTopDialog
   
   # Open AJAX dialogs
   $('a[rel=dialog]').on 'click', ->
