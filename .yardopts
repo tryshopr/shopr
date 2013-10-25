@@ -1,4 +1,4 @@
-'app/models/*.rb'
+'app/models/**/*.rb'
 'db/schema.rb'
 'lib/*.rb'
 

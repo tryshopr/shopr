@@ -19,12 +19,6 @@ end
 
 namespace :shoppe do
   
-  desc "Generate RDoc documentation into doc/"
-  task :generate_docs do
-    system("rm -Rf doc")
-    system("bundle exec yard")
-  end
-  
   desc "Publish RDoc documentation from doc to api.tryshoppe.com"
   task :publish_docs do
     if File.exist?("doc")

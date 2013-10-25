@@ -36,24 +36,15 @@ payment gateway takes your fancy.
 To get up and running with Shoppe in a new Rails application is simple. Just follow the
 instructions below and you'll be up and running in minutes.
 
-```bash
-# Create a new Rails skeleton application
-rails new my_store
-# Enter the store directory and add the Shoppe gem to the Gemfile
-cd my_store
-# Bundle
-bundle
-# Generate the shoppe configuration file and insert the engine into your routes
-rails generate shoppe:setup
-# Run migrations required by Shoppe's dependencies. If you already use either of
-# these in your application, you can skip these as appropriate.
-rails generate nifty:attachments:migration
-rails generate nifty:key_value_store:migration
-# Migrate your database and populate a core database
-rake db:migrate shoppe:setup
-# Start the server
-rails server
-```
+    rails new my_store
+    cd my_store
+    echo "gem 'shoppe'" >> Gemfile
+    bundle
+    rails generate shoppe:setup
+    rails generate nifty:attachments:migration
+    rails generate nifty:key_value_store:migration
+    rake db:migrate shoppe:setup
+    rails server
 
 ## License
 
