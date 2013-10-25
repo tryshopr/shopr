@@ -87,13 +87,6 @@ module Shoppe
     def paid_in_full?
       !payment_outstanding?
     end
-    
-    # The total of the order including tax in pence
-    #
-    # @return [Fixnum]
-    def total_in_pence
-      (total * BigDecimal(100)).to_i
-    end
   
     # Is the order invoiced?
     #
