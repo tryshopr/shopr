@@ -41,7 +41,9 @@
 #  delivery_address4         :string(255)
 #  deilvery_postcode         :string(255)
 #  delivery_country_id       :integer
+#  amount_paid               :decimal(8, 2)    default(0.0)
 #  exported                  :boolean          default(FALSE)
+#  invoice_number            :string(255)
 #
 
 module Shoppe
@@ -319,7 +321,7 @@ module Shoppe
     # The URL which can be used to track the delivery of this order
     def courier_tracking_url
       return nil if self.shipped_at.blank? || self.consignment_number.blank?
-      @courier_tracking_url ||= self.delivery_service.tracking_url_for(self.consignment_number)
+      @courier_tracking_url ||= self.delivery_service.tracking_url_for(self)
     end
   
     # This method is called by the customer when they submit their details in the first step of

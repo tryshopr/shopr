@@ -31,8 +31,13 @@ module Shoppe
     scope :active, -> { where(:active => true)}
   
     # Return the tracking URL for the given consignment number
-    def tracking_url_for(consignment_number)
-      tracking_url.gsub("{{consignment_number}}", consignment_number)
+    def tracking_url_for(order)
+      return nil if self.tracking_url.blank?
+      tracking_url = self.tracking_url.dup
+      tracking_url.gsub!("{{consignment_number}}", CGI.escape(order.consignment_number.to_s))
+      tracking_url.gsub!("{{delivery_postcode}}", CGI.escape(order.delivery_postcode.to_s))
+      tracking_url.gsub!("{{billing_postcode}}", CGI.escape(order.billing_postcode.to_s))
+      tracking_url
     end
 
   end
