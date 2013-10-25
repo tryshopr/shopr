@@ -1,13 +1,3 @@
-# == Schema Information
-#
-# Table name: shoppe_settings
-#
-#  id         :integer          not null, primary key
-#  key        :string(255)
-#  value      :string(255)
-#  value_type :string(255)
-#
-
 require 'ostruct'
 
 module Shoppe

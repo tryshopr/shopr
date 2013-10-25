@@ -1,21 +1,3 @@
-# == Schema Information
-#
-# Table name: shoppe_payments
-#
-#  id                :integer          not null, primary key
-#  order_id          :integer
-#  amount            :decimal(8, 2)    default(0.0)
-#  reference         :string(255)
-#  method            :string(255)
-#  confirmed         :boolean          default(TRUE)
-#  refundable        :boolean          default(FALSE)
-#  amount_refunded   :decimal(8, 2)    default(0.0)
-#  parent_payment_id :integer
-#  exported          :boolean          default(FALSE)
-#  created_at        :datetime
-#  updated_at        :datetime
-#
-
 module Shoppe
   class Payment < ActiveRecord::Base
     

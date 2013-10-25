@@ -22,7 +22,7 @@ namespace :shoppe do
   desc "Generate RDoc documentation into doc/"
   task :generate_docs do
     system("rm -Rf doc")
-    system("bundle exec sdoc app/models lib README.rdoc")
+    system("bundle exec yard")
   end
   
   desc "Publish RDoc documentation from doc to api.tryshoppe.com"

@@ -1,18 +1,3 @@
-# == Schema Information
-#
-# Table name: shoppe_product_attributes
-#
-#  id         :integer          not null, primary key
-#  product_id :integer
-#  key        :string(255)
-#  value      :string(255)
-#  position   :integer          default(1)
-#  searchable :boolean          default(TRUE)
-#  created_at :datetime
-#  updated_at :datetime
-#  public     :boolean          default(TRUE)
-#
-
 module Shoppe
   class ProductAttribute < ActiveRecord::Base
   

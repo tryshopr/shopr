@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: shoppe_users
-#
-#  id              :integer          not null, primary key
-#  first_name      :string(255)
-#  last_name       :string(255)
-#  email_address   :string(255)
-#  password_digest :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
-#
-
 module Shoppe
   class User < ActiveRecord::Base
 
