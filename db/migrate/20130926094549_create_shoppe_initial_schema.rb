@@ -88,7 +88,7 @@ class CreateShoppeInitialSchema < ActiveRecord::Migration
       t.string   "delivery_address2"
       t.string   "delivery_address3"
       t.string   "delivery_address4"
-      t.string   "deilvery_postcode"
+      t.string   "delivery_postcode"
       t.integer  "delivery_country_id"
     end
 
