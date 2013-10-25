@@ -62,6 +62,14 @@ module Shoppe
       end
     end
     
+    # Return a transaction URL for viewing further information about this
+    # payment.
+    #
+    # @return [String]
+    def transaction_url
+      nil
+    end
+    
     private
     
     def cache_amount_paid

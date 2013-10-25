@@ -147,7 +147,7 @@
                   = payment.refund? ? 'Refund' : 'Payment'
                   %span.float-right= boolean_tag payment.confirmed?
                 %td= payment.method
-                %td= payment.reference
+                %td= link_to_if payment.transaction_url, payment.reference, payment.transaction_url
                 
                 - if payment.refund?
                   %td{:colspan => 2}
@@ -161,7 +161,6 @@
                     = link_to "Refund", [:refund, @order, payment], :class => 'button purple button-mini', :rel => 'dialog'
                   - else
                     = link_to "Delete", [@order, payment], :class => 'button purple button-mini', :data => {:confirm => "Are you sure you wish to remove this payment?"}, :method => :delete
-                    
     - else
       %p.notice There are no payments recorded for this order...
       
