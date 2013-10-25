@@ -1,0 +1,1 @@
+../test/app/db/schema.rb

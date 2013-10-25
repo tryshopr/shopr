@@ -34,4 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "mysql2"
   s.add_development_dependency "sdoc"
   s.add_development_dependency "annotate"
+  s.add_development_dependency 'yard'
+  s.add_development_dependency "yard-activerecord"
+  s.add_development_dependency "markdown"
 end

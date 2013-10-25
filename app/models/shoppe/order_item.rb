@@ -19,24 +19,32 @@
 module Shoppe
   class OrderItem < ActiveRecord::Base
   
-    # Set the table name
     self.table_name = 'shoppe_order_items'
   
-    # Relationships
+    # The associated order
+    #
+    # @return [Shoppe::Order]
     belongs_to :order, :class_name => 'Shoppe::Order'
+    
+    # The item which has been ordered
     belongs_to :ordered_item, :polymorphic => true
+    
+    # Any stock level adjustments which have been made for this order item
     has_many :stock_level_adjustments, :as => :parent, :dependent => :nullify, :class_name => 'Shoppe::StockLevelAdjustment'
-  
+    
     # Validations
     validates :quantity, :numericality => true
   
-    before_validation do
-      self.weight = self.quantity * self.ordered_item.weight
-    end
+    # Set the weight as appropriate on save
+    before_validation { self.weight = self.quantity * self.ordered_item.weight }
   
     # This allows you to add a product to the scoped order. For example Order.first.order_items.add_product(...).
     # This will either increase the quantity of the value in the order or create a new item if one does not
     # exist already.
+    #
+    # @param ordered_item [Object] an object which implements the Shoppe::OrderableItem protocol
+    # @param quantity [Fixnum] the number of items to order
+    # @return [Shoppe::OrderItem]
     def self.add_item(ordered_item, quantity = 1)
       raise Errors::UnorderableItem, :ordered_item => ordered_item unless ordered_item.orderable?
       transaction do
@@ -46,22 +54,28 @@ module Shoppe
         else
           new_item = self.create(:ordered_item => ordered_item, :quantity => 0)
           new_item.increase!(quantity)
+          new_item
         end
       end
     end
 
-    # This allows you to remove a product from an order. It will also ensure that the order's
-    # custom delivery service is updated.
+    # Remove a product from an order. It will also ensure that the order's custom delivery
+    # service is updated if appropriate.
+    #
+    # @return [Shoppe::OrderItem]
     def remove
       transaction do
         self.destroy!
         self.order.remove_delivery_service_if_invalid
+        self
       end
     end
   
   
-    # Increase the quantity of items in the order by the number provided. Will raise an error if we don't have
+    # Increases the quantity of items in the order by the number provided. Will raise an error if we don't have
     # the stock to do this.
+    #
+    # @param quantity [Fixnum]
     def increase!(amount = 1)
       transaction do
         self.quantity += amount
@@ -74,6 +88,8 @@ module Shoppe
     end
   
     # Decreases the quantity of items in the order by the number provided.
+    #
+    # @param amount [Fixnum]
     def decrease!(amount = 1)
       transaction do
         self.quantity -= amount
@@ -82,65 +98,80 @@ module Shoppe
       end
     end
   
-    # Return the unit price for the item
+    # The unit price for the item
+    #
+    # @return [BigDecimal]
     def unit_price
       @unit_price ||= read_attribute(:unit_price) || ordered_item.try(:price) || 0.0
     end
   
-    # Return the cost price for the item
+    # The cost price for the item
+    #
+    # @return [BigDecimal]
     def unit_cost_price
       @unit_cost_price ||= read_attribute(:unit_cost_price) || ordered_item.try(:cost_price) || 0.0
     end
   
-    # Return the tax rate for the item
+    # The tax rate for the item
+    #
+    # @return [BigDecimal]
     def tax_rate
       @tax_rate ||= read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, self.order) || 0.0 
     end
   
-    # Return the total tax for the item
+    # The total tax for the item
+    #
+    # @return [BigDecimal]
     def tax_amount
       @tax_amount ||= read_attribute(:tax_amount) || (self.sub_total / BigDecimal(100)) * self.tax_rate
     end
   
-    # Return the total cost for the product
+    # The total cost for the product
+    #
+    # @return [BigDecimal]
     def total_cost
       quantity * unit_cost_price
     end
   
-    # Return the sub total for the product
+    # The sub total for the product
+    #
+    # @return [BigDecimal]
     def sub_total
       quantity * unit_price
     end
   
-    # Return the total price including tax for the order line
+    # The total price including tax for the order line
+    #
+    # @return [BigDecimal]
     def total
       tax_amount + sub_total
     end
   
-    # This method will be triggered when the parent order is confirmed. This should automatically
-    # update the stock levels on the source product.
+    # Trigger when the associated order is confirmed. It handles caching the values
+    # of the monetary items and allocating stock as appropriate.
     def confirm!
       write_attribute :unit_price, self.unit_price
       write_attribute :unit_cost_price, self.unit_cost_price
       write_attribute :tax_rate, self.tax_rate
       write_attribute :tax_amount, self.tax_amount
       save!
-    
       if self.ordered_item.stock_control?
         self.ordered_item.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
       end
     end
   
-    # This method will be trigger when the parent order is accepted.
+    # Trigger when the associated order is accepted
     def accept!
     end
   
-    # This method will be trigger when the parent order is rejected.
+    # Trigged when the associated order is rejected..
     def reject!
       self.stock_level_adjustments.destroy_all
     end
   
     # Do we have the stock needed to fulfil this order?
+    #
+    # @return [Boolean]
     def in_stock?
       if self.ordered_item.stock_control?
         self.ordered_item.stock >= self.quantity

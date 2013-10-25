@@ -13,6 +13,7 @@ require 'ostruct'
 module Shoppe
   class Setting < ActiveRecord::Base
     
+    # Validations
     validates :key, :presence => true, :uniqueness => true
     validates :value, :presence => true
     validates :value_type, :presence => true
@@ -23,6 +24,8 @@ module Shoppe
     end
     
     # The encoded value for saving in the backend (as a string)
+    #
+    # @return [String]
     def encoded_value
       case value_type
       when 'Array', 'Hash'  then  value.to_json
@@ -32,6 +35,8 @@ module Shoppe
     end
     
     # The decoded value for the setting attribute (in it's native type)
+    #
+    # @return [Object]
     def decoded_value
       case value_type
       when 'Fixnum'         then  value.to_i
@@ -43,6 +48,8 @@ module Shoppe
     end
     
     # A full hash of all settings available in the current scope
+    #
+    # @return [Hash]
     def self.to_hash
       all.inject({}) do |h, setting|
         h[setting.key.to_s] = setting.decoded_value
@@ -52,6 +59,8 @@ module Shoppe
     
     # Update settings from a given hash and persist them. Accepts a 
     # hash of keys (which should be strings).
+    #
+    # @return [Hash]
     def self.update_from_hash(hash)
       existing_settings = self.all.to_a
       hash.each do |key, value|

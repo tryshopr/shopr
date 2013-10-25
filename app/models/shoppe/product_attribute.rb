@@ -16,20 +16,25 @@
 module Shoppe
   class ProductAttribute < ActiveRecord::Base
   
-    # Set the table name
     self.table_name = 'shoppe_product_attributes'  
-  
+    
     # Validations
     validates :key, :presence => true
   
-    # Relationships
+    # The associated product
+    #
+    # @return [Shoppe::Product]
     belongs_to :product, :class_name => 'Shoppe::Product'
   
-    # Scopes
+    # All attributes which are searchable
     scope :searchable, -> { where(:searchable => true) }
+    
+    # All attributes which are public
     scope :public, -> { where(:public => true) }
   
     # Return the the available options as a hash
+    #
+    # @return [Hash]
     def self.grouped_hash
       all.group_by(&:key).inject(Hash.new) do |h, (key, attributes)|
         h[key] = attributes.map(&:value).uniq
@@ -38,7 +43,9 @@ module Shoppe
     end
   
     # Create/update attributes for a product based on the provided hash of
-    # keys & values
+    # keys & values.
+    #
+    # @param array [Array]
     def self.update_from_array(array)
       existing_keys = self.pluck(:key)
       index = 0
@@ -62,6 +69,7 @@ module Shoppe
         end
       end
       self.where(:key => existing_keys - array.map { |h| h['key']}).delete_all
+      true
     end
   
   end

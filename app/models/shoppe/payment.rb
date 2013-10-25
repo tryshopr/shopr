@@ -19,39 +19,54 @@
 module Shoppe
   class Payment < ActiveRecord::Base
     
-    # Relationships
+    # The associated order
+    #
+    # @return [Shoppe::Order]
     belongs_to :order, :class_name => 'Shoppe::Order'
+    
+    # An associated payment (only applies to refunds)
+    #
+    # @return [Shoppe::Payment]
     belongs_to :parent, :class_name => "Shoppe::Payment", :foreign_key => "parent_payment_id"
     
-    # Validations
+    # Validatiosn
     validates :amount, :numericality => true
     validates :reference, :presence => true
     validates :method, :presence => true
     
-    # Properties can be assigned to a payment which may be useful
+    # Payments can have associated properties
     key_value_store :properties
     
+    # Callbacks
     after_create :cache_amount_paid
     after_destroy :cache_amount_paid
+    before_destroy { self.parent.update_attribute(:amount_refunded, self.parent.amount_refunded + amount) if self.parent }
     
-    before_destroy do
-      if self.parent
-        self.parent.update_attribute(:amount_refunded, self.parent.amount_refunded + amount)
-      end
-    end
-    
+    # Is this payment a refund?
+    #
+    # @return [Boolean]
     def refund?
       self.amount < BigDecimal(0)
     end
     
+    # Has this payment had any refunds taken from it?
+    #
+    # @return [Boolean]
     def refunded?
       self.amount_refunded > BigDecimal(0)
     end
     
+    # How much of the payment can be refunded
+    #
+    # @return [BigDecimal]
     def refundable_amount
       refundable? ? (self.amount - self.amount_refunded) : BigDecimal(0.0)
     end
     
+    # Process a refund from this payment. 
+    #
+    # @param amount [String] the amount which should be refunded
+    # @return [Boolean]
     def refund!(amount)
       amount = BigDecimal(amount)
       if refundable_amount >= amount

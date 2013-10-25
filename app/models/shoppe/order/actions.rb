@@ -5,10 +5,12 @@ module Shoppe
     # parts of the order lifecycle.
     define_model_callbacks :confirmation, :acceptance, :rejection
   
-    # This method is called by the customer when they submit their details in the first step of
-    # the checkout process. It will update the status to 'confirmed' as well as updating their 
-    # details. Any issues with validation will cause false to be returned otherwise true. Any
-    # more serious issues will be raised as exceptions.
+    # This method should be called by the base application when the user has completed their 
+    # first round of entering details. This will mark the order as "confirming" which means
+    # the customer now just must confirm.
+    #
+    # @param params [Hash] a hash of order attributes
+    # @return [Boolean]
     def proceed_to_confirm(params = {})
       self.status = 'confirming'
       if self.update(params)
@@ -18,8 +20,11 @@ module Shoppe
       end
     end
   
-    # This method will confirm the order If there are any issues with  the order an exception 
-    # should be raised.
+    # This method should be executed by the application when the order should be completed
+    # by the customer. It will raise exceptions if anything goes wrong or return true if
+    # the order has been confirmed successfully
+    #
+    # @return [Boolean]
     def confirm!
       no_stock_of = self.order_items.select(&:validate_stock_levels)
       unless no_stock_of.empty?
@@ -43,8 +48,9 @@ module Shoppe
       true
     end
   
-    # This method will accept the this order. It is called by a user (which is the only
-    # parameter).
+    # Mark order as accepted
+    #
+    # @param user [Shoppe::User] the user who carried out this action    
     def accept!(user)
       run_callbacks :acceptance do
         self.accepted_at = Time.now
@@ -56,7 +62,9 @@ module Shoppe
       end
     end
   
-    # This method will reject the order. It is called by a user (which is the only parameter).
+    # Mark order as rejected
+    #
+    # @param user [Shoppe::User] the user who carried out the action
     def reject!(user)
       run_callbacks :rejection do
         self.rejected_at = Time.now

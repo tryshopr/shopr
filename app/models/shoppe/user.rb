@@ -14,10 +14,8 @@
 module Shoppe
   class User < ActiveRecord::Base
 
-    # Set the table name
     self.table_name = 'shoppe_users'
   
-    # Self explanatory I think!
     has_secure_password
   
     # Validations
@@ -26,11 +24,15 @@ module Shoppe
     validates :email_address, :presence => true
   
     # The user's first name & last name concatenated
+    #
+    # @return [String]
     def full_name
       "#{first_name} #{last_name}"
     end
   
     # The user's first name & initial of last name concatenated
+    #
+    # @return [String]
     def short_name
       "#{first_name} #{last_name[0,1]}"
     end
@@ -45,6 +47,10 @@ module Shoppe
   
     # Attempt to authenticate a user based on email & password. Returns the 
     # user if successful otherwise returns false.
+    #
+    # @param email_address [String]
+    # @param paassword [String]
+    # @return [Shoppe::User]
     def self.authenticate(email_address, password)
       user = self.where(:email_address => email_address).first
       return false if user.nil?
