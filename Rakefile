@@ -18,10 +18,10 @@ Rake::TestTask.new(:test) do |t|
 end
 
 namespace :shoppe do
-  
   desc "Publish RDoc documentation from doc to api.tryshoppe.com"
-  task :publish_docs do
+  task :docs do
     if File.exist?("doc")
+      system "yard"
       system "ssh root@tryshoppe.com rm -Rf /var/www/shoppe-api"
       system "scp -r doc root@tryshoppe.com:/var/www/shoppe-api"
     else
