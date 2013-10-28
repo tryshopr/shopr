@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20131024204815) do
     t.string   "delivery_address2"
     t.string   "delivery_address3"
     t.string   "delivery_address4"
-    t.string   "deilvery_postcode"
+    t.string   "delivery_postcode"
     t.integer  "delivery_country_id"
     t.decimal  "amount_paid",               precision: 8, scale: 2, default: 0.0
     t.boolean  "exported",                                          default: false
