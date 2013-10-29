@@ -18,6 +18,11 @@ Rake::TestTask.new(:test) do |t|
 end
 
 namespace :shoppe do
+  desc 'Publish the release notes'
+  task :changelog do
+    system "scp CHANGELOG.md rubyapps@tryshoppe.com:/opt/rubyapps/shoppe-website/shared/CHANGELOG.md"
+  end
+  
   desc "Publish RDoc documentation from doc to api.tryshoppe.com"
   task :docs do
     if File.exist?("doc")
