@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails", "~> 3.0.4"
   s.add_dependency "coffee-rails", "~> 4.0.0"
   s.add_dependency "sass-rails", "~> 4.0.0"
-  s.add_dependency "uglifier", "~> 2.2.1"
+  s.add_dependency "uglifier", "=> 2.2.1"
 
   s.add_dependency "nifty-key-value-store", "~> 1.0.0"
   s.add_dependency "nifty-utils", "~> 1.0.0"
