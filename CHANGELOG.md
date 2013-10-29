@@ -2,7 +2,11 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v0.0.19
+
 ## v0.0.18
+
+* Changes uglifier version
 
 ## v0.0.17
 
