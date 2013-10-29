@@ -29,7 +29,7 @@ module Shoppe
       order.validates :delivery_country, :presence => true
     end
     validate do
-      unless available_delivery_services.include?(self.delivery_service)
+      if self.delivery_service && !available_delivery_services.include?(self.delivery_service)
         errors.add :delivery_service_id, "is not suitable for this order"
       end
     end
