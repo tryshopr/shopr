@@ -29,15 +29,22 @@ module Shoppe
       order.validates :delivery_country, :presence => true
     end
     validate do
-      if self.delivery_service && !available_delivery_services.include?(self.delivery_service)
-        errors.add :delivery_service_id, "is not suitable for this order"
+      if self.delivery_required?
+        if self.delivery_service.nil?
+          errors.add :delivery_service_id, "must be specified"
+          return
+        end
+        
+        if self.delivery_service && !available_delivery_services.include?(self.delivery_service)
+          errors.add :delivery_service_id, "is not suitable for this order"
+        end
       end
     end
     
     before_confirmation do
       # Ensure that before we confirm the order that the delivery service which has been selected
       # is appropritae for the contents of the order.
-      unless self.valid_delivery_service?
+      if self.delivery_required? && !self.valid_delivery_service?
         raise Shoppe::Errors::InappropriateDeliveryService, :order => self
       end
       
@@ -86,6 +93,13 @@ module Shoppe
       order_items.inject(BigDecimal(0)) { |t,i| t + i.weight}
     end
     
+    # Is delivery required for this order?
+    #
+    # @return [Boolean]
+    def delivery_required?
+      total_weight > BigDecimal(0)
+    end
+    
     # An array of all the delivery services which are suitable for this order in it's
     # current state (based on its current weight)
     #
@@ -101,9 +115,13 @@ module Shoppe
     # @return [Array] an array of Shoppe:DeliveryServicePrice objects
     def delivery_service_prices
       @delivery_service_prices ||= begin
-        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
-        prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
-        prices
+        if delivery_required?
+          prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
+          prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
+          prices
+        else
+          []
+        end
       end
     end
 
