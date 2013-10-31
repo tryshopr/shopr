@@ -7,6 +7,15 @@ This document outlines key changes which are introduced in each version. The ful
 * Only check that a delivery service is suitable if one has actually been selected. Ensures that
   some orders can have no delivery service associated.
 
+* Add country management to to the Shoppe UI.
+
+* Split the order show page into some partials for easier updates later.
+
+* If an order's total weight is 0, no delivery service is required.
+
+* The seeds file is now less specific and the delivery services & tax rates contained within
+  are not scoped to any countries so always apply.
+
 ## v0.0.18
 
 * Changes uglifier version
