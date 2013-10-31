@@ -25,12 +25,11 @@ namespace :shoppe do
   
   desc "Publish RDoc documentation from doc to api.tryshoppe.com"
   task :docs do
-    if File.exist?("doc")
+    if File.exist?('Rakefile')
       system "yard"
       system "ssh root@tryshoppe.com rm -Rf /var/www/shoppe-api"
       system "scp -r doc root@tryshoppe.com:/var/www/shoppe-api"
-    else
-      puts "No doc/ folder found to publish."
+      system "rm -Rf doc"
     end
   end
 end
