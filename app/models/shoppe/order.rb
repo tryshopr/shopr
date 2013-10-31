@@ -85,7 +85,7 @@ module Shoppe
     end
   
     def self.ransackable_associations(auth_object = nil)
-      ['products']
+      []
     end
   
   end

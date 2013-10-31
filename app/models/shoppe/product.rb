@@ -91,14 +91,6 @@ module Shoppe
       @stock ||= self.stock_level_adjustments.sum(:adjustment)
     end
   
-    def self.ransackable_attributes(auth_object = nil)
-      ["id", "name", "sku"] + _ransackers.keys
-    end
-  
-    def self.ransackable_associations(auth_object = nil)
-      []
-    end
-  
     # Search for products which include the guven attributes and return an active record
     # scope of these products. Chainable with other scopes and with_attributes methods.
     # For example:
