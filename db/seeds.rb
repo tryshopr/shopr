@@ -1,8 +1,8 @@
 # encoding: UTF-8
 
 # tax rates
-tax_rate = Shoppe::TaxRate.create(:name => "Standard VAT", :rate => 20.0)
-exempt_tax = Shoppe::TaxRate.create(:name => "Exempt VAT", :rate => 0.0)
+tax_rate = Shoppe::TaxRate.create!(:name => "Standard VAT", :rate => 20.0)
+exempt_tax = Shoppe::TaxRate.create!(:name => "Exempt VAT", :rate => 0.0)
 
 # delivery services
 
