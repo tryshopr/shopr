@@ -13,11 +13,6 @@ require 'nifty/attachments'
 require 'nifty/dialog'
 
 module Shoppe
-  
-  class Error < StandardError
-    # The Shoppe::Error is the base class for all errors raised by Shoppe.
-  end
-  
   class << self
     
     # The path to the root of the Shoppe applicatinio

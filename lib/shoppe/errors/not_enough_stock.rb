@@ -2,10 +2,6 @@ module Shoppe
   module Errors
     class NotEnoughStock < Error
       
-      def initialize(options)
-        @options = options
-      end
-      
       def available_stock
         @options[:ordered_item].stock
       end

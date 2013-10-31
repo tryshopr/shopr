@@ -2,10 +2,6 @@ module Shoppe
   module Errors
     class InsufficientStockToFulfil < Error
       
-      def initialize(options)
-        @options = options
-      end
-      
       def order
         @options[:order]
       end

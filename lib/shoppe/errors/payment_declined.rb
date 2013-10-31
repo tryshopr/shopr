@@ -1,15 +1,6 @@
 module Shoppe
   module Errors
-    class PaymentDeclined < Error
-      
-      def initialize(options)
-        @options = options
-      end
-      
-      def message
-        @options[:message]
-      end
-      
+    class PaymentDeclined < Shoppe::Error
     end
   end
 end
