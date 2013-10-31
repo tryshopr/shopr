@@ -22,6 +22,9 @@ module Shoppe
     # All tax rates ordered by their ID
     scope :ordered, -> { order("shoppe_tax_rates.id")}
     
+    # Set the address type if appropriate
+    before_validation { self.address_type = ADDRESS_TYPES.first if self.address_type.blank? }
+    
     # A description of the tax rate including its name & percentage
     #
     # @return [String]
