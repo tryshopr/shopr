@@ -29,11 +29,15 @@ module Shoppe
     def accept
       @order.accept!(current_user)
       redirect_to @order, :notice => "Order has been accepted successfully"
+    rescue Shoppe::Errors::PaymentDeclined => e
+      redirect_to @order, :alert => e.message
     end
   
     def reject
       @order.reject!(current_user)
       redirect_to @order, :notice => "Order has been rejected successfully"
+    rescue Shoppe::Errors::PaymentDeclined => e
+      redirect_to @order, :alert => e.message
     end
   
     def ship
