@@ -1,36 +1,20 @@
 # encoding: UTF-8
 
 # tax rates
-tax_rate = Shoppe::TaxRate.create(:name => "Standard UK VAT", :rate => 20.0, :country_ids => Shoppe::Country.where(:eu_member => true).pluck(:id))
-exempt_tax = Shoppe::TaxRate.create(:name => "Exempt VAT", :rate => 0.0, :country_ids => Shoppe::Country.where(:eu_member => true).pluck(:id))
+tax_rate = Shoppe::TaxRate.create(:name => "Standard VAT", :rate => 20.0)
+exempt_tax = Shoppe::TaxRate.create(:name => "Exempt VAT", :rate => 0.0)
 
 # delivery services
 
-ds = Shoppe::DeliveryService.create!(:name => "Royal Mail (1st class)", :code => 'RMFC', :courier => 'Royal Mail', :tracking_url => 'http://royalmail.com/track/{{consignment_number}}')
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 0, :max_weight => 0.050, :price => 0.60, :cost_price => 0.55, :tax_rate => exempt_tax, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
+ds = Shoppe::DeliveryService.create!(:name => "Next Day Delivery", :code => 'ND16', :courier => 'AnyCourier', :tracking_url => 'http://trackingurl.com/track/{{consignment_number}}')
+ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 0, :max_weight => 1, :price => 5.0, :cost_price => 4.50, :tax_rate => tax_rate)
+ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 1, :max_weight => 5, :price => 8.0, :cost_price => 7.5, :tax_rate => tax_rate)
+ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 5, :max_weight => 20, :price => 10.0, :cost_price => 9.50, :tax_rate => tax_rate)
 
-
-ds = Shoppe::DeliveryService.create!(:name => "Royal Mail (signed for)", :code => 'RMSF', :courier => 'Royal Mail', :tracking_url => 'http://royalmail.com/track/{{consignment_number}}')
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 0, :max_weight => 1, :price => 5.0, :cost_price => 4.5, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 1, :max_weight => 5, :price => 8.0, :cost_price => 7.5, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 5, :max_weight => 10, :price => 10.0, :cost_price => 9.5, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 10, :max_weight => 25, :price => 12.0, :cost_price => 11.5, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 25, :max_weight => 50, :price => 16.25, :cost_price => 13.5, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-
-ds = Shoppe::DeliveryService.create!(:name => "Next Day Delivery (before 4pm)",  :default => true, :code => 'ND16', :courier => 'UPS', :tracking_url => 'http://trackingurl.com/track/{{consignment_number}}')
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 0, :max_weight => 1, :price => 7.0, :cost_price => 5.5, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 1, :max_weight => 5, :price => 9.0, :cost_price => 7.6, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 5, :max_weight => 20, :price => 11.50, :cost_price => 8.9, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-
-ds = Shoppe::DeliveryService.create!(:name => "Next Day Delivery (before 10am)", :code => 'NS10', :courier => 'UPS', :tracking_url => 'http://trackingurl.com/track/{{consignment_number}}')
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 0, :max_weight => 1, :price => 17.0, :cost_price => 14.00, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 1, :max_weight => 5, :price => 19.0, :cost_price => 16.00, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 5, :max_weight => 20, :price => 27.0, :cost_price => 22.00, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-
-ds = Shoppe::DeliveryService.create!(:name => "Saturday Delivery", :code => 'NDSA16', :courier => 'UPS', :tracking_url => 'http://trackingurl.com/track/{{consignment_number}}')
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 0, :max_weight => 1, :price => 27.0, :cost_price => 24.00, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 1, :max_weight => 5, :price => 29.0, :cost_price => 20.00, :tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
-ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 5, :max_weight => 20, :price => 37.0, :cost_price => 32.00,:tax_rate => tax_rate, :country_ids => Shoppe::Country.where(:name => 'United Kingdom').pluck(:id))
+ds = Shoppe::DeliveryService.create!(:name => "Saturday Delivery", :code => 'NDSA16', :courier => 'AnyCourier', :tracking_url => 'http://trackingurl.com/track/{{consignment_number}}')
+ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 0, :max_weight => 1, :price => 27.0, :cost_price => 24.00, :tax_rate => tax_rate)
+ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 1, :max_weight => 5, :price => 29.0, :cost_price => 20.00, :tax_rate => tax_rate)
+ds.delivery_service_prices.create!(:code => 'Parcel', :min_weight => 5, :max_weight => 20, :price => 37.0, :cost_price => 32.00,:tax_rate => tax_rate)
 
 # categories
 cat1 = Shoppe::ProductCategory.create!(:name => 'VoIP Phones')
