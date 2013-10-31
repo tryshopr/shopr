@@ -4,6 +4,9 @@ This document outlines key changes which are introduced in each version. The ful
 
 ## v0.0.19
 
+* Only check that a delivery service is suitable if one has actually been selected. Ensures that
+  some orders can have no delivery service associated.
+
 ## v0.0.18
 
 * Changes uglifier version
