@@ -1,0 +1,25 @@
+- @page_title = "Countries"
+
+= content_for :header do
+  %p.buttons=link_to "New country", :new_country, :class => 'button green'
+  %h2.countries Countries
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th Name
+        %th ISO 3166-1-alpha-2
+        %th ISO 3166-1-alpha-3
+        %th Continent
+        %th TLD
+        %th EU?
+    %tbody
+      - for country in @countries
+        %tr
+          %td= link_to country.name, [:edit, country]
+          %td= country.code2
+          %td= country.code3
+          %td= country.continent
+          %td= country.tld
+          %td= boolean_tag country.eu_member?

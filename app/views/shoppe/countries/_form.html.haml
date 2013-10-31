@@ -1,0 +1,31 @@
+= form_for @country do |f|
+  = f.error_messages
+  = field_set_tag "User Details" do
+    .splitContainer
+      %dl.third
+        %dt= f.label :name
+        %dd= f.text_field :name, :class => 'focus text'
+      %dl.third
+        %dt= f.label :code2, "ISO 3166-alpha-2"
+        %dd= f.text_field :code2, :class => 'text'
+      %dl.third
+        %dt= f.label :code3, "ISO 3166-alpha-3"
+        %dd= f.text_field :code3, :class => 'text'
+    .splitContainer
+      %dl.third
+        %dt= f.label :continent
+        %dd= f.text_field :continent, :class => 'text'
+      %dl.third
+        %dt= f.label :tld, "TLD"
+        %dd= f.text_field :tld, :class => 'text'
+      %dl.third
+        %dt= f.label :eu_member, "EU Member?"
+        %dd.checkbox
+          = f.check_box :eu_member
+          = f.label :eu_member, 'Country is an EU member?'
+
+  %p.submit
+    - unless @country.new_record?
+      %span.right= link_to "Delete", @country, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this country?"}
+    = f.submit :class => 'button green'
+    = link_to "Cancel", :countries, :class => 'button'

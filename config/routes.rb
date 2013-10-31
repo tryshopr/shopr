@@ -21,6 +21,7 @@ Shoppe::Engine.routes.draw do
   end
   resources :tax_rates
   resources :users
+  resources :countries
   resources :attachments, :only => :destroy
 
   get 'settings'=> 'settings#edit'
