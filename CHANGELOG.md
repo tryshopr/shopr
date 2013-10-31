@@ -16,6 +16,8 @@ This document outlines key changes which are introduced in each version. The ful
 * The seeds file is now less specific and the delivery services & tax rates contained within
   are not scoped to any countries so always apply.
 
+* Catch `Shoppe::Errors::PaymentDeclined` errors when accepting and rejecting orders.
+
 ## v0.0.18
 
 * Changes uglifier version
