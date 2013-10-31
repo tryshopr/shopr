@@ -1,0 +1,51 @@
+.details
+  .left
+    %dl
+      %dt Name
+      %dd= @order.first_name + ' ' + @order.last_name
+      %dt Company
+      %dd= @order.company.blank? ? '-' : @order.company
+      %dt Billing#{@order.separate_delivery_address? ? '' : '/Delivery'} Address
+      %dd= @order.billing_address1
+      %dd= @order.billing_address2
+      %dd= @order.billing_address3
+      %dd= @order.billing_address4
+      %dd= @order.billing_postcode
+      %dd= @order.billing_country.try(:name)
+      - if @order.separate_delivery_address?
+        %dt Delivery Address
+        %dd= @order.delivery_name
+        %dd= @order.delivery_address1
+        %dd= @order.delivery_address2
+        %dd= @order.delivery_address3
+        %dd= @order.delivery_address4
+        %dd= @order.delivery_postcode
+        %dd= @order.delivery_country.try(:name)
+  .right
+    %dl
+      %dt E-Mail Address
+      %dd= mail_to @order.email_address
+      %dt Telephone
+      %dd= @order.phone_number
+      %dt Weight
+      %dd= number_to_weight @order.total_weight
+      %dt Build Time
+      %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
+      - if @order.invoiced?
+        %dt Invoice Number
+        %dd= @order.invoice_number
+      %dt Order Balance
+      %dd= boolean_tag @order.paid_in_full?, nil, :true_text => number_to_currency(@order.balance), :false_text => number_to_currency(@order.balance)
+    - if @order.accepted? && !@order.shipped?
+      = form_tag [:ship, @order] do
+        %dl.form
+          %dt.padding= label_tag 'consignment_number', 'Consignment Number'
+          %dd= text_field_tag 'consignment_number', '', :class => 'text'
+        %dl.form
+          %dd= submit_tag "Mark as shipped", :class => 'button green button-mini'
+    
+    - unless @order.accepted? || @order.rejected?
+      %dl.form
+        %dd
+          = link_to "Accept", [:accept, @order], :method => :post, :class => 'button green'
+          = link_to "Reject", [:reject, @order], :method => :post, :class => 'button purple'

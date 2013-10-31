@@ -1,0 +1,37 @@
+- unless @payments.empty?
+  .table
+    %table.data
+      %thead
+        %tr
+          %th ID
+          %th Type
+          %th Method
+          %th Reference
+          %th Amount
+          %th Refunded?
+          %th
+      %tbody
+        - for payment in @payments
+          %tr
+            %td= payment.id
+            %td
+              = payment.refund? ? 'Refund' : 'Payment'
+              %span.float-right= boolean_tag payment.confirmed?
+            %td= payment.method
+            %td= link_to_if payment.transaction_url, payment.reference, payment.transaction_url
+            
+            - if payment.refund?
+              %td{:colspan => 2}
+                %b= number_to_currency payment.amount
+                - if payment.parent_payment_id
+                  from payment ##{payment.parent_payment_id}
+            - else
+              %td= number_to_currency payment.amount
+              %td= boolean_tag payment.refunded?, nil, :true_text => number_to_currency(payment.amount_refunded)
+            %td.refund
+              - if payment.refundable?
+                = link_to "Refund", [:refund, @order, payment], :class => 'button purple button-mini', :rel => 'dialog'
+              - else
+                = link_to "Delete", [@order, payment], :class => 'button purple button-mini', :data => {:confirm => "Are you sure you wish to remove this payment?"}, :method => :delete
+- else
+  %p.notice There are no payments recorded for this order...
