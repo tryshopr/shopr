@@ -152,7 +152,8 @@
                 - if payment.refund?
                   %td{:colspan => 2}
                     %b= number_to_currency payment.amount
-                    from payment ##{payment.parent_payment_id}
+                    - if payment.parent_payment_id
+                      from payment ##{payment.parent_payment_id}
                 - else
                   %td= number_to_currency payment.amount
                   %td= boolean_tag payment.refunded?, nil, :true_text => number_to_currency(payment.amount_refunded)
