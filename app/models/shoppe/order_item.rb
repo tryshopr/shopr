@@ -6,7 +6,7 @@ module Shoppe
     # The associated order
     #
     # @return [Shoppe::Order]
-    belongs_to :order, :class_name => 'Shoppe::Order'
+    belongs_to :order, :class_name => 'Shoppe::Order', :touch => true
     
     # The item which has been ordered
     belongs_to :ordered_item, :polymorphic => true
