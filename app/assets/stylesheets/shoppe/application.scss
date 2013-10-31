@@ -327,6 +327,19 @@ header.main {
 	}
 	
 	//
+	// warning message
+	//
+	p.warning {
+		background:#ffffed;
+		border:1px solid #ed7c04;
+		color:#ed7c04;
+		font-size:1.1em;
+		font-weight:500;
+		margin-bottom:25px;
+		padding:15px;
+	}
+	
+	//
 	// payments
 	//
 	fieldset.orderPayments {

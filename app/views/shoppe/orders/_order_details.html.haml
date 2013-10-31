@@ -2,7 +2,7 @@
   .left
     %dl
       %dt Name
-      %dd= @order.first_name + ' ' + @order.last_name
+      %dd= @order.full_name
       %dt Company
       %dd= @order.company.blank? ? '-' : @order.company
       %dt Billing#{@order.separate_delivery_address? ? '' : '/Delivery'} Address
@@ -29,8 +29,9 @@
       %dd= @order.phone_number
       %dt Weight
       %dd= number_to_weight @order.total_weight
-      %dt Build Time
-      %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
+      - if @order.received?
+        %dt Build Time
+        %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
       - if @order.invoiced?
         %dt Invoice Number
         %dd= @order.invoice_number
