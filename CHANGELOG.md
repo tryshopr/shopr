@@ -2,6 +2,8 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v0.0.20
+
 ## v0.0.19
 
 * Only check that a delivery service is suitable if one has actually been selected. Ensures that
