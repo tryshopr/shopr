@@ -9,6 +9,7 @@
   %h2.orders Order <b>##{@order.number}</b>
 
 #order
+
   - if @order.received?
     = render 'order_details'
     = render 'status_bar'

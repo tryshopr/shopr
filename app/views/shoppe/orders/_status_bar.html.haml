@@ -19,7 +19,7 @@
       %li.shipped
         %h4 Order Shipped
         %p on #{@order.shipped_at.to_s(:short)} by #{@order.shipper.try(:short_name) || 'Unknown'}
-        - if @order.courier_tracking_url
+        - if @order.delivery_service && @order.courier_tracking_url
           %p= link_to "Tracking URL", @order.courier_tracking_url
         - else
           %p Consignment # <b>#{@order.consignment_number}</b>

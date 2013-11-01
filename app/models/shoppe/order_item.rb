@@ -16,10 +16,23 @@ module Shoppe
     
     # Validations
     validates :quantity, :numericality => true
-  
-    # Set the weight as appropriate on save
-    before_validation { self.weight = self.quantity * self.ordered_item.weight }
-  
+    validates :ordered_item, :presence => true
+    validate do
+      unless in_stock?
+        errors.add :quantity, "is too high for the quantity in stock"
+      end
+    end
+    
+    # JSON exports
+    json :quantity, :unit_price, :unit_cost_price, :tax_rate, :tax_amount, :sub_total, :total, :ordered_item
+    
+    # Before saving an order item which belongs to a received order, cache the pricing again if appropriate.
+    before_save do
+      if order.received? && (unit_price_changed? || unit_cost_price_changed? || tax_rate_changed? || tax_amount_changed?)
+        cache_pricing
+      end
+    end
+      
     # This allows you to add a product to the scoped order. For example Order.first.order_items.add_product(...).
     # This will either increase the quantity of the value in the order or create a new item if one does not
     # exist already.
@@ -79,26 +92,40 @@ module Shoppe
         self.order.remove_delivery_service_if_invalid
       end
     end
+    
+    # The total weight of the item
+    #
+    # @return [BigDecimal]
+    def weight
+      @weight ||= read_attribute(:weight) || ordered_item.try(:weight) || BigDecimal(0)
+    end
+    
+    # Return the total weight of the item
+    #
+    # @return [BigDecimal]
+    def total_weight
+      quantity * weight
+    end
   
     # The unit price for the item
     #
     # @return [BigDecimal]
     def unit_price
-      @unit_price ||= read_attribute(:unit_price) || ordered_item.try(:price) || 0.0
+      @unit_price ||= read_attribute(:unit_price) || ordered_item.try(:price) || BigDecimal(0)
     end
   
     # The cost price for the item
     #
     # @return [BigDecimal]
     def unit_cost_price
-      @unit_cost_price ||= read_attribute(:unit_cost_price) || ordered_item.try(:cost_price) || 0.0
+      @unit_cost_price ||= read_attribute(:unit_cost_price) || ordered_item.try(:cost_price) || BigDecimal(0)
     end
   
     # The tax rate for the item
     #
     # @return [BigDecimal]
     def tax_rate
-      @tax_rate ||= read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, self.order) || 0.0 
+      @tax_rate ||= read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, self.order) || BigDecimal(0)  
     end
   
     # The total tax for the item
@@ -128,15 +155,25 @@ module Shoppe
     def total
       tax_amount + sub_total
     end
+    
+    # Cache the pricing for this order item
+    def cache_pricing
+      write_attribute :weight, self.weight
+      write_attribute :unit_price, self.unit_price
+      write_attribute :unit_cost_price, self.unit_cost_price
+      write_attribute :tax_rate, self.tax_rate
+    end
+    
+    # Cache the pricing for this order item and save
+    def cache_pricing!
+      cache_pricing
+      save!
+    end
   
     # Trigger when the associated order is confirmed. It handles caching the values
     # of the monetary items and allocating stock as appropriate.
     def confirm!
-      write_attribute :unit_price, self.unit_price
-      write_attribute :unit_cost_price, self.unit_cost_price
-      write_attribute :tax_rate, self.tax_rate
-      write_attribute :tax_amount, self.tax_amount
-      save!
+      cache_pricing!
       if self.ordered_item.stock_control?
         self.ordered_item.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
       end
@@ -155,13 +192,27 @@ module Shoppe
     #
     # @return [Boolean]
     def in_stock?
-      if self.ordered_item.stock_control?
-        self.ordered_item.stock >= self.quantity
+      if self.ordered_item && self.ordered_item.stock_control?
+        self.ordered_item.stock >= unallocated_stock
       else
         true
       end
     end
-  
+    
+    # How much stock remains to be allocated for this order?
+    #
+    # @return [Fixnum]
+    def unallocated_stock
+      self.quantity - allocated_stock
+    end
+    
+    # How much stock has been allocated to this item?
+    #
+    # @return [Fixnum]
+    def allocated_stock
+      0 - self.stock_level_adjustments.sum(:adjustment)
+    end
+    
     # Validate the stock level against the product and update as appropriate. This method will be executed
     # before an order is completed. If we have run out of this product, we will update the quantity to an
     # appropriate level (or remove the order item) and return the object.

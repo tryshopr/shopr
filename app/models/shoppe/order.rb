@@ -4,19 +4,21 @@ module Shoppe
     self.table_name = 'shoppe_orders'
   
     # Orders can have properties
-    key_value_store :properties
+    key_value_store :properties    
     
     # Require dependencies
     require_dependency 'shoppe/order/states'
     require_dependency 'shoppe/order/actions'
     require_dependency 'shoppe/order/billing'
     require_dependency 'shoppe/order/delivery'
-  
+    require_dependency 'shoppe/order/json'
+    
     # All items which make up this order
     has_many :order_items, :dependent => :destroy, :class_name => 'Shoppe::OrderItem'
+    accepts_nested_attributes_for :order_items, :allow_destroy => true, :reject_if => Proc.new { |a| a['ordered_item_id'].blank? }
 
     # All products which are part of this order (accessed through the items)
-    has_many :products, :through => :order_items, :class_name => 'Shoppe::Product'
+    has_many :products, :through => :order_items, :class_name => 'Shoppe::Product', :source => :ordered_item, :source_type => 'Shoppe::Product'
     
     # Validations
     validates :token, :presence => true

@@ -28,6 +28,7 @@ module Shoppe
       order.validates :delivery_postcode, :presence => true
       order.validates :delivery_country, :presence => true
     end
+    
     validate do
       if self.delivery_required?
         if self.delivery_service.nil?
@@ -47,14 +48,18 @@ module Shoppe
       if self.delivery_required? && !self.valid_delivery_service?
         raise Shoppe::Errors::InappropriateDeliveryService, :order => self
       end
-      
-      # Store the delivery prices with the order
-      if self.delivery_service
-        write_attribute :delivery_service_id, self.delivery_service.id
-        write_attribute :delivery_price, self.delivery_price
-        write_attribute :delivery_cost_price, self.delivery_cost_price
-        write_attribute :delivery_tax_amount, self.delivery_tax_amount
-        write_attribute :delivery_tax_rate, self.delivery_tax_rate
+      cache_delivery_pricing
+    end
+    
+    # If an order has been received and something changes the delivery service or the delivery price
+    # is cleared, we will re-cache all the delivery pricing so that we have the latest.
+    before_save do
+      if received? && (delivery_service_id_changed? || (self.delivery_price_changed? && read_attribute(:delivery_price).blank?))
+        self.delivery_price = nil
+        self.delivery_cost_price = nil
+        self.delivery_tax_rate = nil
+        self.delivery_tax_amount = nil
+        cache_delivery_pricing
       end
     end
     
@@ -79,6 +84,28 @@ module Shoppe
       end
     end
     
+    # Cache delivery prices for the order
+    def cache_delivery_pricing
+      if self.delivery_service
+        write_attribute :delivery_service_id, self.delivery_service.id
+        write_attribute :delivery_price, self.delivery_price
+        write_attribute :delivery_cost_price, self.delivery_cost_price
+        write_attribute :delivery_tax_rate, self.delivery_tax_rate
+      else
+        write_attribute :delivery_service_id, nil
+        write_attribute :delivery_price, nil
+        write_attribute :delivery_cost_price, nil
+        write_attribute :delivery_tax_rate, nil
+        write_attribute :delivery_tax_amount, nil
+      end
+    end
+    
+    # Cache prices and save the order
+    def cache_delivery_pricing!
+      cache_delivery_pricing
+      save!
+    end
+    
     # Has this order been shipped?
     #
     # @return [Boolean]
@@ -90,7 +117,7 @@ module Shoppe
     #
     # @return [BigDecimal]
     def total_weight
-      order_items.inject(BigDecimal(0)) { |t,i| t + i.weight}
+      order_items.inject(BigDecimal(0)) { |t,i| t + i.total_weight}
     end
     
     # Is delivery required for this order?
@@ -105,23 +132,19 @@ module Shoppe
     #
     # @return [Array] an array of Shoppe::DeliveryService objects
     def available_delivery_services
-      @available_delivery_services ||= begin
-        delivery_service_prices.map(&:delivery_service).uniq
-      end
+      delivery_service_prices.map(&:delivery_service).uniq
     end
     
     # An array of all the delivery service prices which can be applied to this order.
     #
     # @return [Array] an array of Shoppe:DeliveryServicePrice objects
     def delivery_service_prices
-      @delivery_service_prices ||= begin
-        if delivery_required?
-          prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
-          prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
-          prices
-        else
-          []
-        end
+      if delivery_required?
+        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
+        prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
+        prices
+      else
+        []
       end
     end
 
@@ -143,14 +166,14 @@ module Shoppe
     #
     # @return [BigDecimal]
     def delivery_price
-      @delivery_price ||= read_attribute(:delivery_price) || delivery_service_price.try(:price) || 0.0
+      @delivery_price ||= read_attribute(:delivery_price) || delivery_service_price.try(:price) || BigDecimal(0)
     end
   
     # The cost of delivering this order in its current state
     #
     # @return [BigDecimal]
     def delivery_cost_price
-      @delivery_cost_price ||= read_attribute(:delivery_cost_price) || delivery_service_price.try(:cost_price) || 0.0
+      @delivery_cost_price ||= read_attribute(:delivery_cost_price) || delivery_service_price.try(:cost_price) || BigDecimal(0)
     end
   
     # The tax amount due for the delivery of this order in its current state
@@ -159,8 +182,7 @@ module Shoppe
     def delivery_tax_amount
       @delivery_tax_amount ||= begin
         read_attribute(:delivery_tax_amount) ||
-        delivery_price / BigDecimal(100) * delivery_tax_rate ||
-        0.0
+        delivery_price / BigDecimal(100) * delivery_tax_rate
       end
     end
   
@@ -171,7 +193,7 @@ module Shoppe
       @delivery_tax_rate ||= begin
         read_attribute(:delivery_tax_rate) ||
         delivery_service_price.try(:tax_rate).try(:rate_for, self) ||
-        0.0
+        BigDecimal(0)
       end
     end
   

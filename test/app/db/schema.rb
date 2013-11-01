@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024204815) do
+ActiveRecord::Schema.define(version: 20131102143930) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20131024204815) do
     t.decimal  "unit_cost_price",   precision: 8, scale: 2
     t.decimal  "tax_amount",        precision: 8, scale: 2
     t.decimal  "tax_rate",          precision: 8, scale: 2
-    t.decimal  "weight",            precision: 8, scale: 3, default: 0.0
+    t.decimal  "weight",            precision: 8, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
   end

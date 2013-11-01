@@ -9,7 +9,7 @@
 
 @import 'variables';
 
-html { font-family:$font; font-size:12px; color:#000; -webkit-font-smoothing:antialiased; background-color:#f7f9fc;}
+html { font-family:$font; font-size:12px; color:#000; -webkit-font-smoothing:antialiased; background-color:#f7f9fc; overflow-y:scroll}
 
 nav.sidebar {
 	width:200px;
@@ -389,7 +389,38 @@ header.main {
 		}
 	}
 
-	
+	//
+	// new order form
+	//
+	form.orderForm {
+		p.slaWarning {
+			background:#e5eaf4;
+			padding:15px;	
+			border:1px solid #abb4c6;
+			border-top:0;
+			text-align:center;
+		}
+		table.orderItems {
+			thead {
+				th.product { width:40%;}
+				th.qty, th.stock { width:5%; text-align:center;}
+				th.price, th.tax, th.total, th.weight { width:50px;}
+			}
+			tbody {
+				td.qty input { text-align:center;}
+				td.stock { text-align:center;}
+				td input { width:100%; font-size:1.0em; padding:3px; background:#f7f7f7;}
+				td.product select {width:400px;}
+				tr.item.new td { background:#f7f7f7;}
+				td.stock.oos { background:#fff4f4; color:#e32828;}
+				tr.delivery td.none { background:#fff4f4; color:#e32828; font-weight:500;}
+			}
+			tfoot {
+				td input { width:100%;padding:3px; background:transparent; border:0; font-size:1.0em; color:#fff;}
+			}
+			
+		}
+	}
 	
 	
 }
@@ -451,37 +482,38 @@ div.table {
 		margin-bottom:10px;
 		color:#40454D;
 	}
-	table.data {
-		width:100%;
-		th, td { padding:10px; vertical-align:middle;}
-		thead th { border:1px solid #40454D; background:#40454D; text-align:left; font-weight:normal; font-size:0.9em; color:#fff; }
-		tbody td { border:1px solid #cfd4dd; background:#fff;}
-		a { color:inherit;}
-		tbody th { text-align:left; background:#5B6270; border:1px solid #5B6270;font-size:1.2em; color:#fff;}
-		tbody tr.empty td { padding:50px 0; text-align:center; color:#999; font-style:italic;}
-		tfoot td.right { text-align:right; }
-		tfoot td.bold { font-weight:bold;}
-		tfoot td { border-top:0 solid #ccc; background:#fafafa;}
-		tfoot tr:first-child td { border-top-width:3px;}
-		tbody td a.edit { background:image-url('shoppe/icons/edit.svg') no-repeat; margin-top:3px;width:16px; width:16px; background-size:13px; display:inline-block; text-indent:-40000px; opacity:0.3}
-		tbody td a.edit:hover { opacity:0.5}
-		tbody td.table {
-			padding:0;
-			table.data {
-				td { padding:10px; border-width:0; border-right-width:1px; border-bottom-width:1px;}
-				td:last-child { border-right-width:0;}
-				tr:last-child td { border-bottom-width:0;}
-			}
-		} 
-		tbody tr.form {
-			td { background:#f2f6fb;}
-			input[type=text] { border:1px solid #CFD4DD; padding:5px;}
-			input[type=text]:focus { border-color:#9AC835;}
-			td.desc input[type=text] { width:95%;}
-			td.adjustment input[type=text] { width:50px; margin-right:5px;}
+}
+
+table.data {
+	width:100%;
+	th, td { padding:10px; vertical-align:middle;}
+	thead th { border:1px solid #40454D; background:#40454D; text-align:left; font-weight:normal; font-size:0.9em; color:#fff; }
+	tbody td { border:1px solid #cfd4dd; background:#fff;}
+	a { color:inherit;}
+	tbody th { text-align:left; background:#5B6270; border:1px solid #5B6270;font-size:1.2em; color:#fff;}
+	tbody tr.empty td { padding:50px 0; text-align:center; color:#999; font-style:italic;}
+	tfoot td.right { text-align:right; }
+	tfoot td.bold { font-weight:bold;}
+	tfoot td { border-top:0 solid #ccc; background:#fafafa;}
+	tfoot tr:first-child td { border-top-width:3px;}
+	tbody td a.edit { background:image-url('shoppe/icons/edit.svg') no-repeat; margin-top:3px;width:16px; width:16px; background-size:13px; display:inline-block; text-indent:-40000px; opacity:0.3}
+	tbody td a.edit:hover { opacity:0.5}
+	tbody td.table {
+		padding:0;
+		table.data {
+			td { padding:10px; border-width:0; border-right-width:1px; border-bottom-width:1px;}
+			td:last-child { border-right-width:0;}
+			tr:last-child td { border-bottom-width:0;}
 		}
-		tfoot td { background:#5B6270; color:#fff; border:1px solid #5B6270; font-weight:bold; font-size:1.1em;}
+	} 
+	tbody tr.form {
+		td { background:#f2f6fb;}
+		input[type=text] { border:1px solid #CFD4DD; padding:5px;}
+		input[type=text]:focus { border-color:#9AC835;}
+		td.desc input[type=text] { width:95%;}
+		td.adjustment input[type=text] { width:50px; margin-right:5px;}
 	}
+	tfoot td { background:#5B6270; color:#fff; border:1px solid #5B6270; font-weight:bold; font-size:1.1em;}
 }
 
 //

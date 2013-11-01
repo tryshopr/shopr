@@ -11,6 +11,7 @@ require 'nifty/utils'
 require 'nifty/key_value_store'
 require 'nifty/attachments'
 require 'nifty/dialog'
+require 'nifty/model_json'
 
 module Shoppe
   class << self

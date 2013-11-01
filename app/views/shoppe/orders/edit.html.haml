@@ -5,58 +5,17 @@
     = link_to "Back to order", @order, :class => 'button grey'
   %h2.orders Edit Order <b>##{@order.number}</b>
 
-= form_for @order do |f|
+= form_for @order, :html => {:class => 'orderForm'} do |f|
   = f.error_messages
-  = field_set_tag "Billing Address" do
-    .splitContainer
-      %dl.third
-        %dt= f.label :first_name
-        %dd= f.text_field :first_name, :class => 'focus text'
-      %dl.third
-        %dt= f.label :last_name
-        %dd= f.text_field :last_name, :class => 'text'
-      %dl.third
-        %dt= f.label :company
-        %dd= f.text_field :company, :class => 'text'
-    %dl
-      %dt= f.label :billing_address1, "Address"
-      %dd.space= f.text_field :billing_address1, :class => 'text'
-      %dd.space= f.text_field :billing_address2, :class => 'text'
-      %dd.space= f.text_field :billing_address3, :class => 'text'
-      %dd.space= f.text_field :billing_address4, :class => 'text'
-      %dd.space= f.text_field :billing_postcode, :class => 'text short', :placeholder => "Postcode"
-      %dd.space= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen'}
-    
-    .splitContainer
-      %dl.third
-        %dt= f.label :email_address
-        %dd= f.text_field :email_address, :class => 'text'
-      %dl.third
-        %dt= f.label :phone_number
-        %dd= f.text_field :phone_number, :class => 'text'
-      %dl.third
-        %dt= f.label :separate_delivery_address
-        %dd.checkbox
-          = f.check_box :separate_delivery_address
-          = f.label :separate_delivery_address, "Use a seperate delivery address?"
-
-  = field_set_tag "Deilvery Address", :class => 'delivery' do
-    %dl
-      %dt= f.label :delivery_name
-      %dd= f.text_field :delivery_name, :class => 'text'
-    %dl
-      %dt= f.label :delivery_address1, "Address"
-      %dd.space= f.text_field :delivery_address1, :class => 'text'
-      %dd.space= f.text_field :delivery_address2, :class => 'text'
-      %dd.space= f.text_field :delivery_address3, :class => 'text'
-      %dd.space= f.text_field :delivery_address4, :class => 'text'
-      %dd.space= f.text_field :delivery_postcode, :class => 'text short', :placeholder => "Postcode"
-      %dd.space= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen'}
+  = render 'form', :f => f
   
   = field_set_tag "Notes" do
     %dl
       %dd= f.text_area :notes, :class => 'text'
-  
+
+  = field_set_tag "Ordered Products", :class => 'padded' do
+    = render 'order_items_form', :f => f
+
   %p.submit
     = f.submit "Save Order", :class => 'button green'
     = link_to "Cancel", @order, :class => 'button'

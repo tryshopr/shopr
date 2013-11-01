@@ -1,7 +1,9 @@
 - @page_title = 'Orders'
 
 = content_for :header do
-  %p.buttons= link_to "Search Orders", '#', :class => 'button', :rel => 'searchOrders'
+  %p.buttons
+    = link_to "New Order", :new_order, :class => 'button green'
+    = link_to "Search Orders", '#', :class => 'button', :rel => 'searchOrders'
   %h2.orders
     Orders
     %span= page_entries_info @orders

@@ -49,12 +49,42 @@ $ ->
     window.open($(this).attr('href'), 'despatchnote', 'width=700,height=800')
     false
   
+  #
   # Order editting
+  #
   toggleDeliveryFieldsetForOrder = ->
-    fieldset = $('form.edit_order fieldset.delivery')
-    if $('form.edit_order input#order_separate_delivery_address').prop('checked') then fieldset.show() else fieldset.hide()
-  $('form.edit_order input#order_separate_delivery_address').on 'change', toggleDeliveryFieldsetForOrder
+    fieldset = $('form.orderForm fieldset.delivery')
+    if $('form.orderForm input#order_separate_delivery_address').prop('checked') then fieldset.show() else fieldset.hide()
+    
+  $('form.orderForm').on 'change', 'input#order_separate_delivery_address', toggleDeliveryFieldsetForOrder
   toggleDeliveryFieldsetForOrder()
+  
+  #
+  # Order creation
+  #
+  setupForOrderForm = (form)->
+    $('select', form).chosen({allow_single_deselect: true})
+    $('select, table.orderItems input', form).on 'change', ->
+      refreshOrderDetails $(this).parents('form')
+    
+  if $('form.orderForm').length
+    setupForOrderForm($('form.orderForm'))
+  
+  refreshOrderDetails = (form)->
+    $.ajax
+      url:        form.attr('action')
+      method:     if $('input[name=_method]', form).length then $('input[name=_method]', form).val() else form.attr('method')
+      data:       form.serialize()
+      dataType:   'html'
+      success: (html)->
+        focusedField = $(':focus', form).attr('id')
+        form.html($(html).find('form'))
+        toggleDeliveryFieldsetForOrder()
+        setupForOrderForm(form)
+        $('div.moneyInput input', form).each formatMoneyField
+        if focusedField?
+          $("##{focusedField}").focus()
+  
   
   # Close dialog
   $('body').on 'click', 'a[rel=closeDialog]', Nifty.Dialog.closeTopDialog
@@ -77,7 +107,7 @@ $ ->
     if value.length
       $(this).val(parseFloat(value).toFixed(2))
   $('div.moneyInput input').each formatMoneyField
-  $('div.moneyInput input').on('blur', formatMoneyField)
+  $('body').on('blur', 'div.moneyInput input', formatMoneyField)
 
 #
 # Stock Level Adjustment dialog beavior
@@ -120,3 +150,15 @@ Mousetrap.stopCallback = -> false
 Mousetrap.bind 'escape', ->
   Nifty.Dialog.closeTopDialog()
   false
+
+# 
+# Return an appropriately formatted number
+#
+window.numberToCurrency = (amount)->
+  Shoppe.currencyUnit + parseFloat(amount).toFixed(2)
+
+# 
+# Return a number as a weight
+#
+window.numberToWeight = (amount)->
+  parseFloat(amount).toFixed(3) + "kg"

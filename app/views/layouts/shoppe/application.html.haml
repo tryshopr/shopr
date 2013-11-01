@@ -5,6 +5,9 @@
     = stylesheet_link_tag 'shoppe/application'
     = javascript_include_tag 'shoppe/application'
     = csrf_meta_tags
+    :javascript
+      window.Shoppe = {}
+      window.Shoppe.currencyUnit = "#{h Shoppe.settings.currency_unit}";
   %body
     %nav.sidebar
       %header.logo
