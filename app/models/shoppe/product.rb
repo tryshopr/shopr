@@ -54,9 +54,6 @@ module Shoppe
     
     # All products ordered with default items first followed by name ascending
     scope :ordered, -> {order('`default` desc, name asc')}
-    
-    # JSON exports
-    json :full_name, :price, :stock, :in_stock?, :orderable?, :active?
         
     # Return the name of the product
     #

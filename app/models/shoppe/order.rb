@@ -11,7 +11,6 @@ module Shoppe
     require_dependency 'shoppe/order/actions'
     require_dependency 'shoppe/order/billing'
     require_dependency 'shoppe/order/delivery'
-    require_dependency 'shoppe/order/json'
     
     # All items which make up this order
     has_many :order_items, :dependent => :destroy, :class_name => 'Shoppe::OrderItem'

@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency "nifty-utils", "~> 1.0.0"
   s.add_dependency "nifty-attachments", "~> 1.0.0"
   s.add_dependency "nifty-dialog", "~> 1.0.0"
-  s.add_dependency "nifty-model-json", "~> 1.0.0"
   
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "mysql2"

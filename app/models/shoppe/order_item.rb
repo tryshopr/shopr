@@ -23,9 +23,6 @@ module Shoppe
       end
     end
     
-    # JSON exports
-    json :quantity, :unit_price, :unit_cost_price, :tax_rate, :tax_amount, :sub_total, :total, :ordered_item
-    
     # Before saving an order item which belongs to a received order, cache the pricing again if appropriate.
     before_save do
       if order.received? && (unit_price_changed? || unit_cost_price_changed? || tax_rate_changed? || tax_amount_changed?)

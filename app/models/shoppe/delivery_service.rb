@@ -16,9 +16,6 @@ module Shoppe
     # All active delivery services
     scope :active, -> { where(:active => true)}
     
-    # JSON exports
-    json :name, :courier
-  
     # Returns a tracking URL for the passed order
     #
     # @param order [Shoppe::Order]

@@ -11,7 +11,6 @@ PATH
       nifty-attachments (~> 1.0.0)
       nifty-dialog (~> 1.0.0)
       nifty-key-value-store (~> 1.0.0)
-      nifty-model-json (~> 1.0.0)
       nifty-utils (~> 1.0.0)
       rails (~> 4.0.0)
       ransack (~> 1.0.0)
@@ -86,8 +85,6 @@ GEM
     nifty-attachments (1.0.0)
     nifty-dialog (1.0.1)
     nifty-key-value-store (1.0.0)
-    nifty-model-json (1.0.1)
-      json
     nifty-utils (1.0.0)
     polyamorous (0.6.4)
       activerecord (>= 3.0)

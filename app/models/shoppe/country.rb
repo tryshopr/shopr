@@ -23,8 +23,5 @@ module Shoppe
     # Validations
     validates :name, :presence => true
     
-    # JSON attributes
-    json :name, :eu_member?, :code2, :code3, :continent, :tld, :currency
-    
   end
 end
