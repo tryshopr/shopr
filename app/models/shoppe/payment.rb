@@ -42,7 +42,7 @@ module Shoppe
     #
     # @return [BigDecimal]
     def refundable_amount
-      refundable? ? (self.amount - self.amount_refunded) : BigDecimal(0.0)
+      refundable? ? (self.amount - self.amount_refunded) : BigDecimal(0)
     end
     
     # Process a refund from this payment. 

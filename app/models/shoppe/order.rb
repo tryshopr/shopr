@@ -78,7 +78,7 @@ module Shoppe
     #
     # @return [Integer]
     def total_items
-      @total_items ||= order_items.inject(0) { |t,i| t + i.quantity }
+      order_items.inject(0) { |t,i| t + i.quantity }
     end
     
     def self.ransackable_attributes(auth_object = nil) 
