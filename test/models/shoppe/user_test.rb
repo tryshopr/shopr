@@ -4,8 +4,7 @@ module Shoppe
   class UserTest < ActiveSupport::TestCase
     
     test "authentication" do
-      user = User.create(:email_address => 'adam@niftyware.io', :password => 'llamafarm', :password_confirmation => 'llamafarm', :first_name => 'Adam', :last_name => 'Cooke')
-
+      user = create(:user)
       authed_user = User.authenticate('adam@niftyware.io', 'llamafarm')
       assert_equal User, authed_user.class
       assert_equal user, authed_user
@@ -14,12 +13,12 @@ module Shoppe
     end
     
     test "full name" do
-      user = User.new(:first_name => 'Adam', :last_name => 'Cooke')
+      user = build(:user)
       assert_equal "Adam Cooke", user.full_name
     end
     
     test "short name" do
-      user = User.new(:first_name => 'Adam', :last_name => 'Cooke')
+      user = build(:user)
       assert_equal "Adam C", user.short_name
     end
     

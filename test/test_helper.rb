@@ -2,7 +2,9 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../app/config/environment.rb",  __FILE__)
 require "rails/test_help"
 
-if Shoppe::Product.all.empty?
-  puts "Loading Shoppe seed data as database seems to be empty..."
-  Shoppe::Engine.load_seed
+# Factory Girl 
+require 'factory_girl'
+FactoryGirl.find_definitions
+class ActiveSupport::TestCase
+  include FactoryGirl::Syntax::Methods
 end

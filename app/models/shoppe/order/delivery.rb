@@ -201,7 +201,7 @@ module Shoppe
     #
     # @return [Boolean]
     def valid_delivery_service?
-      self.delivery_service && self.available_delivery_services.include?(self.delivery_service)
+      self.delivery_service ? self.available_delivery_services.include?(self.delivery_service) : !self.delivery_required?
     end
   
     # Remove the associated delivery service if it's invalid

@@ -18,7 +18,7 @@ module Shoppe
     validates :status, :inclusion => {:in => STATUSES}
     
     # Set the status to building if we don't have a status
-    before_validation { self.status = 'building' if self.status.blank? }
+    after_initialize  { self.status = STATUSES.first if self.status.blank? }
     
     # All orders which have been received
     scope :received, -> {where("received_at is not null")}

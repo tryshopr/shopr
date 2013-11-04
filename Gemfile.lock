@@ -58,6 +58,11 @@ GEM
     dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     haml (4.0.3)
       tilt
     hike (1.2.3)
@@ -147,6 +152,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  factory_girl_rails (~> 4.0)
   markdown
   mysql2
   shoppe!

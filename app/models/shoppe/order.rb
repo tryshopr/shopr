@@ -33,7 +33,7 @@ module Shoppe
     #
     # @return [String] - the order number padded with at least 5 zeros
     def number
-      id.to_s.rjust(6, '0')
+      id ? id.to_s.rjust(6, '0') : nil
     end
   
     # The length of time the customer spent building the order before submitting it to us.
