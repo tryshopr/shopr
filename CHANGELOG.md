@@ -4,6 +4,8 @@ This document outlines key changes which are introduced in each version. The ful
 
 ## v0.0.20
 
+* Add an admin-side order form for adding new orders and editing existing orders
+
 ## v0.0.19
 
 * Only check that a delivery service is suitable if one has actually been selected. Ensures that
