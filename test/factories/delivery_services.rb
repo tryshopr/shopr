@@ -18,8 +18,8 @@ module Shoppe
       active         true
       courier        'UPS'
       tracking_url   'http://sometrackingsite.com/{{consignment_number}}'
+
       factory :delivery_service_with_prices do
-        
         ignore do
           country_ids []
         end
