@@ -65,12 +65,15 @@ $ ->
     false
   
   # Format money values to 2 decimal places
-  formatMoneyField = ->
-    value = $(this).val()
-    if value.length
-      $(this).val(parseFloat(value).toFixed(2))
   $('div.moneyInput input').each formatMoneyField
   $('body').on('blur', 'div.moneyInput input', formatMoneyField)
+
+#
+# Format money values to 2 decimal places
+#
+window.formatMoneyField = ->
+  value = $(this).val()
+  $(this).val(parseFloat(value).toFixed(2)) if value.length
 
 #
 # Stock Level Adjustment dialog beavior

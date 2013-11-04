@@ -393,6 +393,7 @@ header.main {
 	// new order form
 	//
 	form.orderForm {
+		input[type=text].disabled { background:#f7f7f7; color:#888}
 		p.slaWarning {
 			background:#e5eaf4;
 			padding:15px;	
