@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Shoppe
-  class UserTest < ActiveSupport::TestCase
+  class UsersTest < ActiveSupport::TestCase
     
     test "authentication" do
       user = create(:user)

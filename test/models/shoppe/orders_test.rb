@@ -45,6 +45,9 @@ module Shoppe
       assert_equal "Joe Bloggs", order.customer_name
       assert_equal "Joe Bloggs", order.billing_name
       assert_equal "Joe Bloggs", order.delivery_name
+      order.separate_delivery_address = true
+      order.delivery_name = 'Michael Jones'
+      assert_equal "Michael Jones", order.delivery_name
     end
     
     test "order string generation (for an order with a company)" do
@@ -53,6 +56,9 @@ module Shoppe
       assert_equal "Widgets Inc (Joe Bloggs)", order.customer_name
       assert_equal "Joe Bloggs (Widgets Inc)", order.billing_name
       assert_equal "Joe Bloggs (Widgets Inc)", order.delivery_name
+      order.separate_delivery_address = true
+      order.delivery_name = 'Michael Jones'
+      assert_equal "Michael Jones", order.delivery_name
     end
     
     test "money calculations" do
@@ -397,6 +403,49 @@ module Shoppe
       assert_equal BigDecimal(6), order.delivery_cost_price
       assert_equal BigDecimal(20), order.delivery_tax_rate
       assert_equal BigDecimal(2.4,8), order.delivery_tax_amount
+    end
+
+    test "that delivery details match the billing details if no seperate address has been given" do
+      create_environment
+      order = create_order_with_products
+      assert_equal order.billing_address1, order.delivery_address1
+      assert_equal order.billing_address2, order.delivery_address2
+      assert_equal order.billing_address3, order.delivery_address3
+      assert_equal order.billing_address4, order.delivery_address4
+      assert_equal order.billing_postcode, order.delivery_postcode
+      assert_equal order.billing_country, order.delivery_country
+    end
+    
+    test "that delivery details are settable seperately when appropriate" do
+      create_environment
+      order = create_order_with_products
+      # say we want a different address
+      order.separate_delivery_address = true
+      # check validations are happening
+      assert_equal false, order.save
+      assert_equal false, order.errors[:delivery_name].empty?
+      assert_equal false, order.errors[:delivery_address1].empty?
+      assert_equal false, order.errors[:delivery_address3].empty?
+      assert_equal false, order.errors[:delivery_address4].empty?
+      assert_equal false, order.errors[:delivery_postcode].empty?
+      assert_equal false, order.errors[:delivery_country].empty? 
+      # add some delivery details
+      order.delivery_name = 'Dave Smith'
+      order.delivery_address1 = 'Line 1'
+      order.delivery_address2 = 'Line 2'
+      order.delivery_address3 = 'Line 3'
+      order.delivery_address4 = 'Line 4'      
+      order.delivery_postcode = 'AB12 3CD'
+      order.delivery_country = Country.find_by_code2('GB')
+      # check it saves now
+      assert_equal true, order.save
+      # check the details are provided
+      assert_equal 'Line 1', order.delivery_address1
+      assert_equal 'Line 2', order.delivery_address2
+      assert_equal 'Line 3', order.delivery_address3
+      assert_equal 'Line 4', order.delivery_address4
+      assert_equal 'AB12 3CD', order.delivery_postcode
+      assert_equal Country.find_by_code2('GB'), order.delivery_country
     end
     
   end
