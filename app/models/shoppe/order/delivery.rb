@@ -36,7 +36,7 @@ module Shoppe
           return
         end
         
-        if self.delivery_service && !available_delivery_services.include?(self.delivery_service)
+        unless self.valid_delivery_service?
           errors.add :delivery_service_id, "is not suitable for this order"
         end
       end
@@ -159,42 +159,38 @@ module Shoppe
     #
     # @return [BigDecimal]
     def delivery_service_price
-      @delivery_service_price ||= self.delivery_service && self.delivery_service.delivery_service_prices.for_weight(self.total_weight).first
+      self.delivery_service && self.delivery_service.delivery_service_prices.for_weight(self.total_weight).first
     end
   
     # The price for delivering this order in its current state
     #
     # @return [BigDecimal]
     def delivery_price
-      @delivery_price ||= read_attribute(:delivery_price) || delivery_service_price.try(:price) || BigDecimal(0)
+      read_attribute(:delivery_price) || delivery_service_price.try(:price) || BigDecimal(0)
     end
   
     # The cost of delivering this order in its current state
     #
     # @return [BigDecimal]
     def delivery_cost_price
-      @delivery_cost_price ||= read_attribute(:delivery_cost_price) || delivery_service_price.try(:cost_price) || BigDecimal(0)
+      read_attribute(:delivery_cost_price) || delivery_service_price.try(:cost_price) || BigDecimal(0)
     end
   
     # The tax amount due for the delivery of this order in its current state
     #
     # @return [BigDecimal]
     def delivery_tax_amount
-      @delivery_tax_amount ||= begin
-        read_attribute(:delivery_tax_amount) ||
-        delivery_price / BigDecimal(100) * delivery_tax_rate
-      end
+      read_attribute(:delivery_tax_amount) ||
+      delivery_price / BigDecimal(100) * delivery_tax_rate
     end
   
     # The tax rate for the delivery of this order in its current state
     #
     # @return [BigDecimal]
     def delivery_tax_rate
-      @delivery_tax_rate ||= begin
-        read_attribute(:delivery_tax_rate) ||
-        delivery_service_price.try(:tax_rate).try(:rate_for, self) ||
-        BigDecimal(0)
-      end
+      read_attribute(:delivery_tax_rate) ||
+      delivery_service_price.try(:tax_rate).try(:rate_for, self) ||
+      BigDecimal(0)
     end
   
     # Is the currently assigned delivery service appropriate for this order?

@@ -89,7 +89,7 @@ module Shoppe
     #
     # @return [Fixnum]
     def stock
-      @stock ||= self.stock_level_adjustments.sum(:adjustment)
+      self.stock_level_adjustments.sum(:adjustment)
     end
   
     # Search for products which include the guven attributes and return an active record

@@ -115,7 +115,7 @@ module Shoppe
     end
     
     test "weight calculations" do
-      order = build_order_with_products
+      order = create_order_with_products
       
       # check the first item
       item1 = order.order_items[0]
@@ -134,7 +134,7 @@ module Shoppe
     
     test "delivery services" do
       create_environment
-      order = build_order_with_products(:initial_stock => 10)
+      order = create_order_with_products(:initial_stock => 10)
       # check the order requires delivery
       assert_equal true, order.delivery_required?
       # check that the default delivery service was automatically selected
@@ -176,15 +176,27 @@ module Shoppe
     test "confirmation" do
       # create an environment and an order
       create_environment
-      order = build_order_with_products
+      order = create_order_with_products
       # confirm it then, we want nothing to raise
-      order.confirm!
+      assert_nothing_raised { order.confirm! }
       # ensure the object has been marked as received
       assert_equal 'received', order.status
       assert_equal true, order.received?
       assert_equal true, order.received_at.is_a?(Time)
-      # check that all order items have had their prices persisted 
-      # to the database
+    end
+    
+    test "item prices are persisted when confirming an order" do
+      create_environment
+      order = create_order_with_products
+      # check all attributes are nil to begin with
+      order.order_items.each do |item|
+        assert_equal nil, item.read_attribute(:unit_price)
+        assert_equal nil, item.read_attribute(:unit_cost_price)
+        assert_equal nil, item.read_attribute(:tax_rate)
+      end
+      # confirm it
+      assert_nothing_raised { order.confirm! }
+      # check they are all now big decimals
       order.order_items.each do |item|
         assert_equal true, item.read_attribute(:unit_price).is_a?(BigDecimal)
         assert_equal true, item.read_attribute(:unit_cost_price).is_a?(BigDecimal)
@@ -192,35 +204,199 @@ module Shoppe
       end
     end
     
-    #test "confirmation fails when there isn't enough stock to complete the order (unless stock control is disabled)"
-    #test "confirmation fails when there's no appropriate delivery service (unless non is required)"
-    #test "item prices, tax amounts & weights can be overridden"
-    #test "acceptance"
-    #test "rejection"
-    #test "shipping"
-    
-    private
-    
-    def build_order_with_products(options = {})
-      order = create(:order)
-      # create a product and a line
-      product1 = create(:yealink_t22p, :initial_stock => 10)
-      item1 = order.order_items.create!(:quantity => 2, :ordered_item => product1)
-      # create another product and a link
-      product2 = create(:snom_870, :initial_stock => 10)
-      item2 = order.order_items.create!(:quantity => 1, :ordered_item => product2)
-      # return the order
-      order
+    test "delivery prices are persisted when confirming an order" do
+      create_environment
+      order = create_order_with_products
+      # check prices aren't persisted before confirmation
+      assert_equal nil, order.read_attribute(:delivery_service_id)
+      assert_equal nil, order.read_attribute(:delivery_price)
+      assert_equal nil, order.read_attribute(:delivery_cost_price)
+      assert_equal nil, order.read_attribute(:delivery_tax_rate)
+      assert_equal nil, order.read_attribute(:delivery_tax_amount)
+      # confirm
+      assert_nothing_raised { order.confirm! }
+      # check prices are now persisted after confirmation
+      assert_equal true, order.read_attribute(:delivery_service_id) > 0
+      assert_equal true, order.read_attribute(:delivery_price).is_a?(BigDecimal)
+      assert_equal true, order.read_attribute(:delivery_cost_price).is_a?(BigDecimal)
+      assert_equal true, order.read_attribute(:delivery_tax_rate).is_a?(BigDecimal)
     end
     
-    def create_environment
-      # add delivery services
-      create(:delivery_service_with_prices)
-      create(:saturday_delivery_with_prices)
-      # add some countries
-      create(:uk)
-      create(:us)
-      create(:france)
+    test "stock is allocated when when confirming an order" do
+      create_environment
+      order = create_order_with_products
+      # check no stock has been allocated yet
+      order.order_items.each do |item|
+        assert_equal 0, item.allocated_stock
+        assert_equal item.quantity, item.unallocated_stock
+      end
+      # confirm
+      assert_nothing_raised { order.confirm! }
+      # ensure that stock has been allocated
+      order.order_items.each do |item|
+        assert_equal item.quantity, item.allocated_stock
+        assert_equal 0, item.unallocated_stock
+        assert_equal false, item.stock_level_adjustments.empty?
+        assert_equal item.quantity, 0 - item.stock_level_adjustments.sum(:adjustment)
+        assert_equal true, item.in_stock?
+      end
+    end
+    
+    test "confirmation fails when there isn't enough stock to complete the order (and removes item without stock)" do
+      # create an order (successfully)
+      create_environment
+      order = create_order_with_products
+      # lose all stock of one of the items after it has been created
+      item_to_lose = order.order_items.first
+      item_to_lose.ordered_item.stock_level_adjustments.create!(:adjustment => -10, :description => 'No stock')
+      # assert that an error is raised
+      assert_raise(Errors::InsufficientStockToFulfil) { order.confirm! }
+      # asert that the item which was not in stock was removed
+      assert_equal true, item_to_lose.destroyed?
+      # assert the the item's quantity was updated
+      assert_equal 0, item_to_lose.quantity
+    end
+    
+    test "confirmation fails when there isn't enough stock to complete the order (and updates item without stock)" do
+      # create an order (successfully)
+      create_environment
+      order = create_order_with_products
+      # lose all stock of one of the items after it has been created
+      item_to_lose = order.order_items.first
+      item_to_lose.ordered_item.stock_level_adjustments.create!(:adjustment => -9, :description => 'No stock')
+      # assert that an error is raised
+      assert_raise(Errors::InsufficientStockToFulfil) { order.confirm! }
+      # asert that the item which was not in stock was not removed
+      assert_equal false, item_to_lose.destroyed?
+      # assert the the item's quantity was updated to the number in stock
+      assert_equal 1, item_to_lose.quantity
+    end
+    
+    test "confirmation fails when there's no appropriate delivery service" do
+      # create a delivery service which cannot carry more than a 0.5kg
+      ds = create(:first_class_post_with_prices)
+      order = create_order_with_products
+      # check delivery is actually required
+      assert_equal true, order.delivery_required?
+      # check the delivery service is null and ensure the order cannot be saved or confirmed
+      assert_equal nil, order.delivery_service
+      assert_raise(ActiveRecord::RecordInvalid) { order.save! }
+      assert_raise(Errors::InappropriateDeliveryService) { order.confirm! }
+      # force the delivery service to an inappropriate service and check it
+      # still cannot be saved or confirmed
+      order.delivery_service = ds
+      assert_equal ds, order.delivery_service
+      assert_raise(ActiveRecord::RecordInvalid) { order.save! }
+      assert_raise(Errors::InappropriateDeliveryService) { order.confirm! }
+      # clear the set delivery service
+      order.delivery_service = nil
+      # check that if a valid service exists, the order can be saved and confirmed
+      ds = create(:delivery_service_with_prices)
+      assert_equal ds, order.delivery_service
+      assert_nothing_raised { order.save! }
+      assert_nothing_raised { order.confirm! }
+    end
+    
+    test "acceptance" do
+      create_environment
+      order = create_order_with_products(:confirmed => true)
+      user = create(:user)
+      assert_nothing_raised { order.accept!(user) }
+      # ensure the order is updated
+      assert_equal 'accepted', order.status
+      assert_equal true, order.accepted?
+      assert_equal true, order.received? # still received?
+      assert_equal true, order.accepted_at.is_a?(Time)
+      assert_equal user, order.accepter
+    end
+    
+    test "rejection" do
+      create_environment
+      order = create_order_with_products(:confirmed => true)
+      user = create(:user)
+      assert_nothing_raised { order.reject!(user) }
+      # ensure the order is rejected
+      assert_equal 'rejected', order.status
+      assert_equal true, order.rejected?
+      assert_equal true, order.received?
+      assert_equal false, order.accepted?
+      assert_equal true, order.rejected_at.is_a?(Time)
+      assert_equal user, order.rejecter
+      # ensure that all stock has been unallocated
+      order.order_items.each do |item|
+        assert_equal 0, item.allocated_stock
+        assert_equal item.quantity, item.unallocated_stock
+      end
+    end
+    
+    test "shipping" do
+      create_environment
+      order = create_order_with_products(:confirmed => true)
+      user = create(:user)
+      # accept the order as we cannot ship with an accepted order
+      assert_nothing_raised { order.accept!(user) }
+      # mark the order as shipped
+      assert_nothing_raised { order.ship!(user, 'ABC123') }
+      # check stuff
+      assert_equal 'shipped', order.status
+      assert_equal true, order.shipped?
+      assert_equal true, order.shipped_at.is_a?(Time)
+      assert_equal user, order.shipper
+      assert_equal 'ABC123', order.consignment_number
+    end
+    
+    test "appropriate delivery services are provided for orders based on their weight" do
+      create_environment
+      # create an empty order
+      order = create(:order)
+      # ensure that no delivery services are needed for an empty order and
+      # that this is acceptable
+      assert_equal [], order.delivery_service_prices
+      assert_equal [], order.available_delivery_services
+      assert_equal nil, order.delivery_service
+      assert_equal true, order.valid_delivery_service?
+      
+      # add a light product to enact the lowest delivery price (0-1)
+      product1 = create(:yealink_headset, :weight => 0.01, :initial_stock => 10)
+      item1 = order.order_items.create!(:quantity => 1, :ordered_item => product1)
+      assert_equal BigDecimal(0.01,8), order.total_weight
+      # check to see what we have, we should have all three of our
+      # delivery services
+      assert_equal 3, order.available_delivery_services.size
+      assert_equal 3, order.delivery_service_prices.size
+      # check the default delivery service has been selected
+      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      # check that the prices for this service are correct
+      assert_equal BigDecimal(5), order.delivery_price
+      assert_equal BigDecimal(2.5,8), order.delivery_cost_price
+      assert_equal BigDecimal(20), order.delivery_tax_rate
+      assert_equal BigDecimal(1), order.delivery_tax_amount
+      
+      # add something a little heavier to get us into the next bracket (1-10)
+      product2 = create(:snom_870, :weight => 1.2, :initial_stock => 10)
+      item2 = order.order_items.create!(:quantity => 1, :ordered_item => product2)
+      assert_equal BigDecimal(1.21,8), order.total_weight
+      # check that the lowest service has vanished leaving us with sat & nD
+      assert_equal 2, order.available_delivery_services.size
+      assert_equal 2, order.delivery_service_prices.size
+      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal BigDecimal(8), order.delivery_price
+      assert_equal BigDecimal(4), order.delivery_cost_price
+      assert_equal BigDecimal(20), order.delivery_tax_rate
+      assert_equal BigDecimal(1.6,8), order.delivery_tax_amount
+
+      # finally, we want to end up in the final bracket
+      product3 = create(:yealink_t22p, :weight => 2.0, :initial_stock => 10)
+      item2 = order.order_items.create!(:quantity => 10, :ordered_item => product3)
+      assert_equal BigDecimal(21.21,8), order.total_weight
+      # check that the lowest service has vanished leaving us with sat & nD
+      assert_equal 2, order.available_delivery_services.size
+      assert_equal 2, order.delivery_service_prices.size
+      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal BigDecimal(12), order.delivery_price
+      assert_equal BigDecimal(6), order.delivery_cost_price
+      assert_equal BigDecimal(20), order.delivery_tax_rate
+      assert_equal BigDecimal(2.4,8), order.delivery_tax_amount
     end
     
   end
