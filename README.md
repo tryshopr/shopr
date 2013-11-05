@@ -8,6 +8,8 @@ finalised and functionality & features may change without notice. I do not recom
 using Shoppe for any production sites yet. I'm hoping to release a v1.0 version in the 
 very near future which will have a stable API.**
 
+![Build Status](https://travis-ci.org/tryshoppe/core.png?branch=master) ![GemVersion](https://badge.fury.io/rb/shoppe.png)
+
 In the meantime, why not:
 
 * [Check out the website](http://tryshoppe.com)
