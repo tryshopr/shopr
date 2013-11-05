@@ -4,6 +4,6 @@ rvm:
   - 2.0.0
 before_script:
   - cp test/app/config/database.travis.yml test/app/config/database.yml
-script:
   - RAILS_ENV=test bundle exec rake db:create db:schema:load
+script:
   - RAILS_ENV=test bundle exec rake test
