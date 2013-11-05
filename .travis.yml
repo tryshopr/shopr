@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 1.9.3
+before_script:
+  - cp test/app/config/database.travis.yml test/app/config/database.yml
+  - mysql -e 'create database shoppe_test'
+script:
+  - RAILS_ENV=test bundle exec rake db:create db:schema:load
+  - RAILS_ENV=test bundle exec rake test
