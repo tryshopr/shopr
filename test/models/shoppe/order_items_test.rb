@@ -4,6 +4,7 @@ module Shoppe
   class OrderItemsTest < ActiveSupport::TestCase
     
     setup do
+      create_environment
       @order = create(:order)
       @product = create(:yealink_t22p, :weight => 0.5, :initial_stock => 10)
       @item = @order.order_items.create!(:quantity => 2, :ordered_item => @product)
@@ -80,6 +81,20 @@ module Shoppe
       assert_equal 1, item.unallocated_stock
       assert_equal true, item.in_stock?
       assert_equal false, item.validate_stock_levels
+    end
+    
+    test "that stock allocatioins cannot be changed once shipped" do
+      # mark order as shipped
+      user = create(:user)
+      assert @order.confirm!
+      assert @order.accept!(user)
+      assert @order.ship!(user, '123456')
+      # check that the object cannot be saved
+      @order.reload
+      item = @order.order_items.first
+      item.quantity = 3
+      assert_equal false, item.save
+      assert_equal false, item.errors[:quantity].empty?
     end
     
   end

@@ -17,9 +17,16 @@ module Shoppe
     # Validations
     validates :quantity, :numericality => true
     validates :ordered_item, :presence => true
+    
     validate do
       unless in_stock?
         errors.add :quantity, "is too high for the quantity in stock"
+      end
+    end
+    
+    validate do
+      if order.shipped? && quantity_changed?
+        errors.add :quantity, "cannot be changed once order is shipped"
       end
     end
     
