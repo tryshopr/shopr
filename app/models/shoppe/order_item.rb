@@ -25,7 +25,7 @@ module Shoppe
     end
     
     validate do
-      if order.shipped? && quantity_changed?
+      if order && order.shipped? && quantity_changed?
         errors.add :quantity, "cannot be changed once order is shipped"
       end
     end
