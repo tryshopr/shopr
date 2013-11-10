@@ -24,16 +24,17 @@ module Shoppe
       end
     end
     
-    validate do
-      if order && order.shipped? && quantity_changed?
-        errors.add :quantity, "cannot be changed once order is shipped"
-      end
-    end
-    
     # Before saving an order item which belongs to a received order, cache the pricing again if appropriate.
     before_save do
       if order.received? && (unit_price_changed? || unit_cost_price_changed? || tax_rate_changed? || tax_amount_changed?)
         cache_pricing
+      end
+    end
+    
+    # After saving, if the order has been shipped, reallocate stock appropriate
+    after_save do
+      if order.shipped?
+        allocate_unallocated_stock!
       end
     end
       
@@ -178,9 +179,7 @@ module Shoppe
     # of the monetary items and allocating stock as appropriate.
     def confirm!
       cache_pricing!
-      if self.ordered_item.stock_control?
-        self.ordered_item.stock_level_adjustments.create(:parent => self, :adjustment => 0 - self.quantity, :description => "Order ##{self.order.number} deduction")
-      end
+      allocate_unallocated_stock!
     end
   
     # Trigger when the associated order is accepted
@@ -227,6 +226,13 @@ module Shoppe
         self.quantity = self.ordered_item.stock
         self.quantity == 0 ? self.destroy : self.save!
         self
+      end
+    end
+    
+    # Allocate any unallocated stock for this order item. There is no return value.
+    def allocate_unallocated_stock!
+      if self.ordered_item.stock_control? && self.unallocated_stock != 0
+        self.ordered_item.stock_level_adjustments.create!(:parent => self, :adjustment => 0 - self.unallocated_stock, :description => "Order ##{self.order.number}")
       end
     end
   

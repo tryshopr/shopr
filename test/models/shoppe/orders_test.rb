@@ -246,6 +246,9 @@ module Shoppe
         assert_equal item.quantity, 0 - item.stock_level_adjustments.sum(:adjustment)
         assert_equal true, item.in_stock?
       end
+      # ensure that the stock has been updated for the products
+      assert_equal 8, Product.find_by_sku('YT22P').stock
+      assert_equal 9, Product.find_by_sku('SN870').stock
     end
     
     test "confirmation fails when there isn't enough stock to complete the order (and removes item without stock)" do

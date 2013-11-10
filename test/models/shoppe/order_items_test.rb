@@ -83,18 +83,42 @@ module Shoppe
       assert_equal false, item.validate_stock_levels
     end
     
-    test "that stock allocatioins cannot be changed once shipped" do
-      # mark order as shipped
+    #test "that stock allocatioins cannot be changed once shipped" do
+    #  # mark order as shipped
+    #  user = create(:user)
+    #  assert @order.confirm!
+    #  assert @order.accept!(user)
+    #  assert @order.ship!(user, '123456')
+    #  # check that the object cannot be saved
+    #  @order.reload
+    #  item = @order.order_items.first
+    #  item.quantity = 3
+    #  assert_equal false, item.save
+    #  assert_equal false, item.errors[:quantity].empty?
+    #end
+    
+    test "that changes to a order items quantity after order confirmation updates stock allocation" do
+      # get a user to mark the order as shipped
       user = create(:user)
       assert @order.confirm!
       assert @order.accept!(user)
       assert @order.ship!(user, '123456')
-      # check that the object cannot be saved
-      @order.reload
+      assert @order.reload
+      
+      # the item we're going to use to test with
       item = @order.order_items.first
-      item.quantity = 3
-      assert_equal false, item.save
-      assert_equal false, item.errors[:quantity].empty?
+
+      # check that the initial stock has been allocated so we have a good
+      # starting point
+      assert_equal 8, item.ordered_item.stock
+      # increase the number of items on the item
+      item.quantity = 4
+      assert item.save!
+      assert_equal 6, item.ordered_item.stock
+      # decrease the number of items on the item
+      item.quantity = 1
+      assert item.save!
+      assert_equal 9,  item.ordered_item.stock
     end
     
   end
