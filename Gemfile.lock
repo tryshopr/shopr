@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     shoppe (0.0.20)
-      bcrypt-ruby (~> 3.1.0)
+      bcrypt-ruby (~> 3.1.2)
       coffee-rails (~> 4.0.0)
       dynamic_form (~> 1.1.4)
       haml (~> 4.0.3)
@@ -12,7 +12,7 @@ PATH
       nifty-dialog (~> 1.0.0)
       nifty-key-value-store (~> 1.0.0)
       nifty-utils (~> 1.0.0)
-      rails (~> 4.0.0)
+      rails (~> 4.0.1)
       ransack (~> 1.0.0)
       sass-rails (~> 4.0.0)
       uglifier (>= 2.2.0)
