@@ -6,6 +6,10 @@ This document outlines key changes which are introduced in each version. The ful
 
 * Add an admin-side order form for adding new orders and editing existing orders
 
+* Adds `Shoppe::NavigationManager` which is used for managing sets of navigation within
+  the Shoppe interface. This allows module developers to add their own when appropriate
+  without needing to hack it into the view.
+
 ## v0.0.19
 
 * Only check that a delivery service is suitable if one has actually been selected. Ensures that

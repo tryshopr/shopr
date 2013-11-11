@@ -28,13 +28,16 @@ module Shoppe
         config.paths["db/migrate"].expanded.each do |expanded_path|
           app.config.paths["db/migrate"] << expanded_path
         end
-      end
+      end      
       
       # Load view helpers for the base application
       ActiveSupport.on_load(:action_view) do
         require 'shoppe/view_helpers'
         ActionView::Base.send :include, Shoppe::ViewHelpers
       end
+      
+      # Load default navigation
+      require 'shoppe/default_navigation'
     end
     
     generators do
@@ -43,3 +46,4 @@ module Shoppe
     
   end
 end
+

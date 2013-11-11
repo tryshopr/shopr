@@ -1,6 +1,16 @@
 en:
   shoppe:
     
+    navigation:
+      admin_primary:
+        orders: Orders
+        products: Products
+        product_categories: Product Categories
+        delivery_services: Delivery Services
+        tax_rates: Tax Rates
+        users: Users
+        countries: Countries
+        
     settings:
       
       types:
