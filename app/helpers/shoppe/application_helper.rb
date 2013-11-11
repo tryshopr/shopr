@@ -2,7 +2,7 @@ module Shoppe
   module ApplicationHelper
     
     def navigation_manager_link(item)
-      link_to item.description, item.url, item.link_options.merge(:class => item.active?(self) ? 'active' : 'inactive')
+      link_to item.description, item.url(self), item.link_options.merge(:class => item.active?(self) ? 'active' : 'inactive')
     end
   
     def status_tag(status)

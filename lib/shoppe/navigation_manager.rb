@@ -58,13 +58,15 @@ module Shoppe
         I18n.translate("shoppe.navigation.#{manager.identifier}.#{identifier}")
       end
       
-      def url
-        @url || Shoppe::Engine.routes.url_helpers.send("#{identifier}_path")
+      def url(request = nil)
+        (@url.is_a?(Proc) && request && request.instance_eval(&@url) ) ||
+        @url ||
+        Shoppe::Engine.routes.url_helpers.send("#{identifier}_path")
       end
       
       def active?(request)
         if active_if.is_a?(Proc)
-          active_if.call(request) == true
+          request.instance_eval(&active_if) == true
         elsif active_nav_var = request.instance_variable_get('@active_nav')
           active_nav_var.to_s == identifier
         end
