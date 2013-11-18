@@ -8,12 +8,18 @@
     - if @order.accepted?
       %li.accepted
         %h4 Order Accepted
-        %p on #{@order.accepted_at.to_s(:short)} by #{@order.accepter.try(:short_name) || 'Unknown'}
+        %p
+          on #{@order.accepted_at.to_s(:short)}
+          - if @order.accepter
+            by #{@order.accepter.short_name}
         
     - elsif @order.rejected?
       %li.rejected
         %h4 Order rejected
-        %p on #{@order.rejected_at.to_s(:short)} by #{@order.rejecter.try(:short_name) || 'Unknown'}
+        %p
+          on #{@order.rejected_at.to_s(:short)}
+          - if order.rejecter
+            by #{@order.rejecter.short_name}
 
     - if @order.shipped?
       %li.shipped

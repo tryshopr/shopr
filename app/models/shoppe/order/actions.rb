@@ -51,11 +51,11 @@ module Shoppe
     # Mark order as accepted
     #
     # @param user [Shoppe::User] the user who carried out this action    
-    def accept!(user)
+    def accept!(user = nil)
       transaction do
         run_callbacks :acceptance do
           self.accepted_at = Time.now
-          self.accepted_by = user.id
+          self.accepter = user if user
           self.status = 'accepted'
           self.save!
           self.order_items.each(&:accept!)
@@ -67,11 +67,11 @@ module Shoppe
     # Mark order as rejected
     #
     # @param user [Shoppe::User] the user who carried out the action
-    def reject!(user)
+    def reject!(user = nil)
       transaction do
         run_callbacks :rejection do
           self.rejected_at = Time.now
-          self.rejected_by = user.id
+          self.rejecter = user if user
           self.status = 'rejected'
           self.save!
           self.order_items.each(&:reject!)
