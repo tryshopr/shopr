@@ -82,7 +82,7 @@ module Shoppe
     #
     # @return [Boolean]
     def in_stock?
-      self.default_variant ? self.default_variant.in_stock? : stock > 0
+      self.default_variant ? self.default_variant.in_stock? : (stock_control? ? stock > 0 : true)
     end
   
     # Return the total number of items currently in stock
