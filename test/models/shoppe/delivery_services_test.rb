@@ -9,7 +9,7 @@ module Shoppe
       order = create_order_with_products(:confirmed => true)
       user = create(:user)
       order.accept!(user)
-      order.ship!(user, 'ABC123')
+      order.ship!('ABC123', user)
       assert_equal "http://sometrackingsite.com/ABC123/BH15+1NX/BH15+1NX", order.delivery_service.tracking_url_for(order)
     end
     

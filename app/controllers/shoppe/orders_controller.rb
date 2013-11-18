@@ -64,7 +64,7 @@ module Shoppe
     end
   
     def ship
-      @order.ship!(current_user, params[:consignment_number])
+      @order.ship!(params[:consignment_number], current_user)
       redirect_to @order, :notice => "Order has been shipped successfully"
     end
   

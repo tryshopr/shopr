@@ -102,7 +102,7 @@ module Shoppe
       user = create(:user)
       assert @order.confirm!
       assert @order.accept!(user)
-      assert @order.ship!(user, '123456')
+      assert @order.ship!('123456', user)
       assert @order.reload
       
       # the item we're going to use to test with

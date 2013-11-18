@@ -345,7 +345,7 @@ module Shoppe
       # accept the order as we cannot ship with an accepted order
       assert_nothing_raised { order.accept!(user) }
       # mark the order as shipped
-      assert_nothing_raised { order.ship!(user, 'ABC123') }
+      assert_nothing_raised { order.ship!('ABC123', user) }
       # check stuff
       assert_equal 'shipped', order.status
       assert_equal true, order.shipped?

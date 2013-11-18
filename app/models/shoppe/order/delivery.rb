@@ -217,10 +217,10 @@ module Shoppe
     end
     
     # Mark this order as shipped
-    def ship!(user, consignment_number)
+    def ship!(consignment_number, user = nil)
       run_callbacks :ship do
         self.shipped_at = Time.now
-        self.shipped_by = user.id
+        self.shipper = user if user
         self.status = 'shipped'
         self.consignment_number = consignment_number
         self.save!
