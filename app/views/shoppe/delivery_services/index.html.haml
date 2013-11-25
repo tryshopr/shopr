@@ -23,6 +23,6 @@
             %td= link_to delivery_service.name, [:edit, delivery_service]
             %td= link_to "Set Prices", [delivery_service, :delivery_service_prices]
             %td= delivery_service.courier
-            %td= boolean_tag :active
-            %td= boolean_tag :default
+            %td= boolean_tag delivery_service.active?
+            %td= boolean_tag delivery_service.default?
           
