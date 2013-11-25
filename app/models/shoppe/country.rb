@@ -18,7 +18,7 @@ module Shoppe
     has_many :delivered_orders, :dependent => :restrict_with_exception, :class_name => 'Shoppe::Order', :foreign_key => 'delivery_country_id'
     
     # All countries ordered by their name asending
-    scope :ordered, -> { order('shoppe_countries.name asc') }
+    scope :ordered, -> { order(:name => :asc) }
     
     # Validations
     validates :name, :presence => true

@@ -20,7 +20,7 @@ module Shoppe
     validates :max_weight, :numericality => true
   
     # All prices ordered by their price ascending
-    scope :ordered, -> { order('price asc')}
+    scope :ordered, -> { order(:price => :asc) }
     
     # All prices which are suitable for the weight passed.
     #

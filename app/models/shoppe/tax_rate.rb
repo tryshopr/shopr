@@ -20,7 +20,7 @@ module Shoppe
     has_many :delivery_service_prices, :dependent => :restrict_with_exception, :class_name => 'Shoppe::DeliveryServicePrice'
     
     # All tax rates ordered by their ID
-    scope :ordered, -> { order("shoppe_tax_rates.id")}
+    scope :ordered, -> { order(:id)}
     
     # Set the address type if appropriate
     before_validation { self.address_type = ADDRESS_TYPES.first if self.address_type.blank? }

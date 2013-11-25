@@ -13,7 +13,7 @@ module Shoppe
     validate { errors.add(:adjustment, "must be greater or less than zero") if adjustment == 0 }
     
     # All stock level adjustments ordered by their created date desending
-    scope :ordered, -> { order('id desc') }
+    scope :ordered, -> { order(:id => :desc) }
     
   end
 end

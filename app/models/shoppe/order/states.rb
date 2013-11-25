@@ -27,7 +27,7 @@ module Shoppe
     scope :pending, -> { where(:status => 'received') }
     
     # All ordered ordered by their ID desending
-    scope :ordered, -> { order('id desc')}
+    scope :ordered, -> { order(:id => :desc)}
     
     # Is this order still being built by the user?
     #
