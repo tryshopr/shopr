@@ -20,7 +20,7 @@ In the meantime, why not:
 
 ## Features
 
-* An attractive & easy to use admin interface with intergrated authentication
+* An attractive & easy to use admin interface with integrated authentication
 * Full product/catalogue management
 * Stock control
 * Tax management
