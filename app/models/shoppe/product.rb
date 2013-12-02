@@ -53,7 +53,7 @@ module Shoppe
     scope :featured, -> {where(:featured => true)}
     
     # All products ordered with default items first followed by name ascending
-    scope :ordered, -> {order('`default` desc, name asc')}
+    scope :ordered, -> {order(:default => :desc, :name => :asc)}
         
     # Return the name of the product
     #
