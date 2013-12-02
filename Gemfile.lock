@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shoppe (0.0.20)
+    shoppe (0.0.21)
       bcrypt-ruby (~> 3.1.2)
       coffee-rails (~> 4.0.0)
       dynamic_form (~> 1.1.4)
@@ -63,7 +63,7 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
-    haml (4.0.3)
+    haml (4.0.4)
       tilt
     hike (1.2.3)
     i18n (0.6.5)
@@ -83,7 +83,7 @@ GEM
       kramdown (>= 1.0.2)
       props (>= 1.0.0)
       textutils (>= 0.6.4)
-    mime-types (1.25)
+    mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.2)
     mysql2 (0.3.13)
@@ -121,7 +121,7 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    sprockets (2.10.0)
+    sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -141,7 +141,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uglifier (2.3.0)
+    uglifier (2.3.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     yard (0.8.7.2)
