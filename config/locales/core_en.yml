@@ -1,7 +1,16 @@
 en:
   shoppe:
+    customer: Customer
     logged: Logged in as
     goto_store: Goto
+    new_order: New Order
+    number: Number
+    search_orders: Search Orders
+    status: Status
+    total: Total
+    no_orders: No orders to display
+    payment: Payment
+    products: Products
     admin_primary:
       orders: Orders
       products: Products
