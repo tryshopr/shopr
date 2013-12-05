@@ -56,9 +56,9 @@ module Shoppe
       end
     end
   
-    def t text , scope = nil
-      scope = "shoppe" unless scope
-      I18n.t( text , :scope => scope)
+    def t text , opts = {}
+      opts[:scope] = "shoppe" unless opts[:scope]
+      I18n.t( text , opts)
     end
   end
 end
