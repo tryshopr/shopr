@@ -1,14 +1,25 @@
 en:
+  helpers: #form stuff
+    label:
+      order:
+        first_name: First name  
   shoppe:
+    back_to_orders: Back to orders
+    billing_address: Billing Address
+    cancel: Cancel
+    create_order: Create Order
     customer: Customer
-    logged: Logged in as
+    first_name: Nimi
     goto_store: Goto
+    logged: Logged in as
     new_order: New Order
     number: Number
     search_orders: Search Orders
     status: Status
     total: Total
     no_orders: No orders to display
+    new_order: New Order
+    ordered_products: Ordered Products
     payment: Payment
     products: Products
     admin_primary:
