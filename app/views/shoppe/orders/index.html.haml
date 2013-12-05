@@ -2,8 +2,8 @@
 
 = content_for :header do
   %p.buttons
-    = link_to t("shoppe.new_order"), :new_order, :class => 'button green'
-    = link_to t("shoppe.search_orders"), '#', :class => 'button', :rel => 'searchOrders'
+    = link_to t(:new_order), :new_order, :class => 'button green'
+    = link_to t(:search_orders), '#', :class => 'button', :rel => 'searchOrders'
   %h2.orders
     Orders
     %span= page_entries_info @orders
@@ -14,16 +14,16 @@
   %table.data
     %thead
       %tr
-        %th= t("shoppe.number")
-        %th= t("shoppe.customer")
-        %th= t("shoppe.status")
-        %th= t("shoppe.products")
-        %th= t("shoppe.total")
-        %th= t("shoppe.payment")
+        %th= t(:number)
+        %th= t(:customer)
+        %th= t(:status)
+        %th= t(:products)
+        %th= t(:total)
+        %th= t(:payment)
     %tbody
       - if @orders.empty?
         %tr.empty
-          %td{:colspan => 6}= t("shoppe.no_orders")
+          %td{:colspan => 6}= t(:no_orders)
       - else
         - for order in @orders
           %tr

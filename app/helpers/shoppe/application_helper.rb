@@ -56,5 +56,9 @@ module Shoppe
       end
     end
   
+    def t text , scope = nil
+      scope = "shoppe" unless scope
+      I18n.t( text , :scope => scope)
+    end
   end
 end
