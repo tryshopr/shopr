@@ -18,7 +18,7 @@
         %h4 Order rejected
         %p
           on #{@order.rejected_at.to_s(:short)}
-          - if order.rejecter
+          - if @order.rejecter
             by #{@order.rejecter.short_name}
 
     - if @order.shipped?
