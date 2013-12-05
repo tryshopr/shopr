@@ -14,7 +14,7 @@
         %h1= link_to "Shoppe", root_path
         %p v#{Shoppe::VERSION}
       %p.logged
-        Logged in as #{current_user.full_name}
+        #{t :logged} #{current_user.full_name}
       %ul
         - for item in Shoppe::NavigationManager.find(:admin_primary).items
           %li= navigation_manager_link item
@@ -40,5 +40,5 @@
         = yield
 
     %footer 
-      %p.store= link_to "&larr; Goto #{Shoppe.settings.store_name}".html_safe, '/'
+      %p.store= link_to "&larr; #{t "shoppe.goto_store"} #{Shoppe.settings.store_name}".html_safe, '/'
       
