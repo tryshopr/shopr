@@ -66,6 +66,8 @@ en:
     is_eu_member: Country is an EU member?
     is_searchable: Searchable?
     is_public: Public?
+    login: Login
+    login_back: Back to login
     logged: Logged in as
     max_weight: Max weight
     min_weight: Min weight
@@ -75,6 +77,7 @@ en:
     on_sale: On sale?
     on_sale_help: "If checked, this product will be displayed within the public store"
     ordered_products: Ordered Products
+    orders: Orders
     orders_back_to: Back to orders
     orders_none: No orders to display
     orders_search: Search Orders
@@ -84,12 +87,13 @@ en:
     order_rejected: Order rejected
     order_received: Order Received
     order_shipped: Order Shipped
+    password: Password
     payment: Payment
     permalink: Permalink
     phone_number: Phone number
     post_code: Post code
-    prices: Prices
     price: Price
+    prices: Prices
     price_new: New price
     price_variants: Price/Variants
     pricing: Pricing
@@ -113,10 +117,13 @@ en:
                   you wish to refund below and click 'Refund'.
                   The maximum you can refund is <b>%{amount}</b>.
     refund_title: Issue Refund
+    reset_link: Reset your password
     remove: Remove
+    save_settings: Save Settings
     separate_delivery_address: Separate delivery address
     service_available: Service will be available for use
     service_default: Service will be used by default (if possible)
+    settings_title: Settings
     set_prices: Set Prices
     sku: SKU
     status: Status
@@ -125,16 +132,20 @@ en:
     stock_control_enable: Enable stock control for this product?
     stock_levels: Stock levels
     stock_none: No stock
+    system_settings: System settings
     tax_rate: Tax rate
+    tax_rates: Tax Rates
     tax_none: No tax
     total: Total
     tracking_url: Tracking URL
     unknown: Unknown
+    users: Users
     variants: Variants
     value: Value
     website_properties: Website Properties
     weight: Weight
     weight_allowance: Weight Allowance
+
     admin_primary:
       orders: Orders
       products: Products
@@ -144,9 +155,17 @@ en:
       users: Users
       countries: Countries
       settings: Settings
-        
+
     settings:
-            
+
+      labels:
+        # Labels for fields go here
+        email_address: Store E-Mail Address
+        store_name: Your Stores name
+        currency_unit: Currency unit
+        tax_name: Tax name
+        demo_mode: Demo mode
+        
       help:
         # Help text for individual fields
         store_name: This is the name of your store which will be used through the Shoppe admin interface as well as in the default outbound e-mail messages.
