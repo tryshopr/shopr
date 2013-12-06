@@ -2,9 +2,12 @@ en:
   shoppe:
     active: Active
     address: Address
+    attributes: Attributes
+    attribute_add: Add attribute
     billing_address: Billing Address
     by_person: "by %{person}"
     cancel: Cancel
+    close: Close
     continent: Continent
     countries: Countries
     countries_all: All countries
@@ -23,6 +26,7 @@ en:
     company: Company
     courier: Courier
     courier_name: Courier Name
+    datasheet: Datasheet
     delete: Delete
     delete_confirm_country: Are you sure you wish to remove this country?
     delivery_address: Deilvery Address
@@ -39,21 +43,31 @@ en:
     delivery_service_help_tracking: Use <code>{{consignment_number}}</code> to insert the consignment number.
     delivery_service_new: New delivery service
     default: Default
+    default_image: Default Image
+    description: Description
+    description_short: Short description
     details: Details
     email_address: Email address
     first_name: First name
     from_ip: "from %{ip}"
     goto_store: Goto
     identification_weight: "Identification & Weight"
+    in_the_box: "What's in the box?"
     is_active: Active?
     is_default: Default?
+    is_featured: Featured?
+    is_featured_help: If checked, this product will appear on your homepage
     is_eu_member: Country is an EU member?
+    is_searchable: Searchable?
+    is_public: Public?
     logged: Logged in as
     max_weight: Max weight
     min_weight: Min weight
     name: Name
     number: Number
     on_date: "on %{date}"
+    on_sale: On sale?
+    on_sale_help: "If checked, this product will be displayed within the public store"
     ordered_products: Ordered Products
     orders_back_to: Back to orders
     orders_none: No orders to display
@@ -65,23 +79,46 @@ en:
     order_received: Order Received
     order_shipped: Order Shipped
     payment: Payment
+    permalink: Permalink
     phone_number: Phone number
     post_code: Post code
     prices: Prices
     price: Price
     price_new: New price
+    price_variants: Price/Variants
     pricing: Pricing
     products: Products
+    products_none: No products to display.
+    products_back: Back to product list
+    product_new: New product
+    product_delete_confirm: Are you sure you wish to remove this product?
+    product_info: Product Information
+    refund: Refund
+    refund_intro: To issue a refund for this payment, just enter the amount
+                  you wish to refund below and click 'Refund'.
+                  The maximum you can refund is <b>%{amount}</b>.
+    refund_title: Issue Refund
+    remove: Remove
     separate_delivery_address: Separate delivery address
     service_available: Service will be available for use
     service_default: Service will be used by default (if possible)
     set_prices: Set Prices
+    sku: SKU
     status: Status
+    stock: Stock
+    stock_control: Stock Control
+    stock_control_enable: Enable stock control for this product?
+    stock_levels: Stock levels
+    stock_none: No stock
     tax_rate: Tax rate
     tax_none: No tax
     total: Total
     tracking_url: Tracking URL
     unknown: Unknown
+    variants: Variants
+    value: Value
+    website_properties: Website Properties
+    weight: Weight
     weight_allowance: Weight Allowance
     admin_primary:
       orders: Orders

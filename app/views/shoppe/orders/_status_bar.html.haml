@@ -19,7 +19,7 @@
         %h4= t(:order_rejected)
         %p
           = t(:on_date , :date => @order.rejected_at.to_s(:short))
-          - if order.rejecter
+          - if @order.rejecter
             = t(:by_person , :person => @order.rejecter.short_name)
 
     - if @order.shipped?
