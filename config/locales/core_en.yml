@@ -9,28 +9,51 @@ en:
         phone_number: Phone number
         separate_delivery_address: Separate delivery address
         delivery_name: Delivery Name
+      country:
+        name: Name  
+        continent: Continent
+
   shoppe:
+    active: Active
     address: Address
+    back_to_countries: Back to countries
+    back_to_delivery_services: Back to delivery services
     back_to_orders: Back to orders
     billing_address: Billing Address
     by_person: "by %{person}"
     cancel: Cancel
+    countries: Countries
+    country_details: Country details
     consignment: Consignment
     create_order: Create Order
     customer: Customer
+    code: Code
     country: Country
+    continent: Continent
+    courier: Courier
+    courier_name: Courier Name
+    delete: Delete
+    delete_confirm_country: Are you sure you wish to remove this country?
     delivery_address: Deilvery Address
+    delivery_pricing: Devilery Pricing
+    delivery_services: Delivery Services
+    delivery_service_delete_confirm: Are you sure you wish to remove this delivery service?  
+    delivery_service_help_tracking: Use <code>{{consignment_number}}</code> to insert the consignment number.
+    details: Details
     first_name: First name
     from_ip: "from %{ip}"
     goto_store: Goto
+    is_active: Active?
+    is_default: Default?
+    is_eu_member: Country is an EU member?
     logged: Logged in as
+    new_country: New country
+    new_delivery_service: New delivery service
     new_order: New Order
-    number: Number
-    search_orders: Search Orders
-    status: Status
-    total: Total
+    name: Name
+    no_delivery_services: No delivery services to display.
     no_orders: No orders to display
-    new_order: New Order
+    number: Number
     order_accepted: Order Accepted
     on_date: "on %{date}"
     order_rejected: Order rejected
@@ -39,8 +62,15 @@ en:
     ordered_products: Ordered Products
     payment: Payment
     post_code: Post code
+    prices: Prices
     products: Products
+    search_orders: Search Orders
     select_country: Select a country
+    service_available: Service will be available for use
+    service_default: Service will be used by default (if possible)
+    set_prices: Set Prices
+    status: Status
+    total: Total
     tracking_url: Tracking URL
     unknown: Unknown
     use_seperate_delivery_address: Use a seperate delivery address?
