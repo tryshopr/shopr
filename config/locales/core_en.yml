@@ -2,6 +2,7 @@ en:
   shoppe:
     active: Active
     address: Address
+    attachments: Attachments
     attributes: Attributes
     attribute_add: Add attribute
     billing_address: Billing Address
@@ -52,6 +53,7 @@ en:
     from_ip: "from %{ip}"
     goto_store: Goto
     identification_weight: "Identification & Weight"
+    image: Image
     in_the_box: "What's in the box?"
     is_active: Active?
     is_default: Default?
@@ -93,6 +95,14 @@ en:
     product_new: New product
     product_delete_confirm: Are you sure you wish to remove this product?
     product_info: Product Information
+    product_categories: Product Categories
+    product_categories_none: No categories to display.
+    product_categories_back: Back to categories list
+    product_category_details: Category Details
+    product_category_delete_confirm: Are you sure you wish to remove this category?
+    product_category_edit: Edit product category
+    product_category: Product category
+    product_category_new: New category
     refund: Refund
     refund_intro: To issue a refund for this payment, just enter the amount
                   you wish to refund below and click 'Refund'.

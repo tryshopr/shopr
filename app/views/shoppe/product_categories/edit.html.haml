@@ -1,6 +1,6 @@
-- @page_title = "Products"
+- @page_title = t(:product_category_edit)
 = content_for :header do
-  %p.buttons= link_to "Back to categories list", :product_categories, :class => 'button'
-  %h2.products Product Categories
+  %p.buttons= link_to t(:product_categories_back), :product_categories, :class => 'button'
+  %h2.products= t(:product_category_edit)
 = render 'form'
  
