@@ -1,18 +1,4 @@
 en:
-  helpers: #form stuff
-    label:
-      order:
-        first_name: First name  
-        last_name: Last name
-        company: Company
-        email_address: Email address
-        phone_number: Phone number
-        separate_delivery_address: Separate delivery address
-        delivery_name: Delivery Name
-      country:
-        name: Name  
-        continent: Continent
-
   shoppe:
     active: Active
     address: Address
@@ -22,6 +8,7 @@ en:
     billing_address: Billing Address
     by_person: "by %{person}"
     cancel: Cancel
+    continent: Continent
     countries: Countries
     country_details: Country details
     consignment: Consignment
@@ -30,16 +17,19 @@ en:
     code: Code
     country: Country
     continent: Continent
+    company: Company
     courier: Courier
     courier_name: Courier Name
     delete: Delete
     delete_confirm_country: Are you sure you wish to remove this country?
     delivery_address: Deilvery Address
+    delivery_name: Delivery Name
     delivery_pricing: Devilery Pricing
     delivery_services: Delivery Services
     delivery_service_delete_confirm: Are you sure you wish to remove this delivery service?  
     delivery_service_help_tracking: Use <code>{{consignment_number}}</code> to insert the consignment number.
     details: Details
+    email_address: Email address
     first_name: First name
     from_ip: "from %{ip}"
     goto_store: Goto
@@ -61,11 +51,13 @@ en:
     order_shipped: Order Shipped
     ordered_products: Ordered Products
     payment: Payment
+    phone_number: Phone number
     post_code: Post code
     prices: Prices
     products: Products
     search_orders: Search Orders
     select_country: Select a country
+    separate_delivery_address: Separate delivery address
     service_available: Service will be available for use
     service_default: Service will be used by default (if possible)
     set_prices: Set Prices
