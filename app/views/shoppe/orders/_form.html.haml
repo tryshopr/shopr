@@ -21,7 +21,7 @@
       %dd= f.text_field :billing_postcode, :class => 'text'
     %dl.half
       %dt= f.label :billing_country_id, t(:country)
-      %dd= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name, {:include_blank => true}, {:data => {:placeholder => t(:select_country)}}
+      %dd= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name, {:include_blank => true}, {:data => {:placeholder => t(:country_select)}}
   
   .splitContainer
     %dl.third
@@ -34,7 +34,7 @@
       %dt= f.label :separate_delivery_address , t(:separate_delivery_address)
       %dd.checkbox
         = f.check_box :separate_delivery_address
-        = f.label :separate_delivery_address, t(:use_seperate_delivery_address)
+        = f.label :separate_delivery_address, t(:delivery_address_use_seperate)
 
 = field_set_tag t(:delivery_address), :class => 'delivery' do
   %dl
@@ -52,4 +52,4 @@
       %dd= f.text_field :delivery_postcode, :class => 'text'
     %dl.half
       %dt= f.label :delivery_country_id, t(:country)
-      %dd= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name, {:include_blank => true}, {:data => {:placeholder => t(:select_country)}}
+      %dd= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name, {:include_blank => true}, {:data => {:placeholder => t(:country_select)}}

@@ -1,7 +1,7 @@
 - @page_title = t(:delivery_services)
 
 = content_for :header do
-  %p.buttons= link_to t(:new_delivery_service), :new_delivery_service, :class => 'button green'
+  %p.buttons= link_to t(:delivery_service_new), :delivery_service_new, :class => 'button green'
   %h2.delivery_services= t(:delivery_services)
   
 .table
@@ -17,7 +17,7 @@
       - if @delivery_services.empty?
         %tr.empty
           %td{:colspan => 5} 
-            = t(:no_delivery_services)
+            = t(:delivery_services_none)
       - else
         - for delivery_service in @delivery_services
           %tr

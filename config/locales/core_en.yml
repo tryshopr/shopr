@@ -2,20 +2,19 @@ en:
   shoppe:
     active: Active
     address: Address
-    back_to_countries: Back to countries
-    back_to_delivery_services: Back to delivery services
-    back_to_orders: Back to orders
     billing_address: Billing Address
     by_person: "by %{person}"
     cancel: Cancel
     continent: Continent
     countries: Countries
+    countries_back_to: Back to countries
+    country: Country
     country_details: Country details
+    country_select: Select a country
+    country_new: New country
     consignment: Consignment
-    create_order: Create Order
     customer: Customer
     code: Code
-    country: Country
     continent: Continent
     company: Company
     courier: Courier
@@ -23,11 +22,15 @@ en:
     delete: Delete
     delete_confirm_country: Are you sure you wish to remove this country?
     delivery_address: Deilvery Address
+    delivery_address_use_seperate: Use a seperate delivery address?
     delivery_name: Delivery Name
     delivery_pricing: Devilery Pricing
     delivery_services: Delivery Services
+    delivery_services_back_to: Back to delivery services
+    delivery_services_none: No delivery services to display.
     delivery_service_delete_confirm: Are you sure you wish to remove this delivery service?  
     delivery_service_help_tracking: Use <code>{{consignment_number}}</code> to insert the consignment number.
+    delivery_service_new: New delivery service
     details: Details
     email_address: Email address
     first_name: First name
@@ -37,26 +40,24 @@ en:
     is_default: Default?
     is_eu_member: Country is an EU member?
     logged: Logged in as
-    new_country: New country
-    new_delivery_service: New delivery service
-    new_order: New Order
     name: Name
-    no_delivery_services: No delivery services to display.
-    no_orders: No orders to display
     number: Number
-    order_accepted: Order Accepted
     on_date: "on %{date}"
+    ordered_products: Ordered Products
+    orders_back_to: Back to orders
+    orders_none: No orders to display
+    orders_search: Search Orders
+    order_accepted: Order Accepted
+    order_create: Create Order
+    order_new: New Order
     order_rejected: Order rejected
     order_received: Order Received
     order_shipped: Order Shipped
-    ordered_products: Ordered Products
     payment: Payment
     phone_number: Phone number
     post_code: Post code
     prices: Prices
     products: Products
-    search_orders: Search Orders
-    select_country: Select a country
     separate_delivery_address: Separate delivery address
     service_available: Service will be available for use
     service_default: Service will be used by default (if possible)
@@ -65,7 +66,6 @@ en:
     total: Total
     tracking_url: Tracking URL
     unknown: Unknown
-    use_seperate_delivery_address: Use a seperate delivery address?
     admin_primary:
       orders: Orders
       products: Products
