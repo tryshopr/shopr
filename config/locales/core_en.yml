@@ -7,7 +7,9 @@ en:
     cancel: Cancel
     continent: Continent
     countries: Countries
+    countries_all: All countries
     countries_back_to: Back to countries
+    countries_select_help: This delivery rate will only be available to orders where the country selected is listed here.
     country: Country
     country_details: Country details
     country_select: Select a country
@@ -15,6 +17,8 @@ en:
     consignment: Consignment
     customer: Customer
     code: Code
+    cost: Cost
+    cost_price: Cost price
     continent: Continent
     company: Company
     courier: Courier
@@ -25,21 +29,28 @@ en:
     delivery_address_use_seperate: Use a seperate delivery address?
     delivery_name: Delivery Name
     delivery_pricing: Devilery Pricing
+    delivery_pricing_back: Back to delivery services
+    delivery_pricing_for: "Delivery Pricing for %{service}"
+    delivery_pricing_delete_confirm: "Are you sure you wish to remove this price?"
     delivery_services: Delivery Services
     delivery_services_back_to: Back to delivery services
     delivery_services_none: No delivery services to display.
     delivery_service_delete_confirm: Are you sure you wish to remove this delivery service?  
     delivery_service_help_tracking: Use <code>{{consignment_number}}</code> to insert the consignment number.
     delivery_service_new: New delivery service
+    default: Default
     details: Details
     email_address: Email address
     first_name: First name
     from_ip: "from %{ip}"
     goto_store: Goto
+    identification_weight: "Identification & Weight"
     is_active: Active?
     is_default: Default?
     is_eu_member: Country is an EU member?
     logged: Logged in as
+    max_weight: Max weight
+    min_weight: Min weight
     name: Name
     number: Number
     on_date: "on %{date}"
@@ -57,15 +68,21 @@ en:
     phone_number: Phone number
     post_code: Post code
     prices: Prices
+    price: Price
+    price_new: New price
+    pricing: Pricing
     products: Products
     separate_delivery_address: Separate delivery address
     service_available: Service will be available for use
     service_default: Service will be used by default (if possible)
     set_prices: Set Prices
     status: Status
+    tax_rate: Tax rate
+    tax_none: No tax
     total: Total
     tracking_url: Tracking URL
     unknown: Unknown
+    weight_allowance: Weight Allowance
     admin_primary:
       orders: Orders
       products: Products
