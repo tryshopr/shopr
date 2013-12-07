@@ -1,6 +1,8 @@
 en:
   shoppe:
     active: Active
+    adjustment: Adjustment
+    add: Add
     address: Address
     attachments: Attachments
     attributes: Attributes
@@ -30,6 +32,7 @@ en:
     courier: Courier
     courier_name: Courier Name
     datasheet: Datasheet
+    date: Date
     delete: Delete
     delete_confirm_country: Are you sure you wish to remove this country?
     delivery_address: Deilvery Address
@@ -54,6 +57,8 @@ en:
     description_short: Short description
     details: Details
     email_address: Email address
+    error: Error
+    error_occurred: An error has occurred
     first_name: First name
     from_ip: "from %{ip}"
     goto_store: Goto
@@ -62,6 +67,8 @@ en:
     in_the_box: "What's in the box?"
     is_active: Active?
     is_default: Default?
+    is_default_variant: Default variant?
+    is_default_variant_help: If checked, this variant will be the default
     is_featured: Featured?
     is_featured_help: If checked, this product will appear on your homepage
     is_eu_member: Country is an EU member?
@@ -71,6 +78,7 @@ en:
     login: Login
     login_back: Back to login
     logged: Logged in as
+    logout: Logout
     max_weight: Max weight
     min_weight: Min weight
     name: Name
@@ -130,12 +138,15 @@ en:
     service_default: Service will be used by default (if possible)
     settings_title: Settings
     set_prices: Set Prices
+    shoppe_back: Back to Shoppe
     sku: SKU
     status: Status
     stock: Stock
+    stock_current: Current stock level is
     stock_control: Stock Control
     stock_control_enable: Enable stock control for this product?
     stock_levels: Stock levels
+    stock_levels_for: Stock levels %{item}
     stock_none: No stock
     system_settings: System settings
     tax_rate: Tax rate
@@ -160,6 +171,12 @@ en:
     user_edit: Edit user
     user_new: New User
     variants: Variants
+    variants_back: Back to variants
+    variants_of: Variants of %{product}
+    variant_delete_confirm: Are you sure you wish to remove this variant?
+    variant_of: Variant of %{product}
+    variant_new: New variant
+    variant_save: Save Variant
     value: Value
     website_properties: Website Properties
     weight: Weight

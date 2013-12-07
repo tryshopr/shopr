@@ -29,7 +29,7 @@
         -#%li= link_to "Users", [:users], :class => @active_nav == :users ? 'active' : ''
         -#%li= link_to "Countries", :countries, :class => @active_nav == :countries ? 'active' : ''
         -#%li= link_to "Settings", :settings, :class => @active_nav == :settings ? 'active' : ''
-        %li= link_to "Logout", [:logout], :method => :delete
+        %li= link_to t(:logout), [:logout], :method => :delete
     
     %header.main
       = yield :header
