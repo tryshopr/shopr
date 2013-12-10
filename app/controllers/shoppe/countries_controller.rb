@@ -15,7 +15,7 @@ module Shoppe
     def create
       @country = Shoppe::Country.new(safe_params)
       if @country.save
-        redirect_to :countries, :flash => {:notice => "Country has been created successfully"}
+        redirect_to :countries, :flash => {:notice => confirm_added(:country)}
       else
         render :action => "new"
       end
@@ -26,7 +26,7 @@ module Shoppe
   
     def update
       if @country.update(safe_params)
-        redirect_to [:edit, @country], :flash => {:notice => "Country has been updated successfully"}
+        redirect_to [:edit, @country], :flash => {:notice => confirm_updated(:country)}
       else
         render :action => "edit"
       end
@@ -34,7 +34,7 @@ module Shoppe
   
     def destroy
       @country.destroy
-      redirect_to :countries, :flash => {:notice => "Country has been removed successfully"}
+      redirect_to :countries, :flash => {:notice => confirm_removed(:country) }
     end
   
     private

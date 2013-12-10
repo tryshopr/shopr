@@ -3,6 +3,7 @@ en:
     active: Active
     adjustment: Adjustment
     add: Add
+    added_it: "%{it} has been added successfully"  
     address: Address
     attachments: Attachments
     attributes: Attributes
@@ -10,6 +11,7 @@ en:
     billing_address: Billing Address
     by_person: "by %{person}"
     cancel: Cancel
+    category: Category
     close: Close
     continent: Continent
     countries: Countries
@@ -47,6 +49,7 @@ en:
     delivery_services: Delivery Services
     delivery_services_back: Back to delivery services
     delivery_services_none: No delivery services to display.
+    delivery_service: Delivery Service
     delivery_service_delete_confirm: Are you sure you wish to remove this delivery service?  
     delivery_service_edit: Edit delivery service
     delivery_service_help_tracking: Use <code>{{consignment_number}}</code> to insert the consignment number.
@@ -57,6 +60,8 @@ en:
     description_short: Short description
     details: Details
     email_address: Email address
+    email_password_wrong: The email address and/or password you have entered is invalid. Please check and try again.
+    email_sent_to: An e-mail has been sent to %{to} with a new password
     error: Error
     error_occurred: An error has occurred
     first_name: First name
@@ -83,6 +88,7 @@ en:
     min_weight: Min weight
     name: Name
     note: Note
+    no_such_email: No user was found matching the e-mail address
     number: Number
     on_date: "on %{date}"
     on_sale: On sale?
@@ -112,6 +118,7 @@ en:
     products: Products
     products_none: No products to display.
     products_back: Back to product list
+    product: Product
     product_new: New product
     product_edit: Edit product
     product_delete_confirm: Are you sure you wish to remove this product?
@@ -130,13 +137,16 @@ en:
                   you wish to refund below and click 'Refund'.
                   The maximum you can refund is <b>%{amount}</b>.
     refund_title: Issue Refund
+    refund_ok: Refund has been processed successfully.
     reset_link: Reset your password
     remove: Remove
+    removed_it: "%{it} has been removed successfully"  
     save_settings: Save Settings
     separate_delivery_address: Separate delivery address
     service_available: Service will be available for use
     service_default: Service will be used by default (if possible)
     settings_title: Settings
+    settings_not_in_demo: You cannot make changes to settings in demo mode. Sorry about that.
     set_prices: Set Prices
     shoppe_back: Back to Shoppe
     sku: SKU
@@ -164,12 +174,16 @@ en:
     total: Total
     tracking_url: Tracking URL
     unknown: Unknown
+    updated_it: "%{it} has been updated successfully"  
     users: Users
     users_back: Back to users
     user_delete_confirm: Are you sure you wish to remove this user?
     user_details: User Details
+    user: User
     user_edit: Edit user
     user_new: New User
+    user_not_in_demo: You cannot make changes to users in demo mode. Sorry about that.
+    user_not_yourself: You cannot remove yourself
     variants: Variants
     variants_back: Back to variants
     variants_of: Variants of %{product}

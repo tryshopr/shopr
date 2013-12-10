@@ -60,5 +60,6 @@ module Shoppe
       opts[:scope] = "shoppe" unless opts[:scope]
       I18n.t( text , opts)
     end
+    
   end
 end

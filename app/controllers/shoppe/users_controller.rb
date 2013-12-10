@@ -5,7 +5,7 @@ module Shoppe
     before_filter { params[:id] && @user = Shoppe::User.find(params[:id]) }
     before_filter(:only => [:create, :update, :destroy]) do
       if Shoppe.settings.demo_mode?
-        raise Shoppe::Error, "You cannot make changes to users in demo mode. Sorry about that."
+        raise Shoppe::Error, I18n.t(:user_not_in_demo)
       end
     end
   
@@ -20,7 +20,7 @@ module Shoppe
     def create
       @user = Shoppe::User.new(safe_params)
       if @user.save
-        redirect_to :users, :flash => {:notice => "User has been created successfully"}
+        redirect_to :users, :flash => {:notice => confirm_added(:user) }
       else
         render :action => "new"
       end
@@ -31,16 +31,16 @@ module Shoppe
   
     def update
       if @user.update(safe_params)
-        redirect_to [:edit, @user], :flash => {:notice => "User has been updated successfully"}
+        redirect_to [:edit, @user], :flash => {:notice => confirm_updated(:user)}
       else
         render :action => "edit"
       end
     end
   
     def destroy
-      raise Shoppe::Error, "You cannot remove yourself" if @user == current_user
+      raise Shoppe::Error, I18n.t("shoppe.user_not_yourself") if @user == current_user
       @user.destroy
-      redirect_to :users, :flash => {:notice => "User has been removed successfully"}
+      redirect_to :users, :flash => {:notice => confirm_removed(:user)}
     end
   
     private
