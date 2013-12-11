@@ -58,6 +58,7 @@ en:
     default_image: Default Image
     description: Description
     description_short: Short description
+    despatch_note: Despatch Note
     details: Details
     email_address: Email address
     email_password_wrong: The email address and/or password you have entered is invalid. Please check and try again.
@@ -78,6 +79,7 @@ en:
     is_featured_help: If checked, this product will appear on your homepage
     is_eu_member: Country is an EU member?
     is_searchable: Searchable?
+    is_packed: Packed?
     is_public: Public?
     last_name: Last name
     login: Login
@@ -101,9 +103,13 @@ en:
     order_accepted: Order Accepted
     order_create: Create Order
     order_new: New Order
+    order_number: Order number
+    order_placed: Ordered on
     order_rejected: Order rejected
     order_received: Order Received
     order_shipped: Order Shipped
+    order_thanks: Thank you for your order!
+    order_with_number: Order %{number}
     password: Password
     password_confirmation: ... and again
     payment: Payment
@@ -131,6 +137,7 @@ en:
     product_category_edit: Edit product category
     product_category: Product category
     product_category_new: New category
+    quantity: Quantity
     rate: Rate
     refund: Refund
     refund_intro: To issue a refund for this payment, just enter the amount
@@ -171,7 +178,9 @@ en:
     tax_rates: Tax Rates
     tax_rates_back: Back to tax rates
     tax_none: No tax
+    telephone: Telephone
     total: Total
+    total_weight: Total weight
     tracking_url: Tracking URL
     unknown: Unknown
     updated_it: "%{it} has been updated successfully"  
