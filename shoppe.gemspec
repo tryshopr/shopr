@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
   s.description = "A full Rails engine providing e-commerce functionality for any Rails 4 application."
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.0.1"
   s.add_dependency "bcrypt-ruby", "~> 3.1.2"
