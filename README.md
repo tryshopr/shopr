@@ -5,8 +5,6 @@ catalogue-based store into your Rails 4 applications.
 
 ![Build Status](https://travis-ci.org/tryshoppe/core.png?branch=master) ![GemVersion](https://badge.fury.io/rb/shoppe.png)
 
-In the meantime, why not:
-
 * [Check out the website](http://tryshoppe.com)
 * [View the demo site](http://demo.tryshoppe.com)
 * [Check out the demo site source](http://github.com/tryshoppe/example-store)
