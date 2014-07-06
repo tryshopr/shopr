@@ -15,7 +15,7 @@ module Shoppe
     scope :searchable, -> { where(:searchable => true) }
     
     # All attributes which are public
-    scope :public, -> { where(:public => true) }
+    scope :publicly_accessible, -> { where(:public => true) }
   
     # Return the the available options as a hash
     #
@@ -55,6 +55,11 @@ module Shoppe
       end
       self.where(:key => existing_keys - array.map { |h| h['key']}).delete_all
       true
+    end
+    
+    def self.public
+      ActiveSupport::Deprecation.warn("The use of Shoppe::ProductAttribute.public is deprecated. use Shoppe::ProductAttribute.publicly_accessible.")
+      self.publicly_accessible
     end
   
   end

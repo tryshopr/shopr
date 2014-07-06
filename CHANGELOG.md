@@ -2,6 +2,14 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v1.0.0
+
+* Updates to the Gemfile to support Rails 4.1.
+
+* Fixes issues with local jump errors in ActiveRecord blocks
+
+* Renames the `public` scope on `Shoppe::ProductAttribute` to `publicly_accessible` and add deprecation warning for public.
+
 ## v0.0.20
 
 * Add an admin-side order form for adding new orders and editing existing orders
