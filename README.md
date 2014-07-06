@@ -34,13 +34,18 @@ instructions below and you'll be up and running in minutes.
 
     rails new my_store
     cd my_store
-    echo "gem 'shoppe'" >> Gemfile
+    echo "gem 'shoppe' '~> 1.0.0'" >> Gemfile
     bundle
     rails generate shoppe:setup
     rails generate nifty:attachments:migration
     rails generate nifty:key_value_store:migration
     rake db:migrate shoppe:setup
     rails server
+
+## Contribution
+
+If you'd like to help with this project, please get in touch with me. The best place is on
+Twitter (@adamcooke) or by e-mail to adam@atechmedia.com.
 
 ## License
 
