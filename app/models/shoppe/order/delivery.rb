@@ -33,10 +33,7 @@ module Shoppe
       if self.delivery_required?
         if self.delivery_service.nil?
           errors.add :delivery_service_id, "must be specified"
-          return
-        end
-        
-        unless self.valid_delivery_service?
+        elsif !self.valid_delivery_service?
           errors.add :delivery_service_id, "is not suitable for this order"
         end
       end
