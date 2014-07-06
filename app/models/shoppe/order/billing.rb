@@ -41,13 +41,19 @@ module Shoppe
     def profit
       total_before_tax - total_cost
     end
+    
+    # The total price of all items in the basket excluding delivery
+    #
+    # @return [BigDecimal]
+    def items_sub_total
+      order_items.inject(BigDecimal(0)) { |t, i| t + i.sub_total }
+    end
   
     # The total price of the order before tax
     #
     # @return [BigDecimal]
     def total_before_tax
-      self.delivery_price +
-      order_items.inject(BigDecimal(0)) { |t, i| t + i.sub_total }
+      self.delivery_price + self.items_sub_total
     end
   
     # The total amount of tax due on this order

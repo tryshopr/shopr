@@ -91,7 +91,7 @@ module Shoppe
       assert_equal nil, item1.read_attribute(:tax_rate)
       
       # check the order's totals are looking OK
-      assert_equal BigDecimal(200), order.total_before_tax
+      assert_equal BigDecimal(200), order.items_sub_total
       assert_equal BigDecimal(40), order.tax
       assert_equal BigDecimal(240), order.total
       
@@ -115,7 +115,7 @@ module Shoppe
       assert_equal 3, order.total_items
       
       # check order totals again
-      assert_equal BigDecimal(450), order.total_before_tax
+      assert_equal BigDecimal(450), order.items_sub_total
       assert_equal BigDecimal(90), order.tax
       assert_equal BigDecimal(540), order.total
     end
@@ -152,6 +152,10 @@ module Shoppe
       assert_equal BigDecimal(4), order.delivery_cost_price
       assert_equal BigDecimal(1.6,8), order.delivery_tax_amount
       assert_equal BigDecimal(20), order.delivery_tax_rate
+      # check that the `items_sub_total` method returns the total price before tax minus
+      # any delivery
+      assert_equal order.total_before_tax - order.delivery_price, order.items_sub_total
+      
       # ensure this information is not persisted, before confirmation that'd be
       # a pain in everyone's arse.
       assert_equal nil, order.read_attribute(:delivery_price)
