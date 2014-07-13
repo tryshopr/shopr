@@ -34,7 +34,7 @@ instructions below and you'll be up and running in minutes.
 
     rails new my_store
     cd my_store
-    echo "gem 'shoppe' '~> 1.0'" >> Gemfile
+    echo "gem 'shoppe', '~> 1.0'" >> Gemfile
     bundle
     rails generate shoppe:setup
     rails generate nifty:attachments:migration
