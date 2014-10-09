@@ -1,37 +1,38 @@
 = form_for @delivery_service do |f|
   = f.error_messages
-  = field_set_tag "Details" do
+  = field_set_tag t('shoppe.delivery_services.details') do
     .splitContainer
       %dl.half
-        %dt= f.label :name
+        %dt= f.label :name, t('shoppe.delivery_services.name')
         %dd= f.text_field :name, :class => 'focus text'
       %dl.half
-        %dt= f.label :code
+        %dt= f.label :code, t('shoppe.delivery_services.code')
         %dd= f.text_field :code, :class => 'text'
     .splitContainer
       %dl.half
-        %dt= f.label :active
+        %dt= f.label :active, t('shoppe.delivery_services.active')
         %dd.checkbox
           = f.check_box :active
-          = f.label :active, 'Service will be available for use'
+          = f.label :active,  t('shoppe.delivery_services.active_info')
       %dl.half
-        %dt= f.label :default
+        %dt= f.label :default, t('shoppe.delivery_services.default')
         %dd.checkbox
           = f.check_box :default
-          = f.label :default, 'Service will be used by default (if possible)'
-  = field_set_tag "Courier" do
+          = f.label :default,  t('shoppe.delivery_services.default_info')
+
+  = field_set_tag  t('shoppe.delivery_services.courier') do
     .splitContainer
       %dl.half
-        %dt= f.label :courier, "Courier Name"
+        %dt= f.label :courier,  t('shoppe.delivery_services.courier_name')
         %dd= f.text_field :courier, :class => 'text'
       %dl.half
-        %dt= f.label :tracking_url, "Tracking URL"
+        %dt= f.label :tracking_url,  t('shoppe.delivery_services.tracking_url')
         %dd
           = f.text_field :tracking_url, :class => 'text'
-          %p.help Use <code>{{consignment_number}}</code> to insert the consignment number.
+          %p.help=  t('shoppe.delivery_services.tracking_url_help_html')
 
   %p.submit
     - unless @delivery_service.new_record?
-      %span.right= link_to "Delete", [@delivery_service], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this delivery service?"}
-    = f.submit :class => 'button green'
-    = link_to "Cancel", :delivery_services, :class => 'button'
+      %span.right= link_to  t('shoppe.delete'), [@delivery_service], :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.delivery_services.delete_confirmation')}
+    = f.submit t('shoppe.submit'), :class => 'button green'
+    = link_to t('shoppe.cancel'), :delivery_services, :class => 'button'

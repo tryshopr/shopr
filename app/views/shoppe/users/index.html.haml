@@ -1,15 +1,15 @@
-- @page_title = "Users"
+- @page_title = t('shoppe.users.users')
 
 = content_for :header do
-  %p.buttons=link_to "New user", :new_user, :class => 'button green'
-  %h2.users Users
+  %p.buttons= link_to t('shoppe.users.new_user'), :new_user, :class => 'button green'
+  %h2.users= t('shoppe.users.users')
 
 .table
   %table.data
     %thead
       %tr
-        %th Name
-        %th E-Mail Address
+        %th= t('shoppe.users.name')
+        %th= t('shoppe.users.email')
     %tbody
       - for user in @users
         %tr

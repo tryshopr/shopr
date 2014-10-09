@@ -1,31 +1,35 @@
 = form_for @country do |f|
   = f.error_messages
-  = field_set_tag "User Details" do
+  = field_set_tag t('shoppe.countries.country_details') do
+
     .splitContainer
       %dl.third
-        %dt= f.label :name
+        %dt= f.label :name, t('shoppe.countries.name')
         %dd= f.text_field :name, :class => 'focus text'
       %dl.third
-        %dt= f.label :code2, "ISO 3166-alpha-2"
+        %dt= f.label :code2, t('shoppe.countries.iso_alpha_2')
         %dd= f.text_field :code2, :class => 'text'
       %dl.third
-        %dt= f.label :code3, "ISO 3166-alpha-3"
+        %dt= f.label :code3, t('shoppe.countries.iso_alpha_3')
         %dd= f.text_field :code3, :class => 'text'
+
     .splitContainer
       %dl.third
-        %dt= f.label :continent
+        %dt= f.label :continent, t('shoppe.countries.continent')
         %dd= f.text_field :continent, :class => 'text'
       %dl.third
-        %dt= f.label :tld, "TLD"
+        %dt= f.label :tld, t('shoppe.countries.tld')
         %dd= f.text_field :tld, :class => 'text'
       %dl.third
-        %dt= f.label :eu_member, "EU Member?"
+        %dt= f.label :eu_member, t('shoppe.countries.eu_member')
         %dd.checkbox
           = f.check_box :eu_member
-          = f.label :eu_member, 'Country is an EU member?'
+          = f.label :eu_member, t('shoppe.countries.is_eu_member')
 
   %p.submit
     - unless @country.new_record?
-      %span.right= link_to "Delete", @country, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this country?"}
-    = f.submit :class => 'button green'
-    = link_to "Cancel", :countries, :class => 'button'
+      %span.right
+        = link_to t('shoppe.delete'), @country, :class => 'button purple',
+          :method => :delete, :data => {:confirm => t('shoppe.countries.delete_confirmation')}
+    = f.submit t('shoppe.submit'), :class => 'button green'
+    = link_to t('shoppe.cancel'), :countries, :class => 'button'

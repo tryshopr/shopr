@@ -1,24 +1,24 @@
-- @page_title = "Variants - #{@product.name}"
+- @page_title = "#{t('shoppe.variants.variants')} - #{@product.name}"
 
 = content_for :header do
   %p.buttons
-    = link_to "Edit product", [:edit, @product], :class => 'button'
-    = link_to "New variant", [:new, @product, :variant], :class => 'button green'  
+    = link_to t('shoppe.variants.edit_product'), [:edit, @product], :class => 'button'
+    = link_to t('shoppe.variants.new_variant'), [:new, @product, :variant], :class => 'button green'
 
-  %h2.products Variants of #{@product.name}
+  %h2.products= t('shoppe.variants.variants_of', product: @product.name)
 
 .table
   %table.data
     %thead
       %tr
-        %th{:width => '20%'} SKU
-        %th{:width => '50%'} Name
-        %th{:width => '15%'} Price
-        %th{:width => '15%'} Stock
+        %th{:width => '20%'}= t('shoppe.variants.sku')
+        %th{:width => '50%'}= t('shoppe.variants.name')
+        %th{:width => '15%'}= t('shoppe.variants.price')
+        %th{:width => '15%'}= t('shoppe.variants.stock')
     %tbody
       - if @variants.empty?
         %tr.empty
-          %td{:colspan => 4} No products to display.
+          %td{:colspan => 4}= t('shoppe.variants.no_products')
       - else
         - for variant in @variants
           %tr
@@ -27,7 +27,7 @@
             %td= number_to_currency variant.price
             %td
               - if variant.stock_control?
-                %span.float-right= link_to "Edit", stock_level_adjustments_path(:item_type => variant.class, :item_id => variant.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}
-                = boolean_tag(variant.in_stock?, nil, :true_text => variant.stock, :false_text => 'No stock')
+                %span.float-right= link_to t('shoppe.edit'), stock_level_adjustments_path(:item_type => variant.class, :item_id => variant.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}
+                = boolean_tag(variant.in_stock?, nil, :true_text => variant.stock, :false_text => t('shoppe.variants.no_stock'))
               - else
                 &#8734;

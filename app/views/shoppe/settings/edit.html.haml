@@ -1,12 +1,12 @@
-- @page_title = "Settings"
+- @page_title = t("shoppe.settings.settings")
 
 = content_for :header do
-  %h2.settings Settings
+  %h2.settings= t("shoppe.settings.settings")
 
 = form_tag :url => settings_path do |f|
 
   - Shoppe.settings_groups.each do |group, fields|
-    = field_set_tag t(group) do
+    = field_set_tag t("shoppe.settings.#{group}") do
       - fields.each do |f|
         %dl.sided
           %dt= settings_label f
@@ -14,6 +14,6 @@
             = settings_field f
             - if v = t("shoppe.settings.help")[f]
               %p.help= v
-        
+
   %p.submit.sided
-    = submit_tag "Save Settings", :class => 'button green'
+    = submit_tag t("shoppe.settings.save_settings"), :class => 'button green'

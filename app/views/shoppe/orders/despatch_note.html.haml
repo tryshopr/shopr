@@ -1,4 +1,4 @@
-- @page_title = "Order #{@order.number}"
+- @page_title = "#{t('shoppe.orders.order')} #{@order.number}"
 
 .despatchNote
   %header
@@ -12,7 +12,7 @@
     %p= @order.delivery_address4
     %p= @order.delivery_postcode
     %p= @order.delivery_country.try(:name)
-  
+
   %table.details
     %tr
       %th= t('.order_number')
@@ -24,7 +24,7 @@
       %td= @order.received? ? @order.received_at.to_s(:long) : 'n/a'
       %td= number_to_weight @order.total_weight
       %td= @order.phone_number
-  
+
   %table.items
     %thead
       %tr
@@ -41,5 +41,5 @@
           %td= item.ordered_item.sku
           %td= number_to_weight item.weight
           %td.check
-    
+
   %p.footer= t('.footer', :default => "Thank you for your order!")
