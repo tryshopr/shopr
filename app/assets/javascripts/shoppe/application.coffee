@@ -72,7 +72,7 @@ $ ->
 # Format money values to 2 decimal places
 #
 window.formatMoneyField = ->
-  value = $(this).val()
+  value = $(this).val().replace /,/, ""
   $(this).val(parseFloat(value).toFixed(2)) if value.length
 
 #
