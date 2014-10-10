@@ -153,8 +153,8 @@ en:
 
       single_page_html:
         zero:  "No %{model} found"
-        one:   "Displaying <b>1</b> %{model}"
-        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+        one_html:   "Displaying <b>1</b> %{model}"
+        other_html: "Displaying <b>all&nbsp;%{count}</b> %{model}"
 
       multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
       multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
@@ -298,7 +298,7 @@ en:
       order_accepted: Order Accepted
       order_balance: Order Balance
       order_items: Order items
-      order_no: "Order <b>#%{order_number}</b>"
+      order_no_html: "Order <b>#%{order_number}</b>"
       order_number: Order number
       order_received: Order Received
       order_rejected: Order Rejected
@@ -343,7 +343,7 @@ en:
 
       status_bar:
         by_user: "by %{user}"
-        consignment_no: "Consignment #<b>%{consignment_number}</b>"
+        consignment_no_html: "Consignment #<b>%{consignment_number}</b>"
         from_ip: "from %{ip}"
         on_date: "on %{date}"
         tracking_url:  Tracking URL
@@ -369,7 +369,7 @@ en:
         shipped: Shipped
 
     refund:
-      intro: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
+      intro_html: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
       issue_refund: Issue Refund
       refund: Refund
 
@@ -457,7 +457,7 @@ en:
       adjustment: Adjustment
       back_to_product: Back to product list
       create_notice: Adjustment has been added successfully
-      current_stock_level: "Current stock level is <b>%{item_stock}</b>"
+      current_stock_level_html: "Current stock level is <b>%{item_stock}</b>"
       date: Date
       description: Description
       edit_product: Edit product

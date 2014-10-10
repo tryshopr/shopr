@@ -152,8 +152,8 @@ pt-BR:
 
       single_page_html:
         zero:  "Nenhum %{model} encontrado"
-        one:   "Mostrando <b>1</b> %{model}"
-        other: "Mostrando <b>todos os&nbsp;%{count}</b> %{model}"
+        one_html:   "Mostrando <b>1</b> %{model}"
+        other_html: "Mostrando <b>todos os&nbsp;%{count}</b> %{model}"
 
       multi_page: "Mostrando %{model} %{from} - %{to} de %{count} no total"
       multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> no total"
@@ -297,7 +297,7 @@ pt-BR:
       order_accepted: Pedido Aceitado
       order_balance: Balanço do Pedido
       order_items: Itens do Pedido
-      order_no: "Pedido <b>#%{order_number}</b>"
+      order_no_html: "Pedido <b>#%{order_number}</b>"
       order_number: Número do Pedido
       order_received: Pedido Recebido
       order_rejected: Pedido Rejeitado
@@ -342,7 +342,7 @@ pt-BR:
 
       status_bar:
         by_user: "por %{user}"
-        consignment_no: "Número do Consignatário #<b>%{consignment_number}</b>"
+        consignment_no_html: "Número do Consignatário #<b>%{consignment_number}</b>"
         from_ip: "de %{ip}"
         on_date: "em %{date}"
         tracking_url:  URL de Rastreio
@@ -368,7 +368,7 @@ pt-BR:
         shipped: Enviado
 
     refund:
-      intro: "Para emitir uma devolução para este pagamento, entre a quantidade que você deseja devolver abaixo e clique em 'Devolver'.  O máximo que você pode devolver é <b>%{amount}</b>."
+      intro_html: "Para emitir uma devolução para este pagamento, entre a quantidade que você deseja devolver abaixo e clique em 'Devolver'.  O máximo que você pode devolver é <b>%{amount}</b>."
       issue_refund: Emitir Devolução
       refund: Devolver
 
@@ -456,7 +456,7 @@ pt-BR:
       adjustment: Ajuste
       back_to_product: Voltar para lista de produtos
       create_notice: O Ajuste foi adicionado com sucesso
-      current_stock_level: "O nível de estoque atual é <b>%{item_stock}</b>"
+      current_stock_level_html: "O nível de estoque atual é <b>%{item_stock}</b>"
       date: Data
       description: Descrição
       edit_product: Editar produto

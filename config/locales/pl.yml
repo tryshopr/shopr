@@ -154,8 +154,8 @@ pl:
 
       single_page_html:
         zero:  "%{model} - nie znaleziono"
-        one:   "Wyświetlanie <b>1</b> %{model}"
-        other: "Wyświetlanie <b>wszystkich&nbsp;%{count}</b> %{model}"
+        one_html:   "Wyświetlanie <b>1</b> %{model}"
+        other_html: "Wyświetlanie <b>wszystkich&nbsp;%{count}</b> %{model}"
 
       multi_page: "Wyświetlanie %{model} %{from} - %{to} z %{count}"
       multi_page_html: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{count}</b>"
@@ -222,7 +222,7 @@ pl:
       pricing_for: Ceny dostaw dla %{delivery_name}
       tax_rate: Stawka podatkowa
       update_notice: Cena została zaktualizowana
-      weight_allowence: Dopuszczalna waga
+      weight_allowance: Dopuszczalna waga
 
       help:
         countries: Stawka dostaw będzie dostępna wyłącznie w zamówieniach z zaznaczonych krajów.
@@ -256,7 +256,7 @@ pl:
 
       accept: Akceptuj
       accept_notice: Zamówienie zostało zaakceptowane
-      add_payment: Dodaj sposób płatności
+      add_payment: Dodaj płatność
       add_item: Dodaj pozycję
       address: Adres
       amount: Kwota
@@ -297,9 +297,9 @@ pl:
       number: Numer
       order: Zamówienie
       order_accepted: Zamówienie zaakceptowane
-      order_balance: Order Balance
+      order_balance: Bilans zamówienia
       order_items: Pozycje zamówienia
-      order_no: Zamówienie <b>#%{order_number}</b>
+      order_no_html: Zamówienie <b>#%{order_number}</b>
       order_number: Numer zamówienia
       order_received: Zamówienie odebrane
       order_rejected: Zamówienie odrzucone
@@ -342,9 +342,9 @@ pl:
       use_separate_delivery_address?: Użyć oddzielnego adresu dostawy?
       weight: Waga
 
-      staus_bar:
+      status_bar:
         by_user: przez %{user}
-        consignment_no: Numer paczki #<b>%{consignment_number}</b>
+        consignment_no_html: Numer paczki #<b>%{consignment_number}</b>
         from_ip: od %{ip}
         on_date: "%{date}"
         tracking_url: Link do śledzenia paczki
@@ -370,7 +370,7 @@ pl:
         shipped:  Dostarczone
 
     refund:
-      intro: Aby dokonać zwrotu płatności proszę wprowadzić kwotę oraz kliknąć 'Zwrot'. Kwota maksymalna zwrotu to <b>%{amount}</b>.
+      intro_html: Aby dokonać zwrotu płatności proszę wprowadzić kwotę oraz kliknąć 'Zwrot'. Kwota maksymalna zwrotu to <b>%{amount}</b>.
       issue_refund: Dokonaj zwrotu
       refund: Zwrot
 
@@ -432,7 +432,7 @@ pl:
       variants: Warianty
       update_notice: Produkt został zaktualizowany
       website_properties: Właściwości strony
-      weigt: Waga
+      weight: Waga
 
     sessions:
       admin_login: Login administratora
@@ -456,7 +456,7 @@ pl:
       adjustment: Zmiana
       back_to_product: Powrót do listy produktów
       create_notice: Zmiana została utworzona
-      current_stock_level: Aktualny stan magazynowy to <b>%{item_stock}</b>
+      current_stock_level_html: Aktualny stan magazynowy to <b>%{item_stock}</b>
       date: Data
       description: Opis
       edit_product: Edytuj produkt
@@ -532,6 +532,7 @@ pl:
       variants: Warianty
       variants_of: Warianty dla %{product}
       website_properties: Atrybuty strony
+      weight: Waga
 
     payments:
       create_notice: Płatność została dodana

@@ -6,7 +6,7 @@
     - if @order.accepted?
       = link_to t('shoppe.orders.despatch_note'), [:despatch_note, @order], :class => 'button', :rel => 'print'
     = link_to t('shoppe.orders.back_to_orders'), :orders, :class => 'button grey'
-  %h2.orders= t('shoppe.orders.order_no', order_number: @order.number)
+  %h2.orders= t('shoppe.orders.order_no_html', order_number: @order.number)
 
 #order
 
