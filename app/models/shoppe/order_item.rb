@@ -20,7 +20,7 @@ module Shoppe
 
     validate do
       unless in_stock?
-        errors.add :quantity, I18n.t('shoppe.order_item.attributes.too_hight_quantity')
+        errors.add :quantity, :too_hight_quantity
       end
     end
 

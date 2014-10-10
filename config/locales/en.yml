@@ -134,7 +134,8 @@ en:
               can_belong_to_root: can only belong to a root product
         shoppe/order_item:
           attributes:
-            too_high_quantity: is too high for the quantity in stock
+            quantity:
+              too_high_quantity: is too high for the quantity in stock
         shoppe/payment:
           refund_failed: "Refunds must be less than the payment (%{refundable_amount})"
 
