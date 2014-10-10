@@ -6,10 +6,10 @@ en:
         other: Countries
       shoppe/delivery_service:
         one: Delivery service
-        other: Delivery serices
+        other: Delivery services
       shoppe/delivery_service_price:
         one: Delivery service price
-        other: Delivery service prics
+        other: Delivery service prices
       shoppe/order:
         one: Order
         other: Orders
@@ -220,7 +220,7 @@ en:
       pricing_for: "Delivery Pricing for %{delivery_name}"
       tax_rate: Tax rate
       update_notice: Price has been updated successfully
-      weight_allowence: Weight Allowance
+      weight_allowance: Weight Allowance
 
       help:
         countries: This delivery rate will only be available to orders where the country selected is listed here.
@@ -237,7 +237,7 @@ en:
       default?: Default?
       default: Default
       default_info: Service will be used by default (if possible)
-      delivery_services: Delivery Serivces
+      delivery_services: Delivery Services
       destroy_notice: Delivery Service has been removed successfully
       delete_confirmation: Are you sure you wish to remove this delivery service?
       details: Details
@@ -337,10 +337,10 @@ en:
       type: Type
       unit_price: Unit price
       update_notice: Order has been saved successfully
-      use_separate_delivery_address?: Use a seperate delivery address?
+      use_separate_delivery_address?: Use a separate delivery address?
       weight: Weight
 
-      staus_bar:
+      status_bar:
         by_user: "by %{user}"
         consignment_no: "Consignment #<b>%{consignment_number}</b>"
         from_ip: "from %{ip}"
@@ -431,7 +431,7 @@ en:
       variants: Variants
       update_notice: Product has been updated successfully
       website_properties: Website Properties
-      weigt: Weight
+      weight: Weight
 
     sessions:
       admin_login: Admin Login
@@ -516,7 +516,7 @@ en:
       no_products: No products to display.
       no_stock: No stock
       no_tax: No tax
-      new_variant: Nowy wariant
+      new_variant: New variant
       on_sale?: On sale?
       on_sale_info: If checked, this product will be displayed within the public store
       permalink: Permalink
@@ -532,6 +532,7 @@ en:
       variants: Variants
       variants_of: "Variants of %{product}"
       website_properties: Website Properties
+      weight: Weight
 
     payments:
       create_notice: Payment has been added successfully
@@ -598,4 +599,3 @@ en:
         goto: Goto
         logged_in_as: "Logged in as %{user_name}"
         logout: Logout
-

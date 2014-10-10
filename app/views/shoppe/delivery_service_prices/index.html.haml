@@ -11,7 +11,7 @@
     %thead
       %tr
         %th= t('shoppe.delivery_service_prices.code')
-        %th= t('shoppe.delivery_service_prices.weight_allowence')
+        %th= t('shoppe.delivery_service_prices.weight_allowance')
         %th= t('shoppe.delivery_service_prices.price')
         %th= t('shoppe.delivery_service_prices.cost')
     %tbody
@@ -21,4 +21,3 @@
           %td #{number_to_weight price.min_weight} &rarr; #{number_to_weight price.max_weight}
           %td= number_to_currency(price.price)
           %td= number_to_currency price.cost_price
-
