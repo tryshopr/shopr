@@ -6,7 +6,7 @@ module Shoppe
     end
 
     def status_tag(status)
-      content_tag :span, status, :class => "status-tag #{status}"
+      content_tag :span, t("shoppe.orders.statuses.#{status}"), :class => "status-tag #{status}"
     end
 
     def attachment_preview(attachment, options = {})
