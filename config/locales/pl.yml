@@ -410,6 +410,7 @@ pl:
       new_product: Nowy produkt
       no_products: Brak produktów do wyświetlenia
       no_tax: Brak podatku
+      no_stock: Brak
       on_sale?: W sprzedaży?
       on_sale_info: Produkt będzie wyświetlany na stronie
       permalink: Permalink
