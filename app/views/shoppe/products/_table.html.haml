@@ -2,14 +2,14 @@
   %table.data
     %thead
       %tr
-        %th{:width => '20%'} SKU
-        %th{:width => '40%'} Name
-        %th{:width => '25%'} Price/Variants
-        %th{:width => '15%'} Stock
+        %th{:width => '20%'}= t(:sku)
+        %th{:width => '40%'}= t(:name)
+        %th{:width => '25%'}=t (:price_variants)
+        %th{:width => '15%'}= t(:stock)
     %tbody
       - if products.empty?
         %tr.empty
-          %td{:colspan => 4} No products to display.
+          %td{:colspan => 4}=t(:products_none)
       - else
         - for category, products in products
           %tr
@@ -28,15 +28,15 @@
                         %td{:width => '30%'}
                           - if variant.stock_control?
                             %span.float-right= link_to "Edit", stock_level_adjustments_path(:item_type => variant.class, :item_id => variant.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}
-                            = boolean_tag(variant.in_stock?, nil, :true_text => variant.stock, :false_text => 'No stock')
+                            = boolean_tag(variant.in_stock?, nil, :true_text => variant.stock, :false_text => t(:stock_none))
                           - else
                             &#8734;
               - else
                 %td= number_to_currency product.price
                 %td
                   - if product.stock_control?
-                    %span.float-right= link_to "Edit", stock_level_adjustments_path(:item_type => product.class, :item_id => product.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}
-                    = boolean_tag(product.in_stock?, nil, :true_text => product.stock, :false_text => 'No stock')
+                    %span.float-right= link_to t(:edit), stock_level_adjustments_path(:item_type => product.class, :item_id => product.id), :class => 'edit', :rel => 'dialog', :data => {:dialog_width => 700, :dialog_behavior => 'stockLevelAdjustments'}
+                    = boolean_tag(product.in_stock?, nil, :true_text => product.stock, :false_text => t(:stock_none))
                   - else
                     &#8734;
                   

@@ -1,17 +1,17 @@
-- @page_title = "Countries"
+- @page_title = t(:countries)
 
 = content_for :header do
-  %p.buttons=link_to "New country", :new_country, :class => 'button green'
-  %h2.countries Countries
+  %p.buttons=link_to t(:country_new), :new_country, :class => 'button green'
+  %h2.countries= t(:countries)
 
 .table
   %table.data
     %thead
       %tr
-        %th Name
+        %th= t(:name)
         %th ISO 3166-1-alpha-2
         %th ISO 3166-1-alpha-3
-        %th Continent
+        %th= t(:continent)
         %th TLD
         %th EU?
     %tbody

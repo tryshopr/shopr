@@ -1,7 +1,7 @@
-- @page_title = "Delivery Services"
+- @page_title = t(:delivery_service_edit)
 = content_for :header do
   %p.buttons
-    = link_to "Prices", [@delivery_service, :delivery_service_prices], :class => 'button' 
-    = link_to "Back to delivery services", :delivery_services, :class => 'button'
-  %h2.delivery_services Delivery Services
+    = link_to t(:prices), [@delivery_service, :delivery_service_prices], :class => 'button' 
+    = link_to t(:delivery_services_back), :delivery_services, :class => 'button'
+  %h2.delivery_services= t(:delivery_service_edit)
 = render 'form'

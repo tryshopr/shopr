@@ -1,7 +1,7 @@
-- @page_title = t(:new_order)
+- @page_title = t(:order_new)
 = content_for :header do
-  %p.buttons= link_to t(:back_to_orders), :orders, :class => 'button grey'
-  %h2.orders= t(:new_order)
+  %p.buttons= link_to t(:orders_back_to), :orders, :class => 'button grey'
+  %h2.orders= t(:order_new)
 
 = form_for @order, :html => {:class => 'orderForm newOrder'} do |f|
   = f.error_messages
@@ -9,6 +9,5 @@
   = field_set_tag t(:ordered_products), :class => 'padded' do
     = render 'order_items_form', :f => f
   %p.submit
-    = f.submit t(:create_order), :class => 'button green'
+    = f.submit t(:order_create), :class => 'button green'
     = link_to t(:cancel), :orders, :class => 'button grey'
-    

@@ -7,10 +7,6 @@ en:
         # Force certain settings to certain type
         demo_mode: boolean
       
-      labels:
-        # Labels for fields go here
-        email_address: Store E-Mail Address
-      
       options:
         # Options for boolean settings
         demo_mode:

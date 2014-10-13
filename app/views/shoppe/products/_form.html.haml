@@ -1,119 +1,119 @@
 = form_for @product, :html => {:multipart => true} do |f|
   = f.error_messages
-  = field_set_tag "Product Information" do
+  = field_set_tag t(:product_info) do
     %dl
       %dt= f.label :product_category_id
       %dd= f.collection_select :product_category_id, Shoppe::ProductCategory.ordered, :id, :name, {:include_blank => true}, {:class => 'chosen'}
   
     .splitContainer
       %dl.third
-        %dt= f.label :name
+        %dt= f.label :name , t(:name)
         %dd= f.text_field :name, :class => 'text focus'
       %dl.third
-        %dt= f.label :permalink
+        %dt= f.label :permalink , t(:permalink)
         %dd= f.text_field :permalink, :class => 'text'
       %dl.third
-        %dt= f.label :sku, 'SKU'
+        %dt= f.label :sku, t(:sku)
         %dd= f.text_field :sku, :class => 'text'
     %dl
-      %dt= f.label :description
+      %dt= f.label :description , t(:description)
       %dd= f.text_area :description, :class => 'text'
     %dl
-      %dt= f.label :short_description
+      %dt= f.label :short_description, t(:description_short)
       %dd= f.text_area :short_description, :class => 'text'
     %dl
-      %dt= f.label :in_the_box, "What's in the box?"
+      %dt= f.label :in_the_box, t(:in_the_box)
       %dd= f.text_area :in_the_box, :class => 'text'
   
-  = field_set_tag "Attributes" do
+  = field_set_tag t(:attributes) do
     .margin
       %table.productAttributes
         %thead
           %tr
-            %td Name
-            %td Value
-            %td.searchable Searchable?
-            %td.searchable Public?
-            %td.remove Remove
+            %td= t(:name)
+            %td= t(:value)
+            %td.searchable= t(:is_searchable) 
+            %td.searchable= t(:is_public)
+            %td.remove= t(:remove)
             %td
         %tbody
           %tr.template{:style => 'display:none;'}
-            %td= text_field_tag 'product[product_attributes_array][][key]', '', :placeholder => 'Name'
-            %td= text_field_tag 'product[product_attributes_array][][value]', '', :placeholder => 'Value'
+            %td= text_field_tag 'product[product_attributes_array][][key]', '', :placeholder => t(:name)
+            %td= text_field_tag 'product[product_attributes_array][][value]', '', :placeholder => t(:value)
             %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1'
             %td.searchable= check_box_tag 'product[product_attributes_array][][public]', '1'
-            %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
+            %td.remove= link_to t(:remove), '#', :class => 'button button-mini purple'
             %td.handle
           - for attribute in @product.product_attributes
             %tr
-              %td= text_field_tag 'product[product_attributes_array][][key]', attribute.key, :placeholder => 'Name'
-              %td= text_field_tag 'product[product_attributes_array][][value]', attribute.value, :placeholder => 'Value'
+              %td= text_field_tag 'product[product_attributes_array][][key]', attribute.key, :placeholder => t(:name)
+              %td= text_field_tag 'product[product_attributes_array][][value]', attribute.value, :placeholder => t(:value)
               %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1', attribute.searchable?
               %td.searchable= check_box_tag 'product[product_attributes_array][][public]', '1', attribute.public?
-              %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
+              %td.remove= link_to t(:remove), '#', :class => 'button button-mini purple'
               %td.handle
-      %p.addAttribute= link_to "Add attribute", '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
+      %p.addAttribute= link_to t(:attribute_add), '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
       
   = field_set_tag "Attachments" do
     .splitContainer
       %dl.half
-        %dt= f.label :default_image_file, "Default Image"
+        %dt= f.label :default_image_file, t(:default_image)
         %dd
           = attachment_preview @product.default_image
           %p= f.file_field :default_image_file
       %dl.half
-        %dt= f.label :data_sheet_file, "Datasheet"
+        %dt= f.label :data_sheet_file, t(:datasheet)
         %dd
           = attachment_preview @product.data_sheet
           %p= f.file_field :data_sheet_file
      
   - unless @product.has_variants?   
-    = field_set_tag "Pricing" do
+    = field_set_tag t(:pricing) do
       .splitContainer
         %dl.third
-          %dt= f.label :price
+          %dt= f.label :price , t(:price)
           %dd
             .moneyInput
               .currency= Shoppe.settings.currency_unit.html_safe
               = f.text_field :price, :class => 'text'
         %dl.third
-          %dt= f.label :cost_price
+          %dt= f.label :cost_price , t(:cost_price)
           %dd
             .moneyInput
               .currency= Shoppe.settings.currency_unit.html_safe
               = f.text_field :cost_price, :class => 'text'
         %dl.third
-          %dt= f.label :tax_rate_id
-          %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
+          %dt= f.label :tax_rate_id , t(:tax_rate)
+          %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t(:tax_none)}}
   
-    = field_set_tag "Stock Control" do
+    = field_set_tag t(:stock_control) do
       .splitContainer
         %dl.half
-          %dt= f.label :weight
+          %dt= f.label :weight , t(:weight)
           %dd= f.text_field :weight, :class => 'text'
       
         %dl.half
-          %dt= f.label :stock_control
+          %dt= f.label :stock_control , t(:stock_control)
           %dd.checkbox
             = f.check_box :stock_control
-            = f.label :stock_control, "Enable stock control for this product?"
+            = f.label :stock_control, t(:stock_control_enable)
 
-  = field_set_tag "Website Properties" do
+  = field_set_tag t(:website_properties) do
     .splitContainer
 
       %dl.half
-        %dt= f.label :active, "On sale?"
+        %dt= f.label :active, t(:on_sale)
         %dd.checkbox
           = f.check_box :active
-          = f.label :active, "If checked, this product will be displayed within the public store"
+          = f.label :active, t(:on_sale_help)
       %dl.half
-        %dt= f.label :featured, "Featured?"
+        %dt= f.label :featured, t(:is_featured)
         %dd.checkbox
-          = f.check_box :featured
-          = f.label :featured, "If checked, this product will appear on your homepage"
+          = f.check_box :featured 
+          = f.label :featured, t(:is_featured_help)
 
   %p.submit
     - unless @product.new_record?
-      %span.right= link_to "Delete", @product, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this product?"}
+      %span.right= link_to t(:delete), @product, :class => 'button purple', :method => :delete, :data => {:confirm => t(:product_delete_confirm)}
     = f.submit :class => 'button green'
-    = link_to "Cancel", :products, :class => 'button'
+    = link_to t(:cancel), :products, :class => 'button'

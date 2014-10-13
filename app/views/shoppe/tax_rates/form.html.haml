@@ -1,28 +1,32 @@
-- @page_title = "Tax Rates"
+- @page_title = t(:tax_rate_new)
 = content_for :header do
-  %p.buttons= link_to "Back to tax rates", :tax_rates, :class => 'button grey'
-  %h2.tax_rates Tax Rates
+  %p.buttons= link_to t(:tax_rates_back), :tax_rates, :class => 'button grey'
+  %h2.tax_rates= t(:tax_rate_new)
 
 = form_for @tax_rate do |f|
   = f.error_messages
-  = field_set_tag "Rate Details" do
+  = field_set_tag t(:tax_rate_details) do
     .splitContainer
       %dl.half
-        %dt= f.label :name
+        %dt= f.label :name , t(:name)
         %dd= f.text_field :name, :class => 'focus text'
       %dl.half
-        %dt= f.label :rate
+        %dt= f.label :rate , t(:rate)
         %dd= f.text_field :rate, :class => 'text'
   
-  = field_set_tag "Country Restriction" do
+  = field_set_tag t(:country_restriction) do
     %dl
       %dd
-        = f.select :address_type, Shoppe::TaxRate::ADDRESS_TYPES.map { |a| ["Apply to orders where the #{a} address matches one of the countries below".html_safe, a]}, {}, :class => 'chosen-basic'
+        = f.select :address_type, Shoppe::TaxRate::ADDRESS_TYPES.map { |a| [t(:tax_rate_apply_to , :to => t("#{a}_address").downcase ).html_safe, a]}, {}, :class => 'chosen-basic'
     %dl
       %dd
-        = f.collection_select :country_ids, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen', :multiple => true, :data => {:placeholder => "All countries"}}
+        = f.collection_select :country_ids, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen', :multiple => true, :data => {:placeholder => t(:countries_all)}}
   %p.submit
     - unless @tax_rate.new_record?
-      %span.right= link_to "Delete", @tax_rate, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this tax_rate?"}
+      %span.right= link_to t(:delete), @tax_rate, :class => 'button purple', :method => :delete, :data => {:confirm => t(:tax_rate_delete_confirm)}
     = f.submit :class => 'button green'
-    = link_to "Cancel", :tax_rates, :class => 'button'
+    = link_to t(:cancel), :tax_rates, :class => 'button'
+    - unless @tax_rate.new_record?
+      %br
+      %br
+      =t(:tax_rate_note)

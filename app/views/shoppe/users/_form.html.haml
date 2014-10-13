@@ -1,28 +1,28 @@
 = form_for @user do |f|
   = f.error_messages
-  = field_set_tag "User Details" do
+  = field_set_tag t(:user_details) do
     .splitContainer
       %dl.half
-        %dt= f.label :first_name
+        %dt= f.label :first_name , t(:first_name)
         %dd= f.text_field :first_name, :class => 'focus text'
       %dl.half
-        %dt= f.label :last_name
+        %dt= f.label :last_name , t(:last_name)
         %dd= f.text_field :last_name, :class => 'text'
-  = field_set_tag "Login" do
+  = field_set_tag t(:login) do
     .splitContainer
       %dl.third
-        %dt= f.label :email_address
+        %dt= f.label :email_address, t(:email_address)
         %dd= f.text_field :email_address, :class => 'text'
       %dl.third
-        %dt= f.label :password
+        %dt= f.label :password, t(:password)
         %dd= f.password_field :password, :class => 'text'
       %dl.third
-        %dt= f.label :password_confirmation, "...and again"
+        %dt= f.label :password_confirmation, t(:password_confirmation)
         %dd= f.password_field :password_confirmation, :class => 'text'
 
 
   %p.submit
     - unless @user.new_record?
-      %span.right= link_to "Delete", @user, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this user?"}
+      %span.right= link_to t(:delete), @user, :class => 'button purple', :method => :delete, :data => {:confirm => t(:user_delete_confirm)}
     = f.submit :class => 'button green'
-    = link_to "Cancel", :users, :class => 'button'
+    = link_to t(:cancel), :users, :class => 'button'

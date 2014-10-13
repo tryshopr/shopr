@@ -1,5 +1,5 @@
-- @page_title = "Countries"
+- @page_title = t(:country_new)
 = content_for :header do
-  %p.buttons= link_to "Back to countries", :countries, :class => 'button'
-  %h2.countries Countries
+  %p.buttons= link_to t(:countries_back), :countries, :class => 'button'
+  %h2.countries= t(:country_new)
 = render 'form'
