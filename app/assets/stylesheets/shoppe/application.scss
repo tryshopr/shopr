@@ -225,9 +225,12 @@ header.main {
 			}
 		}
 		p.submit {margin:0; background:#fff; border:1px solid #dce2eb; padding:25px; }
-		p.submit .button { margin-right:5px;}
+		p.submit .button {
+			margin-right:5px;
+			vertical-align: middle;
+		}
 		p.submit .right .button {margin-left:5px; margin-right:0;}
-		p.submit span.right { float:right;}
+		p.submit span.right {float:right;}
 		p.submit.sided { padding-left:30%;}
 		.errorExplanation {
 	    margin-bottom:25px;
