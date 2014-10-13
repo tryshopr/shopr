@@ -13,12 +13,15 @@ en:
     address: Address
     back_to_orders: Back to orders
     billing_address: Billing Address
+    by_person: "by %{person}"
     cancel: Cancel
+    consignment: Consignment
     create_order: Create Order
     customer: Customer
     country: Country
     delivery_address: Deilvery Address
-    first_name: Nimi
+    first_name: First name
+    from_ip: "from %{ip}"
     goto_store: Goto
     logged: Logged in as
     new_order: New Order
@@ -28,11 +31,18 @@ en:
     total: Total
     no_orders: No orders to display
     new_order: New Order
+    order_accepted: Order Accepted
+    on_date: "on %{date}"
+    order_rejected: Order rejected
+    order_received: Order Received
+    order_shipped: Order Shipped
     ordered_products: Ordered Products
     payment: Payment
     post_code: Post code
     products: Products
     select_country: Select a country
+    tracking_url: Tracking URL
+    unknown: Unknown
     use_seperate_delivery_address: Use a seperate delivery address?
     admin_primary:
       orders: Orders
