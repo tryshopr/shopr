@@ -33,14 +33,14 @@ nav.sidebar {
 		}
 		p { color:#fff; font-size:0.9em; margin-top:4px; }
 	}
-	
+
 	p.logged {
 		background:#5B6270;
 		padding:12px 20px;
 		color:#fff;
 		font-size:0.9em;
 	}
-	
+
 	ul {
 		li {
 			span.pending { float:right; font-size:0.9em;  font-weight:bold;background:#5B6270; color:#fff; padding:2px 10px; border-radius:16px; margin-top:9px; margin-right:10px;}
@@ -71,6 +71,7 @@ header.main {
 	height:85px;
 	background:#fff;
 	box-shadow: 0 0px 15px -2px rgba(0,0,0,0.2);
+	z-index: 1;
 	p.buttons { float:right; margin-top:27px; margin-right:35px;}
 	p.buttons a { margin-left:10px;}
 	h2 { margin-top:28px; margin-left:35px; font-size:2.0em; font-weight:300; color:#333; background-repeat:no-repeat; background-size:22px; background-position:0 5px; padding-left:32px;}
@@ -89,17 +90,17 @@ header.main {
 #content {
 	padding-left:200px;
 	padding-top:85px;
-	
+
 	section.main {
 		padding:35px;
 	}
-	
+
 	//
 	// flashes
 	//
 	#flash-notice { background:#21a3e0; padding:15px 35px; color:#fff; font-size:1.2em; font-weight:bold;}
 	#flash-alert { background:#e04e21; padding:15px 35px; color:#fff; font-size:1.2em; font-weight:bold;}
-	
+
 	//
 	// sub title
 	//
@@ -110,8 +111,8 @@ header.main {
 		padding:15px;
 		h3 { font-size:2.0em; font-weight:500;}
 	}
-		
-	
+
+
 	//
 	// Status tags
 	//
@@ -129,7 +130,7 @@ header.main {
 		&.rejected { color:#E33127; background-image:image-url('shoppe/statuses/rejected.svg'); }
 		&.received { color:#909091; background-image:image-url('shoppe/statuses/received.svg'); }
 	}
-	
+
 	//
 	// fieldset
 	//
@@ -143,7 +144,7 @@ header.main {
 		&.padded { padding:15px 25px 25px 25px;}
 		&.padded legend { margin:0;}
 	}
-	
+
 	//
 	// forms
 	//
@@ -152,8 +153,8 @@ header.main {
 
 			.splitContainer { margin:0 25px; margin-bottom:15px; height:50px;}
 			.splitContainer:last-child { margin-bottom:0;}
-			
-			dl { 
+
+			dl {
 				margin:0 25px;
 				margin-bottom:15px;
 				&:last-child { margin-bottom:0;}
@@ -179,7 +180,7 @@ header.main {
 					float:left;
 					&:last-child { float:right;}
 				}
-				
+
 				&.third {
 					width:31%;
 					margin:0;
@@ -188,7 +189,7 @@ header.main {
 					&:last-child { float:right; width:33%;}
 				}
 			}
-			
+
 			dl.sided {
 				clear:both;
 				dt { float:left; width:25%; text-align:right; padding-top:4px;}
@@ -196,13 +197,13 @@ header.main {
 				dd p.help { margin-top:10px;}
 				dd div.checkbox { padding-top:5px;}
 			}
-			
-			
+
+
 			//
 			// margined container
 			//
 			div.margin { margin: 0 25px;}
-			
+
 			//
 			// attributes table
 			//
@@ -239,7 +240,7 @@ header.main {
 	    ul li { list-style:disc; margin-left:25px; font-size:1.2em;}
 	  }
 	}
-	
+
 	//
 	// attachment preview
 	//
@@ -260,7 +261,7 @@ header.main {
 		div.desc a { color:#000;}
 		div.desc.none { color:#999; font-style:italic;}
 	}
-	
+
 	//
 	// order summary page
 	//
@@ -279,22 +280,22 @@ header.main {
 				p.ship { text-align:center; margin-top:22px;}
 				p.ship input[type=text] {  }
 			}
-			
+
 			dl {
 				dt { float:left; width:30%; text-align:right; color:#888;white-space:nowrap}
 				dd { font-weight:bold; margin-left:35%; margin-bottom:6px; white-space:nowrap}
 				dd a { color:inherit;}
 				dt.padding { padding-top:6px;}
 			}
-			
+
 			dl.form {
 				margin-top:15px;
 				input.text { width:70%;}
 				a.button { margin-right:5px;}
 			}
-			
+
 		}
-		
+
 		.status-bar {
 			background:image-url('shoppe/square.svg') repeat-x 0 15px;
 			background-size:8px;
@@ -315,7 +316,7 @@ header.main {
 				li.rejected h4 { color: #E33127}
 			}
 		}
-		
+
 		.order_items {
 			table.data {
  				.money { text-align:right; width:8%}
@@ -325,7 +326,7 @@ header.main {
 			}
 		}
 	}
-	
+
 	//
 	// warning message
 	//
@@ -338,7 +339,7 @@ header.main {
 		margin-bottom:25px;
 		padding:15px;
 	}
-	
+
 	//
 	// payments
 	//
@@ -370,7 +371,7 @@ header.main {
 			margin-bottom:15px;
 		}
 	}
-	
+
 	//
 	// order search
 	//
@@ -378,7 +379,7 @@ header.main {
 		overflow:hidden;
 		display:none;
 		dl.left, dl.right {
-			float:left; 
+			float:left;
 			width:50%;
 			dt { float:left; width:40%; text-align:right; padding-top:3px; color:#888;}
 			dd { margin-left:44%; margin-bottom:15px;}
@@ -396,7 +397,7 @@ header.main {
 		input[type=text].disabled { background:#f7f7f7; color:#888}
 		p.slaWarning {
 			background:#e5eaf4;
-			padding:15px;	
+			padding:15px;
 			border:1px solid #abb4c6;
 			border-top:0;
 			text-align:center;
@@ -419,11 +420,11 @@ header.main {
 			tfoot {
 				td input { width:100%;padding:3px; background:transparent; border:0; font-size:1.0em; color:#fff;}
 			}
-			
+
 		}
 	}
-	
-	
+
+
 }
 
 footer {
@@ -431,7 +432,7 @@ footer {
 	bottom:0;
 	width:200px;
 	background:rgba(0,0,0,0.05);
-	
+
 	p.store {
 		a {
 			display:block;
@@ -506,7 +507,7 @@ table.data {
 			td:last-child { border-right-width:0;}
 			tr:last-child td { border-bottom-width:0;}
 		}
-	} 
+	}
 	tbody tr.form {
 		td { background:#f2f6fb;}
 		input[type=text] { border:1px solid #CFD4DD; padding:5px;}
