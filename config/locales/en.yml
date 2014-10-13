@@ -217,6 +217,7 @@ en:
 
 
     admin_primary:
+      customers: Customers
       orders: Orders
       products: Products
       product_categories: Product Categories
