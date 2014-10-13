@@ -10,6 +10,7 @@ en:
         separate_delivery_address: Separate delivery address
         delivery_name: Delivery Name
   shoppe:
+    reset_password: Reset your password?
     address: Address
     back_to_orders: Back to orders
     billing_address: Billing Address
@@ -19,7 +20,7 @@ en:
     create_order: Create Order
     customer: Customer
     country: Country
-    delivery_address: Deilvery Address
+    delivery_address: Delivery Address
     first_name: First name
     from_ip: "from %{ip}"
     goto_store: Goto
@@ -33,7 +34,7 @@ en:
     new_order: New Order
     order_accepted: Order Accepted
     on_date: "on %{date}"
-    order_rejected: Order rejected
+    order_rejected: Order Rejected
     order_received: Order Received
     order_shipped: Order Shipped
     ordered_products: Ordered Products
@@ -43,7 +44,7 @@ en:
     select_country: Select a country
     tracking_url: Tracking URL
     unknown: Unknown
-    use_seperate_delivery_address: Use a seperate delivery address?
+    use_separate_delivery_address: Use a separate delivery address?
     admin_primary:
       orders: Orders
       products: Products
@@ -62,5 +63,4 @@ en:
         email_address: The e-mail address to use when sending outbound messages. Must just be an e-mail address.
         currency_unit: The symbol to be displayed before all numbers which relate to money. Only applies to the admin interface and must be implemented separately in your base application.
         tax_name: The name for "Tax" which will be displayed in your admin interface. Commonly replaced with VAT in European countries.
-        demo_mode: If enabled, your Shoppe admin interface will allow any users to login and will not permit changes to your users. This should be used with caution and never enabled for a production store.
-                
+        demo_mode: "If enabled, your Shoppe admin interface will allow any users to login and will not permit changes to your users. This should be used with caution and never enabled for a production store."
