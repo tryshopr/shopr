@@ -1,11 +1,11 @@
-- @page_title = 'Admin Login'
+- @page_title = t(:login)
 = display_flash
 .loginArea
-  %h2 Reset your password
+  %h2= t(:reset_link)
   = form_tag :login_reset, :class => 'login' do
     %p.field
-      = text_field_tag 'email_address', params[:email_address], :class => 'focus', :placeholder => 'E-Mail Address'
+      = text_field_tag 'email_address', params[:email_address], :class => 'focus', :placeholder => t(:email_address)
     %p.submit
-      = submit_tag "Login", :class => 'button green'
+      = submit_tag t(:login), :class => 'button green'
     %p.reset
-      = link_to "Back to login", login_path
+      = link_to t(:login_back), login_path

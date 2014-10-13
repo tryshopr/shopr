@@ -1,68 +1,68 @@
-- @page_title = "Variants - #{@product.name}"
+- @page_title = t(:variant_of , :product => @product.name)
 = content_for :header do
-  %p.buttons= link_to "Back to variants", [@product, :variants], :class => 'button'
-  %h2.products Variants of #{@product.name}
+  %p.buttons= link_to t(:variants_back), [@product, :variants], :class => 'button'
+  %h2.products= t(:variant_of , :product => @product.name)
 
 
 = form_for [@product, @variant], :url => @variant.new_record? ? product_variants_path(@product) : product_variant_path(@product, @variant), :html => {:multipart => true} do |f|
   = f.error_messages
-  = field_set_tag "Product Information" do
+  = field_set_tag t(:product_info) do
     .splitContainer
       %dl.third
-        %dt= f.label :name
+        %dt= f.label :name , t(:name)
         %dd= f.text_field :name, :class => 'text focus'
       %dl.third
-        %dt= f.label :permalink
+        %dt= f.label :permalink , t(:permalink)
         %dd= f.text_field :permalink, :class => 'text'
       %dl.third
-        %dt= f.label :sku, 'SKU'
+        %dt= f.label :sku, t(:sku)
         %dd= f.text_field :sku, :class => 'text'
       
-  = field_set_tag "Image" do
+  = field_set_tag t(:image) do
     %dl
       %dd
         = attachment_preview @variant.default_image, :hide_if_blank => true
         %p= f.file_field :default_image_file
       
-  = field_set_tag "Pricing" do
+  = field_set_tag t(:pricing) do
     .splitContainer
       %dl.third
-        %dt= f.label :price
+        %dt= f.label :price, t(:price)
         %dd= f.text_field :price, :class => 'text'
       %dl.third
-        %dt= f.label :cost_price
+        %dt= f.label :cost_price, t(:cost_price)
         %dd= f.text_field :cost_price, :class => 'text'
       %dl.third
-        %dt= f.label :tax_rate_id
+        %dt= f.label :tax_rate_id , t(:tax_rate)
         %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
 
-  = field_set_tag "Stock Control" do
+  = field_set_tag t(:stock_control) do
     .splitContainer
       %dl.half
-        %dt= f.label :weight
+        %dt= f.label :weight, t(:weight)
         %dd= f.text_field :weight, :class => 'text'
 
       %dl.half
-        %dt= f.label :stock_control
+        %dt= f.label :stock_control, t(:stock_control)
         %dd.checkbox
           = f.check_box :stock_control
-          = f.label :stock_control, "Enable stock control for this product?"
+          = f.label :stock_control, t(:stock_control_enable)
 
-  = field_set_tag "Website Properties" do
+  = field_set_tag t(:website_properties) do
     .splitContainer
       %dl.half
-        %dt= f.label :active, "On sale?"
+        %dt= f.label :active, t(:on_sale)
         %dd.checkbox
           = f.check_box :active
-          = f.label :active, "If checked, this product will be displayed within the public store"
+          = f.label :active, t(:on_sale_help) 
       %dl.half
-        %dt= f.label :default, "Default variant?"
+        %dt= f.label :default, t(:is_default_variant)
         %dd.checkbox
           = f.check_box :default
-          = f.label :default, "If checked, this variant will be the default"
+          = f.label :default, t(:is_default_variant_help)
   
   %p.submit
     - unless @variant.new_record?
-      %span.right= link_to "Delete", product_variant_path(@product, @variant), :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this variant?"}
-    = f.submit "Save Variant", :class => 'button green'
-    = link_to "Cancel", :products, :class => 'button'
+      %span.right= link_to t(:delete), product_variant_path(@product, @variant), :class => 'button purple', :method => :delete, :data => {:confirm => t(:variant_delete_confirm)}
+    = f.submit t(:variant_save), :class => 'button green'
+    = link_to t(:cancel), :products, :class => 'button'

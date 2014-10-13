@@ -1,33 +1,230 @@
 en:
   shoppe:
-    
-    navigation:
-      admin_primary:
-        orders: Orders
-        products: Products
-        product_categories: Product Categories
-        delivery_services: Delivery Services
-        tax_rates: Tax Rates
-        users: Users
-        countries: Countries
-        settings: Settings
-        
+    active: Active
+    adjustment: Adjustment
+    add: Add
+    added_it: "%{it} has been added successfully"  
+    address: Address
+    attachments: Attachments
+    attributes: Attributes
+    attribute_add: Add attribute
+    billing_address: Billing Address
+    by_person: "by %{person}"
+    cancel: Cancel
+    category: Category
+    close: Close
+    continent: Continent
+    countries: Countries
+    countries_all: All countries
+    countries_back: Back to countries
+    countries_select_help: This delivery rate will only be available to orders where the country selected is listed here.
+    country: Country
+    country_edit: Edit country
+    country_details: Country details
+    country_restriction: Country Restriction
+    country_select: Select a country
+    country_new: New country
+    consignment: Consignment
+    customer: Customer
+    code: Code
+    cost: Cost
+    cost_price: Cost price
+    continent: Continent
+    company: Company
+    courier: Courier
+    courier_name: Courier Name
+    datasheet: Datasheet
+    date: Date
+    delete: Delete
+    delete_confirm_country: Are you sure you wish to remove this country?
+    delivery_address: Deilvery Address
+    delivery_address_use_seperate: Use a seperate delivery address?
+    delivery_name: Delivery Name
+    delivery_pricing: Devilery Pricing
+    delivery_pricing_back: Back to delivery services
+    delivery_pricing_for_edit: Edit delivery price for %{service}
+    delivery_price_new_for: "New delivery price for %{service}"
+    delivery_pricing_for: "Delivery Pricing for %{service}"
+    delivery_pricing_delete_confirm: "Are you sure you wish to remove this price?"
+    delivery_services: Delivery Services
+    delivery_services_back: Back to delivery services
+    delivery_services_none: No delivery services to display.
+    delivery_service: Delivery Service
+    delivery_service_delete_confirm: Are you sure you wish to remove this delivery service?  
+    delivery_service_edit: Edit delivery service
+    delivery_service_help_tracking: Use <code>{{consignment_number}}</code> to insert the consignment number.
+    delivery_service_new: New delivery service
+    default: Default
+    default_image: Default Image
+    description: Description
+    description_short: Short description
+    despatch_note: Despatch Note
+    details: Details
+    email_address: Email address
+    email_password_wrong: The email address and/or password you have entered is invalid. Please check and try again.
+    email_sent_to: An e-mail has been sent to %{to} with a new password
+    error: Error
+    error_occurred: An error has occurred
+    first_name: First name
+    from_ip: "from %{ip}"
+    goto_store: Goto
+    identification_weight: "Identification & Weight"
+    image: Image
+    in_the_box: "What's in the box?"
+    is_active: Active?
+    is_default: Default?
+    is_default_variant: Default variant?
+    is_default_variant_help: If checked, this variant will be the default
+    is_featured: Featured?
+    is_featured_help: If checked, this product will appear on your homepage
+    is_eu_member: Country is an EU member?
+    is_searchable: Searchable?
+    is_packed: Packed?
+    is_public: Public?
+    last_name: Last name
+    login: Login
+    login_back: Back to login
+    logged: Logged in as
+    logout: Logout
+    max_weight: Max weight
+    min_weight: Min weight
+    name: Name
+    note: Note
+    no_such_email: No user was found matching the e-mail address
+    number: Number
+    on_date: "on %{date}"
+    on_sale: On sale?
+    on_sale_help: "If checked, this product will be displayed within the public store"
+    ordered_products: Ordered Products
+    orders: Orders
+    orders_back_to: Back to orders
+    orders_none: No orders to display
+    orders_search: Search Orders
+    order_accepted: Order Accepted
+    order_create: Create Order
+    order_new: New Order
+    order_number: Order number
+    order_placed: Ordered on
+    order_rejected: Order rejected
+    order_received: Order Received
+    order_shipped: Order Shipped
+    order_thanks: Thank you for your order!
+    order_with_number: Order %{number}
+    password: Password
+    password_confirmation: ... and again
+    payment: Payment
+    permalink: Permalink
+    phone_number: Phone number
+    post_code: Post code
+    price: Price
+    prices: Prices
+    price_new: New price
+    price_variants: Price/Variants
+    pricing: Pricing
+    products: Products
+    products_none: No products to display.
+    products_back: Back to product list
+    product: Product
+    product_new: New product
+    product_edit: Edit product
+    product_delete_confirm: Are you sure you wish to remove this product?
+    product_info: Product Information
+    product_categories: Product Categories
+    product_categories_none: No categories to display.
+    product_categories_back: Back to categories list
+    product_category_details: Category Details
+    product_category_delete_confirm: Are you sure you wish to remove this category?
+    product_category_edit: Edit product category
+    product_category: Product category
+    product_category_new: New category
+    quantity: Quantity
+    rate: Rate
+    refund: Refund
+    refund_intro: To issue a refund for this payment, just enter the amount
+                  you wish to refund below and click 'Refund'.
+                  The maximum you can refund is <b>%{amount}</b>.
+    refund_title: Issue Refund
+    refund_ok: Refund has been processed successfully.
+    reset_link: Reset your password
+    remove: Remove
+    removed_it: "%{it} has been removed successfully"  
+    save_settings: Save Settings
+    separate_delivery_address: Separate delivery address
+    service_available: Service will be available for use
+    service_default: Service will be used by default (if possible)
+    settings_title: Settings
+    settings_not_in_demo: You cannot make changes to settings in demo mode. Sorry about that.
+    set_prices: Set Prices
+    shoppe_back: Back to Shoppe
+    sku: SKU
+    status: Status
+    stock: Stock
+    stock_current: Current stock level is
+    stock_control: Stock Control
+    stock_control_enable: Enable stock control for this product?
+    stock_levels: Stock levels
+    stock_levels_for: Stock levels %{item}
+    stock_none: No stock
+    system_settings: System settings
+    tax_rate: Tax rate
+    tax_rate_apply_to: Apply to orders where the %{to} matches one of the countries below
+    tax_rate_delete_confirm: Are you sure you wish to remove this tax_rate?
+    tax_rate_details: Rate Details
+    tax_rate_new: New tax rate
+    tax_rate_note: Do NOT edit tax rates that are already in use. 
+      Care should be taken when editing tax rates, as this may affect existing orders. 
+      while creating a new tax rate, you must delete it and create a new one. When you delete a tax rate
+      it is not removed from the system, only deactivated, so existing orders stay unaffected.
+    tax_rates: Tax Rates
+    tax_rates_back: Back to tax rates
+    tax_none: No tax
+    telephone: Telephone
+    total: Total
+    total_weight: Total weight
+    tracking_url: Tracking URL
+    unknown: Unknown
+    updated_it: "%{it} has been updated successfully"  
+    users: Users
+    users_back: Back to users
+    user_delete_confirm: Are you sure you wish to remove this user?
+    user_details: User Details
+    user: User
+    user_edit: Edit user
+    user_new: New User
+    user_not_in_demo: You cannot make changes to users in demo mode. Sorry about that.
+    user_not_yourself: You cannot remove yourself
+    variants: Variants
+    variants_back: Back to variants
+    variants_of: Variants of %{product}
+    variant_delete_confirm: Are you sure you wish to remove this variant?
+    variant_of: Variant of %{product}
+    variant_new: New variant
+    variant_save: Save Variant
+    value: Value
+    website_properties: Website Properties
+    weight: Weight
+    weight_allowance: Weight Allowance
+
+    admin_primary:
+      orders: Orders
+      products: Products
+      product_categories: Product Categories
+      delivery_services: Delivery Services
+      tax_rates: Tax Rates
+      users: Users
+      countries: Countries
+      settings: Settings
+
     settings:
-      
-      types:
-        # Force certain settings to certain type
-        demo_mode: boolean
-      
+
       labels:
         # Labels for fields go here
         email_address: Store E-Mail Address
-      
-      options:
-        # Options for boolean settings
-        demo_mode:
-          affirmative: Enabled
-          negative: Disabled
-      
+        store_name: Your Stores name
+        currency_unit: Currency unit
+        tax_name: Tax name
+        demo_mode: Demo mode
+        
       help:
         # Help text for individual fields
         store_name: This is the name of your store which will be used through the Shoppe admin interface as well as in the default outbound e-mail messages.
@@ -35,11 +232,4 @@ en:
         currency_unit: The symbol to be displayed before all numbers which relate to money. Only applies to the admin interface and must be implemented separately in your base application.
         tax_name: The name for "Tax" which will be displayed in your admin interface. Commonly replaced with VAT in European countries.
         demo_mode: If enabled, your Shoppe admin interface will allow any users to login and will not permit changes to your users. This should be used with caution and never enabled for a production store.
-        
-      defaults:
-        store_name: Widgets Inc.
-        email_address: sales@example.com
-        currency_unit: $
-        tax_name: Tax
-        demo_mode: false
-        
+                

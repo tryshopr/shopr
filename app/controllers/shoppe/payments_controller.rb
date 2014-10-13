@@ -7,7 +7,7 @@ module Shoppe
     def create
       payment = @order.payments.build(params[:payment].permit(:amount, :method, :reference))
       if payment.save
-        redirect_to @order, :notice => "Payment has been added successfully"
+        redirect_to @order, :notice => confirm_added(:payment)
       else
         redirect_to @order, :alert => payment.errors.full_messages.to_sentence
       end
@@ -15,13 +15,13 @@ module Shoppe
     
     def destroy
       @payment.destroy
-      redirect_to @order, :notice => "Payment has been removed successfully"
+      redirect_to @order, :notice => confirm_removed(:payment)
     end
     
     def refund
       if request.post?
         @payment.refund!(params[:amount])
-        redirect_to @order, :notice => "Refund has been processed successfully."
+        redirect_to @order, :notice => I18n.t("shoppe.refund_ok")
       else
         render :layout => false
       end

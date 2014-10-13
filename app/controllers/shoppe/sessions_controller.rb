@@ -9,7 +9,7 @@ module Shoppe
         session[:shoppe_user_id] = user.id
         redirect_to :orders
       else
-        flash.now[:alert] = "The email address and/or password you have entered is invalid. Please check and try again."
+        flash.now[:alert] = I18n.t("shoppe.email_password_wrong")
         render :action => "new"
       end
     end
@@ -24,9 +24,9 @@ module Shoppe
       if request.post?
         if user = Shoppe::User.find_by_email_address(params[:email_address])
           user.reset_password!
-          redirect_to login_path(:email_address => params[:email_address]), :notice => "An e-mail has been sent to #{user.email_address} with a new password"
+          redirect_to login_path(:email_address => params[:email_address]), :notice => I18n.t(:email_sent_to, :to => user.email_address)
         else
-          flash.now[:alert] = "No user was found matching the e-mail address"
+          flash.now[:alert] = I18n.t("shoppe.no_such_email")
         end
       end
     end

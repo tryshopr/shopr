@@ -42,5 +42,16 @@ module Shoppe
     
     helper_method :current_user, :logged_in?
     
+    def confirm_removed ob
+      I18n.t("shoppe.removed_it" , :it => I18n.t("shoppe.#{ob}"))
+    end
+
+    def confirm_added ob
+      I18n.t("shoppe.added_it" , :it => I18n.t("shoppe.#{ob}"))
+    end
+    
+    def confirm_updated ob
+      I18n.t("shoppe.updated_it" , :it => I18n.t("shoppe.#{ob}"))
+    end
   end
 end

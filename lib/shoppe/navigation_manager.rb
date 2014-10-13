@@ -55,7 +55,7 @@ module Shoppe
       attr_accessor :active_if
       
       def description
-        I18n.translate("shoppe.navigation.#{manager.identifier}.#{identifier}")
+        I18n.translate("shoppe.#{manager.identifier}.#{identifier}")
       end
       
       def url(request = nil)

@@ -16,7 +16,7 @@ module Shoppe
     def create
       @delivery_service_price = @delivery_service.delivery_service_prices.build(safe_params)
       if @delivery_service_price.save
-        redirect_to [@delivery_service, :delivery_service_prices], :notice => "Price has been created successfully"
+        redirect_to [@delivery_service, :delivery_service_prices], :notice => confirm_added(:price)
       else
         render :action => "new"
       end
@@ -24,7 +24,7 @@ module Shoppe
   
     def update
       if @delivery_service_price.update(safe_params)
-        redirect_to [@delivery_service, :delivery_service_prices], :notice => "Price has been updated successfully"
+        redirect_to [@delivery_service, :delivery_service_prices], :notice => confirm_updated(:price) 
       else
         render :action => "edit"
       end
@@ -32,7 +32,7 @@ module Shoppe
   
     def destroy
       @delivery_service_price.destroy
-      redirect_to [@delivery_service, :delivery_service_prices], :notice => "Price has been removed successfully"
+      redirect_to [@delivery_service, :delivery_service_prices], :notice => confirm_removed(:price)
     end
   
     private

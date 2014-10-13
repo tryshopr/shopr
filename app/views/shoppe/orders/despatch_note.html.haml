@@ -1,9 +1,9 @@
-- @page_title = "Order #{@order.number}"
+- @page_title = t(:order_with_number , :number => @order.number)
 
 .despatchNote
   %header
     %h1= Shoppe.settings.store_name
-    %h2= t('.despatch_note')
+    %h2= t(:despatch_note)
   .address
     %p.name= @order.delivery_name
     %p= @order.delivery_address1
@@ -15,10 +15,10 @@
   
   %table.details
     %tr
-      %th= t('.order_number')
-      %th= t('.order_placed')
-      %th= t('.total_weight')
-      %th= t('.telephone')
+      %th= t(:order_number)
+      %th= t(:order_placed)
+      %th= t(:total_weight)
+      %th= t(:telephone)
     %tr
       %td= @order.number
       %td= @order.received? ? @order.received_at.to_s(:long) : 'n/a'
@@ -28,11 +28,11 @@
   %table.items
     %thead
       %tr
-        %th= t('.quantity')
-        %th= t('.product')
-        %th= t('.sku')
-        %th= t('.weight')
-        %th= t('.packed?')
+        %th= t(:quantity)
+        %th= t(:product)
+        %th= t(:sku)
+        %th= t(:weight)
+        %th= t(:is_packed)
     %tbody
       - for item in @order.order_items
         %tr
@@ -42,4 +42,4 @@
           %td= number_to_weight item.weight
           %td.check
     
-  %p.footer= t('.footer', :default => "Thank you for your order!")
+  %p.footer= t('.footer', :default => t(:order_thanks))

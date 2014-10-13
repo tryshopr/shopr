@@ -1,14 +1,12 @@
 
 = form_tag [:refund, @order, @payment], :class => 'refundForm' do
-  %h2 Issue Refund
-  %p.intro
-    To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.
-    The maximum you can refund is <b>#{number_to_currency @payment.refundable_amount}</b>.
+  %h2= t(:refund)
+  %p.intro= t(:refund_intro, :amount => number_to_currency @payment.refundable_amount)
   
   .moneyInput
     .currency= Shoppe.settings.currency_unit.html_safe
     = text_field_tag 'amount', @payment.refundable_amount, :class => 'text'
   %p.submit
-    = submit_tag "Refund", :class => 'button green'
-    = link_to "Close", '#', :class => 'button grey', :rel => 'closeDialog'
+    = submit_tag t(:refund), :class => 'button green'
+    = link_to t(:close), '#', :class => 'button grey', :rel => 'closeDialog'
     

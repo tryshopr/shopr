@@ -1,17 +1,18 @@
-- @page_title = "Stock Levels - #{@item.name}"
+- @page_title = t(:stock_levels_for , :item => @item.name)
 = content_for :header do
   %p.buttons
     - case @item
     - when Shoppe::Product
       - @active_nav = :products
-      = link_to "Edit product", [:edit, @item], :class => 'button'
-      = link_to "Back to product list", :products, :class => 'button'
+      = link_to t(:product_edit), [:edit, @item], :class => 'button'
+      = link_to t(:products_back), :products, :class => 'button'
       
-  %h2.products Stock Levels for #{@item.name}
+  %h2.products= t(:stock_levels_for , :item => @item.name)
 
 .table
   %p.info
-    Current stock level is <b>#{@item.stock}</b>
+    = t(:stock_current)
+    %b=@item.stock
     %span.float-right= page_entries_info @stock_level_adjustments
 
   = form_for @new_sla do |f|
@@ -20,16 +21,16 @@
     %table.data
       %thead
         %tr
-          %th{:width => '25%'} Date
-          %th{:width => '50%'} Description
-          %th{:width => '25%'} Adjustment
+          %th{:width => '25%'}= t(:date)
+          %th{:width => '50%'}= t(:description)
+          %th{:width => '25%'}= t(:adjustment)
       %tbody
         %tr.form
           %td
           %td.desc= f.text_field :description
           %td.adjustment
             = f.text_field :adjustment
-            = f.submit "Add", :class => 'button button-mini green'
+            = f.submit t(:add), :class => 'button button-mini green'
         - for sla in @stock_level_adjustments
           %tr
             %td= sla.created_at.to_s(:long)

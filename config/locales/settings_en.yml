@@ -1,0 +1,21 @@
+en:
+  shoppe:
+            
+    settings:
+      
+      types:
+        # Force certain settings to certain type
+        demo_mode: boolean
+      
+      options:
+        # Options for boolean settings
+        demo_mode:
+          affirmative: Enabled
+          negative: Disabled
+
+      defaults:
+        store_name: Widgets Inc.
+        email_address: sales@example.com
+        currency_unit: $
+        tax_name: Tax
+        demo_mode: false

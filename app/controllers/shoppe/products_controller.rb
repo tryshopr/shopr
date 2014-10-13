@@ -15,7 +15,7 @@ module Shoppe
     def create
       @product = Shoppe::Product.new(safe_params)
       if @product.save
-        redirect_to :products, :flash => {:notice => "Product has been created successfully"}
+        redirect_to :products, :flash => {:notice => confirm_added(:product) }
       else
         render :action => "new"
       end
@@ -26,7 +26,7 @@ module Shoppe
   
     def update
       if @product.update(safe_params)
-        redirect_to [:edit, @product], :flash => {:notice => "Product has been updated successfully"}
+        redirect_to [:edit, @product], :flash => {:notice => confirm_updated(:product) }
       else
         render :action => "edit"
       end
@@ -34,7 +34,7 @@ module Shoppe
   
     def destroy
       @product.destroy
-      redirect_to :products, :flash => {:notice => "Product has been removed successfully"}
+      redirect_to :products, :flash => {:notice => confirm_removed(:product)}
     end
     
     private

@@ -16,7 +16,7 @@ module Shoppe
     def create
       @tax_rate = Shoppe::TaxRate.new(safe_params)
       if @tax_rate.save
-        redirect_to :tax_rates, :flash => {:notice => "Tax rate has been created successfully"}
+        redirect_to :tax_rates, :flash => {:notice => confirm_added(:tax_rate) }
       else
         render :action => "form"
       end
@@ -28,7 +28,7 @@ module Shoppe
   
     def update
       if @tax_rate.update(safe_params)
-        redirect_to [:edit, @tax_rate], :flash => {:notice => "Tax rate has been updated successfully"}
+        redirect_to [:edit, @tax_rate], :flash => {:notice => confirm_updated(:tax_rate) }
       else
         render :action => "form"
       end
@@ -36,7 +36,7 @@ module Shoppe
   
     def destroy
       @tax_rate.destroy
-      redirect_to :tax_rates, :flash => {:notice => "Tax rate has been removed successfully"}
+      redirect_to :tax_rates, :flash => {:notice => confirm_removed(:tax_rate)}
     end
   
     private

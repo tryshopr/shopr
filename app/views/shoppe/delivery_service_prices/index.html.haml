@@ -1,19 +1,19 @@
-- @page_title = "Delivery Services"
+- @page_title = t(:delivery_pricing)
 
 = content_for :header do
   %p.buttons
-    = link_to "New price", [:new, @delivery_service, :delivery_service_price], :class => 'button green'
-    = link_to "Back to delivery services", :delivery_services, :class => 'button'
-  %h2.delivery_services Delivery Pricing for #{@delivery_service.name}
+    = link_to t(:price_new), [:new, @delivery_service, :delivery_service_price], :class => 'button green'
+    = link_to t(:delivery_pricing_back), :delivery_services, :class => 'button'
+  %h2.delivery_services= t(:delivery_pricing_for , :service => @delivery_service.name)
 
 .table
   %table.data
     %thead
       %tr
-        %th Code
-        %th Weight Allowance
-        %th Price
-        %th Cost
+        %th= t(:code)
+        %th= t(:weight_allowance)
+        %th= t(:price)
+        %th= t(:cost)
     %tbody
       - for price in @delivery_service_prices
         %tr

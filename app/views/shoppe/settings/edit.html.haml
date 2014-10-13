@@ -1,7 +1,7 @@
-- @page_title = "Settings"
+- @page_title = t(:settings_title)
 
 = content_for :header do
-  %h2.settings Settings
+  %h2.settings= t(:settings_title)
 
 = form_tag :url => settings_path do |f|
 
@@ -12,8 +12,8 @@
           %dt= settings_label f
           %dd
             = settings_field f
-            - if v = t("shoppe.settings.help")[f]
+            - if v = t("settings.help")[f]
               %p.help= v
         
   %p.submit.sided
-    = submit_tag "Save Settings", :class => 'button green'
+    = submit_tag t(:save_settings), :class => 'button green'

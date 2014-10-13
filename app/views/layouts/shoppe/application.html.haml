@@ -14,7 +14,7 @@
         %h1= link_to "Shoppe", root_path
         %p v#{Shoppe::VERSION}
       %p.logged
-        Logged in as #{current_user.full_name}
+        #{t :logged} #{current_user.full_name}
       %ul
         - for item in Shoppe::NavigationManager.find(:admin_primary).items
           %li= navigation_manager_link item
@@ -29,7 +29,7 @@
         -#%li= link_to "Users", [:users], :class => @active_nav == :users ? 'active' : ''
         -#%li= link_to "Countries", :countries, :class => @active_nav == :countries ? 'active' : ''
         -#%li= link_to "Settings", :settings, :class => @active_nav == :settings ? 'active' : ''
-        %li= link_to "Logout", [:logout], :method => :delete
+        %li= link_to t(:logout), [:logout], :method => :delete
     
     %header.main
       = yield :header
@@ -40,5 +40,5 @@
         = yield
 
     %footer 
-      %p.store= link_to "&larr; Goto #{Shoppe.settings.store_name}".html_safe, '/'
+      %p.store= link_to "&larr; #{t :goto_store} #{Shoppe.settings.store_name}".html_safe, '/'
       
