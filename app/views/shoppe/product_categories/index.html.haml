@@ -1,18 +1,18 @@
-- @page_title = t(:product_categories)
+- @page_title = t('shoppe.product_category.product_categories')
 
 = content_for :header do
-  %p.buttons=link_to t(:product_category_new), :new_product_category, :class => 'button green'
-  %h2.products= t(:product_categories)
+  %p.buttons=link_to t('shoppe.product_category.new_category'), :new_product_category, :class => 'button green'
+  %h2.products= t('shoppe.product_category.product_categories')
 
 .table
   %table.data
     %thead
       %tr
-        %th= t(:name)
+        %th= t('shoppe.product_category.name')
     %tbody
       - if @product_categories.empty?
         %tr.empty
-          %td=(:product_categories_none)
+          %td= t('shoppe.product_category.no_categories')
       - else
         - for cat in @product_categories
           %tr

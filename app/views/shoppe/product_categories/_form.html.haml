@@ -1,26 +1,26 @@
 = form_for @product_category do |f|
   = f.error_messages
-  = field_set_tag t(:product_category_details) do
+  = field_set_tag t('shoppe.product_category.category_details') do
     .splitContainer
       %dl.half
-        %dt= f.label :name , t(:name)
+        %dt= f.label :name, t('shoppe.product_category.name')
         %dd= f.text_field :name, :class => 'focus text'
       %dl.half
-        %dt= f.label :permalink , t(:permalink)
+        %dt= f.label :permalink, t('shoppe.product_category.permalink')
         %dd= f.text_field :permalink, :class => 'text'
     %dl
-      %dt= f.label :description , t(:description)
+      %dt= f.label :description, t('shoppe.product_category.description')
       %dd= f.text_area :description, :class => 'text'
-  = field_set_tag t(:attachments) do
 
+  = field_set_tag t('shoppe.product_category.attachments') do
     %dl
-      %dt= f.label :image_file, t(:image)
+      %dt= f.label :image_file, t('shoppe.product_category.image')
       %dd
         = attachment_preview @product_category.image
         %p= f.file_field :image_file
 
   %p.submit
     - unless @product_category.new_record?
-      %span.right= link_to t(:delete), @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => t(:product_category_delete_confirm)}
-    = f.submit :class => 'button green'
-    = link_to t(:cancel), :product_categories, :class => 'button'
+      %span.right= link_to t('shoppe.delete') , @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.product_category.delete_confirmation') }
+    = f.submit t('shoppe.submit'),  :class => 'button green'
+    = link_to t('shoppe.cancel') , :product_categories, :class => 'button'

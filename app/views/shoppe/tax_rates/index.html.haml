@@ -1,15 +1,15 @@
-- @page_title = t(:tax_rates)
+- @page_title = t('shoppe.tax_rates.tax_rates')
 
 = content_for :header do
-  %p.buttons=link_to t(:tax_rate_new) , :new_tax_rate, :class => 'button green'
-  %h2.tax_rates= t(:tax_rates)
+  %p.buttons= link_to t('shoppe.tax_rates.new_tax_rate'), :new_tax_rate, :class => 'button green'
+  %h2.tax_rates= t('shoppe.tax_rates.tax_rates')
 
 .table
   %table.data
     %thead
       %tr
-        %th= t(:name)
-        %th= t(:rate)
+        %th= t('shoppe.tax_rates.name')
+        %th= t('shoppe.tax_rates.rate')
     %tbody
       - for tax_rate in @tax_rates
         %tr

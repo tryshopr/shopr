@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "rails", ">= 4.0.0", "< 5.0"
+  s.add_dependency "rails-i18n", "~> 4.0.0"
   s.add_dependency "bcrypt-ruby", "~> 3.1", ">= 3.1.2"
   s.add_dependency "ransack", "~> 1.2"
   s.add_dependency "kaminari", ">= 0.14.1", "< 0.16"
@@ -29,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "nifty-utils", "~> 1.0"
   s.add_dependency "nifty-attachments", ">= 1.0.3", "< 2.0.0"
   s.add_dependency "nifty-dialog", "~> 1.0"
-  
+
   s.add_development_dependency "sqlite3", "~> 1.3"
   s.add_development_dependency "mysql2", "~> 0.3"
   s.add_development_dependency 'yard', "~> 0"
