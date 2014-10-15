@@ -139,8 +139,7 @@ module Shoppe
       if delivery_required?
         prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order(:price).for_weight(total_weight)
         prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
-        prices = prices.group_by { |dsp| dsp.delivery_service.default? }
-        (prices[true] || []) | (prices[false] || [])
+        prices.sort{ |x,y| (y.delivery_service.default? ? 1 : 0) <=> (x.delivery_service.default? ? 1 : 0) } # Order by truthiness
       else
         []
       end
