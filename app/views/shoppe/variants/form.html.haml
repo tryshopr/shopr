@@ -22,8 +22,7 @@
       %dd
         = attachment_preview @variant.default_image, :hide_if_blank => true
         %p= f.file_field :default_image_file
-
-  = field_set_tag do
+  = field_set_tag t("shoppe.variants.pricing") do
     .splitContainer
       %dl.third
         %dt= f.label :price, t('shoppe.variants.price')

@@ -172,11 +172,12 @@ en:
 
   shoppe:
 
-    # commmon
+    # common
     cancel: Cancel
     close: Close
     delete: Delete
     edit: Edit
+    remove: Remove
     submit: Submit
 
     attachments:
