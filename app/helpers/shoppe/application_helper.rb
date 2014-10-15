@@ -33,7 +33,7 @@ module Shoppe
     end
 
     def settings_label(field)
-      "<label for='settings_#{field}'>#{i18n.t("shoppe.settings.labels.#{field}")}</label>".html_safe
+      "<label for='settings_#{field}'>#{t("shoppe.settings.labels.#{field}")}</label>".html_safe
     end
 
     def settings_field(field, options = {})

@@ -16,7 +16,7 @@
     %tbody
       - if @delivery_services.empty?
         %tr.empty
-          %td{:colspan => 5}= t('shoppe.delivery_services.no_serivces')
+          %td{:colspan => 5}= t('shoppe.delivery_services.no_services')
       - else
         - for delivery_service in @delivery_services
           %tr
@@ -25,4 +25,3 @@
             %td= delivery_service.courier
             %td= boolean_tag delivery_service.active?
             %td= boolean_tag delivery_service.default?
-
