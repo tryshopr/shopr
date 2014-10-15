@@ -3,7 +3,7 @@
 .despatchNote
   %header
     %h1= Shoppe.settings.store_name
-    %h2= t("shoppe.orders.despatch_note")
+    %h2= t("shoppe.orders.despatch_note.despatch_note")
   .address
     %p.name= @order.delivery_name
     %p= @order.delivery_address1
@@ -42,4 +42,4 @@
           %td= number_to_weight item.weight
           %td.check
 
-  %p.footer= t('shoppe.orders.depatch_note.footer', :default => "Thank you for your order!")
+  %p.footer= t('shoppe.orders.despatch_note.footer', :default => "Thank you for your order!")

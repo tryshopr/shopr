@@ -178,6 +178,7 @@ pl:
     close: Zamknij
     delete: Usuń
     edit: Edytuj
+    remove: Usuń
     submit: Zapisz
 
     attachments:
@@ -274,7 +275,6 @@ pl:
       customer: Klient
       delivery_address: Adres dostawy
       delivery_name: Dostarczyć do
-      despatch_note: Notatka do dostawy
       edit_order: Edytuj zamówienie
       email_address: E-Mail
       first_name: Imię
@@ -346,10 +346,11 @@ pl:
         by_user: przez %{user}
         consignment_no_html: Numer paczki #<b>%{consignment_number}</b>
         from_ip: od %{ip}
-        on_date: "%{date}"
+        on_date: "%{on}"
         tracking_url: Link do śledzenia paczki
 
       despatch_note:
+        despatch_note: Notatka do dostawy
         footer: Dziękujemy za złożenie zamówienia!
         order_number: Numer zamówienia
         order_placed: Zamówienie złożone
@@ -600,4 +601,3 @@ pl:
         goto: Idź do
         logged_in_as: Zalogowany jako %{user_name}
         logout: Wyloguj
-
