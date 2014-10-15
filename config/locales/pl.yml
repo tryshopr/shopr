@@ -487,7 +487,7 @@ pl:
       back_to_users: Powrót do listy użytkowników
       create_notice: Użytkownik został utowrzony
       delete_confirmation:  Czy na pewno usunąć użytkownika?
-      demo_mode_error: Nie możesz zmieniać użytkowników w trybie demo. Sorry.
+      demo_mode_error: Nie możesz zmieniać użytkowników w trybie demo.
       destroy_notice: Użytkownik został usunięty
       email: E-Mail
       first_name: Imię
@@ -497,7 +497,7 @@ pl:
       new_user: Nowy użytkownik
       password: Hasło
       password_confirmation: ...powtórz hasło
-      self_remove_error: Proszę Cię! Nie można usunąć samego siebie.
+      self_remove_error: Nie można usunąć samego siebie.
       update_notice: Użytkownik został zaktualizowany
       user_details: Dane użytkownika
       users: Użytkownicy
@@ -506,7 +506,7 @@ pl:
       back_to_variants: Powrót do wariantów
       cost_price: Koszt
       create_notice: Wariant został utworzony
-      default_variant?: Domyslny wariant?
+      default_variant?: Domyślny wariant?
       default_variant_info: ten wariant będzie domyślny
       delete_confirmation: Czy na pewno usunąć ten wariant?
       destroy_notice: Wariant został usunięty
@@ -556,7 +556,7 @@ pl:
 
       settings: Ustawienia
       system_settings: Ustawienia systemu
-      demo_mode_error: Nie można dokonywać zmian w trybie demo. Sorry.
+      demo_mode_error: Nie można dokonywać zmian w trybie demo.
       update_notice: Ustawienia zostały zapisane
 
       types:
@@ -592,7 +592,7 @@ pl:
         currency_unit: zł
         demo_mode: false
         email_address: sales@example.com
-        store_name: Włóczka Cafe
+        store_name: Shoppe
         tax_name: VAT
 
   layouts:
