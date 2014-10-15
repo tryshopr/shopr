@@ -272,7 +272,6 @@ pt-BR:
       customer: Cliente
       delivery_address: Endereço de entrega
       delivery_name: Nome para entrega
-      despatch_note: Nota de Despacho
       edit_order: Editar Pedido
       email_address: Endereço de E-Mail
       first_name: Primeiro nome
@@ -344,10 +343,11 @@ pt-BR:
         by_user: "por %{user}"
         consignment_no_html: "Número do Consignatário #<b>%{consignment_number}</b>"
         from_ip: "de %{ip}"
-        on_date: "em %{date}"
+        on_date: "em %{on}"
         tracking_url:  URL de Rastreio
 
       despatch_note:
+        despatch_note: Nota de Despacho
         footer: Obrigado pelo seu pedido!
         order_number: Número do pedido
         order_placed: Pedido realizado

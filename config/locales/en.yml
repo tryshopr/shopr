@@ -172,11 +172,12 @@ en:
 
   shoppe:
 
-    # commmon
+    # common
     cancel: Cancel
     close: Close
     delete: Delete
     edit: Edit
+    remove: Remove
     submit: Submit
 
     attachments:
@@ -273,7 +274,6 @@ en:
       customer: Customer
       delivery_address: Delivery address
       delivery_name: Delivery name
-      despatch_note: Despatch note
       edit_order: Edit order
       email_address: E-Mail address
       first_name: First name
@@ -345,10 +345,11 @@ en:
         by_user: "by %{user}"
         consignment_no_html: "Consignment #<b>%{consignment_number}</b>"
         from_ip: "from %{ip}"
-        on_date: "on %{date}"
+        on_date: "on %{on}"
         tracking_url:  Tracking URL
 
       despatch_note:
+        despatch_note: Despatch note
         footer: Thank you for your order!
         order_number: Order number
         order_placed: Order placed

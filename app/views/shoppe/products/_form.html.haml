@@ -50,7 +50,7 @@
               %td= text_field_tag 'product[product_attributes_array][][value]', attribute.value, :placeholder => t('shoppe.products.value')
               %td.searchable= check_box_tag 'product[product_attributes_array][][searchable]', '1', attribute.searchable?
               %td.searchable= check_box_tag 'product[product_attributes_array][][public]', '1', attribute.public?
-              %td.remove= link_to "Remove", '#', :class => 'button button-mini purple'
+              %td.remove= link_to t("shoppe.remove"), '#', :class => 'button button-mini purple'
               %td.handle
       %p.addAttribute= link_to t('shoppe.products.add_attribute') , '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
 

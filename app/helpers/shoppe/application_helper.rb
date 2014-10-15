@@ -37,9 +37,9 @@ module Shoppe
     end
 
     def settings_field(field, options = {})
-      default = t("shoppe.settings.defaults")[field.to_sym]
+      default = I18n.t("shoppe.settings.defaults")[field.to_sym]
       value = (params[:settings] && params[:settings][field]) || Shoppe.settings[field.to_s]
-      type = t("shoppe.settings.types")[field.to_sym] || 'string'
+      type = I18n.t("shoppe.settings.types")[field.to_sym] || 'string'
       case type
       when 'boolean'
         String.new.tap do |s|

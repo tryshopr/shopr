@@ -32,4 +32,4 @@
         - if @order.delivery_service && @order.courier_tracking_url
           %p= link_to t('shoppe.orders.status_bar.tracking_url'), @order.courier_tracking_url
         - else
-          %p= t('shoppe.orders.status_bar.consingment_no_html', consignment_number: @order.consignment_number)
+          %p= t('shoppe.orders.status_bar.consignment_no_html', consignment_number: @order.consignment_number)

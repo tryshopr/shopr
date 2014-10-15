@@ -1,9 +1,9 @@
-- @page_title = "#{t('shoppe.orders.order')} #{@order.number}"
+- @page_title = "#{t('shoppe.orders.despatch_note.order_number')} #{@order.number}"
 
 .despatchNote
   %header
     %h1= Shoppe.settings.store_name
-    %h2= t('.despatch_note')
+    %h2= t("shoppe.orders.despatch_note.despatch_note")
   .address
     %p.name= @order.delivery_name
     %p= @order.delivery_address1
@@ -15,10 +15,10 @@
 
   %table.details
     %tr
-      %th= t('.order_number')
-      %th= t('.order_placed')
-      %th= t('.total_weight')
-      %th= t('.telephone')
+      %th= t("shoppe.orders.despatch_note.order_number")
+      %th= t("shoppe.orders.despatch_note.order_placed")
+      %th= t("shoppe.orders.despatch_note.total_weight")
+      %th= t("shoppe.orders.despatch_note.telephone")
     %tr
       %td= @order.number
       %td= @order.received? ? @order.received_at.to_s(:long) : 'n/a'
@@ -28,11 +28,11 @@
   %table.items
     %thead
       %tr
-        %th= t('.quantity')
-        %th= t('.product')
-        %th= t('.sku')
-        %th= t('.weight')
-        %th= t('.packed?')
+        %th= t("shoppe.orders.despatch_note.quantity")
+        %th= t("shoppe.orders.despatch_note.product")
+        %th= t("shoppe.orders.despatch_note.sku")
+        %th= t("shoppe.orders.despatch_note.weight")
+        %th= t("shoppe.orders.despatch_note.packed?")
     %tbody
       - for item in @order.order_items
         %tr
@@ -42,4 +42,4 @@
           %td= number_to_weight item.weight
           %td.check
 
-  %p.footer= t('.footer', :default => "Thank you for your order!")
+  %p.footer= t('shoppe.orders.despatch_note.footer', :default => "Thank you for your order!")

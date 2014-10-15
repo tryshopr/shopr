@@ -8,7 +8,7 @@
       %dl.half
         %dt= f.label :last_name, t('shoppe.users.last_name')
         %dd= f.text_field :last_name, :class => 'text'
-  = field_set_tag "Login" do
+  = field_set_tag t("shoppe.users.login") do
     .splitContainer
       %dl.third
         %dt= f.label :email_address, t('shoppe.users.email')
