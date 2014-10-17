@@ -1,11 +1,11 @@
-- @page_title = 'Orders'
+- @page_title = t('shoppe.orders.orders')
 
 = content_for :header do
   %p.buttons
-    = link_to "New Order", :new_order, :class => 'button green'
-    = link_to "Search Orders", '#', :class => 'button', :rel => 'searchOrders'
+    = link_to t('shoppe.orders.new_order'), :new_order, :class => 'button green'
+    = link_to t('shoppe.orders.search_orders'), '#', :class => 'button', :rel => 'searchOrders'
   %h2.orders
-    Orders
+    = t('shoppe.orders.orders')
     %span= page_entries_info @orders
 
 = render 'search_form'
@@ -14,16 +14,16 @@
   %table.data
     %thead
       %tr
-        %th Number
-        %th Customer
-        %th Status
-        %th Products
-        %th Total
-        %th Payment
+        %th= t('shoppe.orders.number')
+        %th= t('shoppe.orders.customer')
+        %th= t('shoppe.orders.status')
+        %th= t('shoppe.orders.products')
+        %th= t('shoppe.orders.total')
+        %th= t('shoppe.orders.payment')
     %tbody
       - if @orders.empty?
         %tr.empty
-          %td{:colspan => 6} No orders to display.
+          %td{:colspan => 6}= t('shoppe.orders.no_orders')
       - else
         - for order in @orders
           %tr

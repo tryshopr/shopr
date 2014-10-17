@@ -1,28 +1,28 @@
-- @page_title = "Tax Rates"
+- @page_title = t('shoppe.tax_rates.tax_rates')
 = content_for :header do
-  %p.buttons= link_to "Back to tax rates", :tax_rates, :class => 'button grey'
-  %h2.tax_rates Tax Rates
+  %p.buttons= link_to t('shoppe.tax_rates.back_to_tax_rates'), :tax_rates, :class => 'button grey'
+  %h2.tax_rates= t('shoppe.tax_rates.tax_rates')
 
 = form_for @tax_rate do |f|
   = f.error_messages
-  = field_set_tag "Rate Details" do
+  = field_set_tag t('shoppe.tax_rates.rate_details') do
     .splitContainer
       %dl.half
-        %dt= f.label :name
+        %dt= f.label :name, t('shoppe.tax_rates.name')
         %dd= f.text_field :name, :class => 'focus text'
       %dl.half
-        %dt= f.label :rate
+        %dt= f.label :rate, t('shoppe.tax_rates.rate')
         %dd= f.text_field :rate, :class => 'text'
-  
-  = field_set_tag "Country Restriction" do
+
+  = field_set_tag t('shoppe.tax_rates.country_restriction') do
     %dl
       %dd
-        = f.select :address_type, Shoppe::TaxRate::ADDRESS_TYPES.map { |a| ["Apply to orders where the #{a} address matches one of the countries below".html_safe, a]}, {}, :class => 'chosen-basic'
+        = f.select :address_type, Shoppe::TaxRate::ADDRESS_TYPES.map { |a| [t('shoppe.tax_rates.address_type_option', address: t("shoppe.tax_rates.#{a}")).html_safe, a]}, {}, :class => 'chosen-basic'
     %dl
       %dd
-        = f.collection_select :country_ids, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen', :multiple => true, :data => {:placeholder => "All countries"}}
+        = f.collection_select :country_ids, Shoppe::Country.ordered, :id, :name, {}, {:class => 'chosen', :multiple => true, :data => {:placeholder => t('shoppe.tax_rates.all_countries') }}
   %p.submit
     - unless @tax_rate.new_record?
-      %span.right= link_to "Delete", @tax_rate, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this tax_rate?"}
-    = f.submit :class => 'button green'
-    = link_to "Cancel", :tax_rates, :class => 'button'
+      %span.right= link_to t('shoppe.delete'), @tax_rate, :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.tax_rates.delete_confirmation') }
+    = f.submit t('shoppe.submit'), :class => 'button green'
+    = link_to t('shoppe.cancel'), :tax_rates, :class => 'button'

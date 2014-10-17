@@ -1,68 +1,66 @@
-- @page_title = "Variants - #{@product.name}"
+- @page_title = "#{t('shoppe.variants.variants')} - #{@product.name}"
 = content_for :header do
-  %p.buttons= link_to "Back to variants", [@product, :variants], :class => 'button'
-  %h2.products Variants of #{@product.name}
-
+  %p.buttons= link_to t('shoppe.variants.back_to_variants'), [@product, :variants], :class => 'button'
+  %h2.products= t('shoppe.variants.variants_of', product:@product.name)
 
 = form_for [@product, @variant], :url => @variant.new_record? ? product_variants_path(@product) : product_variant_path(@product, @variant), :html => {:multipart => true} do |f|
   = f.error_messages
-  = field_set_tag "Product Information" do
+  = field_set_tag t('shoppe.variants.product_information') do
     .splitContainer
       %dl.third
-        %dt= f.label :name
+        %dt= f.label :name, t('shoppe.variants.name')
         %dd= f.text_field :name, :class => 'text focus'
       %dl.third
-        %dt= f.label :permalink
+        %dt= f.label :permalink, t('shoppe.variants.permalink')
         %dd= f.text_field :permalink, :class => 'text'
       %dl.third
-        %dt= f.label :sku, 'SKU'
+        %dt= f.label :sku, t('shoppe.variants.sku')
         %dd= f.text_field :sku, :class => 'text'
-      
-  = field_set_tag "Image" do
+
+  = field_set_tag t('shoppe.variants.image') do
     %dl
       %dd
         = attachment_preview @variant.default_image, :hide_if_blank => true
         %p= f.file_field :default_image_file
-      
-  = field_set_tag "Pricing" do
+  = field_set_tag t("shoppe.variants.pricing") do
     .splitContainer
       %dl.third
-        %dt= f.label :price
+        %dt= f.label :price, t('shoppe.variants.price')
         %dd= f.text_field :price, :class => 'text'
       %dl.third
-        %dt= f.label :cost_price
+        %dt= f.label :cost_price, t('shoppe.variants.cost_price')
         %dd= f.text_field :cost_price, :class => 'text'
       %dl.third
-        %dt= f.label :tax_rate_id
-        %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => "No tax"}}
+        %dt= f.label :tax_rate_id, t('shoppe.variants.tax_rate')
+        %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.variants.no_tax')}}
 
-  = field_set_tag "Stock Control" do
+  = field_set_tag t('shoppe.variants.stock_control') do
     .splitContainer
       %dl.half
-        %dt= f.label :weight
+        %dt= f.label :weight, t('shoppe.variants.weight')
         %dd= f.text_field :weight, :class => 'text'
 
       %dl.half
-        %dt= f.label :stock_control
+        %dt= f.label :stock_control, t('shoppe.variants.stock_control')
         %dd.checkbox
           = f.check_box :stock_control
-          = f.label :stock_control, "Enable stock control for this product?"
+          = f.label :stock_control, t('shoppe.variants.enable_stock_control?')
 
-  = field_set_tag "Website Properties" do
+  = field_set_tag t('shoppe.variants.website_properties') do
     .splitContainer
       %dl.half
-        %dt= f.label :active, "On sale?"
+        %dt= f.label :active, t('shoppe.variants.on_sale?')
         %dd.checkbox
           = f.check_box :active
-          = f.label :active, "If checked, this product will be displayed within the public store"
+          = f.label :active, t('shoppe.variants.on_sale_info')
       %dl.half
-        %dt= f.label :default, "Default variant?"
+        %dt= f.label :default, t('shoppe.variants.default_variant?')
         %dd.checkbox
           = f.check_box :default
-          = f.label :default, "If checked, this variant will be the default"
-  
+          = f.label :default, t('shoppe.variants.default_variant_info')
+
   %p.submit
     - unless @variant.new_record?
-      %span.right= link_to "Delete", product_variant_path(@product, @variant), :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this variant?"}
-    = f.submit "Save Variant", :class => 'button green'
-    = link_to "Cancel", :products, :class => 'button'
+      %span.right= link_to t('shoppe.delete'), product_variant_path(@product, @variant), :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.variants.delete_confirmation')}
+    = f.submit t('shoppe.variants.save_variant'), :class => 'button green'
+    = link_to t('shoppe.cancel'), :products, :class => 'button'
