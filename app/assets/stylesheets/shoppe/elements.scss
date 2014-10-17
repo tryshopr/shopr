@@ -27,6 +27,13 @@
     border-bottom-color:#86a350;
     &:active { background-color:#A8D750}
   }
+
+  &.blue {
+    background-color:#7390c1;
+    border-color:#7390c1;
+    border-bottom-color:#466f91;
+    &:active { background-color:#84a4db}
+  }  
   
   &.loading {
     background-image:url(/images/spinners/button-green.gif);
@@ -55,7 +62,6 @@
     border-bottom-color:#777;
     &:active { background:#888}
   }
-
 
 	&.white {
 		background-color:#fff;

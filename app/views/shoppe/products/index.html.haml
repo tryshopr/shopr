@@ -1,8 +1,9 @@
 - @page_title = "Products"
 
 = content_for :header do
-  %p.buttons= link_to "New product", :new_product, :class => 'button green'  
-  %p.buttons= link_to "Import products", :import_products, :class => 'button green'
+  %p.buttons
+    = link_to "New product", :new_product, :class => 'button green'  
+    = link_to "Import products", :import_products, :class => 'button blue'
   %h2.products Products
 
 = render 'table', :products => @products
