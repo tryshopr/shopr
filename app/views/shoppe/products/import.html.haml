@@ -1,7 +1,7 @@
-- @page_title = "Products"
+- @page_title = t('shoppe.products.products')
 
 = content_for :header do
-  %h2.products Import Products
+  %h2.products= t('shoppe.products.import_products')
 
 = form_for "import", :url => import_products_path, :html => {:multipart => true} do |f|
   = f.error_messages
