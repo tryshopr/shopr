@@ -1,11 +1,16 @@
 .details
   .left
     %dl
-      %dt Name
+      %dt= t('shoppe.orders.name')
       %dd= @order.full_name
-      %dt Company
+      %dt= t('shoppe.orders.company')
       %dd= @order.company.blank? ? '-' : @order.company
-      %dt Billing#{@order.separate_delivery_address? ? '' : '/Delivery'} Address
+      %dt
+        - if @order.separate_delivery_address?
+          = t('shoppe.orders.billing_address')
+        - else
+          = t('shoppe.orders.billing_delivery_address')
+
       %dd= @order.billing_address1
       %dd= @order.billing_address2
       %dd= @order.billing_address3
@@ -13,7 +18,7 @@
       %dd= @order.billing_postcode
       %dd= @order.billing_country.try(:name)
       - if @order.separate_delivery_address?
-        %dt Delivery Address
+        %dt= t('shoppe.orders.delivery_address')
         %dd= @order.delivery_name
         %dd= @order.delivery_address1
         %dd= @order.delivery_address2
@@ -23,30 +28,30 @@
         %dd= @order.delivery_country.try(:name)
   .right
     %dl
-      %dt E-Mail Address
+      %dt= t('shoppe.orders.email_address')
       %dd= mail_to @order.email_address
-      %dt Telephone
+      %dt= t('shoppe.orders.telephone')
       %dd= @order.phone_number
-      %dt Weight
+      %dt= t('shoppe.orders.weight')
       %dd= number_to_weight @order.total_weight
       - if @order.received?
-        %dt Build Time
+        %dt= t('shoppe.orders.build_time')
         %dd= distance_of_time_in_words(@order.created_at, @order.received_at)
       - if @order.invoiced?
-        %dt Invoice Number
+        %dt= t('shoppe.orders.invoice_number')
         %dd= @order.invoice_number
-      %dt Order Balance
+      %dt= t('shoppe.orders.order_balance')
       %dd= boolean_tag @order.paid_in_full?, nil, :true_text => number_to_currency(@order.balance), :false_text => number_to_currency(@order.balance)
     - if @order.accepted? && !@order.shipped?
       = form_tag [:ship, @order] do
         %dl.form
-          %dt.padding= label_tag 'consignment_number', 'Consignment Number'
+          %dt.padding= label_tag 'consignment_number', t('shoppe.orders.consignment_number')
           %dd= text_field_tag 'consignment_number', '', :class => 'text'
         %dl.form
-          %dd= submit_tag "Mark as shipped", :class => 'button green button-mini'
-    
+          %dd= submit_tag t('shoppe.orders.mark_as_shipped') , :class => 'button green button-mini'
+
     - unless @order.accepted? || @order.rejected?
       %dl.form
         %dd
-          = link_to "Accept", [:accept, @order], :method => :post, :class => 'button green'
-          = link_to "Reject", [:reject, @order], :method => :post, :class => 'button purple'
+          = link_to t('shoppe.orders.accept'), [:accept, @order], :method => :post, :class => 'button green'
+          = link_to t('shoppe.orders.reject'), [:reject, @order], :method => :post, :class => 'button purple'

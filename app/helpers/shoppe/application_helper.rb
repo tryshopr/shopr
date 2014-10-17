@@ -1,14 +1,14 @@
 module Shoppe
   module ApplicationHelper
-    
+
     def navigation_manager_link(item)
       link_to item.description, item.url(self), item.link_options.merge(:class => item.active?(self) ? 'active' : 'inactive')
     end
-  
+
     def status_tag(status)
-      content_tag :span, status, :class => "status-tag #{status}"
+      content_tag :span, t("shoppe.orders.statuses.#{status}"), :class => "status-tag #{status}"
     end
-  
+
     def attachment_preview(attachment, options = {})
       if attachment
         String.new.tap do |s|
@@ -22,24 +22,24 @@ module Shoppe
           s << "<div class='desc'>"
           s << "<span class='filename'><a href='#{attachment_path(attachment)}'>#{attachment.file_name}</a></span>"
           s << "<span class='delete'>"
-          s << link_to(t('shoppe.helpers.attachment_preview.delete', :default => 'Delete this file?'), attachment_path(attachment), :method => :delete, :data => {:confirm => t('shoppe.helpers.attachment_preview.delete_confirm', :default => "Are you sure you wish to remove this attachment?")})
+          s << link_to(t('helpers.attachment_preview.delete', :default => 'Delete this file?'), attachment_path(attachment), :method => :delete, :data => {:confirm => t('helpers.attachment_preview.delete_confirm', :default => "Are you sure you wish to remove this attachment?")})
           s << "</span>"
           s << "</div>"
           s << "</div>"
         end.html_safe
       elsif !options[:hide_if_blank]
-        "<div class='attachmentPreview'><div class='imgContainer'><div class='img none'></div></div><div class='desc none'>No attachment</div></div>".html_safe
+        "<div class='attachmentPreview'><div class='imgContainer'><div class='img none'></div></div><div class='desc none'>#{t('helpers.attachment_preview.no_attachment')},</div></div>".html_safe
       end
     end
-    
+
     def settings_label(field)
       "<label for='settings_#{field}'>#{t("shoppe.settings.labels.#{field}")}</label>".html_safe
     end
-    
+
     def settings_field(field, options = {})
-      default = t("shoppe.settings.defaults")[field.to_sym]
+      default = I18n.t("shoppe.settings.defaults")[field.to_sym]
       value = (params[:settings] && params[:settings][field]) || Shoppe.settings[field.to_s]
-      type = t("shoppe.settings.types")[field.to_sym] || 'string'
+      type = I18n.t("shoppe.settings.types")[field.to_sym] || 'string'
       case type
       when 'boolean'
         String.new.tap do |s|
@@ -55,6 +55,6 @@ module Shoppe
         text_field_tag "settings[#{field}]", value, options.merge(:placeholder => default, :class => 'text')
       end
     end
-  
+
   end
 end

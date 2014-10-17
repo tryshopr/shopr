@@ -1,12 +1,12 @@
-- @page_title = 'Order #' + @order.number
+- @page_title = "#{t('shoppe.orders.order')} ##{@order.number}"
 
 = content_for :header do
   %p.buttons
-    = link_to "Edit", [:edit, @order], :class => 'button'
+    = link_to t('shoppe.edit'), [:edit, @order], :class => 'button'
     - if @order.accepted?
-      = link_to "Despatch Note", [:despatch_note, @order], :class => 'button', :rel => 'print'
-    = link_to "Back to orders", :orders, :class => 'button grey'
-  %h2.orders Order <b>##{@order.number}</b>
+      = link_to t('shoppe.orders.despatch_note.despatch_note'), [:despatch_note, @order], :class => 'button', :rel => 'print'
+    = link_to t('shoppe.orders.back_to_orders'), :orders, :class => 'button grey'
+  %h2.orders= t('shoppe.orders.order_no_html', order_number: @order.number)
 
 #order
 
@@ -14,15 +14,12 @@
     = render 'order_details'
     = render 'status_bar'
   - else
-    %p.warning
-      This order is still being built by the customer in your store. At
-      present you can only view the items which are within the order.
+    %p.warning= t('shoppe.orders.in_progress_warning')
 
-
-  = field_set_tag "Order Items", :class => 'padded' do
+  = field_set_tag t('shoppe.orders.order_items'), :class => 'padded' do
     = render 'order_items'
-  
+
   - if @order.received?
-    = field_set_tag "Payments", :class => 'padded orderPayments' do
+    = field_set_tag t('shoppe.orders.payments'), :class => 'padded orderPayments' do
       = render 'payments_table'
       = render 'payments_form'

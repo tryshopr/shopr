@@ -1,9 +1,9 @@
-- @page_title = "Products"
+- @page_title = t('shoppe.products.products')
 
 = content_for :header do
   %p.buttons
-    = link_to "New product", :new_product, :class => 'button green'  
-    = link_to "Import products", :import_products, :class => 'button blue'
-  %h2.products Products
+    = link_to link_to t('shoppe.products.new_product'), :new_product, :class => 'button green'  
+    = link_to t('shoppe.products.import_products'), :import_products, :class => 'button blue'
+  %h2.products t('shoppe.products.products')
 
 = render 'table', :products => @products
