@@ -12,7 +12,6 @@ module Shoppe
     # All customers ordered by their ID desending
     scope :ordered, -> { order(:id => :desc)}
 
-
     # The name of the customer in the format of "Company (First Last)" or if they don't have
     # company specified, just "First Last".
     #
@@ -27,20 +26,6 @@ module Shoppe
     def full_name
       "#{first_name} #{last_name}"
     end
-
-    # Attempt to authenticate a customer based on email & password. Returns the 
-    # user if successful otherwise returns false.
-    #
-    # @param email [String]
-    # @param paassword [String]
-    # @return [Shoppe::Customer]
-    def self.authenticate(email, password)
-      customer = self.where(:email => email).first
-      return false if customer.nil?
-      return false unless customer.authenticate(password)
-      customer
-    end
-
 
     def self.ransackable_attributes(auth_object = nil) 
       ["id", "first_name", "last_name", "company", "email", "phone", "mobile"] + _ransackers.keys

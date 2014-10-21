@@ -5,7 +5,6 @@ class CreateShoppeCustomers < ActiveRecord::Migration
       t.string :last_name
       t.string :company
       t.string :email
-      t.string :password_digest
       t.string :phone
       t.string :mobile
 
