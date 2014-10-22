@@ -178,6 +178,7 @@ pl:
     close: Zamknij
     delete: Usuń
     edit: Edytuj
+    import: Import
     remove: Usuń
     submit: Zapisz
 
@@ -254,7 +255,6 @@ pl:
       update_notice: Opcja dostawy została zaktualizowana
 
     orders:
-
       accept: Akceptuj
       accept_notice: Zamówienie zostało zaakceptowane
       add_payment: Dodaj płatność
@@ -406,10 +406,10 @@ pl:
       enable_stock_control?: Uruchomić kontrolę stanu magazynowego dla produktu?
       featured?: Promowany?
       featured_info: Produkt będzie wyświetlony na stronie głównej
+      import_products: Import produktów
       in_the_box: Co zawiera pudełko?
       name: Nazwa
       new_product: Nowy produkt
-      import_products: Import produktów
       no_products: Brak produktów do wyświetlenia
       no_tax: Brak podatku
       no_stock: Brak

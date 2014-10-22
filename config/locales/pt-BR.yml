@@ -176,6 +176,8 @@ pt-BR:
     close: Fechar
     delete: Deletar
     edit: Editar
+    import: Importação
+    remove: Remover
     submit: Submeter
 
     attachments:
@@ -251,7 +253,6 @@ pt-BR:
       update_notice: O Serviço de Entrega foi atualizado com sucesso
 
     orders:
-
       accept: Aceitar
       accept_notice: O Pedido foi aceito com sucesso
       add_payment: Adicionar um pagamento
@@ -367,11 +368,6 @@ pt-BR:
         rejected: Rejeitado
         shipped: Enviado
 
-    refund:
-      intro_html: "Para emitir uma devolução para este pagamento, entre a quantidade que você deseja devolver abaixo e clique em 'Devolver'.  O máximo que você pode devolver é <b>%{amount}</b>."
-      issue_refund: Emitir Devolução
-      refund: Devolver
-
     product_category:
       attachments: Anexos
       back_to_categories: Voltar para a lista de categorias
@@ -403,10 +399,10 @@ pt-BR:
       enable_stock_control?:  Ativar controle de estoque para este produto?
       featured?: Oferta?
       featured_info:  Se sim, este produto será mostrado na página inicial
+      import_products: Produto importado
       in_the_box: O que a caixa contém?
       name: Nome
       new_product: Novo produto
-      import_products: Produto importado
       no_products: Nenhum produto para mostrar.
       no_stock: Sem estoque
       no_tax: Sem impostos
@@ -433,6 +429,11 @@ pt-BR:
       update_notice: O Produto foi atualizado com sucesso
       website_properties: Propriedades do Site
       weight: Peso
+
+    refund:
+      intro_html: "Para emitir uma devolução para este pagamento, entre a quantidade que você deseja devolver abaixo e clique em 'Devolver'.  O máximo que você pode devolver é <b>%{amount}</b>."
+      issue_refund: Emitir Devolução
+      refund: Devolver
 
     sessions:
       admin_login: Admin Login

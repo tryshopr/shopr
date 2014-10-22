@@ -123,7 +123,7 @@ module Shoppe
             # Dont import products with the same name but update quantities if they're not the same
             qty = row["qty"].to_i
             if qty > 0 && qty != product.stock
-              product.stock_level_adjustments.create!(description: "Import", adjustment: qty)
+              product.stock_level_adjustments.create!(description: t('shoppe.import'), adjustment: qty)
             end
           else
             product = new
@@ -135,20 +135,21 @@ module Shoppe
             product.price = row["price"].nil? ? 0 : row["price"]
 
             product.product_category_id = begin
-              if Shoppe::ProductCategory.find_by(name: row["_category"]).present?
+              if Shoppe::ProductCategory.find_by(name: row["category_name"]).present?
                 # Find and set the category
-                Shoppe::ProductCategory.find_by(name: row["_category"]).id
+                Shoppe::ProductCategory.find_by(name: row["category_name"]).id
               else
                 # Create the category
-                Shoppe::ProductCategory.create(name: row["_category"]).id
+                Shoppe::ProductCategory.create(name: row["category_name"]).id
               end
             end
 
             product.save!
 
             # Create quantities
-            if row["qty"] > 0
-              product.stock_level_adjustments.create!(description: "Import", adjustment: row["qty"])
+            qty = row["qty"].to_i
+            if qty > 0
+              product.stock_level_adjustments.create!(description: t('shoppe.import'), adjustment: qty)
             end
           end
         end
@@ -160,7 +161,7 @@ module Shoppe
       when ".csv" then Roo::CSV.new(file.path)
       when ".xls" then Roo::Excel.new(file.path)
       when ".xlsx" then Roo::Excelx.new(file.path)
-      else raise "Unknown file type: #{file.original_filename}"
+      else raise t('shoppe.imports.errors.unknown_format', filename: File.original_filename)
       end
     end
 

@@ -6,11 +6,11 @@
 = form_for "import", :url => import_products_path, :html => {:multipart => true} do |f|
   = f.error_messages
   
-  = field_set_tag "File Upload" do
+  = field_set_tag t('shoppe.imports.file_upload') do
     %dl
-      %dt= f.label :file, "File - must be csv, xls or xlsx"
+      %dt= f.label :file, t('shoppe.imports.required_formats')
       %dd= f.file_field :file
 
   %p.submit
-    = f.submit "Import", :class => "button green"
-    = link_to "Cancel", :products, :class => "button"
+    = f.submit t('shoppe.import'), :class => "button green"
+    = link_to t('shoppe.cancel'), :products, :class => "button"
