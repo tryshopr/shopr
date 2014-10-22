@@ -254,6 +254,12 @@ pl:
       tracking_url_help_html: Użyj <code>{{consignment_number}}</code> by wstawić numer przesyłki.
       update_notice: Opcja dostawy została zaktualizowana
 
+    imports:
+      file_upload: Prześlij plik
+      required_formats: Musi być csv, xls lub xlsx.
+      errors:
+        unknown_format: "Nieznany format pliku: %{filename}"
+
     orders:
       accept: Akceptuj
       accept_notice: Zamówienie zostało zaakceptowane

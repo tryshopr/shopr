@@ -253,7 +253,6 @@ en:
       tracking_url_help_html: Use <code>{{consignment_number}}</code> to insert the consignment number.
       update_notice: Delivery Service has been updated successfully
 
-
     imports:
       file_upload: File Upload
       required_formats: Must be csv, xls or xlsx.

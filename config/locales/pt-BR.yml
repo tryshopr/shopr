@@ -252,6 +252,12 @@ pt-BR:
       tracking_url_help_html: Use <code>{{consignment_number}}</code> para inserir o número do consignatário.
       update_notice: O Serviço de Entrega foi atualizado com sucesso
 
+    imports:
+      file_upload: Carregar Arquivo
+      required_formats: Deve ser csv, xls ou xlsx.
+      errors:
+        unknown_format: "Formato de arquivo desconhecido: %{filename}"
+
     orders:
       accept: Aceitar
       accept_notice: O Pedido foi aceito com sucesso
