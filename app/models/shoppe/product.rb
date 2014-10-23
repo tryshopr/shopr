@@ -123,7 +123,7 @@ module Shoppe
             # Dont import products with the same name but update quantities if they're not the same
             qty = row["qty"].to_i
             if qty > 0 && qty != product.stock
-              product.stock_level_adjustments.create!(description: t('shoppe.import'), adjustment: qty)
+              product.stock_level_adjustments.create!(description: I18n.t('shoppe.import'), adjustment: qty)
             end
           else
             product = new
@@ -149,7 +149,7 @@ module Shoppe
             # Create quantities
             qty = row["qty"].to_i
             if qty > 0
-              product.stock_level_adjustments.create!(description: t('shoppe.import'), adjustment: qty)
+              product.stock_level_adjustments.create!(description: I18n.t('shoppe.import'), adjustment: qty)
             end
           end
         end
@@ -161,7 +161,7 @@ module Shoppe
       when ".csv" then Roo::CSV.new(file.path)
       when ".xls" then Roo::Excel.new(file.path)
       when ".xlsx" then Roo::Excelx.new(file.path)
-      else raise t('shoppe.imports.errors.unknown_format', filename: File.original_filename)
+      else raise I18n.t('shoppe.imports.errors.unknown_format', filename: File.original_filename)
       end
     end
 

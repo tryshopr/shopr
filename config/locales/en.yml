@@ -255,9 +255,10 @@ en:
 
     imports:
       example_file: Example Format
-      file_upload: File Upload
+      file_upload: File for Import
       required_formats: Must be csv, xls or xlsx.
       errors:
+        no_file: No file chosen for import
         unknown_format: "Unknown file format: %{filename}"
 
     orders:
@@ -440,6 +441,7 @@ en:
 
       imports: 
         help: Products and Categories are matched by name.  If no product is found, a new one will be created with all the attributes on the line.  If a product is found, only the quantity will be updated and all other fields will be ignored.  If no category is found, one with that name will be created .  One product per line.  
+        success: Products imported successfully
         examples:
           first:
             name: Plush Teddy Bear

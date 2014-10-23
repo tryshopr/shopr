@@ -255,10 +255,11 @@ pl:
       update_notice: Opcja dostawy została zaktualizowana
 
     imports:
-      example_file: Przykład pliku
-      file_upload: Prześlij plik
+      example_file: Przykład Format
+      file_upload: Plik do importu
       required_formats: Musi być csv, xls lub xlsx.
       errors:
+        no_file: Nie wybrano pliku do importu
         unknown_format: "Nieznany format pliku: %{filename}"
 
     orders:
@@ -446,6 +447,7 @@ pl:
 
       imports: 
         help: Products and Categories are matched by name.  If no product is found, a new one will be created with all the attributes on the line.  If a product is found, only the quantity will be updated and all other fields will be ignored.  If no category is found, one with that name will be created .  One product per line.  
+        success: Produkty importowane z powodzeniem
         examples:
           first:
             name: Plush Teddy Bear

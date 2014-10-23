@@ -253,10 +253,11 @@ pt-BR:
       update_notice: O Serviço de Entrega foi atualizado com sucesso
 
     imports:
-      example_file: Exemplo de arquivo
-      file_upload: Carregar Arquivo
+      example_file: Exemplo Formato
+      file_upload: Arquivo para Importação
       required_formats: Deve ser csv, xls ou xlsx.
       errors:
+        no_file: Nenhum arquivo escolhido para importação
         unknown_format: "Formato de arquivo desconhecido: %{filename}"
 
     orders:
@@ -439,6 +440,7 @@ pt-BR:
 
       imports: 
         help: Products and Categories are matched by name.  If no product is found, a new one will be created with all the attributes on the line.  If a product is found, only the quantity will be updated and all other fields will be ignored.  If no category is found, one with that name will be created .  One product per line.  
+        success: Produtos importados com sucesso
         examples:
           first:
             name: Plush Teddy Bear

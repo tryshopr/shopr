@@ -8,8 +8,8 @@
   
   = field_set_tag t('shoppe.imports.file_upload') do
     %dl
-      %dt= f.label :file, t('shoppe.imports.required_formats')
-      %dd= f.file_field :file
+      %dt= f.label :import_file, t('shoppe.imports.required_formats')
+      %dd= f.file_field :import_file
 
   = field_set_tag t('shoppe.imports.example_file') do
     %dl
@@ -55,8 +55,8 @@
               %td= t('shoppe.products.imports.examples.third.qty')          
             %tr.tear-off
               %td{:colspan => "8"}
-        %dd
-          %p.help= t('shoppe.products.imports.help') 
+      %dd
+        %p.help= t('shoppe.products.imports.help') 
 
   %p.submit
     = f.submit t('shoppe.import'), :class => "button green"
