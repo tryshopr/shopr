@@ -1,6 +1,8 @@
 module Shoppe
   class Order < ActiveRecord::Base
     
+    extend ActiveModel::Callbacks
+    
     # These additional callbacks allow for applications to hook into other
     # parts of the order lifecycle.
     define_model_callbacks :confirmation, :acceptance, :rejection

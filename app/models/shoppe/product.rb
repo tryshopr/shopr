@@ -94,7 +94,7 @@ module Shoppe
       self.stock_level_adjustments.sum(:adjustment)
     end
   
-    # Search for products which include the guven attributes and return an active record
+    # Search for products which include the given attributes and return an active record
     # scope of these products. Chainable with other scopes and with_attributes methods.
     # For example:
     #
