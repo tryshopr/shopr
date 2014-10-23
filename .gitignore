@@ -10,3 +10,7 @@ test/app/.sass-cache
 *.gem
 doc/
 .yardoc
+
+# Do not keep Gemfile.lock in repo
+# http://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
+Gemfile.lock
