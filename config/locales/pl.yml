@@ -178,7 +178,7 @@ pl:
     close: Zamknij
     delete: Usuń
     edit: Edytuj
-    import: Import
+    import: Importuj
     remove: Usuń
     submit: Zapisz
 
@@ -255,9 +255,9 @@ pl:
       update_notice: Opcja dostawy została zaktualizowana
 
     imports:
-      example_file: Przykład Format
+      example_file: Przykładowy format
       file_upload: Plik do importu
-      required_formats: Musi być csv, xls lub xlsx.
+      required_formats: Musi być w formacie csv, xls, lub xlsx.
       errors:
         no_file: Nie wybrano pliku do importu
         unknown_format: "Nieznany format pliku: %{filename}"
