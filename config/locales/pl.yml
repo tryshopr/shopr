@@ -255,6 +255,7 @@ pl:
       update_notice: Opcja dostawy została zaktualizowana
 
     imports:
+      example_file: Przykład pliku
       file_upload: Prześlij plik
       required_formats: Musi być csv, xls lub xlsx.
       errors:
@@ -442,6 +443,37 @@ pl:
       update_notice: Produkt został zaktualizowany
       website_properties: Właściwości strony
       weight: Waga
+
+      imports: 
+        help: Products and Categories are matched by name.  If no product is found, a new one will be created with all the attributes on the line.  If a product is found, only the quantity will be updated and all other fields will be ignored.  If no category is found, one with that name will be created .  One product per line.  
+        examples:
+          first:
+            name: Plush Teddy Bear
+            sku: BEAR001
+            description: Fantastically plush. Very cuddly. Great for all ages.
+            short_description: Buy this for your kids.
+            weight: 1.2
+            price: 84.95
+            category_name: Teddy Bears
+            qty: 20
+          second:
+            name: Standard Teddy Bear
+            sku: BEAR002
+            description: Made out of PVC. A little cuddly. Spill resistant.
+            short_description: Buy this for those with two left thumbs.
+            weight: 0.6
+            price: 24.95
+            category_name: Teddy Bears
+            qty: 100
+          third:
+            name: Stick Teddy Bear
+            sku: BEAR003
+            description: Made out of sticks. Not really cuddly. All natural. Fire hazard.
+            short_description: Buy this for that distant aunt who collects bears.
+            weight: 0.521
+            price: 1.95
+            category_name: Teddy Bears
+            qty: 50
 
     sessions:
       admin_login: Login administratora
