@@ -1,6 +1,8 @@
 module Shoppe
   class Order < ActiveRecord::Base
     
+    extend ActiveModel::Callbacks
+    
     # These additional callbacks allow for applications to hook into other
     # parts of the order lifecycle.
     define_model_callbacks :confirmation, :acceptance, :rejection
@@ -41,7 +43,7 @@ module Shoppe
         self.order_items.each(&:confirm!)
 
         # Send an email to the customer
-        Shoppe::OrderMailer.received(self).deliver
+        deliver_received_order_email
       end
     
       # We're all good.
@@ -59,7 +61,7 @@ module Shoppe
           self.status = 'accepted'
           self.save!
           self.order_items.each(&:accept!)
-          Shoppe::OrderMailer.accepted(self).deliver
+          deliver_accepted_order_email
         end
       end
     end
@@ -75,9 +77,21 @@ module Shoppe
           self.status = 'rejected'
           self.save!
           self.order_items.each(&:reject!)
-          Shoppe::OrderMailer.rejected(self).deliver
+          deliver_rejected_order_email
         end
       end
+    end
+
+    def deliver_accepted_order_email
+      Shoppe::OrderMailer.accepted(self).deliver
+    end
+
+    def deliver_rejected_order_email
+      Shoppe::OrderMailer.rejected(self).deliver
+    end
+
+    def deliver_received_order_email
+      Shoppe::OrderMailer.received(self).deliver
     end
     
   end
