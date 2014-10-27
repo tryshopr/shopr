@@ -14,6 +14,7 @@ module Shoppe
     end
 
     def show
+      @addresses = @customer.addresses.ordered.load
     end
 
     def create

@@ -21,3 +21,6 @@
         %dd= @customer.phone
         %dt Mobile
         %dd= @customer.mobile
+
+  = field_set_tag "Addresses", :class => 'padded' do
+    = render "addresses"

@@ -244,10 +244,6 @@ en:
     weight: Weight
     weight_allowance: Weight Allowance
 
-
-    admin_primary:
-      customers: Customers
-
     submit: Submit
 
     attachments:
@@ -654,6 +650,7 @@ en:
 
     navigation:
       admin_primary:
+        customers: Customers
         orders: Orders
         products: Products
         product_categories: Product Categories
