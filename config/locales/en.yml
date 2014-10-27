@@ -183,6 +183,7 @@ en:
     close: Close
     delete: Delete
     edit: Edit
+    import: Import
     remove: Remove
     submit: Submit
 
@@ -258,8 +259,15 @@ en:
       tracking_url_help_html: Use <code>{{consignment_number}}</code> to insert the consignment number.
       update_notice: Delivery Service has been updated successfully
 
-    orders:
+    imports:
+      example_file: Example Format
+      file_upload: File for Import
+      required_formats: Must be csv, xls or xlsx.
+      errors:
+        no_file: No file chosen for import
+        unknown_format: "Unknown file format: %{filename}"
 
+    orders:
       accept: Accept
       accept_notice: Order has been accepted successfully
       add_payment: Add payment
@@ -287,7 +295,7 @@ en:
       id: ID
       in_progress_warning: This order is still being built by the customer in your store. At present you can only view the items which are within the order.
       invoice_number: Invoice number
-      insufficient_stock_order: "Insufficient stock to order %{out_of_stock_items }. Quantities have been updated to max total stock available."
+      insufficient_stock_order: "Insufficient stock to order %{out_of_stock_items}. Quantities have been updated to max total stock available."
       item: Item
       last_name: Last name
       mark_as_shipped: Mark as shipped
@@ -375,11 +383,6 @@ en:
         rejected: Rejected
         shipped: Shipped
 
-    refund:
-      intro_html: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
-      issue_refund: Issue Refund
-      refund: Refund
-
     product_category:
       attachments: Attachments
       back_to_categories: Back to categories list
@@ -411,6 +414,7 @@ en:
       enable_stock_control?:  Enable stock control for this product?
       featured?: Featured?
       featured_info:  If checked, this product will appear on your homepage
+      import_products: Import products
       in_the_box: What's in the box?
       name: Name
       new_product: New product
@@ -440,6 +444,43 @@ en:
       update_notice: Product has been updated successfully
       website_properties: Website Properties
       weight: Weight
+
+      imports: 
+        help: Products and Categories are matched by name.  If no product is found, a new one will be created with all the attributes on the line.  If a product is found, only the quantity will be updated and all other fields will be ignored.  If no category is found, one with that name will be created .  One product per line.  
+        success: Products imported successfully
+        examples:
+          first:
+            name: Plush Teddy Bear
+            sku: BEAR001
+            description: Fantastically plush. Very cuddly. Great for all ages.
+            short_description: Buy this for your kids.
+            weight: 1.2
+            price: 84.95
+            category_name: Teddy Bears
+            qty: 20
+          second:
+            name: Standard Teddy Bear
+            sku: BEAR002
+            description: Made out of PVC. A little cuddly. Spill resistant.
+            short_description: Buy this for those with two left thumbs.
+            weight: 0.6
+            price: 24.95
+            category_name: Teddy Bears
+            qty: 100
+          third:
+            name: Stick Teddy Bear
+            sku: BEAR003
+            description: Made out of sticks. Not really cuddly. All natural. Fire hazard.
+            short_description: Buy this for that distant aunt who collects bears.
+            weight: 0.521
+            price: 1.95
+            category_name: Teddy Bears
+            qty: 50
+
+    refund:
+      intro_html: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
+      issue_refund: Issue Refund
+      refund: Refund
 
     sessions:
       admin_login: Admin Login

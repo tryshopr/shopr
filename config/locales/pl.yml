@@ -184,6 +184,7 @@ pl:
     close: Zamknij
     delete: Usuń
     edit: Edytuj
+    import: Importuj
     remove: Usuń
     submit: Zapisz
 
@@ -259,8 +260,15 @@ pl:
       tracking_url_help_html: Użyj <code>{{consignment_number}}</code> by wstawić numer przesyłki.
       update_notice: Opcja dostawy została zaktualizowana
 
-    orders:
+    imports:
+      example_file: Przykładowy format
+      file_upload: Plik do importu
+      required_formats: Musi być w formacie csv, xls, lub xlsx.
+      errors:
+        no_file: Nie wybrano pliku do importu
+        unknown_format: "Nieznany format pliku: %{filename}"
 
+    orders:
       accept: Akceptuj
       accept_notice: Zamówienie zostało zaakceptowane
       add_payment: Dodaj płatność
@@ -412,6 +420,7 @@ pl:
       enable_stock_control?: Uruchomić kontrolę stanu magazynowego dla produktu?
       featured?: Promowany?
       featured_info: Produkt będzie wyświetlony na stronie głównej
+      import_products: Import produktów
       in_the_box: Co zawiera pudełko?
       name: Nazwa
       new_product: Nowy produkt
@@ -441,6 +450,38 @@ pl:
       update_notice: Produkt został zaktualizowany
       website_properties: Właściwości strony
       weight: Waga
+
+      imports: 
+        help: Products and Categories are matched by name.  If no product is found, a new one will be created with all the attributes on the line.  If a product is found, only the quantity will be updated and all other fields will be ignored.  If no category is found, one with that name will be created .  One product per line.  
+        success: Produkty importowane z powodzeniem
+        examples:
+          first:
+            name: Plush Teddy Bear
+            sku: BEAR001
+            description: Fantastically plush. Very cuddly. Great for all ages.
+            short_description: Buy this for your kids.
+            weight: 1.2
+            price: 84.95
+            category_name: Teddy Bears
+            qty: 20
+          second:
+            name: Standard Teddy Bear
+            sku: BEAR002
+            description: Made out of PVC. A little cuddly. Spill resistant.
+            short_description: Buy this for those with two left thumbs.
+            weight: 0.6
+            price: 24.95
+            category_name: Teddy Bears
+            qty: 100
+          third:
+            name: Stick Teddy Bear
+            sku: BEAR003
+            description: Made out of sticks. Not really cuddly. All natural. Fire hazard.
+            short_description: Buy this for that distant aunt who collects bears.
+            weight: 0.521
+            price: 1.95
+            category_name: Teddy Bears
+            qty: 50
 
     sessions:
       admin_login: Login administratora
