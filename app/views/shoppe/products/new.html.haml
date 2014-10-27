@@ -1,5 +1,7 @@
-- @page_title = t(:product_new)
+- @page_title = t('shoppe.products.products')
+
 = content_for :header do
-  %p.buttons= link_to t(:products_back), :products, :class => 'button'
-  %h2.products= t(:product_new)
+  %p.buttons= link_to t('shoppe.products.back_to_products') , :products, :class => 'button'
+  %h2.products= t('shoppe.products.products')
+
 = render 'form'

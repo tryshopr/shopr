@@ -10,8 +10,7 @@ before_script:
 script:
   - RAILS_ENV=test bundle exec rake test
 notifications:
-  email:
-    - deanpcmad@gmail.com
+  email: dean.perry@outlook.com
   hipchat:
     rooms:
       secure: HlW0xg8sQ34956CmAO0SGWt8ERR+QzzpnUFhlM8ouAUsX6W0/KCmcH3cF275aP2xpVAL2qwipVOjLBsMtdYtOzZR9rcj2P/NiTngxK2c+iR6HfkJgMO2TKuVIc39EenxyZUOKwWJHZf/wCn926hwvn8AUjgEfeabwp4mPlyErYU=

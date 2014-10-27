@@ -188,6 +188,21 @@ header.main {
 					&:nth-child(2) { margin-left:2%; width:32%;}
 					&:last-child { float:right; width:33%;}
 				}
+
+				&.quarter {
+					width:23%;
+					margin:0;
+					margin-left:2%;
+					float:left;
+					&:last-child { float:right; width:25%;}
+					&:first-child { margin:0;}
+				}
+
+				&.three-quarter {
+					width:75%;
+					margin:0;
+					float:right;
+				}				
 			}
 
 			dl.sided {
@@ -211,7 +226,10 @@ header.main {
 				width:100%;
 				margin-bottom:10px;
 				line-height:1.0;
-				thead td { background:#f7f7f7; color:#999; font-size:0.9em;}
+				thead td, thead th { text-align:left; border:1px solid #ccc; background:#f7f7f7; color:#999; font-size:0.9em; padding:10px; }
+				tr:nth-child(even) td {
+					background:#fbfbfb;
+				}
 				td {
 					border:1px solid #ccc;
 					padding:10px;
@@ -221,6 +239,27 @@ header.main {
 					&.remove { width:8%; text-align:center; background:#ffeff5;}
 					&.searchable {  width:8%; text-align:center; }
 					&.handle { width:4%; background:image-url('shoppe/move.svg') no-repeat center; background-size:16px;}
+				}
+			}
+
+			//
+			// imports example table
+			//
+			table.importExample {
+				@extend table.productAttributes;
+				tr:nth-last-child(2) td {
+					border-bottom: none;
+				}
+				tr.tear-off td {
+					border:none;
+					background:image-url('shoppe/table-tear-off.png') repeat-x 0 0;
+					height:5px;
+					padding:0;
+				}
+				td {
+					border:1px solid #ddd;
+					font-size:0.9em;
+					width:auto;
 				}
 			}
 		}
