@@ -638,7 +638,7 @@ en:
       defaults:
         currency_unit: $
         demo_mode: false
-        email_address: ventas@ejemplo.com
+        email_address: sales@example.com
         store_name: Widgets Inc.
         tax_name: Tax
 
