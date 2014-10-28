@@ -15,6 +15,12 @@ module Shoppe
       g.javascripts     false
       g.helper          false
     end
+
+    config.to_prepare do
+      Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
+        require_dependency(c)
+      end
+    end
     
     initializer 'shoppe.initialize' do |app|
       # Add the default settings

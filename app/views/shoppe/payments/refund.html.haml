@@ -2,7 +2,7 @@
 = form_tag [:refund, @order, @payment], :class => 'refundForm' do
   %h2= t('shoppe.refund.issue_refund')
   %p.intro
-   = t('shoppe.refund.intro_html', amount: number_to_currency(@payment.refundable_amount))
+    = t('shoppe.refund.intro_html', amount: number_to_currency(@payment.refundable_amount))
 
   .moneyInput
     .currency= Shoppe.settings.currency_unit.html_safe
