@@ -44,7 +44,7 @@ module Shoppe
     end
     
     def remove_item(identifier)
-      items.remote_if { |i| i.identifier.to_s == identifier.to_s }
+      items.delete_if { |i| i.identifier.to_s == identifier.to_s }
     end
     
     class NavigationItem

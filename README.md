@@ -4,6 +4,8 @@ Shoppe is an Rails-based e-commerce platform which allows you to easily introduc
 catalogue-based store into your Rails 4 applications. 
 
 ![GemVersion](https://badge.fury.io/rb/shoppe.png)
+[![Code Climate](https://codeclimate.com/github/tryshoppe/core/badges/gpa.svg)](https://codeclimate.com/github/tryshoppe/core)
+[![Build Status](https://travis-ci.org/tryshoppe/shoppe.svg?branch=master)](https://travis-ci.org/tryshoppe/shoppe)
 
 * [Check out the website](http://tryshoppe.com)
 * [View the demo site](http://demo.tryshoppe.com)
