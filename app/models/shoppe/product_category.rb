@@ -12,8 +12,8 @@ module Shoppe
 
     self.table_name = 'shoppe_product_categories'
 
-    # Categories have an image attachment
-    attachment :image
+    # Attachments for this product category
+    has_many :attachments, :as => :parent, :dependent => :destroy, :class_name => "Shoppe::Attachment"
 
     # All products within this category
     has_many :product_categorizations, dependent: :restrict_with_exception, class_name: 'Shoppe::ProductCategorization', inverse_of: :product_category
@@ -69,6 +69,14 @@ module Shoppe
       self.children.each do |category|
         category.save!  # save forces children to update their ancestral_permalink
       end
+    end
+
+    
+    # Attachment with the role image
+    # 
+    # @return [String]
+    def image
+      self.attachments.for("image")
     end
 
   end
