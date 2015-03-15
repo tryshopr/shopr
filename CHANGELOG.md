@@ -4,6 +4,8 @@ This document outlines key changes which are introduced in each version. The ful
 
 ## v1.0.5 (Master)
 
+* Added Customers ([#119](https://github.com/tryshoppe/shoppe/pull/119))
+
 * Fixed creation of orders in admin interface
 
 * Updated gemspec for Rails 4.2.0 ([#162](https://github.com/tryshoppe/shoppe/pull/162))

@@ -19,13 +19,6 @@
       %dl.half
         %dt= f.label :phone
         %dd= f.text_field :phone, :class => "text"
-    .splitContainer
-      %dl.half
-        %dt= f.label :password
-        %dd= f.password_field :password, :class => "text"
-      %dl.half
-        %dt= f.label :password_confirmation
-        %dd= f.password_field :password_confirmation, :class => "text"
 
   %p.submit
     - unless @customer.new_record?

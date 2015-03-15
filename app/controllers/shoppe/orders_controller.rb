@@ -76,6 +76,7 @@ module Shoppe
 
     def safe_params
       params[:order].permit(
+        :customer_id,
         :first_name, :last_name, :company,
         :billing_address1, :billing_address2, :billing_address3, :billing_address4, :billing_postcode, :billing_country_id,
         :separate_delivery_address,

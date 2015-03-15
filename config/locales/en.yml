@@ -399,6 +399,8 @@ en:
       search: Search
       search_orders: Search orders
       select_country: Select a country
+      customer: Customer
+      select_customer: Select a customer or leave blank
       separate_delivery_address: Separate delivery address
       ship_notice: Order has been shipped successfully
       sku: SKU

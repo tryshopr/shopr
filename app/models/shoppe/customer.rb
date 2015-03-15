@@ -5,6 +5,8 @@ module Shoppe
 
     has_many :addresses, :dependent => :restrict_with_exception, :class_name => "Shoppe::Address"
 
+    has_many :orders, :dependent => :restrict_with_exception, :class_name => "Shoppe::Order"
+
     # Validations
     validates :email, :presence => true, :uniqueness => true, :format => {:with => /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i}
     validates :phone, :presence => true, :format => {:with => /\A[\d\ \-x\(\)]{7,}\z/}
