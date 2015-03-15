@@ -20,7 +20,7 @@ module Shoppe
       tracking_url   'http://sometrackingsite.com/{{consignment_number}}/{{billing_postcode}}/{{delivery_postcode}}'
 
       factory :delivery_service_with_prices do
-        ignore do
+        transient do
           country_ids []
         end
         

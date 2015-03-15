@@ -6,7 +6,7 @@ module Shoppe
       product_category    { ProductCategory.find_by_permalink('phones') || create(:phones_category) }
       tax_rate            { TaxRate.find_by_rate(20) || create(:standard_tax) }
       stock_control       true
-      ignore do
+      transient do
         initial_stock nil
       end
       
