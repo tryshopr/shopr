@@ -2,6 +2,35 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
+## v1.0.5 (Master)
+
+* Fixed creation of orders in admin interface
+
+* Updated gemspec for Rails 4.2.0 ([#162](https://github.com/tryshoppe/shoppe/pull/162))
+
+* Fixed issue where order callbacks weren't being executed on order `accept!` and `reject!` methods ([#166](https://github.com/tryshoppe/shoppe/pull/166))
+
+
+## v1.0.4 (Stable)
+
+* Added `items_sub_total` method to Orders
+
+* Extracted text to locale files ([#83](https://github.com/tryshoppe/shoppe/pull/83))
+
+* Polish translations
+
+* Permalink Validations ([#127](https://github.com/tryshoppe/shoppe/pull/127))
+
+* Moved Order email actions to separate methods ([#130](https://github.com/tryshoppe/shoppe/pull/130))
+
+* Added index to all tables ([#131](https://github.com/tryshoppe/shoppe/pull/131))
+
+* Spanish translations ([#135](https://github.com/tryshoppe/shoppe/pull/135))
+
+* Fixed HAML render error & added support for decorators ([#138](https://github.com/tryshoppe/shoppe/pull/138))
+
+* Updated Nifty Dialog ([#150](https://github.com/tryshoppe/shoppe/issues/150))
+
 ## v1.0.0
 
 * Updates to the Gemfile to support Rails 4.1.
