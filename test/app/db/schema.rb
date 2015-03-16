@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027215005) do
+ActiveRecord::Schema.define(version: 20150315223628) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20141027215005) do
   add_index "shoppe_addresses", ["customer_id"], name: "index_shoppe_addresses_on_customer_id", using: :btree
 
   create_table "shoppe_attachments", force: true do |t|
-    t.integer  "parent_id"
-    t.string   "parent_type"
+    t.integer  "parent_id",   null: false
+    t.string   "parent_type", null: false
     t.string   "token"
-    t.string   "file"
+    t.string   "file",        null: false
     t.string   "file_name"
     t.integer  "file_size"
     t.string   "file_type"
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(version: 20141027215005) do
     t.decimal  "amount_paid",               precision: 8, scale: 2, default: 0.0
     t.boolean  "exported",                                          default: false
     t.string   "invoice_number"
+    t.integer  "customer_id"
   end
 
   add_index "shoppe_orders", ["delivery_service_id"], name: "index_shoppe_orders_on_delivery_service_id", using: :btree
