@@ -1,9 +1,31 @@
-test:
+sqlite: &sqlite
+  adapter: sqlite3
+  database: db/shoppe_test.sqlite3
+
+mysql: &mysql
   adapter: mysql2
-  encoding: utf8
-  database: shoppe_test
-  pool: 5
   username: root
   password:
+  database: shoppe_test
+
+postgresql: &postgresql
+  adapter: postgresql
+  username: postgres
+  password:
+  database: shoppe_test
+  min_messages: ERROR
+
+defaults: &defaults
+  pool: 5
+  timeout: 5000
   host: localhost
-  
+  <<: *<%= ENV['DB'] || "sqlite" %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
