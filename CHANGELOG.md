@@ -2,7 +2,11 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
-## v1.0.5 (Master)
+## v1.0.6 (Master)
+
+* ...
+
+## v1.0.5 (Stable)
 
 * Fixed creation of orders in admin interface
 
@@ -10,8 +14,7 @@ This document outlines key changes which are introduced in each version. The ful
 
 * Fixed issue where order callbacks weren't being executed on order `accept!` and `reject!` methods ([#166](https://github.com/tryshoppe/shoppe/pull/166))
 
-
-## v1.0.4 (Stable)
+## v1.0.4
 
 * Added `items_sub_total` method to Orders
 
