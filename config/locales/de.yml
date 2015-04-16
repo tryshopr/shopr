@@ -1,0 +1,650 @@
+de:
+  activerecord:
+    models:
+      shoppe/country:
+        one: Land
+        other: Länder
+      shoppe/delivery_service:
+        one: Lieferdienst
+        other: Lieferdienste
+      shoppe/delivery_service_price:
+        one: Anlieferungskosten
+        other: Anlieferungskosten
+      shoppe/order:
+        one: Bestellung
+        other: Bestellungen
+      shoppe/order_item:
+        one: Artikel
+        other: Artikel
+      shoppe/payment:
+        one: Bezahlmethode
+        other: Bezahlmethoden
+      shoppe/product:
+        one: Produkt
+        other: Produkte
+      shoppe/product_attribute:
+        one: Produkteigenschaft
+        other: Produkteigenschaften
+      shoppe/product_category:
+        one: Produktkategorie
+        other: Produktkategorien
+      shoppe/setting:
+        one: Einstellung
+        other: Einstellungen
+      shoppe/stock_level_adjustment:
+        one: Änderung der Verfügbarkeit
+        other: Änderungen der Verfügbarkeit
+      shoppe/tax_rate:
+        one: Steuersatz
+        other: Steuersätze
+      shoppe/user:
+        one: Benutzer
+        other: Benutzer
+
+    attributes:
+      shoppe/order:
+        billing_address1: Rechnungsanschrift1
+        billing_address3: Rechnungsanschrift3
+        billing_address4: Rechnungsanschrift4
+        billing_country: Rechnungsanschrift / Land
+        billing_postcode: Rechnungsanschrift / PLZ
+        delivery_address1: Lieferanschrift1
+        delivery_address3: Lieferanschrift3
+        delivery_address4: Lieferanschrift4
+        delivery_country: Lieferanschrift / Land
+        delivery_name: Lieferanschrift / Name
+        delivery_service_id: Lieferdienst
+        delivery_postcode: Lieferanschrift / PLZ
+        email_address: E-Mail Adresse
+        first_name: Vorname
+        last_name: Nachname
+        phone_number: Telefonnummer
+        status: Status
+        token: Token
+      shoppe/country:
+        name: Name
+      shoppe/delivery_service:
+        name: Name
+        courier: Kurier
+      shoppe/delivery_service_price:
+        code: Code
+        cost_price: Preis
+        max_weight: Maximalgewicht
+        min_weight: Minimalgewicht
+        price: Preis
+      shoppe/order_item:
+        ordered_item: Bestellter Artikel
+        quantity: Anzahl
+      shoppe/payment:
+        amount: Betrag
+        method: Bezahlmethode
+        reference: Referenz
+      shoppe/product:
+        cost_price: Preis
+        description: Beschreibung
+        name: Name
+        permalink: Permalink
+        price: Preis
+        short_description: Kurzbeschreibung
+        sku: SKU
+        weight: Gewicht
+      shoppe/product_attribute:
+        key: Schlüssel
+      shoppe/product_category:
+        name: Name
+        permalink: Permalink
+      shoppe/setting:
+        key: Schlüssel
+        value: Wert
+        value_type: Wertart
+      shoppe/stock_level_adjustment:
+        adjustment: Änderung
+        description: Beschreibung
+        must_be_greater_or_equal_zero: muss größer oder kleiner als Null sein
+      shoppe/tax_rate:
+        address_type: Art der Adresse
+        name: Name
+        rate: Steuersatz
+      shoppe/user:
+        email_address: E-Mail Adresse
+        first_name: Vorname
+        last_name: Nachname
+        password: Passwort
+        password_confirmation: Passwortbestätigung
+    errors:
+      template:
+        body: ! 'Folgende Felder sind fehlerhaft:'
+        header:
+          one: Durch 1 Fehler konnte %{model} nicht gespeichert werden
+          many: ! 'Durch %{count} Fehler konnte %{model} nicht gespeichert werden'
+          other: ! 'Durch %{count} Fehler konnte %{model} nicht gespeichert werden'
+      models:
+        shoppe/product_category:
+          attributes:
+            permalink:
+              wrong_format: "darf nur Buchstaben, Ziffern, - und _ enthalten"
+        shoppe/delivery:
+          attributes:
+            delivery_service_id:
+              must_be_specified: darf nicht leer sein
+              not_suitable: kann nicht für diese Bestellung verwendet werden
+        shoppe/order:
+          attributes:
+            delivery_service_id:
+              must_be_specified: darf nicht leer sein
+        shoppe/product:
+          attributes:
+            permalink:
+              wrong_format: "darf nur Buchstaben, Ziffern, - und _ enthalten"
+            base:
+              can_belong_to_root: muss einem anderem Produkt untergeordnet sein
+        shoppe/order_item:
+          attributes:
+            quantity:
+              too_high_quantity: übersteigt die Anzahl der Artikel im Lager
+        shoppe/payment:
+          refund_failed: "Rückerstattungen müssen geringer als die Bezahlung sein (%{refundable_amount})"
+
+  will_paginate:
+    next_label: "Weiter &#8594;"
+    page_gap: "&hellip;"
+    previous_label: "&#8592; Zurück"
+
+    page_entries_info:
+
+      single_page:
+        zero:  "Kein %{model} gefunden"
+        one:   "Es wird 1 %{model} angezeigt"
+        other: "Es werden alle %{count} %{model} angezeigt"
+
+      single_page_html:
+        zero:  "Kein %{model} gefunden"
+        one_html:   "Es wird <b>1</b> %{model} angezeigt"
+        other_html: "Es werden alle <b>all&nbsp;%{count}</b> %{model} angezeigt"
+
+      multi_page: "Es werden %{model} %{from} - %{to} von %{count} angezeigt"
+      multi_page_html: "Es werden %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> von <b>%{count}</b> angezeigt"
+
+  helpers:
+    number_to_weight:
+      kg: kg
+    page_entries_info:
+      one_page:
+        display_entries: Einträge anzeigen
+    attachment_preview:
+      delete: Löschen
+      delete_confirm: Möchten Sie diesen Anhang löschen?
+      no_attachment: Kein Anhang
+
+  shoppe:
+
+    # common
+    cancel: Abbrechen
+    close: Schließen
+    delete: Löschen
+    edit: Bearbeiten
+    import: Importieren
+    remove: Entfernen
+    submit: Absenden
+
+    attachments:
+      remove_notice: Anhang erfolgreich entfernt
+
+    countries:
+      back: Zurück zu den Ländern
+      continent: Kontinent
+      countries: Länder
+      country_details: Länderdetails
+      create_notice: Land wurde erfolgreich erstellt
+      delete_confirmation: Möchten Sie dieses Land wirklich löschen?
+      destroy_notice: Land wurde erfolgreich gelöscht
+      eu?: EU?
+      eu_member: EU Mitglied?
+      is_eu_member: Ist das Land ein Mitglied der EU?
+      iso_alpha_2: ISO 3166-1-alpha-2
+      iso_alpha_3: ISO 3166-1-alpha-3
+      name: Name
+      new_country: Neues Land
+      tld: TLD
+      update_notice: Land wurde erfolgreich aktualisiert
+
+    delivery_service_prices:
+      all_countries: Alle Länder
+      back: Zurück zu den Preisen
+      back_to_delivery_services: Zurück zu den Lieferdiensten
+      code: Code
+      cost: Kosten
+      cost_price: Preis
+      countries: Länder
+      create_notice: Preis wurde erfolgreich erstellt
+      delivery_services: Lieferdienste
+      destroy_notice: Preis wurde erfolgreich gelöscht
+      identification_weight: Identifikation & Gewicht
+      max_weight: Maximalgewicht
+      min_weight: Minimalgewicht
+      new_price: Neuer Preis
+      no_tax: Keine Steuern
+      price: Preis
+      pricing: Preisvergabe
+      pricing_for: "Anlieferungskosten für %{delivery_name}"
+      tax_rate: Steuersatz
+      update_notice: Preis wurde erfolgreich aktualisiert
+      weight_allowance: Erlaubtes Gewicht
+
+      help:
+        countries: Diese Lieferkosten sind nur für Bestellungen aus Ländern verfügbar die hier aufgelistet sind.
+
+    delivery_services:
+      active?: Aktiv?
+      active: Aktiv
+      active_info: Dienst ist verfügbar
+      back: Zurück zu den Lieferdiensten
+      code: Code
+      courier: Kurier
+      courier_name: Kurierdienst
+      create_notice: Lieferdienst wurde erfolgreich erstellt
+      default?: Standard?
+      default: Standard
+      default_info: Lieferdienst wird, wenn möglich, als Standard verwendet
+      delivery_services: Lieferdienste
+      destroy_notice: Lieferdienst wurde erfolgreich gelöscht
+      delete_confirmation: Möchten Sie diesen Lieferdienst wirklich löschen?
+      details: Details
+      name: Name
+      new: Neuer Lieferdienst
+      no_services: Keine Lieferdienste zum Anzeigen.
+      prices: Preise
+      set_prices: Preise festlegen
+      tracking_url: Tracking URL
+      tracking_url_help_html: Benutzen Sie <code>{{consignment_number}}</code> als Sendungsnummer.
+      update_notice: Lieferdienst wurde erfolgreich aktualisiert
+
+    imports:
+      example_file: Beispielformat
+      file_upload: Datei für Import
+      required_formats: Muss vom Format csv, xls oder xlsx ein.
+      errors:
+        no_file: Keine Datei für Import ausgewählt
+        unknown_format: "Unbekanntes Dateiformat: %{filename}"
+
+    orders:
+      accept: Akzeptieren
+      accept_notice: Bestellung wurde erfolgreich akzeptiert
+      add_payment: Bezahlung hinzufügen
+      add_item: Artikel hinzufügen
+      address: Adresse
+      amount: Betrag
+      back_to_order: Zurück zur Bestellung
+      back_to_orders: Zurück zu den Bestellungen
+      billing_address: Rechnungsadresse
+      billing_delivery_address: Rechnungs-/Lieferadresse
+      build_time: Herstellungszeit
+      company: Firma
+      consignment_number: Sendungsnummer
+      cost: Kosten
+      country: Land
+      create_order: Bestellung erstellen
+      create_notice: Bestellung wurde erfolgreich erstellt
+      customer: Kunde
+      delivery_address: Lieferadresse
+      delivery_name: Lieferanschrift / Name
+      edit_order: Bestellung bearbeiten
+      email_address: E-Mail Adresse
+      first_name: Vorname
+      from_payment: von Bezahlung
+      id: ID
+      in_progress_warning: Diese Bestellung wird durch den Kunden generiert. Zur Zeit können Sie nur die Artikel sehen, die in der Bestellung enthalten sind.
+      invoice_number: Rechnungsnummer
+      insufficient_stock_order: "Folgende Artikel sind derzeit leider nicht Verfügbar: %{out_of_stock_items}. Die Anzahl wurde auf die maximale Verfübarkeit angepasst."
+      item: Artikel
+      last_name: Nachname
+      mark_as_shipped: Als verschickt markieren
+      method: Methode
+      missing_delivery_service: Keine passenden Lieferdienste verfügbar. Bestellung kann nicht ohne Lieferdienst erstellt werden.
+      name: Name
+      new_order: Neue Bestellung
+      no_delivery_required: Für diese Bestellung wird keine Lieferung benötigt.
+      no_orders: Keine Bestellungen zum Anzeigen.
+      no_payments: Für diese Bestellung wurde noch keine Bezahlung erhalten...
+      notes: Notizen
+      number: Nummer
+      order: Bestellung
+      order_accepted: Bestellung akzeptiert
+      order_balance: Rechnungsbetrag
+      order_items: Bestellte Artikel
+      order_no_html: "Bestellung <b>#%{order_number}</b>"
+      order_number: Nummer der Bestellung
+      order_received: Bestellung erhalten
+      order_rejected: Bestellung abgelehnt
+      order_shipped: Bestellung verschickt
+      ordered_products: Bestellte Produkte
+      orders: Bestellungen
+      payment: Bezahlung
+      payment_remove_confirmation: Möchten Sie diese Bezahlung wirklich löschen?
+      payments: Bezahlungen
+      phone_number: Telefonnummer
+      post_code: PLZ
+      price: Preis
+      product: Produkt
+      products: Produkte
+      qty: Anz.
+      quantity: Anzahl
+      received_between: Erhalten zwischen
+      reference: Referenz
+      refund: Rückerstattung
+      refunded?: Zurückerstattet?
+      reject: Ablehnen
+      reject_notice: Bestellung wurde erfolgreich abgelehnt
+      save_order: Bestellung speichern
+      search: Suchen
+      search_orders: Bestellungen suchen
+      select_country: Wählen Sie ein Land
+      separate_delivery_address: Abweichende Lieferadresse
+      ship_notice: Bestellung wurde erfolgreich verschickt
+      sku: SKU
+      sla_warning: Alle Änderungen der Anzahl aktualisieren die Verfügbarkeit der jeweiligen Produkte.
+      status: Status
+      stock: Verfügbarkeit
+      sub_total: Zwischensumme
+      tax: Steuer
+      telephone: Telefon
+      total: Gesamt
+      type: Typ
+      unit_price: Stückpreis
+      update_notice: Bestellung wurde erfolgreich gespeichert
+      use_separate_delivery_address?: Abweichende Lieferadresse verwenden?
+      weight: Gewicht
+
+      status_bar:
+        by_user: "von %{user}"
+        consignment_no_html: "Sendung #<b>%{consignment_number}</b>"
+        from_ip: "von %{ip}"
+        on_date: "am %{on}"
+        tracking_url: Tracking URL
+
+      despatch_note:
+        despatch_note: Beipackzettel
+        footer: Vielen Dank für Ihre Bestellung!
+        order_number: Nummer der Bestellung
+        order_placed: Bestellt
+        packed?: Gepackt?
+        product: Produkt
+        quantity: Anzahl
+        sku: SKU
+        telephone: Telefon
+        total_weight: Gesamtgewicht
+        weight: Gewicht
+
+      statuses:
+        accepted: Akzeptiert
+        building: Wird hergestellt
+        confirming: Wird bestätigt
+        received: Erhalten
+        rejected: Abgelehnt
+        shipped: Verschickt
+
+    product_category:
+      attachments: Anhänge
+      back_to_categories: Zurück zu den Kategorien
+      category_details: Kategoriedetails
+      create_notice: Kategorie wurde erfolgreich erstellt
+      delete_confirmation: Möchten Sie diese Kategorie wirklich löschen?
+      description: Beschreibung
+      destroy_notice: Kategorie wurde erfolgreich gelöscht
+      image: Bild
+      name: Name
+      new_category: Neue Kategorie
+      no_categories: Keine Kategorien zum Anzeigen.
+      permalink: Permalink
+      product_categories: Produktkategorien
+      update_notice: Kategorie wurde erfolgreich aktualisiert
+
+    products:
+      add_attribute: Attribut hinzufügen
+      attachments: Anhänge
+      attributes: Attribute
+      back_to_products: Zurück zur Produktliste
+      cost_price: Preis
+      create_notice: Produkt wurde erfolgreich erstellt
+      datasheet: Datenblatt
+      default_image: Standardbild
+      description: Beschreibung
+      destroy_notice: Produkt wurde erfolgreich gelöscht
+      edit: Bearbeiten
+      enable_stock_control?: Verfügbarkeitskontrolle für dieses Produkt aktivieren?
+      featured?: Aktiv?
+      featured_info: Wenn markiert, wird dieses Produkt auf der Homepage angezeigt
+      import_products: Produkte importieren
+      in_the_box: Was ist in der Box?
+      name: Name
+      new_product: Neues Produkt
+      no_products: Keine Produkte zum Anzeigen.
+      no_stock: Nicht verfügbar
+      no_tax: Keine Steuer
+      on_sale?: Zum Verkauf?
+      on_sale_info: Wenn markiert, wird dieses Produkt im öffentlichen Store angezeigt
+      permalink: Permalink
+      price: Preis
+      price_variants: Preis/Varianten
+      pricing: Preisvergabe
+      product_category: Produktkategorie
+      product_information: Produktinformation
+      products: Produkte
+      public?: Öffentlich?
+      remove: Entfernen
+      searchable?: Suchbar?
+      short_description: Kurzbeschreibung
+      sku: SKU
+      stock: Verfügbar
+      stock_control: Verfügbarkeitskontrolle
+      stock_levels: Verfügbarkeit
+      tax_rate: Steuersatz
+      value: Wert
+      variants: Varianten
+      update_notice: Produkt wurde erfolgreich aktualisiert
+      website_properties: Eigenschaften der Website
+      weight: Gewicht
+
+      imports:
+        help: Produkte und Kategorien werden nach Namen gematcht.  Wird kein Produkt gefunden wird ein neues mit allen Attributen angelegt.  Wird ein Produkt gefunden, wird nur die Anzahl erhöht.  Wird keine Kategorie gefunden, wird diese angelegt.  Ein Produkt pro Zeile.
+        success: Produkte wurden erfolgreich imnportiert
+        examples:
+          first:
+            name: Plüschbär
+            sku: BAER001
+            description: Sehr plüschig. Für alle Altersgruppen geeignet.
+            short_description: Kaufen Sie ihn für Ihre Kinder.
+            weight: 1.2
+            price: 84.95
+            category_name: Teddybären
+            qty: 20
+          second:
+            name: Standard Teddybär
+            sku: BAER002
+            description: Hergestellt aus PVC.
+            short_description: Kaufen Sie diesen für Personen mit zwei linken Händen.
+            weight: 0.6
+            price: 24.95
+            category_name: Teddybären
+            qty: 100
+          third:
+            name: Teddybär
+            sku: BAER003
+            description: Sehr natürlich. Feuerrisiko.
+            short_description: Kaufen Sie diesen für diese entfernte Tante, die Teddybären sammelt.
+            weight: 0.521
+            price: 1.95
+            category_name: Teddybären
+            qty: 50
+
+    refund:
+      intro_html: "Um eine Rückerstattung für diese Bezahlung anzufordern, geben Sie den zu erstattenden Betrag ein und klicken Sie auf 'Rückerstattung'.  Die maximale Rückerstattung beträgt <b>%{amount}</b>."
+      issue_refund: Angeforderte Rückerstattung
+      refund: Rückerstattung
+
+    sessions:
+      admin_login: Admin Anmeldung
+      create_alert: Die E-Mail Adresse und/oder das Passwort ist falsch. Bitte überprüfen Sie Ihre Eingabe.
+      back_to_login: Zurück zur Anmeldung
+      email:  E-Mail Adresse
+      login: Anmeldung
+      password: Passwort
+      reset: Zurücksetzen
+      reset_password: Passwort zurücksetzen
+      reset_password?: Möchten Sie Ihr Passwort zurücksetzen?
+      reset_alert: Es wurde kein Benutzer mit passender E-Mail Adresse gefunden
+      reset_notice: "Es wurde ein neues Passwort per E-Mail an %{email_address} verschickt"
+
+    shared:
+      back_to_shoppe: Zurück zu Shoppe
+      error: Fehler
+      error_occurred: Ein Fehler ist aufgetreten
+
+    stock_level_adjustments:
+      add: Hinzufügen
+      adjustment: Änderung
+      back_to_product: Zurück zur Produktliste
+      create_notice: Änderung wurde erfolgreich hinzugefügt
+      current_stock_level_html: "Derzeitige Verfügbarkeit beträgt <b>%{item_stock}</b>"
+      date: Datum
+      description: Beschreibung
+      edit_product: Produkt bearbeiten
+      invalid_item_type: "Falscher item_type (muss einer von %{suitable_objects} sein)"
+      stock_levels_for: "Verfübarkeit für %{item_name}"
+      stock_levels_title: "Verfügbarkeit - %{item_name}"
+
+    tax_rates:
+      address_type_option: "Auf Bestellungen anwenden, bei denen die Adresse %{address} mit einem der unten angezeigten Länder übereinstimmt"
+      all_countries: Alle Länder
+      back_to_tax_rates: Zurück zu den Steuersätzen
+      billing: Abrechnung
+      country_restriction: Ländereinschränkung
+      create_notice: Steuersatz wurde erfolgreich erstellt
+      delete_confirmation: Möchten Sie diesen Steuersatz wirklich löschen?
+      delivery: Lieferung
+      destroy_notice: Steuersatz wurde erfolgreich gelöscht
+      name: Name
+      new_tax_rate: Neuer Steuersatz
+      rate: Steuersatz
+      rate_details: Steuersatzdetails
+      tax_rates: Steuersätze
+      update_notice: Steuersatz wurde erfolgreich aktualisiert
+
+    users:
+      back_to_users: Zurück zu den Benutzern
+      create_notice: Benutzer wurde erfolgreich erstellt
+      delete_confirmation: Möchten Sie diesen Benutzer wirklich löschen?
+      demo_mode_error: Benutzer können im Demo-Modus nicht verändert werden.
+      destroy_notice: Benutzer wurde erfolgreich gelöscht
+      email: E-Mail Adresse
+      first_name: Vorname
+      last_name: Nachname
+      login: Anmeldung
+      name: Name
+      new_user: Neuer Benutzer
+      password: Passwort
+      password_confirmation: ...und nochmal
+      self_remove_error: Sie können sich nicht selbst entfernen
+      update_notice: Benutzer wurde erfolgreich aktualisiert
+      user_details: Benutzerdetails
+      users: Benutzer
+
+    variants:
+      back_to_variants: Zurück zu Varianten
+      cost_price: Preis
+      create_notice: Variante wurde erfolgreich erstellt
+      default_variant?: Standardvariante?
+      default_variant_info: Wenn markiert, wird diese Variante als Standard verwendet
+      delete_confirmation: Möchten Sie diese Variante wirklich löschen?
+      destroy_notice: Veriante wurde erfolgreich gelöscht
+      edit_product: Produkt bearbeiten
+      edit_variant: Neue Variante
+      enable_stock_control?: Verfügbarkeitskontrolle für dieses Produkt aktivieren?
+      image: Bild
+      name: Name
+      no_products: Keine Produkte zum Anzeigen.
+      no_stock: Nicht verfügbar
+      no_tax: Keine Steuer
+      new_variant: Neue Variante
+      on_sale?: Zum Verkauf?
+      on_sale_info: Wenn markiert, wird dieses Produkt im öffentlichen Store angezeigt
+      permalink: Permalink
+      price: Preis
+      pricing: Preisvergabe
+      product_information: Produktinformation
+      save_variant: Variante speichern
+      sku: SKU
+      stock: Verfügbar
+      stock_control: Verfügbarkeitskontrolle
+      tax_rate: Steuersatz
+      update_notice: Variante wurde erfolgreich aktualisiert
+      variants: Varianten
+      variants_of: "Varianten von %{product}"
+      website_properties: Eigenschaften der Website
+      weight: Gewicht
+
+    payments:
+      create_notice: Bezahlung wurde erfolgreich hinzugefügt
+      destroy_notice: Bezahlung wurde erfolgreich gelöscht
+      refund_notice: Rückerstattung wurde erfolgreich verarbeitet.
+
+    navigation:
+      admin_primary:
+        orders: Bestellungen
+        products: Produkte
+        product_categories: Produktkategorien
+        delivery_services: Lieferdienste
+        tax_rates: Steuersätze
+        users: Benutzer
+        countries: Länder
+        settings: Einstellungen
+
+    settings:
+
+      settings: Einstellungen
+      system_settings: Systemeinstellungen
+      demo_mode_error: Einstellungen können im Demo-Modus nicht verändert werden.
+      update_notice: Einstellungen wurden erfolgreich aktualisiert.
+
+      types:
+        # Force certain settings to certain type
+        demo_mode: boolean
+
+      labels:
+        # Labels for fields go here
+        email_address: E-Mail Adresse speichern
+        store_name: Name des Stores
+        currency_unit: Währungseinheit
+        tax_name: Name der Steuer
+        demo_mode: Demo-Modus
+
+      options:
+        # Options for boolean settings
+        demo_mode:
+          affirmative: Aktiviert
+          negative: Deaktiviert
+
+      help:
+        # Help text for individual fields
+        currency_unit: Dieses Symbol wird vor allen Geldbeträgen angezeigt. Dies wird nur im Admin-Bereich angezeigt und muss gesondert für das Frontend implementiert werden.
+        demo_mode: Wenn aktiv, können sich alle Benutzer im Admin-Bereich anmelden. Änderungen der Benutzer können nicht vorgenommen werden. Diese Funktion sollte mit Vorsicht, und nie im Production-Mode, verwendet werden.
+        email_address: Diese E-Mail Adresse wird für ausgehende Nachrichten verwendet.
+        store_name: Dies ist der Name Ihres Stores. Er wird im Admin-Bereich und für ausgehende Nachrichten verwendet.
+        tax_name: Der Name für die verwendete Steuer. Dieser wird im Admin-Bereich angezeigt. Normalerweise VAT in europäischen Ländern.
+
+      save_settings: Einstellungen speichern
+      page_title: Einstellungen
+
+      defaults:
+        currency_unit: €
+        demo_mode: false
+        email_address: sales@example.com
+        store_name: Widgets Inc.
+        tax_name: Steuer
+
+  layouts:
+    shoppe:
+      application:
+        goto: Gehe zu
+        logged_in_as: "Angemeldet als %{user_name}"
+        logout: Abmelden
