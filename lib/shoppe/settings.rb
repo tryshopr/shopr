@@ -13,8 +13,8 @@ module Shoppe
       key = key.to_s.gsub(/\?\z/, '')
       if value = @hash[key.to_s]
         value
-      elsif I18n.translate("shoppe.settings.defaults").keys.include?(key.to_sym)
-        I18n.translate("shoppe.settings.defaults")[key.to_sym]
+      # elsif I18n.translate("shoppe.settings.defaults").keys.include?(key.to_sym)
+      #  I18n.translate("shoppe.settings.defaults")[key.to_sym]
       end
     end
     
