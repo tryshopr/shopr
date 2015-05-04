@@ -21,7 +21,7 @@ module Shoppe
 
     # Validations
     validates :name, :presence => true
-    validates :permalink, :presence => true, :uniqueness => true, :permalink => true
+    validates :permalink, :presence => true, :uniqueness => {scope: :parent_id}, :permalink => true
 
     # All categories ordered by their name ascending
     scope :ordered, -> { order(:name) }
