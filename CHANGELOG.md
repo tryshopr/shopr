@@ -2,11 +2,17 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
-## v1.0.6 (Master)
+## v1.0.7 (Master)
 
 * ...
 
-## v1.0.5 (Stable)
+## v1.0.6 (Released)
+
+* German translations ([#180](https://github.com/tryshoppe/shoppe/pull/180))
+* Multiple product categories with nesting ([#137](https://github.com/tryshoppe/shoppe/pull/137))
+* Added refund callback to Payment model 
+
+## v1.0.5
 
 * Fixed creation of orders in admin interface
 
