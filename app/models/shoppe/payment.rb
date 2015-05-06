@@ -1,6 +1,10 @@
 module Shoppe
   class Payment < ActiveRecord::Base
 
+    # Additional callbacks
+    extend ActiveModel::Callbacks
+    define_model_callbacks :refund
+
     # The associated order
     #
     # @return [Shoppe::Order]
@@ -50,15 +54,17 @@ module Shoppe
     # @param amount [String] the amount which should be refunded
     # @return [Boolean]
     def refund!(amount)
-      amount = BigDecimal(amount)
-      if refundable_amount >= amount
-        transaction do
-          self.class.create(:parent => self, :order_id => self.order_id, :amount => 0-amount, :method => self.method, :reference => reference)
-          self.update_attribute(:amount_refunded, self.amount_refunded + amount)
-          true
+      run_callbacks :refund do
+        amount = BigDecimal(amount)
+        if refundable_amount >= amount
+          transaction do
+            self.class.create(:parent => self, :order_id => self.order_id, :amount => 0-amount, :method => self.method, :reference => reference)
+            self.update_attribute(:amount_refunded, self.amount_refunded + amount)
+            true
+          end
+        else
+          raise Shoppe::Errors::RefundFailed, :message => I18n.t('.refund_failed', refundable_amount: refundable_amount)
         end
-      else
-        raise Shoppe::Errors::RefundFailed, :message => I18n.t('.refund_failed', refundable_amount: refundable_amount)
       end
     end
 
