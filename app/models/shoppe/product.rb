@@ -116,7 +116,7 @@ module Shoppe
       product_ids = Shoppe::ProductAttribute.searchable.where(:key => key, :value => values).pluck(:product_id).uniq
       where(:id => product_ids)
     end
-  
+
     # Imports products from a spreadsheet file
     # Example:
     #
@@ -144,6 +144,7 @@ module Shoppe
             product.short_description = row["short_description"]
             product.weight = row["weight"]
             product.price = row["price"].nil? ? 0 : row["price"]
+            product.permalink  = row["permalink"]
 
             product.product_categories << begin
               if Shoppe::ProductCategory.find_by(name: row["category_name"]).present?
