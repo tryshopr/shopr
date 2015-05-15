@@ -446,12 +446,13 @@ es:
       weight: Peso
 
       imports:
-        help: Productos y cateogorías son emparejados por nombre. Si no se encuentra un producto, uno nuevo será creados con los atributos de la línea. Si el producto es encontrado, sólo la cantidad será actualizada y el resto de los campos serán ignorados. Si no se encuentra la categoría, se creará una nueva con el nombre indicado. Un producto por línea.
+        help: Productos y cateogorías son emparejados por nombre. Si no se encuentra un producto, uno nuevo será creados con los atributos de la línea. Si el producto es encontrado, sólo la cantidad será actualizada y el resto de los campos serán ignorados. Si no se encuentra la categoría, se creará una nueva con el nombre indicado. Un producto por línea. Puede dejar el campo permalink vacía si no quieres añadir uno y que se genere de forma automática.
         success: Productos importados satisfactoriamente
         examples:
           first:
             name: Osito de peluche
             sku: BEAR001
+            permalink: plush-teddy-bear
             description: Fantásticamente de peluche. Muy mimoso. Grandioso para todas las edades.
             short_description: Cómprelo para sus niños.
             weight: 1.2
@@ -461,6 +462,7 @@ es:
           second:
             name: Oso de peluche Standard
             sku: BEAR002
+            permalink: ""
             description: Hecho de PVC. Un poco mimoso. Resistente a derrames.
             short_description: Cómprelo para aquellos con dos pulgares izquierdos.
             weight: 0.6
@@ -470,6 +472,7 @@ es:
           third:
             name: Oso de madera
             sku: BEAR003
+            permalink: stick-teddy-bear
             description: hecho de palitos. No exactamente mimoso. Todo natural. Peligro de inflamación.
             short_description: Cómprelo para aquella tía lejana que colecciona osos.
             weight: 0.521
