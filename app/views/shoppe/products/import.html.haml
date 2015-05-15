@@ -5,7 +5,7 @@
 
 = form_for "import", :url => import_products_path, :html => {:multipart => true} do |f|
   = f.error_messages
-  
+
   = field_set_tag t('shoppe.imports.file_upload') do
     %dl
       %dt= f.label :import_file, t('shoppe.imports.required_formats')
@@ -19,6 +19,7 @@
             %tr
               %th name
               %th sku
+              %th permalink
               %th description
               %th short_description
               %th weight
@@ -27,36 +28,39 @@
               %th qty
           %tbody
             %tr
-              %td= t('shoppe.products.imports.examples.first.name') 
-              %td= t('shoppe.products.imports.examples.first.sku') 
-              %td= t('shoppe.products.imports.examples.first.description') 
-              %td= t('shoppe.products.imports.examples.first.short_description') 
-              %td= t('shoppe.products.imports.examples.first.weight') 
-              %td= t('shoppe.products.imports.examples.first.price') 
-              %td= t('shoppe.products.imports.examples.first.category_name') 
-              %td= t('shoppe.products.imports.examples.first.qty') 
+              %td= t('shoppe.products.imports.examples.first.name')
+              %td= t('shoppe.products.imports.examples.first.sku')
+              %td= t('shoppe.products.imports.examples.first.permalink')
+              %td= t('shoppe.products.imports.examples.first.description')
+              %td= t('shoppe.products.imports.examples.first.short_description')
+              %td= t('shoppe.products.imports.examples.first.weight')
+              %td= t('shoppe.products.imports.examples.first.price')
+              %td= t('shoppe.products.imports.examples.first.category_name')
+              %td= t('shoppe.products.imports.examples.first.qty')
             %tr
-              %td= t('shoppe.products.imports.examples.second.name') 
-              %td= t('shoppe.products.imports.examples.second.sku') 
-              %td= t('shoppe.products.imports.examples.second.description') 
-              %td= t('shoppe.products.imports.examples.second.short_description') 
-              %td= t('shoppe.products.imports.examples.second.weight') 
-              %td= t('shoppe.products.imports.examples.second.price') 
-              %td= t('shoppe.products.imports.examples.second.category_name') 
-              %td= t('shoppe.products.imports.examples.second.qty') 
+              %td= t('shoppe.products.imports.examples.second.name')
+              %td= t('shoppe.products.imports.examples.second.sku')
+              %td= t('shoppe.products.imports.examples.second.permalink')
+              %td= t('shoppe.products.imports.examples.second.description')
+              %td= t('shoppe.products.imports.examples.second.short_description')
+              %td= t('shoppe.products.imports.examples.second.weight')
+              %td= t('shoppe.products.imports.examples.second.price')
+              %td= t('shoppe.products.imports.examples.second.category_name')
+              %td= t('shoppe.products.imports.examples.second.qty')
             %tr
-              %td= t('shoppe.products.imports.examples.third.name') 
-              %td= t('shoppe.products.imports.examples.third.sku') 
-              %td= t('shoppe.products.imports.examples.third.description') 
-              %td= t('shoppe.products.imports.examples.third.short_description') 
-              %td= t('shoppe.products.imports.examples.third.weight') 
-              %td= t('shoppe.products.imports.examples.third.price') 
-              %td= t('shoppe.products.imports.examples.third.category_name') 
-              %td= t('shoppe.products.imports.examples.third.qty')          
+              %td= t('shoppe.products.imports.examples.third.name')
+              %td= t('shoppe.products.imports.examples.third.sku')
+              %td= t('shoppe.products.imports.examples.third.permalink')
+              %td= t('shoppe.products.imports.examples.third.description')
+              %td= t('shoppe.products.imports.examples.third.short_description')
+              %td= t('shoppe.products.imports.examples.third.weight')
+              %td= t('shoppe.products.imports.examples.third.price')
+              %td= t('shoppe.products.imports.examples.third.category_name')
+              %td= t('shoppe.products.imports.examples.third.qty')
             %tr.tear-off
               %td{:colspan => "8"}
       %dd
-        %p.help= t('shoppe.products.imports.help') 
+        %p.help= t('shoppe.products.imports.help')
 
   %p.submit
     = f.submit t('shoppe.import'), :class => "button green"

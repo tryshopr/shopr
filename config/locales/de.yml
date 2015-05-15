@@ -446,12 +446,13 @@ de:
       weight: Gewicht
 
       imports:
-        help: Produkte und Kategorien werden nach Namen gematcht.  Wird kein Produkt gefunden wird ein neues mit allen Attributen angelegt.  Wird ein Produkt gefunden, wird nur die Anzahl erhöht.  Wird keine Kategorie gefunden, wird diese angelegt.  Ein Produkt pro Zeile.
+        help: Produkte und Kategorien werden nach Namen gematcht.  Wird kein Produkt gefunden wird ein neues mit allen Attributen angelegt.  Wird ein Produkt gefunden, wird nur die Anzahl erhöht.  Wird keine Kategorie gefunden, wird diese angelegt.  Ein Produkt pro Zeile. Sie können permalink Feld leer lassen, wenn Sie nicht wollen, um eine hinzuzufügen und automatisch generiert werden.
         success: Produkte wurden erfolgreich imnportiert
         examples:
           first:
             name: Plüschbär
             sku: BAER001
+            permalink: plush-teddy-bear
             description: Sehr plüschig. Für alle Altersgruppen geeignet.
             short_description: Kaufen Sie ihn für Ihre Kinder.
             weight: 1.2
@@ -461,6 +462,7 @@ de:
           second:
             name: Standard Teddybär
             sku: BAER002
+            permalink: ""
             description: Hergestellt aus PVC.
             short_description: Kaufen Sie diesen für Personen mit zwei linken Händen.
             weight: 0.6
@@ -470,6 +472,7 @@ de:
           third:
             name: Teddybär
             sku: BAER003
+            permalink: stick-teddy-bear
             description: Sehr natürlich. Feuerrisiko.
             short_description: Kaufen Sie diesen für diese entfernte Tante, die Teddybären sammelt.
             weight: 0.521
