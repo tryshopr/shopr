@@ -18,6 +18,34 @@ module Shoppe
       Shoppe::Order.transaction do
         @order = Shoppe::Order.new(safe_params)
         @order.status = 'confirming'
+
+        if safe_params[:customer_id]
+          @customer = Shoppe::Customer.find safe_params[:customer_id]
+          @order.first_name = @customer.first_name
+          @order.last_name = @customer.last_name
+          @order.company = @customer.company
+          @order.email_address = @customer.email
+          @order.phone_number = @customer.phone
+          if @customer.addresses.billing.present?
+            billing = @customer.addresses.billing.first
+            @order.billing_address1 = billing.address1
+            @order.billing_address2 = billing.address2
+            @order.billing_address3 = billing.address3
+            @order.billing_address4 = billing.address4
+            @order.billing_postcode = billing.postcode
+            @order.billing_country_id = billing.country_id
+          end
+          if @customer.addresses.delivery.present?
+            delivery = @customer.addresses.delivery.first
+            @order.delivery_address1 = delivery.address1
+            @order.delivery_address2 = delivery.address2
+            @order.delivery_address3 = delivery.address3
+            @order.delivery_address4 = delivery.address4
+            @order.delivery_postcode = delivery.postcode
+            @order.delivery_country_id = delivery.country_id
+          end
+        end
+
         if !request.xhr? && @order.save
           @order.confirm!
           redirect_to @order, :notice => t('shoppe.orders.create_notice')
