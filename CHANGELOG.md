@@ -5,6 +5,7 @@ This document outlines key changes which are introduced in each version. The ful
 ## v1.0.8 (Master)
 
 * Localisations / Translations for Products & Product Categories
+* Customers & Addresses ([#167](https://github.com/tryshoppe/shoppe/pull/167))
 
 ## v1.0.7 (Released)
 
