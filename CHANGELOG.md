@@ -2,11 +2,16 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
-## v1.0.7 (Master)
+## v1.0.8 (Master)
 
-* ...
+* Localisations / Translations for Products & Product Categories
 
-## v1.0.6 (Released)
+## v1.0.7 (Released)
+
+* Fix to seeds
+* Product category hierarchy_array ([#194](https://github.com/tryshoppe/shoppe/pull/194))
+
+## v1.0.6
 
 * German translations ([#180](https://github.com/tryshoppe/shoppe/pull/180))
 * Multiple product categories with nesting ([#137](https://github.com/tryshoppe/shoppe/pull/137))
