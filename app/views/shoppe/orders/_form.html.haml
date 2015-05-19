@@ -1,4 +1,7 @@
 = field_set_tag t('shoppe.orders.billing_address') do
+  %dl
+    %dt= f.label :customer_id, t('shoppe.orders.customer')
+    %dd= f.collection_select :customer_id, Shoppe::Customer.ordered, :id, :name, {:include_blank => true}, {:data => {:placeholder => t('shoppe.orders.select_customer')}}
   .splitContainer
     %dl.third
       %dt= f.label :first_name, t('shoppe.orders.first_name')
