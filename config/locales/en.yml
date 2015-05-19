@@ -611,8 +611,10 @@ en:
       edit_localisation: Edit Localisation
       localisation_created: Localisation created successfully
       localisation_updated: Localisation updated successfully
+      localisation_destroyed: Localisation destroyed successfully
       language: Language
       no_localisations: No localisations to display.
+      delete_confirmation: Are you sure?
 
     navigation:
       admin_primary:

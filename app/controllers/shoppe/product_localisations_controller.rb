@@ -24,7 +24,7 @@ module Shoppe
           I18n.locale = I18n.default_locale
           redirect_to [@product, :localisations], :flash => { :notice => t("shoppe.localisations.localisation_created") }
         else
-          render :action => "edit"
+          render :action => "form"
         end
       else
         redirect_to [@product, :localisations]
