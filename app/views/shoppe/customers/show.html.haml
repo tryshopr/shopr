@@ -1,6 +1,7 @@
 - @page_title = "Customer - #{@customer.name}"
 = content_for :header do
   %p.buttons
+    = link_to "New Address", [:new, @customer, :address], class: "button"
     = link_to "Edit", [:edit, @customer], class: "button"
   %h2.customers
     Customer - #{@customer.name}
