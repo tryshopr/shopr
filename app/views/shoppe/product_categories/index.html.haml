@@ -9,6 +9,7 @@
     %thead
       %tr
         %th= t('shoppe.product_category.name')
+        %th= t('shoppe.product_category.localisations')
     %tbody
       - if @product_categories_without_parent.empty?
         %tr.empty
@@ -17,4 +18,5 @@
         - for cat in @product_categories_without_parent
           %tr
             %td= link_to cat.name, [:edit, cat]
+            %td= link_to "Localisations", [cat, :localisations]
           = nested_product_category_rows(cat)

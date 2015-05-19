@@ -1,9 +1,12 @@
 Shoppe::Engine.routes.draw do
 
   get 'attachment/:id/:filename.:extension' => 'attachments#show'
-  resources :product_categories
+  resources :product_categories do
+    resources :localisations, controller: "product_category_localisations"
+  end
   resources :products do
     resources :variants
+    resources :localisations, controller: "product_localisations"
     collection do
       get :import
       post :import
