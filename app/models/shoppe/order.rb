@@ -19,6 +19,10 @@ module Shoppe
     # All products which are part of this order (accessed through the items)
     has_many :products, :through => :order_items, :class_name => 'Shoppe::Product', :source => :ordered_item, :source_type => 'Shoppe::Product'
 
+    # The order can belong to a customer
+    belongs_to :customer, :class_name => 'Shoppe::Customer'
+    has_many :addresses, :through => :customers, :class_name => "Shoppe::Address"
+
     # Validations
     validates :token, :presence => true
     with_options :if => Proc.new { |o| !o.building? } do |order|
@@ -28,6 +32,9 @@ module Shoppe
 
     # Set some defaults
     before_validation { self.token = SecureRandom.uuid  if self.token.blank? }
+
+    # Some methods for setting the billing & delivery addresses
+    attr_accessor :save_addresses, :billing_address_id, :delivery_address_id
 
     # The order number
     #

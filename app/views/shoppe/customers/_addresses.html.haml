@@ -1,0 +1,20 @@
+.addresses
+  .table
+    %table.data
+      %thead
+        %tr
+          %th Type
+          %th Default
+          %th Address
+          %th
+      %tbody
+        - if @addresses.empty?
+          %tr.empty
+            %td{:colspan => 4} No addresses to display.
+        - else
+          - for address in @addresses
+            %tr
+              %td= address.address_type.capitalize
+              %td= boolean_tag address.default
+              %td= address.full_address
+              %td= link_to "Edit", edit_customer_address_path(@customer, address)
