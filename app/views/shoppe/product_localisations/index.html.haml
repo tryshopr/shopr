@@ -2,7 +2,7 @@
 
 = content_for :header do
   %p.buttons
-    = link_to t('shoppe.localisations.back'), product_categories_path, :class => 'button'
+    = link_to t('shoppe.localisations.back'), [:edit, @product], :class => 'button'
     = link_to t('shoppe.localisations.new_localisation'), [:new, @product, :localisation], :class => 'button green'
 
   %h2.products= t('shoppe.localisations.localisations_of', name: @product.name)
