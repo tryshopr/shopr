@@ -13,12 +13,15 @@
         %dt= f.label :company
         %dd= f.text_field :company, :class => "text"
     .splitContainer
-      %dl.half
+      %dl.third
         %dt= f.label :email
         %dd= f.text_field :email, :class => "text"
-      %dl.half
+      %dl.third
         %dt= f.label :phone
         %dd= f.text_field :phone, :class => "text"
+      %dl.third
+        %dt= f.label :mobile
+        %dd= f.text_field :mobile, :class => "text"
 
   %p.submit
     - unless @customer.new_record?

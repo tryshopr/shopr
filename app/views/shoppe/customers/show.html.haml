@@ -3,7 +3,7 @@
   %p.buttons
     = link_to "New Address", [:new, @customer, :address], class: "button"
     = link_to "Edit", [:edit, @customer], class: "button"
-  %h2.customers
+  %h2.users
     Customer - #{@customer.name}
 
 #customer
@@ -25,3 +25,29 @@
 
   = field_set_tag "Addresses", :class => 'padded' do
     = render "addresses"
+
+  = field_set_tag t('shoppe.orders.orders'), :class => 'padded' do
+    .table
+      %table.data
+        %thead
+          %tr
+            %th= t('shoppe.orders.number')
+            %th= t('shoppe.orders.status')
+            %th= t('shoppe.orders.products')
+            %th= t('shoppe.orders.total')
+            %th= t('shoppe.orders.payment')
+        %tbody
+          - if @orders.empty?
+            %tr.empty
+              %td{:colspan => 6}= t('shoppe.orders.no_orders')
+          - else
+            - for order in @orders
+              %tr
+                %td= link_to order.number, order
+                %td= status_tag order.status
+                %td
+                  %ul
+                    - for item in order.order_items
+                      %li #{item.quantity} x #{item.ordered_item.full_name}
+                %td= number_to_currency order.total
+                %td= boolean_tag order.paid_in_full?, nil, :true_text => number_to_currency(order.amount_paid), :false_text => number_to_currency(order.amount_paid)
