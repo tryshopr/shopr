@@ -9,7 +9,8 @@
     %thead
       %tr
         %th= t('shoppe.product_category.name')
-        %th= t('shoppe.product_category.localisations')
+        - I18n.available_locales.each do |i|
+          %th
     %tbody
       - if @product_categories_without_parent.empty?
         %tr.empty
@@ -18,5 +19,9 @@
         - for cat in @product_categories_without_parent
           %tr
             %td= link_to cat.name, [:edit, cat]
-            %td= link_to "Localisations", [cat, :localisations]
+            - I18n.available_locales.each do |i|
+              - if cat.translations.where(locale: i).count >= 1
+                %td= link_to i, edit_product_category_localisation_path(cat, cat.translations.where(locale: i).first.id)
+              - else
+                %td= link_to i, new_product_category_localisation_path(cat, locale_field: i)
           = nested_product_category_rows(cat)
