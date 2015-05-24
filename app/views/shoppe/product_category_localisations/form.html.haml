@@ -15,7 +15,7 @@
           %dd= f.text_field :name, :class => 'focus text'
         %dl.half
           %dt= f.label :locale
-          %dd= f.select :locale, I18n.available_locales, {selected: params[:locale_field]}, {class: "chosen"}
+          %dd= f.select :locale, I18n.available_locales, {selected: @localisation.locale || params[:locale_field]}, {class: "chosen"}
       %dl
         %dt= f.label :permalink, t('shoppe.product_category.permalink')
         %dd= f.text_field :permalink, :class => 'text'
