@@ -1,6 +1,8 @@
 - @page_title = "#{t('shoppe.variants.variants')} - #{@product.name}"
 = content_for :header do
-  %p.buttons= link_to t('shoppe.variants.back_to_variants'), [@product, :variants], :class => 'button'
+  %p.buttons
+    = link_to t('shoppe.localisations.localisations') , [@variant, :localisations], :class => 'button'
+    = link_to t('shoppe.variants.back_to_variants'), [@product, :variants], :class => 'button'
   %h2.products= t('shoppe.variants.variants_of', product:@product.name)
 
 = form_for [@product, @variant], :url => @variant.new_record? ? product_variants_path(@product) : product_variant_path(@product, @variant), :html => {:multipart => true} do |f|

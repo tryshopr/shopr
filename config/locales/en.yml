@@ -663,6 +663,24 @@ en:
       destroy_notice: Payment has been removed successfully
       refund_notice: Refund has been processed successfully.
 
+    localisations:
+      localisations: Localisations
+      back: Back
+      back_to_localisations: Back
+      localisations_of: Localisations of %{name}
+      product_information: Product Information
+      locales: Locales
+      choose_locale: Please choose a locale
+      save_localisation: Save Localisation
+      new_localisation: New Localisation
+      edit_localisation: Edit Localisation
+      localisation_created: Localisation created successfully
+      localisation_updated: Localisation updated successfully
+      localisation_destroyed: Localisation destroyed successfully
+      language: Language
+      no_localisations: No localisations to display.
+      delete_confirmation: Are you sure?
+
     navigation:
       admin_primary:
         customers: Customers
