@@ -48,4 +48,3 @@
     - unless @product_category.new_record?
       %span.right= link_to t('shoppe.delete') , @product_category, :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.product_category.delete_confirmation') }
     = f.submit t('shoppe.submit'),  :class => 'button green'
-    = link_to t('shoppe.cancel') , :product_categories, :class => 'button'

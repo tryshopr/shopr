@@ -1,0 +1,26 @@
+- @page_title = "#{t('shoppe.localisations.localisations')} - #{@product.name}"
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shoppe.localisations.back'), [:edit, @product], :class => 'button'
+    = link_to t('shoppe.localisations.new_localisation'), [:new, @product, :localisation], :class => 'button green'
+
+  %h2.products= t('shoppe.localisations.localisations_of', name: @product.name)
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th{:width => '20%'}= t('shoppe.localisations.language')
+        %th{:width => '50%'}= t('shoppe.products.name')
+        %th{:width => '15%'}= t('shoppe.products.permalink')
+    %tbody
+      - if @localisations.empty?
+        %tr.empty
+          %td{:colspan => 4}= t('shoppe.localisations.no_localisations')
+      - else
+        - for localisation in @localisations
+          %tr
+            %td= localisation.locale
+            %td= link_to localisation.name, edit_product_localisation_path(@product, localisation)
+            %td= localisation.permalink

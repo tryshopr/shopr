@@ -23,15 +23,15 @@ module Shoppe
     validates :name, :presence => true
     validates :permalink, :presence => true, :uniqueness => {scope: :parent_id}, :permalink => true
 
-    # All categories ordered by their name ascending
-    scope :ordered, -> { order(:name) }
-
     # Root (no parent) product categories only
     scope :without_parent, -> { where(parent_id: nil) }
 
     # No descendents
     scope :except_descendants, ->(record) { where.not(id: (Array.new(record.descendants) << record).flatten) }
 
+    translates :name, :permalink, :description, :short_description
+    scope :ordered, -> { includes(:translations).order(:name) }
+    
     # Set the permalink on callback
     before_validation :set_permalink, :set_ancestral_permalink
     after_save :set_child_permalinks

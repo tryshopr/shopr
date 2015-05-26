@@ -6,6 +6,7 @@ require 'bcrypt'
 require 'dynamic_form'
 require 'kaminari'
 require 'ransack'
+require "globalize"
 
 require 'nifty/utils'
 require 'nifty/key_value_store'
