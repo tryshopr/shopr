@@ -5,7 +5,7 @@ module Shoppe
     self.table_name = "shoppe_attachments"
 
     # Mount the Carrierwave uploader
-    # mount_uploader :file, AttachmentUploader
+    mount_uploader :file, AttachmentUploader
 
     # Relationships
     belongs_to :parent, :polymorphic => true
@@ -41,12 +41,8 @@ module Shoppe
 
     # Is the attachment an image?
     def image?
-      if file_type.match(/\Aimage\//)
-        true
-      else
-        false
-      end
+      file_type.match(/\Aimage\//).present?
     end
-
+    
   end
 end

@@ -51,6 +51,13 @@ module Shoppe
       parent.hierarchy_array.concat [self]
     end
 
+    # Attachment with the role image
+    # 
+    # @return [String]
+    def image
+      self.attachments.for("image")
+    end
+
     private
 
     def set_permalink
@@ -69,14 +76,6 @@ module Shoppe
       self.children.each do |category|
         category.save!  # save forces children to update their ancestral_permalink
       end
-    end
-
-    
-    # Attachment with the role image
-    # 
-    # @return [String]
-    def image
-      self.attachments.for("image")
     end
 
   end

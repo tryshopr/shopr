@@ -11,12 +11,7 @@ module Shoppe
     require_dependency 'shoppe/product/variants'
 
     # Attachments for this product
-    has_many :attachments, :as => :parent, :dependent => :destroy, :class_name => "Shoppe::Attachment"
-    accepts_nested_attributes_for :attachments
-
-    # Products have a default_image and a data_sheet
-    # attachment :default_image
-    # attachment :data_sheet
+    has_many :attachments, :as => :parent, :dependent => :destroy, :autosave => true, :class_name => "Shoppe::Attachment"
 
     # The product's categorizations
     #
@@ -66,6 +61,13 @@ module Shoppe
     # Localisations
     translates :name, :permalink, :description, :short_description
     scope :ordered, -> { includes(:translations).order(:name) }
+
+    def attachments=(attrs)
+      if attrs["default_image"]["file"].present? then self.attachments.build(attrs["default_image"]) end
+      if attrs["data_sheet"]["file"].present? then self.attachments.build(attrs["data_sheet"]) end
+
+      if attrs["extra"]["file"].present? then attrs["extra"]["file"].each { |attr| self.attachments.build(file: attr, parent_id: attrs["extra"]["parent_id"], parent_type: attrs["extra"]["parent_type"]) } end
+    end
 
     # Return the name of the product
     #

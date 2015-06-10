@@ -472,6 +472,7 @@ en:
         hierarchy: Hierarchy
 
     products:
+      add_attachments: View/add extra attachments
       add_attribute: Add attribute
       attachments: Attachments
       attributes: Attributes
