@@ -10,7 +10,7 @@ module Shoppe
       end
 
       after(:build) do |product, ev|
-        pc = ProductCategory.find_by_permalink('phones') || build(:phones_category)
+        pc = ProductCategory.joins(:translations).find_by_permalink('phones') || build(:phones_category)
         product.product_categories << pc
       end
       
