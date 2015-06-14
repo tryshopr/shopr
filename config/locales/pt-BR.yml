@@ -402,6 +402,7 @@ pt-BR:
         hierarchy: Hierarchy
 
     products:
+      add_attachments: Visualizar/adicionar anexos
       add_attribute: Adicionar atributo
       attachments: Anexos
       attributes: Atributos

@@ -415,6 +415,7 @@ pl:
         hierarchy: Hierarchy
 
     products:
+      add_attachments: Zobacz/dodaj załączniki
       add_attribute: Dodaj atrybut
       attachments: Załączniki
       attributes: Atrybuty
