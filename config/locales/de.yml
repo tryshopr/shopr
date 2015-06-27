@@ -400,6 +400,7 @@ de:
       update_notice: Kategorie wurde erfolgreich aktualisiert
 
     products:
+      add_attachments: Anhänge betrachten/hinzufügen
       add_attribute: Attribut hinzufügen
       attachments: Anhänge
       attributes: Attribute

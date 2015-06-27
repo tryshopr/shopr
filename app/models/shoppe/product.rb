@@ -10,9 +10,8 @@ module Shoppe
     require_dependency 'shoppe/product/product_attributes'
     require_dependency 'shoppe/product/variants'
 
-    # Products have a default_image and a data_sheet
-    attachment :default_image
-    attachment :data_sheet
+    # Attachments for this product
+    has_many :attachments, :as => :parent, :dependent => :destroy, :autosave => true, :class_name => "Shoppe::Attachment"
 
     # The product's categorizations
     #
@@ -63,6 +62,13 @@ module Shoppe
     translates :name, :permalink, :description, :short_description
     scope :ordered, -> { includes(:translations).order(:name) }
 
+    def attachments=(attrs)
+      if attrs["default_image"]["file"].present? then self.attachments.build(attrs["default_image"]) end
+      if attrs["data_sheet"]["file"].present? then self.attachments.build(attrs["data_sheet"]) end
+
+      if attrs["extra"]["file"].present? then attrs["extra"]["file"].each { |attr| self.attachments.build(file: attr, parent_id: attrs["extra"]["parent_id"], parent_type: attrs["extra"]["parent_type"]) } end
+    end
+
     # Return the name of the product
     #
     # @return [String]
@@ -106,6 +112,20 @@ module Shoppe
     # @return [Shoppe::ProductCategory]
     def product_category
       self.product_categories.first rescue nil
+    end
+
+    # Return attachment for the default_image role
+    # 
+    # @return [String]
+    def default_image
+      self.attachments.for("default_image")
+    end
+
+    # Return attachment for the data_sheet role
+    # 
+    # @return [String]
+    def data_sheet
+      self.attachments.for("data_sheet")
     end
 
     # Search for products which include the given attributes and return an active record

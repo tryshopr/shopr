@@ -400,6 +400,7 @@ es:
       update_notice: Categoría actualizada satisfactoriamente
 
     products:
+      add_attachments: Ver/agregar adjuntos
       add_attribute: Agregar atributo
       attachments: Adjuntos
       attributes: Atributos
