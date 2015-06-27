@@ -42,6 +42,11 @@ $ ->
       helper.children().each (index)->
         $(this).width(originals.eq(index).width())
       helper
+
+  $('a[data-behavior=addAttachmentToExtraAttachments]').on 'click', (event) ->
+    event.preventDefault();
+    $('div.extraAttachments').show();
+    $(this).hide();
   
   # Chosen
   $('select.chosen').chosen()
