@@ -387,6 +387,7 @@ de:
       attachments: Anhänge
       back_to_categories: Zurück zu den Kategorien
       category_details: Kategoriedetails
+      choose_product_category: Produktkategorie auswählen
       create_notice: Kategorie wurde erfolgreich erstellt
       delete_confirmation: Möchten Sie diese Kategorie wirklich löschen?
       description: Beschreibung
@@ -602,6 +603,7 @@ de:
         users: Benutzer
         countries: Länder
         settings: Einstellungen
+        customers: Kunden
 
     settings:
 
