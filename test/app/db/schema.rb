@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150519173350) do
 
-  create_table "nifty_key_value_store", force: :cascade do |t|
+  create_table "nifty_key_value_store", force: true do |t|
     t.integer "parent_id"
     t.string  "parent_type"
     t.string  "group"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
     t.string  "value"
   end
 
-  create_table "shoppe_addresses", force: :cascade do |t|
+  create_table "shoppe_addresses", force: true do |t|
     t.integer  "customer_id"
     t.string   "address_type"
     t.boolean  "default"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
 
   add_index "shoppe_addresses", ["customer_id"], name: "index_shoppe_addresses_on_customer_id"
 
-  create_table "shoppe_attachments", force: :cascade do |t|
+  create_table "shoppe_attachments", force: true do |t|
     t.integer  "parent_id",   null: false
     t.string   "parent_type", null: false
     t.string   "token"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
     t.datetime "updated_at"
   end
 
-  create_table "shoppe_countries", force: :cascade do |t|
+  create_table "shoppe_countries", force: true do |t|
     t.string  "name"
     t.string  "code2"
     t.string  "code3"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
     t.boolean "eu_member", default: false
   end
 
-  create_table "shoppe_customers", force: :cascade do |t|
+  create_table "shoppe_customers", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "company"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
     t.datetime "updated_at"
   end
 
-  create_table "shoppe_delivery_service_prices", force: :cascade do |t|
+  create_table "shoppe_delivery_service_prices", force: true do |t|
     t.integer  "delivery_service_id"
     t.string   "code"
     t.decimal  "price",               precision: 8, scale: 2
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_delivery_service_prices", ["min_weight"], name: "index_shoppe_delivery_service_prices_on_min_weight"
   add_index "shoppe_delivery_service_prices", ["price"], name: "index_shoppe_delivery_service_prices_on_price"
 
-  create_table "shoppe_delivery_services", force: :cascade do |t|
+  create_table "shoppe_delivery_services", force: true do |t|
     t.string   "name"
     t.string   "code"
     t.boolean  "default",      default: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
 
   add_index "shoppe_delivery_services", ["active"], name: "index_shoppe_delivery_services_on_active"
 
-  create_table "shoppe_order_items", force: :cascade do |t|
+  create_table "shoppe_order_items", force: true do |t|
     t.integer  "order_id"
     t.integer  "ordered_item_id"
     t.string   "ordered_item_type"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_order_items", ["order_id"], name: "index_shoppe_order_items_on_order_id"
   add_index "shoppe_order_items", ["ordered_item_id", "ordered_item_type"], name: "index_shoppe_order_items_ordered_item"
 
-  create_table "shoppe_orders", force: :cascade do |t|
+  create_table "shoppe_orders", force: true do |t|
     t.string   "token"
     t.string   "first_name"
     t.string   "last_name"
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_orders", ["received_at"], name: "index_shoppe_orders_on_received_at"
   add_index "shoppe_orders", ["token"], name: "index_shoppe_orders_on_token"
 
-  create_table "shoppe_payments", force: :cascade do |t|
+  create_table "shoppe_payments", force: true do |t|
     t.integer  "order_id"
     t.decimal  "amount",            precision: 8, scale: 2, default: 0.0
     t.string   "reference"
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_payments", ["order_id"], name: "index_shoppe_payments_on_order_id"
   add_index "shoppe_payments", ["parent_payment_id"], name: "index_shoppe_payments_on_parent_payment_id"
 
-  create_table "shoppe_product_attributes", force: :cascade do |t|
+  create_table "shoppe_product_attributes", force: true do |t|
     t.integer  "product_id"
     t.string   "key"
     t.string   "value"
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_product_attributes", ["position"], name: "index_shoppe_product_attributes_on_position"
   add_index "shoppe_product_attributes", ["product_id"], name: "index_shoppe_product_attributes_on_product_id"
 
-  create_table "shoppe_product_categories", force: :cascade do |t|
+  create_table "shoppe_product_categories", force: true do |t|
     t.string   "name"
     t.string   "permalink"
     t.text     "description"
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_product_categories", ["permalink"], name: "index_shoppe_product_categories_on_permalink"
   add_index "shoppe_product_categories", ["rgt"], name: "index_shoppe_product_categories_on_rgt"
 
-  create_table "shoppe_product_categorizations", force: :cascade do |t|
+  create_table "shoppe_product_categorizations", force: true do |t|
     t.integer "product_id",          null: false
     t.integer "product_category_id", null: false
   end
@@ -226,11 +226,11 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_product_categorizations", ["product_category_id"], name: "categorization_by_product_category_id"
   add_index "shoppe_product_categorizations", ["product_id"], name: "categorization_by_product_id"
 
-  create_table "shoppe_product_category_translations", force: :cascade do |t|
+  create_table "shoppe_product_category_translations", force: true do |t|
     t.integer  "shoppe_product_category_id", null: false
     t.string   "locale",                     null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "name"
     t.string   "permalink"
     t.text     "description"
@@ -239,11 +239,11 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_product_category_translations", ["locale"], name: "index_shoppe_product_category_translations_on_locale"
   add_index "shoppe_product_category_translations", ["shoppe_product_category_id"], name: "index_75826cc72f93d014e54dc08b8202892841c670b4"
 
-  create_table "shoppe_product_translations", force: :cascade do |t|
+  create_table "shoppe_product_translations", force: true do |t|
     t.integer  "shoppe_product_id", null: false
     t.string   "locale",            null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "name"
     t.string   "permalink"
     t.text     "description"
@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_product_translations", ["locale"], name: "index_shoppe_product_translations_on_locale"
   add_index "shoppe_product_translations", ["shoppe_product_id"], name: "index_shoppe_product_translations_on_shoppe_product_id"
 
-  create_table "shoppe_products", force: :cascade do |t|
+  create_table "shoppe_products", force: true do |t|
     t.integer  "parent_id"
     t.string   "name"
     t.string   "sku"
@@ -277,7 +277,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_products", ["permalink"], name: "index_shoppe_products_on_permalink"
   add_index "shoppe_products", ["sku"], name: "index_shoppe_products_on_sku"
 
-  create_table "shoppe_settings", force: :cascade do |t|
+  create_table "shoppe_settings", force: true do |t|
     t.string "key"
     t.string "value"
     t.string "value_type"
@@ -285,7 +285,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
 
   add_index "shoppe_settings", ["key"], name: "index_shoppe_settings_on_key"
 
-  create_table "shoppe_stock_level_adjustments", force: :cascade do |t|
+  create_table "shoppe_stock_level_adjustments", force: true do |t|
     t.integer  "item_id"
     t.string   "item_type"
     t.string   "description"
@@ -299,7 +299,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
   add_index "shoppe_stock_level_adjustments", ["item_id", "item_type"], name: "index_shoppe_stock_level_adjustments_items"
   add_index "shoppe_stock_level_adjustments", ["parent_id", "parent_type"], name: "index_shoppe_stock_level_adjustments_parent"
 
-  create_table "shoppe_tax_rates", force: :cascade do |t|
+  create_table "shoppe_tax_rates", force: true do |t|
     t.string   "name"
     t.decimal  "rate",         precision: 8, scale: 2
     t.datetime "created_at"
@@ -308,7 +308,7 @@ ActiveRecord::Schema.define(version: 20150519173350) do
     t.string   "address_type"
   end
 
-  create_table "shoppe_users", force: :cascade do |t|
+  create_table "shoppe_users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email_address"
