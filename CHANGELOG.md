@@ -2,11 +2,17 @@
 
 This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
-## v1.0.9 (Master)
+## Master
 
 * ...
 
-## v1.0.8 (Released)
+## v1.0.9 (Released)
+
+* Attachments ([#211](https://github.com/tryshoppe/shoppe/pull/211))
+* Added rake task to help with migration from nifty-attachments to Attachments
+* Fixed translation ([#205](https://github.com/tryshoppe/shoppe/pull/205))
+
+## v1.0.8
 
 * Localisations / Translations for Products & Product Categories
 * Customers & Addresses ([#167](https://github.com/tryshoppe/shoppe/pull/167))
