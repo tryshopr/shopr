@@ -5,8 +5,8 @@ require "shoppe/version"
 Gem::Specification.new do |s|
   s.name        = "shoppe"
   s.version     = Shoppe::VERSION
-  s.authors     = ["Adam Cooke"]
-  s.email       = ["adam@atechmedia.com"]
+  s.authors     = ["Adam Cooke", "Dean Perry"]
+  s.email       = ["adam@atechmedia.com", "dean@voupe.com"]
   s.homepage    = "http://tryshoppe.com"
   s.summary     = "Just an e-commerce platform."
   s.licenses    = ["MIT"]
@@ -31,7 +31,6 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave", "~> 0.10.0"
   s.add_dependency "fog", "~> 1.31.0"
   s.add_dependency "mini_magick", "~> 4.2.7"
-
 
   s.add_development_dependency "coffee-rails", "~> 4"
   s.add_development_dependency "sass-rails", "~> 4.0"
