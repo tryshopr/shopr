@@ -1,10 +1,16 @@
-# Shoppe Release Notes
+# Shoppe Change Log
 
-This document outlines key changes which are introduced in each version. The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
+All notable changes to this project will be documented in this file.
 
-## Master
+The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
-* ...
+## Unreleased
+- ...
+
+## 1.1.0 - 2015-07-07
+### Fixed
+- Bug with product category translations
+- Product category image uploads
 
 ## v1.0.9 (Released)
 
