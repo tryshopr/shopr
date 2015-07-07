@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shoppe (1.0.9)
+    shoppe (1.1.0)
       awesome_nested_set (~> 3.0.2)
       bcrypt (>= 3.1.2, < 3.2)
       carrierwave (~> 0.10.0)
