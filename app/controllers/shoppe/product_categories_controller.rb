@@ -40,7 +40,8 @@ module Shoppe
     private
 
     def safe_params
-      params[:product_category].permit(:name, :permalink, :description, :image_file, :parent_id, :permalink_includes_ancestors)
+      file_params = [:file, :parent_id, :role, :parent_type, :file => []]
+      params[:product_category].permit(:name, :permalink, :description, :parent_id, :permalink_includes_ancestors, :attachments => [:image => file_params])
     end
 
   end

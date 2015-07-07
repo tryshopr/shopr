@@ -39,10 +39,12 @@
 
   = field_set_tag t('shoppe.product_category.attachments') do
     %dl
-      %dt= f.label :image_file, t('shoppe.product_category.image')
+      %dt= f.label "attachments[image][file]", t('shoppe.product_category.image')
       %dd
         = attachment_preview @product_category.image
-        %p= f.file_field :image_file
+        %p= f.file_field "attachments[image][file]"
+        = f.hidden_field "attachments[image][role]", value: "image"
+        = f.hidden_field "attachments[image][parent_id]", value: @product_category.id
 
   %p.submit
     - unless @product_category.new_record?

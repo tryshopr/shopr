@@ -36,6 +36,10 @@ module Shoppe
     before_validation :set_permalink, :set_ancestral_permalink
     after_save :set_child_permalinks
 
+    def attachments=(attrs)
+      if attrs["image"]["file"].present? then self.attachments.build(attrs["image"]) end
+    end
+
     def combined_permalink
       if self.permalink_includes_ancestors && self.ancestral_permalink.present?
         "#{self.ancestral_permalink}/#{self.permalink}"
