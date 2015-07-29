@@ -115,14 +115,19 @@ module Shoppe
     end
 
     # Return attachment for the default_image role
-    # 
+    #
     # @return [String]
     def default_image
       self.attachments.for("default_image")
     end
 
+    # Set attachment for the default_image role
+    def default_image_file=(file)
+      self.attachments.build(:file => file, :role => 'default_image')
+    end
+
     # Return attachment for the data_sheet role
-    # 
+    #
     # @return [String]
     def data_sheet
       self.attachments.for("data_sheet")
