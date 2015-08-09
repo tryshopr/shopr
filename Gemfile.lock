@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shoppe (1.1.0)
+    shoppe (1.1.1)
       awesome_nested_set (~> 3.0.2)
       bcrypt (>= 3.1.2, < 3.2)
       carrierwave (~> 0.10.0)
@@ -296,4 +296,4 @@ DEPENDENCIES
   yard-activerecord (~> 0)
 
 BUNDLED WITH
-   1.10.2
+   1.10.5

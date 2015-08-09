@@ -7,12 +7,16 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 ## Unreleased
 - ...
 
+## 1.1.1 - 2015-08-09 (Released)
+### Fixed
+- Bug with default_image_file ([#244](https://github.com/tryshoppe/shoppe/pull/244))
+
 ## 1.1.0 - 2015-07-07
 ### Fixed
 - Bug with product category translations
 - Product category image uploads
 
-## v1.0.9 (Released)
+## v1.0.9
 
 * Attachments ([#211](https://github.com/tryshoppe/shoppe/pull/211))
 * Added rake task to help with migration from nifty-attachments to Attachments
