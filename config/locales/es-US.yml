@@ -594,6 +594,7 @@ es-US:
 
     navigation:
       admin_primary:
+        customers: Clientes
         orders: Órdenes
         products: Productos
         product_categories: Categorías de Productos
