@@ -387,6 +387,7 @@ es:
       attachments: Adjuntos
       back_to_categories: Volver a la lista de categorías
       category_details: Detalles de categoría
+      choose_product_category: Escoje categoría del producto
       create_notice: Categoría creada satisfactoriamente
       delete_confirmation:  ¿ Está seguro que desea remover esta categoría ?
       description: Descripción
