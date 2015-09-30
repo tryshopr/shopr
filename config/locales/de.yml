@@ -449,7 +449,7 @@ de:
 
       imports:
         help: Produkte und Kategorien werden nach Namen gematcht.  Wird kein Produkt gefunden wird ein neues mit allen Attributen angelegt.  Wird ein Produkt gefunden, wird nur die Anzahl erhöht.  Wird keine Kategorie gefunden, wird diese angelegt.  Ein Produkt pro Zeile. Sie können permalink Feld leer lassen, wenn Sie nicht wollen, um eine hinzuzufügen und automatisch generiert werden.
-        success: Produkte wurden erfolgreich imnportiert
+        success: Produkte wurden erfolgreich importiert
         examples:
           first:
             name: Plüschbär
