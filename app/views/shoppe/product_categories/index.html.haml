@@ -9,8 +9,9 @@
     %thead
       %tr
         %th= t('shoppe.product_category.name')
-        - I18n.available_locales.each do |i|
-          %th
+        - unless @product_categories_without_parent.empty?
+          - I18n.available_locales.each do |i|
+            %th
     %tbody
       - if @product_categories_without_parent.empty?
         %tr.empty
