@@ -27,7 +27,7 @@ module Shoppe
     end
     
     def current_user
-      @current_user ||= login_from_session || login_with_demo_mdoe || :false
+      @current_user ||= login_from_session || login_with_demo_mode || :false
     end
 
     def login_from_session
@@ -36,7 +36,7 @@ module Shoppe
       end
     end
     
-    def login_with_demo_mdoe
+    def login_with_demo_mode
       if Shoppe.settings.demo_mode?
         @user = User.first
       end
