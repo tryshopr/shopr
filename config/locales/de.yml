@@ -593,6 +593,24 @@ de:
       destroy_notice: Bezahlung wurde erfolgreich gelöscht
       refund_notice: Rückerstattung wurde erfolgreich verarbeitet.
 
+    localisations:
+      localisations: Lokalisierungen
+      back: Zurück
+      back_to_localisations: Zurück zu den Lokalisierungen
+      localisations_of: Lokalisierungen von %{name}
+      product_information: Produktinformation
+      locales: Locale
+      choose_locale: Bitte wählen Sie ein Locale aus
+      save_localisation: Lokalisierung speichern
+      new_localisation: Neue Lokalisierung
+      edit_localisation: Lokalisierung bearbeiten
+      localisation_created: Lokalisierung wurde erfolgreich hinzugefügt
+      localisation_updated: Lokalisierung wurde erfolgreich aktualisiert
+      localisation_destroyed: Lokalisierung wurde erfolgreich gelöscht
+      language: Sprache
+      no_localisations: Keine Lokalisierungen zum Anzeigen.
+      delete_confirmation: Sind Sie sicher?
+
     navigation:
       admin_primary:
         orders: Bestellungen
@@ -606,7 +624,6 @@ de:
         customers: Kunden
 
     settings:
-
       settings: Einstellungen
       system_settings: Systemeinstellungen
       demo_mode_error: Einstellungen können im Demo-Modus nicht verändert werden.
