@@ -161,7 +161,7 @@ module Shoppe
           if product = where(name: row["name"]).take
             # Dont import products with the same name but update quantities
             qty = row["qty"].to_i
-            if qty > 0 && qty != product.stock
+            if qty > 0
               product.stock_level_adjustments.create!(description: I18n.t('shoppe.import'), adjustment: qty)
             end
           else
