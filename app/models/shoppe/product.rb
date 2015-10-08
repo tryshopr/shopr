@@ -158,7 +158,7 @@ module Shoppe
 
         # Don't import products where the name is blank
         unless row["name"].nil?
-          if product = find_by(name: row["name"])
+          if product = where(name: row["name"]).take
             # Dont import products with the same name but update quantities if they're not the same
             qty = row["qty"].to_i
             if qty > 0 && qty != product.stock
@@ -175,8 +175,8 @@ module Shoppe
             product.permalink  = row["permalink"]
 
             product.product_categories << begin
-              if Shoppe::ProductCategory.find_by(name: row["category_name"]).present?
-                Shoppe::ProductCategory.find_by(name: row["category_name"])
+              if Shoppe::ProductCategory.where(name: row["category_name"]).present?
+                Shoppe::ProductCategory.where(name: row["category_name"]).take
               else
                 Shoppe::ProductCategory.create(name: row["category_name"])
               end
