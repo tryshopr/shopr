@@ -1,29 +1,28 @@
-- @page_title = "Customer - #{@customer.name}"
+- @page_title = t('shoppe.customers.customers') + " - #{@customer.name}"
 = content_for :header do
   %p.buttons
-    = link_to "New Address", [:new, @customer, :address], class: "button"
-    = link_to "Edit", [:edit, @customer], class: "button"
-  %h2.users
-    Customer - #{@customer.name}
+    = link_to t('shoppe.customers.new_address'), [:new, @customer, :address], class: "button"
+    = link_to t('shoppe.customers.edit'), [:edit, @customer], class: "button"
+  %h2.users= t('shoppe.customers.customers') + "- #{@customer.name}"
 
 #customer
   .details
     .left
       %dl
-        %dt Name
+        %dt= t('shoppe.customers.name')
         %dd= @customer.full_name
-        %dt Company
+        %dt= t('shoppe.customers.company')
         %dd= @customer.company.blank? ? '-' : @customer.company
     .right
       %dl
-        %dt Email Address
+        %dt= t('shoppe.customers.email')
         %dd= mail_to @customer.email
-        %dt Telephone
+        %dt= t('shoppe.customers.phone')
         %dd= @customer.phone
-        %dt Mobile
+        %dt= t('shoppe.customers.mobile_phone')
         %dd= @customer.mobile
 
-  = field_set_tag "Addresses", :class => 'padded' do
+  = field_set_tag t('shoppe.customers.addresses'), :class => 'padded' do
     = render "addresses"
 
   = field_set_tag t('shoppe.orders.orders'), :class => 'padded' do

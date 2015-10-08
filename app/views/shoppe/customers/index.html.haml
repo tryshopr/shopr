@@ -1,10 +1,10 @@
-- @page_title = "Customers"
+- @page_title = t('shoppe.customers.customers')
 
 = content_for :header do
   %p.buttons
-    = link_to "New Customer", :new_customer, class: "button green"
-    = link_to "Search Customers", '#', class: 'button', rel: "searchCustomers"
-  %h2.users Customers
+    = link_to t('shoppe.customers.new_customer'), :new_customer, class: "button green"
+    = link_to t('shoppe.customers.search_customer'), '#', class: 'button', rel: "searchCustomers"
+  %h2.users= t('shoppe.customers.customers')
 
 = render "search_form"
 
@@ -12,15 +12,15 @@
   %table.data
     %thead
       %tr
-        %th Name
-        %th Company
-        %th Email
-        %th Phone
-        %th Mobile
+        %th= t('shoppe.customers.name')
+        %th= t('shoppe.customers.company')
+        %th= t('shoppe.customers.email')
+        %th= t('shoppe.customers.phone')
+        %th= t('shoppe.customers.mobile_phone')
     %tbody
       - if @customers.empty?
         %tr.empty
-          %td{colspan: 5} No customers to display.
+          %td{colspan: 5}= t('shoppe.customers.no_customers')
       - else
         - for customer in @customers
           %tr

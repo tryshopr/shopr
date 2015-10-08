@@ -1,13 +1,13 @@
 .customerSearch{:style => action_name == 'search' ? "display:block" : ''}
   = search_form_for @query, :url => search_customers_path, :html => { :method => :post } do |f|
     %dl.left
-      %dt= f.label :first_name_or_last_name_or_company_cont, "First or Last Name"
+      %dt= f.label :first_name_or_last_name_or_company_cont, t('shoppe.customers.first_or_last_name')
       %dd= f.text_field :first_name_or_last_name_or_company_cont
-      %dt= f.label :company_cont, "Company"
+      %dt= f.label :company_cont, t('shoppe.customers.company')
       %dd= f.text_field :company_cont
     %dl.right
-      %dt= f.label :email_cont, "Email Address"
+      %dt= f.label :email_cont, t('shoppe.customers.email')
       %dd= f.text_field :email_cont
-      %dt= f.label :phone_cont, "Phone Number"
+      %dt= f.label :phone_cont, t('shoppe.customers.phone')
       %dd= f.text_field :phone_cont
-      %dd= f.submit "Search", :class => 'button green button'
+      %dd= f.submit t('shoppe.customers.search'), :class => 'button green button'
