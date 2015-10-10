@@ -211,7 +211,7 @@ es:
     tax_rate_details: Detalles del impuesto
     tax_rate_new: Nuevo impuesto
     tax_rate_note: No edite impuestos que ya estén en uso.
-      Edite los impuestos con cuidado, pues podría afectar a los pedidos existentes. 
+      Edite los impuestos con cuidado, pues podría afectar a los pedidos existentes.
       al crear un nuevo impuesto, debe eliminarlo y crear uno nuevo. La eliminación de un impuesto
       no lo borra del sistema, solo lo desactiva para que los pedidos existentes no se vean afectados.
     tax_rates: Impuestos
@@ -222,7 +222,7 @@ es:
     total_weight: Peso total
     tracking_url: Tracking URL
     unknown: Desconocido
-    updated_it: "%{it} se ha actualizado correctamente"  
+    updated_it: "%{it} se ha actualizado correctamente"
     users: Usuarios
     users_back: Volver a usuarios
     user_delete_confirm: ¿Seguro que desea eliminar este usuario?
@@ -354,7 +354,7 @@ es:
       id: ID
       in_progress_warning: El cliente todavía está modificando este pedido. Por ahora solamente puede visualizar los elementos en el pedido.
       invoice_number: Número de factura
-      insufficient_stock_order: "No hay stock suficiente como para encargar %{out_of_stock_items}. Las cantidades han sido actualizadas para adecuarse al stock disponible.
+      insufficient_stock_order: "No hay stock suficiente como para encargar %{out_of_stock_items}. Las cantidades han sido actualizadas para adecuarse al stock disponible."
       item: Línea
       last_name: Apellido
       mark_as_shipped: Marcar como enviado
