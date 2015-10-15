@@ -611,6 +611,40 @@ de:
       no_localisations: Keine Lokalisierungen zum Anzeigen.
       delete_confirmation: Sind Sie sicher?
 
+    customers:
+      customers: Kunden
+      new_customer: Neuer Kunde
+      search_customer: Kunde suchen
+      name: Name
+      company: Firma
+      email: E-Mail
+      phone: Telefon
+      mobile_phone: Handy
+      no_customers: Keine Kunden zum Anzeigen.
+      search: Suchen
+      first_or_last_name: Vor- oder Nachname
+      back_to_customers_list: Zurück zur Kundenliste
+      new_address: Neue Adresse
+      edit: Ändern
+      customer_information: Kundeninformationen
+      cancel: Abbrechen
+      first_name: Vorname
+      last_name: Nachname
+      delete: Löschen
+      save: Speichern
+      creating_customer: Kunde wird erstellt
+      updating_customer: Kunde wird aktualisiert
+      delete_confirmation: Wollen Sie den Kunden wirklich löschen?
+      type: Typ
+      default: Standard
+      address: Adresse
+      no_addresses: Keine Adressen zum Anzeigen.
+      addresses: Adressen
+      address: Adresse
+      created_successfully: Kunde wurde erfolgreich erstellt.
+      updated_successfully: Kunde wurde erfolgreich aktualisiert.
+      deleted_successfully: Kunde wurde erfolgreich gelöscht.
+
     navigation:
       admin_primary:
         orders: Bestellungen
