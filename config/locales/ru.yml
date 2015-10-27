@@ -1,0 +1,781 @@
+ru:
+  activerecord:
+    models:
+      shoppe/country:
+        one: Страна
+        other: Страны
+      shoppe/delivery_service:
+        one: Способ доставки
+        other: Способы доставки
+      shoppe/delivery_service_price:
+        one: Цена способа доставки
+        other: Цены способов доставки
+      shoppe/order:
+        one: Заказ
+        other: Заказы
+      shoppe/order_item:
+        one: Заказанный товар
+        other: Заказанный товар
+      shoppe/payment:
+        one: Оплата
+        other: Оплаты
+      shoppe/product:
+        one: Товар
+        other: Товары
+      shoppe/product_attribute:
+        one: Парамететр товара
+        other: Параметры товара
+      shoppe/product_category:
+        one: Категория товара
+        other: Категории товаров
+      shoppe/setting:
+        one: Настройки
+        other: Настройки
+      shoppe/stock_level_adjustment:
+        one: Корректировка складских запасов
+        other: Корректировка складских запасов
+      shoppe/tax_rate:
+        one: Налог
+        other: Налоги
+      shoppe/user:
+        one: Пользователь
+        other: Пользователи
+
+    attributes:
+      shoppe/order:
+        billing_address1: Адрес для счета 1
+        billing_address3: Адрес для счета 2
+        billing_address4: Адрес для счета 3
+        billing_country: Страна (для счета)
+        billing_postcode: Индекс (для счета)
+        delivery_address1: Адрес доставки 1
+        delivery_address3: Адрес доставки 2
+        delivery_address4: Адрес доставки 3
+        delivery_country: Страна доставки
+        delivery_name: Имя получателя
+        delivery_service_id: Способ доставки
+        delivery_postcode: Индекс адреса доставки
+        email_address: Электропочта
+        first_name: Имя
+        last_name: Фамилия
+        phone_number: Телефонный номер
+        status: Статус
+        token: Токен
+      shoppe/country:
+        name: Наименование
+      shoppe/delivery_service:
+        name: Наименование
+        courier: Курьерская служба
+      shoppe/delivery_service_price:
+        code: Код
+        cost_price: Цена поставщика
+        max_weight: Максимальный вес
+        min_weight: Минимальный вес
+        price: Цена для пользователя
+      shoppe/order_item:
+        ordered_item: Заказанный товар
+        quantity: Количество
+      shoppe/payment:
+        amount: Сумма
+        method: Метод оплаты
+        reference: Основание
+      shoppe/product:
+        cost_price: Закупочная цена
+        description: Описание
+        name: Наименование
+        permalink: Постоянная ссылка
+        price: Отпускная цена
+        short_description: Краткое описание
+        sku: ИТП
+        weight: Вес
+      shoppe/product_attribute:
+        key: Ключ
+      shoppe/product_category:
+        name: Наименование
+        permalink: Постоянная ссылка
+      shoppe/setting:
+        key: Ключ
+        value: Значение
+        value_type: Тип значения
+      shoppe/stock_level_adjustment:
+        adjustment: Корректировка
+        description: Описание
+        must_be_greater_or_equal_zero: должно быть больше или меньше нуля
+      shoppe/tax_rate:
+        address_type: Тип адреса
+        name: Наименование
+        rate: Размер налога
+      shoppe/user:
+        email_address: Электропочта
+        first_name: Имя
+        last_name: Фамилия
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+    errors:
+      template:
+        body: ! 'Найдены ошибки в следующих полях:'
+        header:
+          one: 1 ошибка не позволяет сохранить %{model}
+          many: ! '%{count} не позволяют сохранить %{model}'
+          other: ! '%{count} не позволяют сохранить %{model}'
+      models:
+        shoppe/product_category:
+          attributes:
+            permalink:
+              wrong_format: "может содержать только латинские буквы, цифры, тире (-) и нижнее подчеркивание (_)"
+        shoppe/delivery:
+          attributes:
+            delivery_service_id:
+              must_be_specified: Нужно указать
+              not_suitable: нельзя указать для этого заказа
+        shoppe/order:
+          attributes:
+            delivery_service_id:
+              must_be_specified: Нужно указать
+        shoppe/product:
+          attributes:
+            permalink:
+              wrong_format: "может содержать только латинские буквы, цифры, тире (-) и нижнее подчеркивание (_)"
+            base:
+              can_belong_to_root: можно привязать только к корневому товару
+        shoppe/order_item:
+          attributes:
+            quantity:
+              too_high_quantity: превышает доступное количество на складе
+        shoppe/payment:
+          refund_failed: "Сумма возврата должна быть меньше суммы оплаты (%{refundable_amount})"
+
+  will_paginate:
+    next_label: "Туда &#8594;"
+    page_gap: "&hellip;"
+    previous_label: "&#8592; Сюда"
+
+    page_entries_info:
+
+      single_page:
+        zero:  Нет элементов для отображения
+        one:   "Отображается 1 элемент"
+        other: "Отображаются все %{count} элементов"
+
+      single_page_html:
+        zero:  "No %{model} found"
+        one_html:   "Displaying <b>1</b> %{model}"
+        other_html: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
+      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+
+  helpers:
+    number_to_weight:
+      kg: кг
+    page_entries_info:
+      one_page:
+        display_entries: Показывать записи
+    attachment_preview:
+      delete: Удалить
+      delete_confirm: Вы действительно хотите удалить прикрепленный файл?
+      no_attachment: Нет прикрепленных файлов
+
+  shoppe:
+
+    # common
+    cancel: Отмена
+    close: Закрыть
+    delete: Удалить
+    edit: Редактировать
+    import: Импортировать
+    remove: Убрать
+
+    removed_it: "%{it} убран успешно"
+    save_settings: Сохранить настройки
+    separate_delivery_address: Разделять адрес доставки
+    service_available: Сервис будет доступен для использования
+    service_default: Сервис будет использоваться по умолчанию (если доступен)
+    settings_title: Настройки
+    settings_not_in_demo: Вы не можете вносить изменения в демо режиме.
+    set_prices: Установить цены
+    shoppe_back: Назад в Shoppe
+    sku: ИТД
+    status: Статус
+    stock: Склад
+    stock_current: Количество на складе
+    stock_control: Управление складскими запасами
+    stock_control_enable: Включить управление складскими запасами для этого товара?
+    stock_levels: Складские запасы
+    stock_levels_for: Складские запасы для %{item}
+    stock_none: Нет на складе
+    system_settings: Системные настройки
+    tax_rate: Налог
+    tax_rate_apply_to: Применить для заказов где %{to} соответсвует списку стран ниже
+    tax_rate_delete_confirm: Вы уверены, что хотите удалить этот налог?
+    tax_rate_details: Детали налога
+    tax_rate_new: Новый налог
+    tax_rate_note: НЕ ИЗМЕНЯЙТЕ налоги, которые уже используются!
+      Будьте осторожны при изменении налогов, так как они могут повлиять на существующие заказы.
+      Лучшим решением будет удаление налога и создание нового. Когда вы удаляете налог, на самом
+      деле он остается в системе, но деактивируется и поэтому не такой способ не затронет существующие заказы.
+    tax_rates: Налоги
+    tax_rates_back: Вернуться к налогам
+    tax_none: Без налога
+    telephone: Телефон
+    total: Итого
+    total_weight: Общий вес
+    tracking_url: Адрес трекинга (URL)
+    unknown: Неизвестен
+    updated_it: "%{it} успешно изменен"
+    users: Пользователи
+    users_back: Вернуться к пользователям
+    user_delete_confirm: Вы уверены, что хотите удалить этого пользователя?
+    user_details: Детальная информация о пользователе
+    user: Пользователь
+    user_edit: Редактировать пользователя
+    user_new: Новый пользователь
+    user_not_in_demo: Вы не можете редактировать пользователя в демо режиме.
+    user_not_yourself: Вы не можете удалить себя
+    variants: Варианты
+    variants_back: Вернуться к вариантам
+    variants_of: Варианты %{product}
+    variant_delete_confirm: Вы уверены, что хотите удалить этот вариант?
+    variant_of: Вариант %{product}
+    variant_new: Новый вариант
+    variant_save: Сохранить Вариант
+    value: Значение
+    website_properties: Отображение на сайте
+    weight: Вес
+    weight_allowance: Допустимый вес
+
+    submit: Сохранить
+
+    attachments:
+      remove_notice: Прикрепленный файл успешно удален
+
+    countries:
+      back: Вернуться к странам
+      continent: Континент
+      countries: Страны
+      country_details: Детали страны
+      create_notice: Страна успешно создана
+      delete_confirmation: Вы уверены, что хотите удалить страну?
+      destroy_notice: Страна успешно удалена
+      eu?: ЕС?
+      eu_member: Член ЕС?
+      is_eu_member: Страна является членом ЕС?
+      iso_alpha_2: ISO 3166-1-alpha-2
+      iso_alpha_3: ISO 3166-1-alpha-3
+      name: Наименование
+      new_country: Новая страна
+      tld: ДВУ
+      update_notice: Страна успешно изменена
+
+    delivery_service_prices:
+      all_countries: Все страны
+      back: Назад к ценам
+      back_to_delivery_services: Назад к службам доставки
+      code: Код
+      cost: Цена поставщика
+      cost_price: Цена
+      countries: Страны
+      create_notice: Цена успешно добавлена
+      delivery_services: Способы доставки
+      destroy_notice: Цена успешно удалена
+      identification_weight: ID и Вес
+      max_weight: Максимальный вес
+      min_weight: Минимальный вес
+      new_price: Новая цена
+      no_tax: Без налога
+      price: Цена
+      pricing: Ценовая политика
+      pricing_for: "Ценовая политика для %{delivery_name}"
+      tax_rate: Уровень налога
+      update_notice: Цена успешно изменена
+      weight_allowance: Допустимый вес
+
+      help:
+        countries: Стоимость доставки будет доступна в заказах только для стран указанных здесь.
+
+    delivery_services:
+      active?: Активно?
+      active: Активировать
+      active_info: Способ доставки будет доступна для использования
+      back: Назад к способам доставки
+      code: Уникальный код
+      courier: Курьерская компания
+      courier_name: Наименование курьерской компании
+      create_notice: Способ доставки успешно создана
+      default?: По умолчанию?
+      default: По умолчанию
+      default_info: Служба будет использоваться по умолчанию (если доступна)
+      delivery_services: Способы доставки
+      destroy_notice: Способ доставки успешно удалена
+      delete_confirmation: Вы действительно хотите удалить способ доставки?
+      details: Название доставки
+      name: Наименование
+      new: Новая способ доставки
+      no_services: Нет способов доставки для отображения
+      prices: Цены
+      set_prices: Установить цены
+      tracking_url: Адрес трекинга (URL)
+      tracking_url_help_html: Используйте <code>{{consignment_number}}</code> для вставки в качестве номера накладной.
+      update_notice: Способ доставки успешно изменена
+
+    imports:
+      example_file: Пример файла
+      file_upload: Файл для импорта
+      required_formats: Должен быть в формате csv, xls или xlsx
+      errors:
+        no_file: Для импорта не выбран файл
+        unknown_format: "Неизвестный формат файла: %{filename}"
+
+    orders:
+      accept: Заказ
+      accept_notice: Заказ успешно принят
+      add_payment: Добавить платеж
+      add_item: Добавить позицию
+      address: Адрес
+      amount: Количество
+      back_to_order: Назад к заказу
+      back_to_orders: Назад к заказам
+      billing_address: Адрес для счета
+      billing_delivery_address: Адрес доставки/адрес для счета
+      build_time: Время подготовки заказа
+      company: Компания
+      consignment_number: Номер накладной
+      cost: Стоимость
+      country: Страна
+      create_order: Создать заказ
+      create_notice: Заявка успешно добавлена
+      customer: Клиент
+      delivery_address: Адрес доставки
+      delivery_name: Имя получателя
+      edit_order: Редактировать заказ
+      email_address: Электропочта
+      first_name: Имя
+      from_payment: по платежу
+      id: ID
+      in_progress_warning: Этот заказ пока еще формируется клиентем. В настоящий момент вы можете только просматривать товары в его заказе.
+      invoice_number: Номер счета
+      insufficient_stock_order: "Недостаточно складских запасов для товара %{out_of_stock_items}. Количество изменено на максимальное доступное на складе."
+      item: Позиция
+      last_name: Фамилия
+      mark_as_shipped: Пометить как "Отправлено"
+      method: Метод
+      missing_delivery_service: Нет подходящих способов доставки, заказ не может быть сделан без указания метода доставки.
+      name: Имя
+      new_order: Новый заказ
+      no_delivery_required: Доставка не требуется для этого заказа.
+      no_orders: Нез заказов для отображения.
+      no_payments: Нет записей о платежах для этого заказа
+      notes: Примечания
+      number: Номер
+      order: Заявка
+      order_accepted: Заявка принята
+      order_balance: Баланс по заказу
+      order_items: Позиции по заказу
+      order_no_html: "Заявка <b>#%{order_number}</b>"
+      order_number: Номер заказа
+      order_received: Заказ принят
+      order_rejected: Заказ отклонен
+      order_shipped: Заказ отправлен
+      ordered_products: Заказанные товары
+
+      orders: Заказы
+      payment: Платеж
+      payment_remove_confirmation: Вы уверены, что хотите удалить этот платеж?
+      payments: Оплаты
+      phone_number: Телефонный номер
+      post_code: Индекс
+      price: Цена
+      product: Товар
+      products: Товары
+      qty: Кол-во
+      quantity: Количество
+      received_between: Получено между
+      reference: Основание
+      refund: Возврат
+      refunded?: Возвращено?
+      reject: Отменить
+      reject_notice: Заказ успешно отменен
+      save_order: Сохранить заказ
+      search: Поиск
+      search_orders: Поиск заказов
+      select_country: Выберите страну
+      customer: Клиент
+      select_customer: Выберите клиента или оставьте поле пустым
+      separate_delivery_address: Разделять адрес доставки
+      ship_notice: Заказ успешно отправлен
+      sku: ИТД
+      sla_warning: Все изменения по количеству будут обновлены до подходящих уровней связанных продуктов.
+      status: Статус
+      stock: Склад
+      sub_total: Итого
+      tax: Налог
+      telephone: Телефон
+      total: Итого
+      type: Тип
+      unit_price: Цена за единицу
+      update_notice: Заказ успешно изменен
+      use_separate_delivery_address?: Использовать раздельный адрес доставки?
+      weight: Вес
+
+      status_bar:
+        by_user: "пользователем: %{user}"
+        consignment_no_html: "Накладная #<b>%{consignment_number}</b>"
+        from_ip: "с %{ip}"
+        on_date: "на %{on}"
+        tracking_url: Адрес трекинга (URL)
+
+      despatch_note:
+        despatch_note: Детали отгрузки
+        footer: Спасибо за покупку!
+        order_number: Номер заказа
+        order_placed: Заказ размещен
+        packed?: Упакован?
+        product: Товар
+        quantity: Количество
+        sku: ИТД
+        telephone: Телефон
+        total_weight: Общий вес
+        weight: Вес
+
+      statuses:
+        accepted: Принят в работу
+        building: Пакуется
+        confirming: На подтверждении
+        received: На рассмотрении
+        rejected: Отклонен
+        shipped: Отправлен
+
+    product_category:
+      attachments: Прикрепленные файлы
+      back_to_categories: К списку категорий
+      category_details: Детали категории
+      choose_product_category: Выберите категорию товаров
+      create_notice: Категория успешно создана
+      delete_confirmation:  Вы действительно хотите удалить эту категорию?
+      description: Описание
+      destroy_notice: Категория успешно удалена
+      destroy_alert: Категория не может быть удалена
+      image: Изображение
+      name: Наименование
+      new_category: Новая категория
+      no_categories: Нет категорий для отображения
+      permalink: Постоянная ссылка
+      permalink_includes_ancestors: Префиксные ссылки родительских категорий
+      product_categories: Категории товаров
+      update_notice: Категория успешно обновлена
+      nesting:
+        blank_option: Нет
+        category_nesting: Вложенный
+        category_parent: Родительский элемент
+        current_category: Текущая категория
+        no_children: Без дочерних категорий
+        hierarchy: Иерархия
+
+    products:
+      add_attachments: Посмотреть/добавить файлы
+      add_attribute: Добавить параметр 
+      attachments: Прикрепленные файлы
+      attributes: Параметры
+      back_to_products: К списку товаров
+      cost_price: Стоимость
+      create_notice: Товар успешно создан
+      datasheet: Таблица
+      default_image: Изображение по умолчанию
+      description: Описание
+      destroy_notice: Товар успешно удален
+      edit: Редактировать
+      enable_stock_control?:  Включить складской учет для этого товара?
+      featured?: Промо-товар?
+      featured_info:  Промо-товар отображается на главной странице магазина
+      import_products: Импорт товаров
+      in_the_box: Что в коробке?
+      name: Наименование
+      new_product: Новый товар
+      no_products: Нет товаров для отображения
+      no_stock: Нет в наличии
+      no_tax: Без налога
+      on_sale?: Продается?
+      on_sale_info:  Товар будет доступен для покупки
+      permalink: Постоянная ссылка
+      price: Цена
+      price_variants: Цена/Варианты
+      pricing: Ценовая политика
+      product_category: Товарная категория
+      product_information: Информация о товаре
+      products: Товары
+      public?: Public?
+      remove: Удалить
+      searchable?: В поиске?
+      short_description: Краткое описание
+      sku: ИТД
+      stock: Складские запасы
+      stock_control: Контроль запасов
+      stock_levels: Уровень запасов
+      tax_rate: Налоговый сбор
+      value: Значение
+      variants: Варианты
+      update_notice: Товар успешно обновлен
+      website_properties: Характеристики на сайте
+      weight: Вес
+
+      imports:
+        help: Товары и категории сопостовляются по имени. Если товар не найден, новый будет создан со всеми указанными атрибутами. Если товар найден, только количество будет изменено, а другие поля проигнорированны. Если категория не найдена, новая с указанным именем будет создана. Один товар на строку. Вы можете оставить поле постоянной ссылки пустым и система сгенерирует его автоматически.
+        success: Товары импортированы успешно
+        examples:
+          first:
+            name: Мягкий плюшевый мишка
+            sku: BEAR001
+            permalink: plush-teddy-bear
+            description: Фантастически мягкий и милый мишка для всех!
+            short_description: Купите для ваших детей.
+            weight: 1.2
+            price: 1990.90
+            category_name: Игрушки
+            qty: 20
+          second:
+            name: Модный мишка
+            sku: BEAR002
+            permalink: ""
+            description: Сделан из ПВХ. Отличная игрушка для коллекционеров.
+            short_description: Купите в подарок.
+            weight: 0.6
+            price: 1800
+            category_name: Игрушки
+            qty: 100
+          third:
+            name: Деревянный мишка
+            sku: BEAR003
+            permalink: stick-teddy-bear
+            description: Сделан из дерева Натуральные материалы. Игрушкой можно топить печку.
+            short_description: В подарок для консерваторов и пироманов.
+            weight: 0.521
+            price: 1400.50
+            category_name: Игрушки
+            qty: 50
+
+    refund:
+      intro_html: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
+      issue_refund: Issue Refund
+      refund: Refund
+
+    sessions:
+      admin_login: Вход для администратора
+      create_alert: The email address and/or password you have entered is invalid. Please check and try again.
+      create_alert: Электронная почта или пароль не правильный. Пожалуйста, попробуйте снова.
+      back_to_login: Назад к странице входа
+      email: Электропочта
+      login: Логин
+      password: Пароль
+      reset: Сбросить
+      reset_password: Сбросить пароль
+      reset_password?: Сбросить пароль?
+      reset_alert: Не найдено пользоватей с таким паролем
+      reset_notice: "Пароль сброшен и выслан на %{email_address}"
+
+    shared:
+      back_to_shoppe: Назад в Shoppe
+      error: Ошибка
+      error_occurred: Возникла ошибка
+
+    stock_level_adjustments:
+      add: Добавить
+      adjustment: Корректировка
+      back_to_product: Назад к товару
+      create_notice: Корректировка запасов успешно выполнена
+      current_stock_level_html: "Текущий уровень запасов: <b>%{item_stock}</b>"
+      date: Дата
+      description: Описание
+      edit_product: Редактировать товар
+      invalid_item_type: "Неправильный тип записи (должен быть одним из %{suitable_objects})"
+      stock_levels_for: "Уровень запасов для %{item_name}"
+      stock_levels_title: "Складские запасы - %{item_name}"
+
+    tax_rates:
+      address_type_option: "Apply to orders where the %{address} address matches one of the countries below"
+      address_type_option: "Применяется к заказам где %{address} соответсвует одной из стран ниже"
+      all_countries: Все страны
+      back_to_tax_rates: Назад к налогам
+      billing: Адрес для счета
+      country_restriction: Запреты для стран
+      create_notice: Налог успешно добавлен
+      delete_confirmation: Вы уверены, что хотите удалить этот налог?
+      delivery: Доставка
+      destroy_notice: Налог успешно удален
+      name: Наименование
+      new_tax_rate: Новый налог
+      rate: Уровень налога
+      rate_details: Детали по уровню налога
+      tax_rates: Налоги
+      update_notice: Налог успешно обновлен
+
+    users:
+      back_to_users: Назад к пользователям
+      create_notice: Пользователь успешно создан
+      delete_confirmation:  Вы уверены, что хотите удалить этого пользователя?
+      demo_mode_error: Вы не можете редактировать пользоватей в демо режиме.
+      destroy_notice: Пользователь успешно удален
+      email: Электропочта
+      first_name: Имя
+      last_name: Фамилия
+      login: Логин
+      name: Имя
+      new_user: Новый пользователь
+      password: Пароль
+      password_confirmation: ...и снова
+      self_remove_error: Вы не можете удалить себя
+      update_notice: Пользователь успешно изменен
+      user_details: Подробнее о пользователе
+      users: Пользователи
+
+    variants:
+      back_to_variants: Назад к вариантам
+      cost_price: Закупочная цена
+      create_notice: Вариант товара успешно добавлен
+      default_variant?: Вариант по умолчанию?
+      default_variant_info: Если включен, то будет отображаться на сайте по умолчанию для этого товара.
+      delete_confirmation: Вы уверены, что хотите удалить этот вариант?
+      destroy_notice: Вариант товара успешно удален
+      edit_product: Редактировать товар
+      edit_variant: Новый вариант товара
+      enable_stock_control?: Включить учет складских запасов для этого варианта товара?
+      image: Изображение
+      name: Наименование
+      no_products: Нет товаров для отображения
+      no_stock: Нет в наличии
+      no_tax: Без налога
+      new_variant: Новый вариант товара
+      on_sale?: Продается?
+      on_sale_info:  Товар будет доступен для покупки
+      permalink: Постоянная ссылка
+      price: Цена
+      pricing: Ценовая политика
+      product_information: Информация о товаре
+      save_variant: Созхранить вариант
+      sku: ИТД
+      stock: Складские запасы
+      stock_control: Контроль складских запасов
+      tax_rate: Налоги
+      update_notice: Вариант товара успешно обновлен
+      variants: Варианты товара
+      variants_of: "%{product} — варианты"
+      website_properties: Отображение на сайте
+      weight: Вес
+
+    payments:
+      create_notice: Платеж успешно добавлен
+      destroy_notice: Платеж успешно удален
+      refund_notice: Возврат успешно обработан
+
+    localisations:
+      localisations: Переводы
+      back: Назад
+      back_to_localisations: Назад к переводам
+      localisations_of: Перевод для %{name}
+      product_information: Информация о товаре
+      locales: Языки
+      choose_locale: Пожалуйста, выберите язык
+      save_localisation: Сохранить перевод
+      new_localisation: Новый перевод
+      edit_localisation: Редактировать перевод
+      localisation_created: Языковой перевод успешно создан
+      localisation_updated: Языковой перевод успешно изменен
+      localisation_destroyed: Языковой перевод успешно удален
+      language: Язык
+      no_localisations: Нет переводов для отображения
+      delete_confirmation: Вы уверены?
+
+    customers:
+      customers: Клиенты
+      new_customer: Новый клиент
+      search_customer: Поиск клиента
+      name: Имя
+      company: Компания
+      email: Электропочта
+      phone: Телефон
+      mobile_phone: Мобильный телефон
+      no_customers: Нет клиентов для отображения
+      search: Поиск
+      first_or_last_name: Имя или фамилия
+      back_to_customers_list: К списку клиентов
+      new_address: Новый адрес
+      edit: Редактировать
+      customer_information: Информация о клиенте
+      cancel: Отмена
+      first_name: Имя
+      last_name: Фамилия
+      delete: Удалить
+      save: Сохранить
+      creating_customer: Создание клиента...
+      updating_customer: Изменение данных клиента...
+      delete_confirmation: Вы уверены, что хотите удалить клиента?
+      type: Тип
+      default: По умолчанию
+      address: Адрес
+      no_addresses: Нет адресов для отображения
+      addresses: Адреса
+      adresse: Адрес
+      created_successfully: Клиент успешно создан
+      updated_successfully: Данные клиента успешно изменен
+      deleted_successfully: Клиент успешно удален
+
+    navigation:
+      admin_primary:
+        customers: Клиенты
+        orders: Заказы
+        products: Товары
+        product_categories: Категории товаров
+        delivery_services: Способы доставки
+        tax_rates: Налоги
+        users: Пользователи
+        countries: Страны
+        settings: Настройки
+
+    settings:
+
+      settings: Настройки
+      system_settings: Системные настройки
+      demo_mode_error: Вы не можете изменять настройки в демо режиме.
+      update_notice: Настройки успешно обновлены
+
+      types:
+        # Force certain settings to certain type
+        demo_mode: boolean
+
+      labels:
+        # Labels for fields go here
+        email_address: Электропочта магазина
+        store_name: Название магазина
+        currency_unit: Знак валюты
+        tax_name: Наименование налога
+        demo_mode: Демо режим
+
+      options:
+        # Options for boolean settings
+        demo_mode:
+          affirmative: Включен
+          negative: Выключен
+
+      help:
+        # Help text for individual fields
+        currency_unit: Основной символ валюты вашего магазина. Будет использоваться только в интерфейсе администратора.
+        demo_mode: Если включен, панель администратора Shoppe будет доступна для всех без логина, но редактировать пользоватей будет нельзя. Никогда не включайте этот режим на боевом сервере.
+        email_address: Электронная почта с которой будут отправляться сообщения. 
+        store_name: Наименование вашего магазина, которое будет использоваться как в панели администратора, так и в исходящих письмах.
+        tax_name: Наименование Налога для отображения в панели администратора. Обычно заменяется на НДС для стран СНГ.
+
+      save_settings: Сохранить настройки
+      page_title: Настройки страницы
+
+      defaults:
+        currency_unit: $
+        demo_mode: false
+        email_address: sales@example.com
+        store_name: Рога и копыта
+        tax_name: Налог
+
+  layouts:
+    shoppe:
+      application:
+        goto: Перейти
+        logged_in_as: "В системе под аккаунтом %{user_name}"
+        logout: Выйти
