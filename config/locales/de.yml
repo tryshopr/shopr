@@ -68,7 +68,7 @@ de:
         courier: Kurier
       shoppe/delivery_service_price:
         code: Code
-        cost_price: Preis
+        cost_price: Anschaffungspreis
         max_weight: Maximalgewicht
         min_weight: Minimalgewicht
         price: Preis
@@ -80,7 +80,7 @@ de:
         method: Bezahlmethode
         reference: Referenz
       shoppe/product:
-        cost_price: Preis
+        cost_price: Anschaffungspreis
         description: Beschreibung
         name: Name
         permalink: Permalink
@@ -214,7 +214,7 @@ de:
       back_to_delivery_services: Zurück zu den Lieferdiensten
       code: Code
       cost: Kosten
-      cost_price: Preis
+      cost_price: Anschaffungspreis
       countries: Länder
       create_notice: Preis wurde erfolgreich erstellt
       delivery_services: Lieferdienste
@@ -406,7 +406,7 @@ de:
       attachments: Anhänge
       attributes: Attribute
       back_to_products: Zurück zur Produktliste
-      cost_price: Preis
+      cost_price: Anschaffungspreis
       create_notice: Produkt wurde erfolgreich erstellt
       datasheet: Datenblatt
       default_image: Standardbild
@@ -556,7 +556,7 @@ de:
 
     variants:
       back_to_variants: Zurück zu Varianten
-      cost_price: Preis
+      cost_price: Anschaffungspreis
       create_notice: Variante wurde erfolgreich erstellt
       default_variant?: Standardvariante?
       default_variant_info: Wenn markiert, wird diese Variante als Standard verwendet

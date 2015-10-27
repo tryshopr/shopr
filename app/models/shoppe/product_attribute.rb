@@ -1,23 +1,23 @@
 module Shoppe
   class ProductAttribute < ActiveRecord::Base
-  
-    self.table_name = 'shoppe_product_attributes'  
-    
+
+    self.table_name = 'shoppe_product_attributes'
+
     # Validations
     validates :key, :presence => true
-  
+
     # The associated product
     #
     # @return [Shoppe::Product]
     belongs_to :product, :class_name => 'Shoppe::Product'
-  
+
     # All attributes which are searchable
     scope :searchable, -> { where(:searchable => true) }
-    
+
     # All attributes which are public
     scope :publicly_accessible, -> { where(:public => true) }
-  
-    # Return the the available options as a hash
+
+    # Return the available options as a hash
     #
     # @return [Hash]
     def self.grouped_hash
@@ -26,7 +26,7 @@ module Shoppe
         h
       end
     end
-  
+
     # Create/update attributes for a product based on the provided hash of
     # keys & values.
     #
@@ -56,11 +56,11 @@ module Shoppe
       self.where(:key => existing_keys - array.map { |h| h['key']}).delete_all
       true
     end
-    
+
     def self.public
       ActiveSupport::Deprecation.warn("The use of Shoppe::ProductAttribute.public is deprecated. use Shoppe::ProductAttribute.publicly_accessible.")
       self.publicly_accessible
     end
-  
+
   end
 end
