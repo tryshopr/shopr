@@ -8,7 +8,6 @@ rvm:
 env:
   - DB=sqlite
   - DB=mysql
-  - DB=postgresql
 cache: bundler
 before_script:
   - cp test/app/config/database.travis.yml test/app/config/database.yml
