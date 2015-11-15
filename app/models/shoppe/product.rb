@@ -11,7 +11,7 @@ module Shoppe
     require_dependency 'shoppe/product/variants'
 
     # Attachments for this product
-    has_many :attachments, :as => :parent, :dependent => :destroy, :autosave => true, :class_name => "Shoppe::Attachment"
+    has_many :attachments, as: :parent, dependent: :destroy, autosave: true, class_name: "Shoppe::Attachment"
 
     # The product's categorizations
     #
@@ -25,38 +25,38 @@ module Shoppe
     # The product's tax rate
     #
     # @return [Shoppe::TaxRate]
-    belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
+    belongs_to :tax_rate, class_name: "Shoppe::TaxRate"
 
     # Ordered items which are associated with this product
-    has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem', :as => :ordered_item
+    has_many :order_items, dependent: :restrict_with_exception, class_name: 'Shoppe::OrderItem', as: :ordered_item
 
     # Orders which have ordered this product
-    has_many :orders, :through => :order_items, :class_name => 'Shoppe::Order'
+    has_many :orders, through: :order_items, class_name: 'Shoppe::Order'
 
     # Stock level adjustments for this product
-    has_many :stock_level_adjustments, :dependent => :destroy, :class_name => 'Shoppe::StockLevelAdjustment', :as => :item
+    has_many :stock_level_adjustments, dependent: :destroy, class_name: 'Shoppe::StockLevelAdjustment', as: :item
 
     # Validations
-    with_options :if => Proc.new { |p| p.parent.nil? } do |product|
+    with_options if: Proc.new { |p| p.parent.nil? } do |product|
       product.validate :has_at_least_one_product_category
-      product.validates :description, :presence => true
-      product.validates :short_description, :presence => true
+      product.validates :description, presence: true
+      product.validates :short_description, presence: true
     end
-    validates :name, :presence => true
-    validates :permalink, :presence => true, :uniqueness => true, :permalink => true
-    validates :sku, :presence => true
-    validates :weight, :numericality => true
-    validates :price, :numericality => true
-    validates :cost_price, :numericality => true, :allow_blank => true
+    validates :name, presence: true
+    validates :permalink, presence: true, uniqueness: true, permalink: true
+    validates :sku, presence: true
+    validates :weight, numericality: true
+    validates :price, numericality: true
+    validates :cost_price, numericality: true, allow_blank: true
 
     # Before validation, set the permalink if we don't already have one
     before_validation { self.permalink = self.name.parameterize if self.permalink.blank? && self.name.is_a?(String) }
 
     # All active products
-    scope :active, -> { where(:active => true) }
+    scope :active, -> { where(active: true) }
 
     # All featured products
-    scope :featured, -> {where(:featured => true)}
+    scope :featured, -> {where(featured: true)}
 
     # Localisations
     translates :name, :permalink, :description, :short_description
@@ -123,7 +123,7 @@ module Shoppe
 
     # Set attachment for the default_image role
     def default_image_file=(file)
-      self.attachments.build(:file => file, :role => 'default_image')
+      self.attachments.build(file: file, role: 'default_image')
     end
 
     # Return attachment for the data_sheet role
@@ -141,8 +141,8 @@ module Shoppe
     #
     # @return [Enumerable]
     def self.with_attributes(key, values)
-      product_ids = Shoppe::ProductAttribute.searchable.where(:key => key, :value => values).pluck(:product_id).uniq
-      where(:id => product_ids)
+      product_ids = Shoppe::ProductAttribute.searchable.where(key: key, value: values).pluck(:product_id).uniq
+      where(id: product_ids)
     end
 
     # Imports products from a spreadsheet file

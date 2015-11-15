@@ -13,15 +13,15 @@ module Shoppe
     self.table_name = 'shoppe_product_categories'
 
     # Attachments for this product category
-    has_many :attachments, :as => :parent, :dependent => :destroy, :class_name => "Shoppe::Attachment"
+    has_many :attachments, as: :parent, dependent: :destroy, class_name: "Shoppe::Attachment"
 
     # All products within this category
     has_many :product_categorizations, dependent: :restrict_with_exception, class_name: 'Shoppe::ProductCategorization', inverse_of: :product_category
     has_many :products, class_name: 'Shoppe::Product', through: :product_categorizations
 
     # Validations
-    validates :name, :presence => true
-    validates :permalink, :presence => true, :uniqueness => {scope: :parent_id}, :permalink => true
+    validates :name, presence: true
+    validates :permalink, presence: true, uniqueness: { scope: :parent_id }, permalink: true
 
     # Root (no parent) product categories only
     scope :without_parent, -> { where(parent_id: nil) }
@@ -31,7 +31,7 @@ module Shoppe
 
     translates :name, :permalink, :description
     scope :ordered, -> { includes(:translations).order(:name) }
-    
+
     # Set the permalink on callback
     before_validation :set_permalink, :set_ancestral_permalink
     after_save :set_child_permalinks
@@ -56,7 +56,7 @@ module Shoppe
     end
 
     # Attachment with the role image
-    # 
+    #
     # @return [String]
     def image
       self.attachments.for("image")

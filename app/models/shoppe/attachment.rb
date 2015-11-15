@@ -8,14 +8,14 @@ module Shoppe
     mount_uploader :file, AttachmentUploader
 
     # Relationships
-    belongs_to :parent, :polymorphic => true
+    belongs_to :parent, polymorphic: true
 
     # Validations
-    validates :file_name, :presence => true
-    validates :file_type, :presence => true
-    validates :file_size, :presence => true
-    validates :file, :presence => true
-    validates :token, :presence => true, :uniqueness => true
+    validates :file_name, presence: true
+    validates :file_type, presence: true
+    validates :file_size, presence: true
+    validates :file, presence: true
+    validates :token, presence: true, uniqueness: true
 
     # All attachments should have a token assigned to this
     before_validation { self.token = SecureRandom.uuid if self.token.blank? }
@@ -31,7 +31,7 @@ module Shoppe
 
     # Return the attachment for a given role
     def self.for(role)
-      self.where(:role => role).first
+      self.where(role: role).first
     end
 
     # Return the path to the attachment
@@ -43,6 +43,6 @@ module Shoppe
     def image?
       file_type.match(/\Aimage\//).present?
     end
-    
+
   end
 end

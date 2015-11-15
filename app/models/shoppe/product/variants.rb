@@ -5,13 +5,13 @@ module Shoppe
     validate { errors.add :base, :can_belong_to_root if self.parent && self.parent.parent }
 
     # Variants of the product
-    has_many :variants, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id', :dependent => :destroy
+    has_many :variants, class_name: 'Shoppe::Product', foreign_key: 'parent_id', dependent: :destroy
 
     # The parent product (only applies to variants)
-    belongs_to :parent, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id'
+    belongs_to :parent, class_name: 'Shoppe::Product', foreign_key: 'parent_id'
 
     # All products which are not variants
-    scope :root, -> { where(:parent_id => nil) }
+    scope :root, -> { where(parent_id: nil) }
 
     # If a variant is created, the base product should be updated so that it doesn't have stock control enabled
     after_save do
