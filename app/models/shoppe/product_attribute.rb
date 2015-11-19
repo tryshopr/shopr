@@ -4,18 +4,18 @@ module Shoppe
     self.table_name = 'shoppe_product_attributes'
 
     # Validations
-    validates :key, :presence => true
+    validates :key, presence: true
 
     # The associated product
     #
     # @return [Shoppe::Product]
-    belongs_to :product, :class_name => 'Shoppe::Product'
+    belongs_to :product, class_name: 'Shoppe::Product'
 
     # All attributes which are searchable
-    scope :searchable, -> { where(:searchable => true) }
+    scope :searchable, -> { where(searchable: true) }
 
     # All attributes which are public
-    scope :publicly_accessible, -> { where(:public => true) }
+    scope :publicly_accessible, -> { where(public: true) }
 
     # Return the available options as a hash
     #
@@ -38,11 +38,11 @@ module Shoppe
         next if hash['key'].blank?
         index += 1
         params = hash.merge({
-          :searchable => hash['searchable'].to_s == '1',
-          :public => hash['public'].to_s == '1',
-          :position => index
+          searchable: hash['searchable'].to_s == '1',
+          public: hash['public'].to_s == '1',
+          position: index
         })
-        if existing_attr = self.where(:key => hash['key']).first
+        if existing_attr = self.where(key: hash['key']).first
           if hash['value'].blank?
             existing_attr.destroy
             index -= 1
@@ -53,7 +53,7 @@ module Shoppe
           attribute = self.create(params)
         end
       end
-      self.where(:key => existing_keys - array.map { |h| h['key']}).delete_all
+      self.where(key: existing_keys - array.map { |h| h['key']}).delete_all
       true
     end
 

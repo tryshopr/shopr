@@ -4,29 +4,29 @@ module Shoppe
     # The associated delivery service
     #
     # @return [Shoppe::DeliveryService]
-    belongs_to :delivery_service, :class_name => 'Shoppe::DeliveryService'
+    belongs_to :delivery_service, class_name: 'Shoppe::DeliveryService'
 
     # The country where this order is being delivered to (if one has been provided)
     #
     # @return [Shoppe::Country]
-    belongs_to :delivery_country, :class_name => 'Shoppe::Country', :foreign_key => 'delivery_country_id'
+    belongs_to :delivery_country, class_name: 'Shoppe::Country', foreign_key: 'delivery_country_id'
 
     # The user who marked the order has shipped
     #
     # @return [Shoppe::User]
-    belongs_to :shipper, :class_name => 'Shoppe::User', :foreign_key => 'shipped_by'
+    belongs_to :shipper, class_name: 'Shoppe::User', foreign_key: 'shipped_by'
 
     # Set up a callback for use when an order is shipped
     define_model_callbacks :ship
 
     # Validations
-    with_options :if => :separate_delivery_address? do |order|
-      order.validates :delivery_name, :presence => true
-      order.validates :delivery_address1, :presence => true
-      order.validates :delivery_address3, :presence => true
-      order.validates :delivery_address4, :presence => true
-      order.validates :delivery_postcode, :presence => true
-      order.validates :delivery_country, :presence => true
+    with_options if: :separate_delivery_address? do |order|
+      order.validates :delivery_name, presence: true
+      order.validates :delivery_address1, presence: true
+      order.validates :delivery_address3, presence: true
+      order.validates :delivery_address4, presence: true
+      order.validates :delivery_postcode, presence: true
+      order.validates :delivery_country, presence: true
     end
 
     validate do
@@ -43,7 +43,7 @@ module Shoppe
       # Ensure that before we confirm the order that the delivery service which has been selected
       # is appropritae for the contents of the order.
       if self.delivery_required? && !self.valid_delivery_service?
-        raise Shoppe::Errors::InappropriateDeliveryService, :order => self
+        raise Shoppe::Errors::InappropriateDeliveryService, order: self
       end
       cache_delivery_pricing
     end
@@ -137,7 +137,7 @@ module Shoppe
     # @return [Array] an array of Shoppe:DeliveryServicePrice objects
     def delivery_service_prices
       if delivery_required?
-        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order(:price).for_weight(total_weight)
+        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(shoppe_delivery_services: {active: true}).order(:price).for_weight(total_weight)
         prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
         prices.sort{ |x,y| (y.delivery_service.default? ? 1 : 0) <=> (x.delivery_service.default? ? 1 : 0) } # Order by truthiness
       else

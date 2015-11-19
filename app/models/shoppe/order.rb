@@ -1,6 +1,9 @@
 module Shoppe
   class Order < ActiveRecord::Base
 
+    EMAIL_REGEX = /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i
+    PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/
+
     self.table_name = 'shoppe_orders'
 
     # Orders can have properties
@@ -13,21 +16,21 @@ module Shoppe
     require_dependency 'shoppe/order/delivery'
 
     # All items which make up this order
-    has_many :order_items, :dependent => :destroy, :class_name => 'Shoppe::OrderItem', :inverse_of => :order
-    accepts_nested_attributes_for :order_items, :allow_destroy => true, :reject_if => Proc.new { |a| a['ordered_item_id'].blank? }
+    has_many :order_items, dependent: :destroy, class_name: 'Shoppe::OrderItem', inverse_of: :order
+    accepts_nested_attributes_for :order_items, allow_destroy: true, reject_if: Proc.new { |a| a['ordered_item_id'].blank? }
 
     # All products which are part of this order (accessed through the items)
-    has_many :products, :through => :order_items, :class_name => 'Shoppe::Product', :source => :ordered_item, :source_type => 'Shoppe::Product'
+    has_many :products, through: :order_items, class_name: 'Shoppe::Product', source: :ordered_item, source_type: 'Shoppe::Product'
 
     # The order can belong to a customer
-    belongs_to :customer, :class_name => 'Shoppe::Customer'
-    has_many :addresses, :through => :customers, :class_name => "Shoppe::Address"
+    belongs_to :customer, class_name: 'Shoppe::Customer'
+    has_many :addresses, through: :customers, class_name: 'Shoppe::Address'
 
     # Validations
-    validates :token, :presence => true
-    with_options :if => Proc.new { |o| !o.building? } do |order|
-      order.validates :email_address, :format => {:with => /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i}
-      order.validates :phone_number, :format => {:with => /\A[+?\d\ \-x\(\)]{7,}\z/}
+    validates :token, presence: true
+    with_options if: Proc.new { |o| !o.building? } do |order|
+      order.validates :email_address, format: { with: EMAIL_REGEX }
+      order.validates :phone_number, format: { with: PHONE_REGEX }
     end
 
     # Set some defaults

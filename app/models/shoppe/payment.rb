@@ -8,17 +8,17 @@ module Shoppe
     # The associated order
     #
     # @return [Shoppe::Order]
-    belongs_to :order, :class_name => 'Shoppe::Order'
+    belongs_to :order, class_name: 'Shoppe::Order'
 
     # An associated payment (only applies to refunds)
     #
     # @return [Shoppe::Payment]
-    belongs_to :parent, :class_name => "Shoppe::Payment", :foreign_key => "parent_payment_id"
+    belongs_to :parent, class_name: "Shoppe::Payment", foreign_key: "parent_payment_id"
 
     # Validations
-    validates :amount, :numericality => true
-    validates :reference, :presence => true
-    validates :method, :presence => true
+    validates :amount, numericality: true
+    validates :reference, presence: true
+    validates :method, presence: true
 
     # Payments can have associated properties
     key_value_store :properties
@@ -58,12 +58,12 @@ module Shoppe
         amount = BigDecimal(amount)
         if refundable_amount >= amount
           transaction do
-            self.class.create(:parent => self, :order_id => self.order_id, :amount => 0-amount, :method => self.method, :reference => reference)
+            self.class.create(parent: self, order_id: self.order_id, amount: 0-amount, method: self.method, reference: reference)
             self.update_attribute(:amount_refunded, self.amount_refunded + amount)
             true
           end
         else
-          raise Shoppe::Errors::RefundFailed, :message => I18n.t('.refund_failed', refundable_amount: refundable_amount)
+          raise Shoppe::Errors::RefundFailed, message: I18n.t('.refund_failed', refundable_amount: refundable_amount)
         end
       end
     end
