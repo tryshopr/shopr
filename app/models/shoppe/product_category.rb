@@ -26,7 +26,7 @@ module Shoppe
     # Root (no parent) product categories only
     scope :without_parent, -> { where(parent_id: nil) }
 
-    # No descendents
+    # No descendants
     scope :except_descendants, ->(record) { where.not(id: (Array.new(record.descendants) << record).flatten) }
 
     translates :name, :permalink, :description
