@@ -13,6 +13,10 @@ catalogue-based store into your Rails 4 applications.
 * [Read the release notes](https://github.com/tryshoppe/core/blob/master/CHANGELOG.md)
 * [Read API documentation](http://api.tryshoppe.com)
 
+## Is it any good?
+
+[Yes](http://news.ycombinator.com/item?id=3067434)
+
 ## Features
 
 * An attractive & easy to use admin interface with integrated authentication
