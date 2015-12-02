@@ -29,7 +29,8 @@ Gem::Specification.new do |s|
   s.add_dependency "nifty-utils", ">= 1.0", "< 1.1"
   s.add_dependency "nifty-dialog", ">= 1.0.7", "< 1.1"
   s.add_dependency "carrierwave", "~> 0.10.0"
-  s.add_dependency "fog", "~> 1.31.0"
+  s.add_dependency "fog", "~> 1.36.0"
+  s.add_dependency "net-ssh", "~> 3.0.1"
   s.add_dependency "mini_magick", "~> 4.2.7"
 
   s.add_development_dependency "coffee-rails", "~> 4"

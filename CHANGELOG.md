@@ -5,16 +5,35 @@ All notable changes to this project will be documented in this file.
 The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
 
 ## Unreleased
-- ...
+* ...
 
-## 1.1.1 - 2015-08-09 (Released)
-### Fixed
-- Bug with default_image_file ([#244](https://github.com/tryshoppe/shoppe/pull/244))
+## 1.1.2 - 2015-12-02
+
+* Added missing es-US translation ([#258](https://github.com/tryshoppe/shoppe/pull/258))
+* Added missing translation that failed to save categories ([#261](https://github.com/tryshoppe/shoppe/pull/261))
+* Fix bug with product variants ([#262](https://github.com/tryshoppe/shoppe/pull/262))
+* Fix issue with attachment uploader ([#266](https://github.com/tryshoppe/shoppe/pull/266))
+* Adjusted phone number regex ([#276](https://github.com/tryshoppe/shoppe/pull/276))
+* Added missing German translations ([#280](https://github.com/tryshoppe/shoppe/pull/280))
+* Fixed `login_with_demo_mode` typo ([#281](https://github.com/tryshoppe/shoppe/pull/281))
+* Fixed cut off payment button ([#282](https://github.com/tryshoppe/shoppe/pull/282))
+* Fixed products import ([#285](https://github.com/tryshoppe/shoppe/pull/285))
+* Update quantities on product import ([#286](https://github.com/tryshoppe/shoppe/pull/286))
+* Added German translations to Customer section ([#287](https://github.com/tryshoppe/shoppe/pull/287))
+* Improved Spanish translation ([#289](https://github.com/tryshoppe/shoppe/pull/289))
+* Added Russian translation ([#295](https://github.com/tryshoppe/shoppe/pull/295))
+* Fixed cost price German translation ([#299](https://github.com/tryshoppe/shoppe/pull/299))
+* Fixed seeds when run twice ([#300](https://github.com/tryshoppe/shoppe/pull/300))
+* Updated to Ruby 1.9 syntax ([#304](https://github.com/tryshoppe/shoppe/pull/304))
+
+## 1.1.1 - 2015-08-09
+
+* Bug with default_image_file ([#244](https://github.com/tryshoppe/shoppe/pull/244))
 
 ## 1.1.0 - 2015-07-07
-### Fixed
-- Bug with product category translations
-- Product category image uploads
+
+* Bug with product category translations
+* Product category image uploads
 
 ## v1.0.9
 

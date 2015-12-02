@@ -9,6 +9,7 @@ catalogue-based store into your Rails 4 applications.
 
 * [Check out the website](http://tryshoppe.com)
 * [View the demo site](http://demo.tryshoppe.com)
+* [Read the Getting Started guide](http://tryshoppe.com/docs/tutorials/getting-started)
 * [Check out the demo site source](http://github.com/tryshoppe/example-store)
 * [Read the release notes](https://github.com/tryshoppe/core/blob/master/CHANGELOG.md)
 * [Read API documentation](http://api.tryshoppe.com)
