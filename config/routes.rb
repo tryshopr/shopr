@@ -46,7 +46,9 @@ Shoppe::Engine.routes.draw do
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  match 'login/reset' => 'password_resets#reset', :via => [:get, :post]
+
+  get 'login/reset' => 'password_resets#new'
+  post 'login/reset' => 'password_resets#create'
 
   delete 'logout' => 'sessions#destroy'
   root :to => 'dashboard#home'
