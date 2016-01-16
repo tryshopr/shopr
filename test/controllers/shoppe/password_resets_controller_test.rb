@@ -39,6 +39,12 @@ module Shoppe
         mail = ActionMailer::Base.deliveries.last
         assert_equal user.email_address, mail['to'].to_s
       end
+
+      test 'should set notice when email_address is found' do
+        user = create(:user)
+        post :create, email_address: user.email_address, use_route: :shoppe
+        assert_not_nil flash[:notice]
+      end
     end
   end
 end
