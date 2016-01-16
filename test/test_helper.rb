@@ -9,6 +9,10 @@ class ActiveSupport::TestCase
 
   include FactoryGirl::Syntax::Methods
 
+  setup do
+    ActionMailer::Base.deliveries.clear
+  end
+
   private
 
   def create_order_with_products(options = {})
