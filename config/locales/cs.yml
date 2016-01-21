@@ -1,0 +1,779 @@
+cs:
+  activerecord:
+    models:
+      shoppe/country:
+        one: Země
+        other: Zemi
+      shoppe/delivery_service:
+        one: Způsob dopravy
+        other: Způsoby dopravy
+      shoppe/delivery_service_price:
+        one: Cena za dopravu
+        other: Ceny za dopravu
+      shoppe/order:
+        one: Objednávka
+        other: Objednávek
+      shoppe/order_item:
+        one: Položka objednávky
+        other: Položky objednávky
+      shoppe/payment:
+        one: Platba
+        other: Platby
+      shoppe/product:
+        one: Produkt
+        other: Produkty
+      shoppe/product_attribute:
+        one: Parametr produktu
+        other: Parametry produktu
+      shoppe/product_category:
+        one: Kategorie produktů
+        other: Kategorie produktů
+      shoppe/setting:
+        one: Nastavení
+        other: Nastavení
+      shoppe/stock_level_adjustment:
+        one: Úprava zásob skladu
+        other: Úpravy zásob skladu
+      shoppe/tax_rate:
+        one: sazba DPH
+        other: sazby DPH
+      shoppe/user:
+        one: uživatel
+        other: uživatelé
+
+    attributes:
+      shoppe/order:
+        billing_address1: Fakturační adresa 1
+        billing_address3: Fakturační adresa 2
+        billing_address4: Fakturační adresa 3
+        billing_country: Země (fakturace)
+        billing_postcode: PSČ (fakturace)
+        delivery_address1: Doručovací adresa 1
+        delivery_address3: Doručovací adresa 2
+        delivery_address4: Doručovací adresa 3
+        delivery_country: Země dodání
+        delivery_name: Jméno příjemce
+        delivery_service_id: Způsob dodání
+        delivery_postcode:  PSČ pro dodání
+        email_address: Emailová adresa
+        first_name: Jméno
+        last_name: Příjmení
+        phone_number: Telefonní číslo
+        status: Stav
+        token: Тоken
+      shoppe/country:
+        name: Název
+      shoppe/delivery_service:
+        name: Název
+        courier: Kurýr
+      shoppe/delivery_service_price:
+        code: Kód
+        cost_price: Nákupní cena
+        max_weight: Maximální hmotnost
+        min_weight: Minimální hmotnost
+        price: Cena
+      shoppe/order_item:
+        ordered_item: Objednané produkty
+        quantity: Množství
+      shoppe/payment:
+        amount: částka
+        method: Metoda
+        reference: Reference
+      shoppe/product:
+        cost_price: Nákupní cena
+        description: Popis
+        name: Název
+        permalink: Trvalý odkaz
+        price: Cena
+        short_description: Krátký popis
+        sku: Stock Keeping Unit
+        weight: Váha
+      shoppe/product_attribute:
+        key: Klíč
+      shoppe/product_category:
+        name: Název
+        permalink: Trvalý odkaz
+      shoppe/setting:
+        key: Klíč
+        value: Hodnota
+        value_type: Typ hodnoty
+      shoppe/stock_level_adjustment:
+        adjustment: Úprava
+        description: Popis
+        must_be_greater_or_equal_zero: musí být větší nebo rovna nule.
+      shoppe/tax_rate:
+        address_type: Тyp adresy
+        name: Název
+        rate: Sazba
+      shoppe/user:
+        email_address: Emailová adresa
+        first_name: Jméno
+        last_name: Příjmení
+        password: Heslo
+        password_confirmation: Potvrzení hesla
+    errors:
+      template:
+        body: ! 'Nalezený chyby v nasledujucich polich:'
+        header:
+          one: !  ' chyba neumožňuje uložit %{model}'
+          many: ! '%{count} chyb neumožňuje uložit %{model}'
+          other: ! '%{count} chyb neumožňuje uložit %{model}'
+      models:
+        shoppe/product_category:
+          attributes:
+            permalink:
+              wrong_format: "může obsahovat pouze písmena, čísla, (-) a (_)"
+        shoppe/delivery:
+          attributes:
+            delivery_service_id:
+              must_be_specified: Nutné uvést
+              not_suitable: Nelze specifikovát pro tuto objednávku
+        shoppe/order:
+          attributes:
+            delivery_service_id:
+              must_be_specified: Nutné uvést
+        shoppe/product:
+          attributes:
+            permalink:
+              wrong_format: "může obsahovat pouze písmena, čísla, (-) a (_)"
+            base:
+              can_belong_to_root: může patřit pouze pod kořenový produkt
+        shoppe/order_item:
+          attributes:
+            quantity:
+              too_high_quantity: přesahuje skladovou dostupnost
+        shoppe/payment:
+          refund_failed: "částka za vracení by měla být nižší než výše platby (%{refundable_amount})"
+
+  will_paginate:
+    next_label: "Další &#8594;"
+    page_gap: "&hellip;"
+    previous_label: "&#8592; Předchozí"
+
+    page_entries_info:
+      single_page:
+        zero:  Nic nenalzeno
+        one:   "Zobrazení 1 položky"
+        few: "Zobrazeno všechny %{count} položky"
+        other: "Zobrazeno ostatni %{count} položky"
+
+      single_page_html:
+        zero:  "Žádný %{model} nenalezen"
+        one_html:   "<b>1</b> %{model}"
+        other_html: "<b>all&nbsp;%{count}</b> %{model}"
+
+      multi_page: "Zobrazeno %{model} %{from} - %{to} z %{count} celkem"
+      multi_page_html: "Zobrazeno %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{count}</b> celkem"
+
+  helpers:
+    number_to_weight:
+      kg: kg
+    page_entries_info:
+      one_page:
+        display_entries: Zobrazit záznamy
+    attachment_preview:
+      delete: Smazat
+      delete_confirm: Opravdu chcete odstranit připojený soubor?
+      no_attachment: Žádná příloha
+
+  shoppe:
+    # common
+    cancel: Zrušit
+    close: Uzavřít
+    delete: Smazat
+    edit: Upravit
+    import: Importovat
+    remove: Smazat
+
+    removed_it: "%{it} byl úspěšně odstraněn"
+    save_settings: Uložit nastavení
+    separate_delivery_address: rozdělit dodací adresu
+    service_available: Servis bude k dispozici pro použití
+    service_default: Servis bude použit jako výchozí (je-li k dispozici)
+    settings_title: Nastavení
+    settings_not_in_demo: Nemůžete provádět změny v demo režimu.
+    set_prices: Nastavit ceny
+    shoppe_back: Zpátky v Shoppe
+    sku: Stock Keeping Unit
+    status: Stav
+    stock: Sklad
+    stock_current: Množství na skladě
+    stock_control: kontrola skladových zásob
+    stock_control_enable: Chcete poustit kontrolu skladových zásob pro tento produkt?
+    stock_levels: Skladové zásoby
+    stock_levels_for: Skladové zásoby pro %{item}
+    stock_none: Není skladem
+    system_settings: Systémová nastavení
+    tax_rate: DPH
+    tax_rate_apply_to: Použít pro objednávky kde %{to} odpovídá seznamu zemí níže
+    tax_rate_delete_confirm: Opravdu chcete odstranit tuto daň?
+    tax_rate_details: Detaily DPH
+    tax_rate_new: Nová daň
+    tax_rate_note: NEMĚŇTE již používané nastavení daně!
+      Buďte opatrní při změně daně, protože to muže mít vliv na již existující objednávky.
+      Nejlepším řešením je odstranění staré daně a vytvoření nové. Jestli vymažete daň, ve skutečnosti, ona zůstává v systému, ale je deaktivováná но деактивируется a proto tento postup nemá vliv na stávající objednávky.
+    tax_rates: sazby DPH
+    tax_rates_back: Zpět na DPH
+    tax_none: Bez DPH
+    telephone: Telefon
+    total: Celkem
+    total_weight: Celková hmotnost
+    tracking_url: Sledování zásilky (URL)
+    unknown: Neznámý
+    updated_it: "%{it} úspěšně změněn"
+    users: Uživatelé
+    users_back: Zpět k uživatelům
+    user_delete_confirm: Opravdu chcete smazat tohoto uživatele?
+    user_details: Podrobné informace o uživateli
+    user: Uživatel
+    user_edit: Upravit uživatele
+    user_new: Nový uživatel
+    user_not_in_demo: Nemůžete upravovat uživatele v demo režimu.
+    user_not_yourself: Nemůžete se odstranit
+    variants: Možnosti
+    variants_back: Zpět na možnosti
+    variants_of: Možnosti %{product}
+    variant_delete_confirm: Opravdu chcete smazat tuto možnost?
+    variant_of: Možnost %{product}
+    variant_new: Nová možnost
+    variant_save: Uložit Možnost
+    value: Hodnota
+    website_properties: Vlastnosti webové stránky
+    weight: Váha
+    weight_allowance: Povolená váha
+
+    submit: Odeslat
+
+    attachments:
+      remove_notice: Příloha je úspěšně smazána
+
+    countries:
+      back: Zpět na seznam zemí
+      continent: Kontinent
+      countries: Zemi
+      country_details: detaily zemi
+      create_notice: Země je úspěšně vytvořena
+      delete_confirmation: Opravdu chcete odstranit tuto země?
+      destroy_notice: Země je úspěšně odstrněna
+      eu?: EU?
+      eu_member: člen EU?
+      is_eu_member: Je země členem EU?
+      iso_alpha_2: ISO 3166-1-alpha-2
+      iso_alpha_3: ISO 3166-1-alpha-3
+      name: Název
+      new_country: Nová země
+      tld: Doména nejvyššího řádu
+      update_notice: Země je úspěšně změněna
+
+    delivery_service_prices:
+      all_countries: Všechny země
+      back: Zpět k cenám
+      back_to_delivery_services: Zpět k doručovacím službam
+      code: Kód
+      cost: Cena
+      cost_price: nákladová cena
+      countries: Zemi
+      create_notice: Cena je úspěšně přidána
+      delivery_services: Způsoby dodávky
+      destroy_notice: Cena je úspěšně odstraněna
+      identification_weight: ID a váha
+      max_weight: Maximální váha
+      min_weight: Minimální váha
+      new_price: Nová cena
+      no_tax: bez DPH
+      price: Cena
+      pricing: Stanovení cen
+      pricing_for: "Stanovení cen pro %{delivery_name}"
+      tax_rate: Sazba daně
+      update_notice: Cena je úspěšně změněna
+      weight_allowance: Povolená hmotnost
+
+      help:
+        countries: Přepravní náklady budou k dispozici pouze pro objednávky v uvedených zemích.
+
+    delivery_services:
+      active?: Aktivní?
+      active: Aktivní
+      active_info: Způsob doručení bude k dispozici pro použití
+      back: Zpět k způsobum doručení
+      code: Unikátní kód
+      courier: Kurýrní společnost
+      courier_name: Název kurýrní společnosti
+      create_notice: Způsob doručení je úspěšně vytvořen
+      default?: Výchozí?
+      default: Výchozí
+      default_info: Služba bude použita jako výchozí (je-li k dispozici)
+      delivery_services: Způsoby doručení
+      destroy_notice: Způsob doručení byl úspěšně odstraněn
+      delete_confirmation: opravdu chcete odstranit způsob doručení?
+      details: Název doručení
+      name: Název
+      new: Nový způsob doručení
+      no_services: Nejsou způsoby doručení  k zobrazení
+      prices: Ceny
+      set_prices: Nastavení cen
+      tracking_url: Sledování zásilky (URL)
+      tracking_url_help_html: Použijte <code>{{consignment_number}}</code> k vložení jako číslo dodacího listu.
+      update_notice: Způsob doručení je úspěšně změněn
+
+    imports:
+      example_file: Příklad souboru
+      file_upload: Soubor pro import
+      required_formats: Měl by být ve formátu csv, xls nebo xlsx
+      errors:
+        no_file: soubor pro import neni vybrán
+        unknown_format: "neznámý formát souboru: %{filename}"
+
+    orders:
+      accept: Objednávka
+      accept_notice: Objednávka byla úspěšně přijata
+      add_payment: Přidat platbu
+      add_item: Přidat položku
+      address: Adresa
+      amount: množství
+      back_to_order: Zpět na objednávku
+      back_to_orders: Zpět na objednávky
+      billing_address: Fakturační adresa
+      billing_delivery_address: Dodací adresa/ Fakturační adresa
+      build_time: Čas na přípravu objednávky
+      company: Společnost
+      consignment_number: číslo podacího lístku
+      cost: Cena
+      country: Země
+      create_order: Vytvořit objednávku
+      create_notice: Žádost je úspěšně přidána
+      customer: Zákazník
+      delivery_address: Dodací adresa
+      delivery_name: Jméno příjemce
+      edit_order: Upravit objednávku
+      email_address: email adresa
+      first_name: Jméno
+      from_payment: z platby
+      id: ID
+      in_progress_warning: Tato objednávka není zatím vytvořena klientem. V současné době můžete pouze prohlížet položky v jeho objednávce.
+      invoice_number: Číslo účtu
+      insufficient_stock_order: "Nestačí zásob na skladě pro produkt %{out_of_stock_items}. Množství je změněno ma maximální dostupně na skladě."
+      item: Položka
+      last_name: Příjmení
+      mark_as_shipped: Označit jako "Odeslané"
+      method: Metoda
+      missing_delivery_service: Nenalezene žádny vyhovující metody dodávky, objednávku nelze provést bez způsobu dodání.
+      name: Jméno
+      new_order: Nová objednávka
+      no_delivery_required: Dodání není nutné pro objednávku.
+      no_orders: Nejsou objednávky pro zobrazení.
+      no_payments: Žádné záznamy platby teto objednávky
+      notes: Poznámky
+      number: číslo
+      order: Žádost
+      order_accepted: Žádost přijata
+      order_balance: Баланс по заказу
+      order_items: Položky objednávky
+      order_no_html: "Žádost <b>#%{order_number}</b>"
+      order_number: Číslo objednávky
+      order_received: Objednávka přijata
+      order_rejected: Objednávka zamítnuta
+      order_shipped: Objednávka poslana
+      ordered_products: Objednané produkty
+
+      orders: Objednávky
+      payment: Platby
+      payment_remove_confirmation: Opravdu že chcete smazat tuto platbu?
+      payments: Platby
+      phone_number: Telefonní číslo
+      post_code: PSČ
+      price: Cena
+      product: Výrobek
+      products: Výrobky
+      qty: Množství
+      quantity: Množství
+      received_between: Obdržené mezi
+      reference: Reference
+      refund: Vrácení
+      refunded?: Vráceno?
+      reject: Odmítnuto
+      reject_notice: Objednávka byla úspěšně zrušena
+      save_order: Uložit objednávku
+      search: Hledat
+      search_orders: Vyhledat objednávky
+      select_country: Vyberte zemi
+      customer: Zákazník
+      select_customer: Vyberte zákazníka nebo nechte pole prázdná
+      separate_delivery_address: Rozdělit dodací adresu
+      ship_notice: Objednávka byla úspěšně odeslána
+      sku: Stock Keeping Unit
+      sla_warning: Jakékoliv změny v počtu budou aktualizovány na příslušných úrovních souvisejících produktů.
+      status: stav
+      stock: Sklad
+      sub_total: Celkem
+      tax: DPH
+      telephone: Telefon
+      total: Celkem
+      type: Тyp
+      unit_price: Cena za jednotku
+      update_notice: Objednávka byla úspěšně změněna
+      use_separate_delivery_address?: Použit separátní doručovací adresy?
+      weight: Váha
+
+      status_bar:
+        by_user: "uživatelem: %{user}"
+        consignment_no_html: "Podací lístek  #<b>%{consignment_number}</b>"
+        from_ip: "od %{ip}"
+        on_date: "k datu %{on}"
+        tracking_url: Адрес трекинга (URL)
+
+      despatch_note:
+        despatch_note: detaily expedice
+        footer: Děkujeme vám za nákup!
+        order_number: Číslo objednávky
+        order_placed: objednávka umístěna
+        packed?: Zabaleno?
+        product: Produkt
+        quantity: množství
+        sku: Stock Keeping Unit
+        telephone: Telefon
+        total_weight: Celková váha
+        weight: Váha
+
+      statuses:
+        accepted: Přijato
+        building: Vytvářeno
+        confirming: Potvrzeno
+        received: Obdrženo
+        rejected: Odmítnuto
+        shipped: Odesláno
+
+    product_category:
+      attachments: Přílohy
+      back_to_categories: Do seznamu kategorií
+      category_details: detaily kategorií
+      choose_product_category: Zvolte kategorii produktu
+      create_notice: Kategorie byla úspěšně vytvořena
+      delete_confirmation:  Opravdu chcete smazat tuto kategorii?
+      description: Popis
+      destroy_notice: Kategorie byl úspěšně smazána
+      destroy_alert: Kategorie nemůže být smazána
+      image: Obraz
+      name: Název
+      new_category: Nová kategorie
+      no_categories: Nejsou žádné kategorie k zobrazení
+      permalink: Trvalý odkaz
+      permalink_includes_ancestors: Přidat prefix odkazům v obchodě
+      product_categories: Kategorie produktů
+      update_notice: Kategorie úspěšně aktualizována
+      nesting:
+        hierarchy: Hierarchie
+        blank_option: Žádný
+        category_nesting: Dědění
+        category_parent: Rodič
+        current_category: Aktuální
+        no_children: Bez potomků
+        hierarchy: Hierarchie
+
+    products:
+      add_attachments: Zobrazit / Přidat soubory
+      add_attribute: Přidat parametr
+      attachments: Přílohy
+      attributes: parametry
+      back_to_products: k seznamu produktů
+      cost_price: cena
+      create_notice: Produkt byl úspěšně vytvořen.
+      datasheet: Tabulka
+      default_image: Výchozí zobrazení
+      description: Popis
+      destroy_notice: Produkt byl úspěšně odstraněn
+      edit: upravit
+      enable_stock_control?: Aktivovat kontrolu skladu pro tento produkt?
+      featured?: Reklamní produkt?
+      featured_info:  Reklamní produkt se zobrazuje na domovské stránce obchodu
+      import_products: Dovoz produktů
+      in_the_box: Co je v krabici?
+      name: Název
+      new_product: Nový produkt
+      no_products: Není žádný produkt k zobrazení.
+      no_stock: Není k dispozici
+      no_tax: bez DPH
+      on_sale?: Na prodej?
+      on_sale_info:  Tento produkt bude k dispozici pro nákup
+      permalink: Trvalý odkaz
+      price: Cena
+      price_variants: Cena / Možnosti
+      pricing: stanovení cen
+      product_category: kategorie produktů
+      product_information: Informace o produktu
+      products: Produkty
+      public?: Veřejný?
+      remove: Odebrat
+      searchable?: Prohledávatelné?
+      short_description: Stručný popis
+      sku: Stock Keeping Unit
+      stock: Skladové zásoby
+      stock_control: Kontrola zásob
+      stock_levels: Stav zásob
+      tax_rate: Sazba daně
+      value: hodnota
+      variants: Možnosti
+      update_notice: Produkt byl úspěšně aktualizován
+      website_properties: Vlastnosti stránky
+      weight: Váha
+
+      imports:
+        help: Produkty a kategorie jsou mapovány podle názvu. V případě, že položka není nalezena, nová bude vytvořen se všemi uvedenými atributy. Pokud je produkt nalezen, změní se pouze množstvi, a další poli budou ignorovány.Pokud kategorie nebyla nalezena, tak nová se zadaným názvem bude vytvořena.  Jedna položka na řádek.Můžete nechat pole trvalého odkazu prázdné a systém ho sgeneruje automaticky.
+        success: Produkty úspěšně importovány
+        examples:
+          first:
+            name: Měkký plyšový medvídek
+            sku: BEAR001
+            permalink: plush-teddy-bear
+            description: Fantasticky měkký a roztomilý medvídek pro každého!
+            short_description: Kupte pro vaše děti.
+            weight: 1.2
+            price: 1990.90
+            category_name: Hračky
+            qty: 20
+          second:
+            name: Módní medvídek
+            sku: BEAR002
+            permalink: ""
+            description: Vyrobeno z PVC.Skvělá hračka pro sběratele.
+            short_description: Kupte si dárek.
+            weight: 0.6
+            price: 1800
+            category_name: Hračky
+            qty: 100
+          third:
+            name: Dřevěný medvídek
+            sku: BEAR003
+            permalink: stick-teddy-bear
+            description: Ze dřeva, přírodní materiál. Hračkou můžete rozpálit krb. :(
+            short_description: Dárek pro konzervativci a pyromany.
+            weight: 0.521
+            price: 1400.50
+            category_name: Hračky
+            qty: 50
+
+    refund:
+      intro_html: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
+      issue_refund: Issue Refund
+      refund: Refund
+
+    sessions:
+      admin_login: Přihlášení administrátora
+      create_alert: E-mailová adresa nebo heslo není správné.Zkuste to prosím znovu.
+      back_to_login: Zpět na stranku vstupu
+      email: Email
+      login: Login
+      password: Heslo
+      reset: Obnovit
+      reset_password: Obnovení zapomenutého hesla
+      reset_password?: Obnovit zapomenuté heslo?
+      reset_alert: Uživatel s zadáním heslem nebyl nalezen
+      reset_notice: "Heslo bylo obnoveno a odesláno do %{email_address}"
+
+    shared:
+      back_to_shoppe: Zpět na Shoppe
+      error: Chyba
+      error_occurred: Nastala chyba
+
+    stock_level_adjustments:
+      add: Přidat
+      adjustment: Úprava
+      back_to_product: Zpět na produkty
+      create_notice: Úprava zásob byla úspěšně provedena
+      current_stock_level_html: "Aktuální stav zásob: <b>%{item_stock}</b>"
+      date: Datum
+      description: Popis
+      edit_product: Upravit produkt
+      invalid_item_type: "Nesprávný typ položky (Měl by být jedním z%{suitable_objects})"
+      stock_levels_for: "Úroveň zásob pro %{item_name}"
+      stock_levels_title: "Skladové zásoby  - %{item_name}"
+
+    tax_rates:
+      address_type_option: "Apply to orders where the %{address} address matches one of the countries below"
+      address_type_option: "Platí pro objednávky kde %{address} odpovídá jedné z následujících zemí"
+      all_countries: Všechny země
+      back_to_tax_rates: Zpět na DPH
+      billing: fakturační adresa
+      country_restriction: Zákazy pro zemí
+      create_notice: DPH byla úspěšně přidána
+      delete_confirmation: Opravdu chcete odstranit tuto daň?
+      delivery: Doručení
+      destroy_notice: Daň byla úspěšně odstraněna
+      name: Název
+      new_tax_rate: Nová daň
+      rate: Úroveň daně
+      rate_details: Detaily o úrovni daně
+      tax_rates: DPH
+      update_notice: Daň byla úspěšně aktualizována
+
+    users:
+      back_to_users: Zpět na uživatele
+      create_notice: Uživatel byl úspěšně vytvořen
+      delete_confirmation: Opravdu chcete smazat tohoto uživatele?
+      demo_mode_error: Nemůžete upravovat uživatelé v demo režimu.
+      destroy_notice: Uživatel byl úspěšně smazán
+      email: Email
+      first_name: Jméno
+      last_name: Příjmení
+      login: Login
+      name: Jméno
+      new_user: Nový uživatel
+      password: Heslo
+      password_confirmation: Potvrzení hesla
+      self_remove_error: Nemůžete odstranit sami sebe
+      update_notice: Uživatel byl úspěšně změněn
+      user_details: Přečtěte si více o uživateli
+      users: Uživatelé
+
+    variants:
+      back_to_variants: Zpět na možnosti
+      cost_price: Kupní cena
+      create_notice: možnost tohoto zboží byla úspěšně přidána
+      default_variant?: výchozí možnost?
+      default_variant_info: Pokud je povolen, zobrazí se na strance jako výchozí pro tuto položku.
+      delete_confirmation: opravdu chcete smazat tuto možnost?
+      destroy_notice:  možnost byla úspěšně smazána
+      edit_product: Upravit produkt
+      edit_variant: Nová verze produktu
+      enable_stock_control?: Povolit kontrolu skladu pro tento produkt?
+      image: Zobrazení
+      name: Název
+      no_products: Neni žádné zboží k zobrazení
+      no_stock: Není k dispozici
+      no_tax: bez DPH
+      new_variant: Nová možnosti zboží
+      on_sale?: Na prodej?
+      on_sale_info:  Tuto zboží bude k dispozici pro nákupu
+      permalink: trvalý odkaz
+      price: cena
+      pricing: stanovení cen
+      product_information: Informace o produktu
+      save_variant: Uložit možnost
+      sku: Stock Keeping Unit
+      stock: Skladové zásoby
+      stock_control: kontrola skladových zásob
+      tax_rate: DPH
+      update_notice: Možnost zboží úspěšně aktualizována
+      variants: varianty zboží
+      variants_of: "%{product} — možnosti  "
+      website_properties: vlastnosti webové stránky
+      weight: Váha
+
+    payments:
+      create_notice: Platba byla úspěšně přidána
+      destroy_notice: Platba byl úspěšně odstraněn
+      refund_notice: vrácení bylo úspěšně zpracováne
+
+    localisations:
+      localisations: Lokalizace
+      back: Zpět
+      back_to_localisations: Zpět na lokalizace
+      localisations_of: lokalizace pro %{name}
+      product_information: Informace o produktu
+      locales: jazyky
+      choose_locale: Zvolte jazyk
+      save_localisation: Uložit překlad
+      new_localisation: Nový překlad
+      edit_localisation: Upravit překlad
+      localisation_created: překladu byl úspěšně vytvořen
+      localisation_updated: překladu úspěšně změněn
+      localisation_destroyed: překlad úspěšně odstraněn
+      language: jazyk
+      no_localisations: nejsou překlady k zobrazení
+      delete_confirmation: jste si jisti?
+
+    customers:
+      customers: Zákazníci
+      new_customer: Nový zákazník
+      search_customer: Vyhledat zákazníka
+      name: Jméno
+      company: Společnost
+      email: E-mail
+      phone: Telefon
+      mobile_phone: Mobilní telefon
+      no_customers: Nenalezeni žádní zákazníci.
+      search: Hledat
+      first_or_last_name: Jméno nebo příjmení
+      back_to_customers_list: Zpět na seznam zákazníků
+      new_address: Nová adresa
+      edit: Upravit
+      customer_information: Informace o zákazníkovi
+      cancel: Zrušit
+      first_name: Jméno
+      last_name: Příjmení
+      delete: Odstranit
+      save: Uložit
+      creating_customer: Vytvářím zákazníka...
+      updating_customer: Aktualizuji zákazníka...
+      delete_confirmation: Opravdu chcete smazat tohoto zákazníka?
+      type: Тyp
+      default: Výchozí
+      address: Adresa
+      no_addresses: Nenalezena žádná adresa.
+      addresses: Adresy
+      adresse: Адрес
+      created_successfully: Zákazník byl úspěšně vytvořen.
+      updated_successfully: Zákazník byl úspěšně upraven.
+      deleted_successfully: Zákazník byl úspěšně smazán.
+
+    navigation:
+      admin_primary:
+        customers: Zákazníci
+        orders: Objednávky
+        products: Produkty
+        product_categories: Kategorie produktů
+        delivery_services: Způsoby dodávky
+        tax_rates: DPH
+        users: Uživatelé
+        countries: Země
+        settings: Nastavení
+
+    settings:
+
+      settings: Nastavení
+      system_settings: Nastavení systému
+      demo_mode_error: Nelze změnit nastavení v demo režimu.
+      update_notice: Nastavení úspěšně aktualizované
+
+      types:
+        # Force certain settings to certain type
+        demo_mode: boolean
+
+      labels:
+        # Labels for fields go here
+        email_address: emailová adresa obchodu
+        store_name: Název obchodu
+        currency_unit: symbol měny
+        tax_name: název daní
+        demo_mode: Demo mód
+
+      options:
+        # Options for boolean settings
+        demo_mode:
+          affirmative: zapnuto
+          negative: vypnuto
+
+      help:
+        # Help text for individual fields
+        currency_unit: Hlavní symbol měny vašeho obchodu.budou použity pouze v administrátorského rozhraní.
+        demo_mode: Pokud je povoleno, bude admin panel Shoppe dostupná pro všechny bez přihlášení, ale bez možnosti úpravy uživatele. Никогда не включайте этот режим на боевом сервере.
+        email_address: E-mailová adresa, ze které zprávy budou odeslány.
+        store_name: Název vašeho obchodu, které bude použity jak v admin panelu, tak i v  odchozích zprávach.
+        tax_name: Název daně k zobrazení v admin panelu. Obvykle je nahrazeno DPH pro SNS
+
+      save_settings: Uložit nastavení
+      page_title: Titulek stránky
+
+      defaults:
+        currency_unit: $
+        demo_mode: false
+        email_address: sales@example.com
+        store_name: Rohy a kopyta
+        tax_name: DPH
+
+  layouts:
+    shoppe:
+      application:
+        goto: Přejít na
+        logged_in_as: "V systému účet %{user_name}"
+        logout: Odhlásit se
