@@ -55,7 +55,7 @@ ru:
         delivery_name: Имя получателя
         delivery_service_id: Способ доставки
         delivery_postcode: индекс для доставки
-        email_address: Электропочта
+        email_address: E-mail
         first_name: Имя
         last_name: Фамилия
         phone_number: Телефонный номер
@@ -86,7 +86,7 @@ ru:
         permalink: Постоянная ссылка
         price: Отпускная цена
         short_description: Краткое описание
-        sku: ИТП
+        sku: Артикул
         weight: Вес
       shoppe/product_attribute:
         key: Ключ
@@ -106,7 +106,7 @@ ru:
         name: Наименование
         rate: Размер налога
       shoppe/user:
-        email_address: Электропочта
+        email_address: E-mail
         first_name: Имя
         last_name: Фамилия
         password: Пароль
@@ -195,7 +195,7 @@ ru:
     settings_not_in_demo: Вы не можете вносить изменения в демо режиме.
     set_prices: Установить цены
     shoppe_back: Назад в Shoppe
-    sku: ИТД
+    sku: Артикул
     status: Статус
     stock: Склад
     stock_current: Количество на складе
@@ -213,14 +213,14 @@ ru:
     tax_rate_note: НЕ ИЗМЕНЯЙТЕ налоги, которые уже используются!
       Будьте осторожны при изменении налогов, так как они могут повлиять на существующие заказы.
       Лучшим решением будет удаление налога и создание нового. Когда вы удаляете налог, на самом
-      деле он остается в системе, но деактивируется и поэтому не такой способ не затронет существующие заказы.
+      деле он остается в системе, но деактивируется и поэтому такой способ не затронет существующие заказы.
     tax_rates: Налоги
     tax_rates_back: Вернуться к налогам
     tax_none: Без налога
     telephone: Телефон
     total: Итого
     total_weight: Общий вес
-    tracking_url: Адрес трекинга (URL)
+    tracking_url: URL для отслеживания
     unknown: Неизвестен
     updated_it: "%{it} успешно изменен"
     users: Пользователи
@@ -314,7 +314,7 @@ ru:
       no_services: Нет способов доставки для отображения
       prices: Цены
       set_prices: Установить цены
-      tracking_url: Адрес трекинга (URL)
+      tracking_url: URL для отслеживания
       tracking_url_help_html: Используйте <code>{{consignment_number}}</code> для вставки в качестве номера накладной.
       update_notice: Способ доставки успешно изменен
 
@@ -348,7 +348,7 @@ ru:
       delivery_address: Адрес доставки
       delivery_name: Имя получателя
       edit_order: Редактировать заказ
-      email_address: Электропочта
+      email_address: E-mail
       first_name: Имя
       from_payment: по платежу
       id: ID
@@ -403,18 +403,18 @@ ru:
       select_customer: Выберите клиента или оставьте поле пустым
       separate_delivery_address: Разделять адрес доставки
       ship_notice: Заказ успешно отправлен
-      sku: ИТД
-      sla_warning: Все изменения по количеству будут обновлены до подходящих уровней связанных продуктов.
+      sku: Артикул
+      sla_warning: Все изменения по количеству обновят соответсвующий уровень запасов для cопутствующего товара
       status: Статус
       stock: Склад
-      sub_total: Итого
+      sub_total: Подитог
       tax: Налог
       telephone: Телефон
       total: Итого
       type: Тип
       unit_price: Цена за единицу
       update_notice: Заказ успешно изменен
-      use_separate_delivery_address?: Использовать раздельный адрес доставки?
+      use_separate_delivery_address?: Использовать отдельный адрес доставки?
       weight: Вес
 
       status_bar:
@@ -422,7 +422,7 @@ ru:
         consignment_no_html: "Накладная #<b>%{consignment_number}</b>"
         from_ip: "с %{ip}"
         on_date: "на %{on}"
-        tracking_url: Адрес трекинга (URL)
+        tracking_url: URL для отслеживания
 
       despatch_note:
         despatch_note: Детали отгрузки
@@ -432,14 +432,14 @@ ru:
         packed?: Упакован?
         product: Товар
         quantity: Количество
-        sku: ИТД
+        sku: Артикул
         telephone: Телефон
         total_weight: Общий вес
         weight: Вес
 
       statuses:
         accepted: Принят в работу
-        building: Пакуется
+        building: Собирается
         confirming: На подтверждении
         received: На рассмотрении
         rejected: Отклонен
@@ -464,8 +464,8 @@ ru:
       product_categories: Категории товаров
       update_notice: Категория успешно обновлена
       nesting:
-        blank_option: Нет
-        category_nesting: Вложенный
+        blank_option: Отсутствует
+        category_nesting: Вложенность
         category_parent: Родительский элемент
         current_category: Текущая категория
         no_children: Без дочерних категорий
@@ -507,7 +507,7 @@ ru:
       remove: Удалить
       searchable?: В поиске?
       short_description: Краткое описание
-      sku: ИТД
+      sku: Артикул
       stock: Складские запасы
       stock_control: Контроль запасов
       stock_levels: Уровень запасов
@@ -554,15 +554,15 @@ ru:
             qty: 50
 
     refund:
-      intro_html: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
-      issue_refund: Issue Refund
-      refund: Refund
+      intro_html: "Для того, чтобы оформить возврат для этого платежа, введите ниже сумму, которую Вы бы хотели возвратить, и нажмите 'Возврат'.  Максимально Вы сможете возвратить <b>%{amount}</b>."
+      issue_refund: Оформить возврат
+      refund: Возврат
 
     sessions:
       admin_login: Вход для администратора
-      create_alert: Электронная почта или пароль неправильный. Пожалуйста, попробуйте снова.
+      create_alert: E-mail или пароль неправильный. Пожалуйста, попробуйте снова.
       back_to_login: Назад к странице входа
-      email: Электропочта
+      email: E-mail
       login: Логин
       password: Пароль
       reset: Сбросить
@@ -613,7 +613,7 @@ ru:
       delete_confirmation:  Вы уверены, что хотите удалить этого пользователя?
       demo_mode_error: Вы не можете редактировать пользоватей в демо режиме.
       destroy_notice: Пользователь успешно удален
-      email: Электропочта
+      email: E-mail
       first_name: Имя
       last_name: Фамилия
       login: Логин
@@ -650,7 +650,7 @@ ru:
       pricing: Ценовая политика
       product_information: Информация о товаре
       save_variant: Созхранить вариант
-      sku: ИТД
+      sku: Артикул
       stock: Складские запасы
       stock_control: Контроль складских запасов
       tax_rate: Налоги
@@ -676,9 +676,9 @@ ru:
       save_localisation: Сохранить перевод
       new_localisation: Новый перевод
       edit_localisation: Редактировать перевод
-      localisation_created: Языковой перевод успешно создан
-      localisation_updated: Языковой перевод успешно изменен
-      localisation_destroyed: Языковой перевод успешно удален
+      localisation_created: Перевод успешно создан
+      localisation_updated: Перевод успешно изменен
+      localisation_destroyed: Перевод успешно удален
       language: Язык
       no_localisations: Нет переводов для отображения
       delete_confirmation: Вы уверены?
@@ -689,7 +689,7 @@ ru:
       search_customer: Поиск клиента
       name: Имя
       company: Компания
-      email: Электропочта
+      email: E-mail
       phone: Телефон
       mobile_phone: Мобильный телефон
       no_customers: Нет клиентов для отображения
@@ -742,7 +742,7 @@ ru:
 
       labels:
         # Labels for fields go here
-        email_address: Электропочта магазина
+        email_address: E-mail магазина
         store_name: Название магазина
         currency_unit: Знак валюты
         tax_name: Наименование налога
@@ -758,7 +758,7 @@ ru:
         # Help text for individual fields
         currency_unit: Основной символ валюты вашего магазина. Будет использоваться только в интерфейсе администратора.
         demo_mode: Если включен, панель администратора Shoppe будет доступна для всех без логина, но редактировать пользоватей будет нельзя. Никогда не включайте этот режим на боевом сервере.
-        email_address: Электронная почта с которой будут отправляться сообщения. 
+        email_address: E-mail, с которой будут отправляться сообщения. 
         store_name: Наименование вашего магазина, которое будет использоваться как в панели администратора, так и в исходящих письмах.
         tax_name: Наименование Налога для отображения в панели администратора. Обычно заменяется на НДС для стран СНГ.
 
