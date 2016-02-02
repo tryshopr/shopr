@@ -412,6 +412,32 @@ module Shoppe
       assert_equal BigDecimal(2.4,8), order.delivery_tax_amount
     end
 
+    test "appropriate delivery service price is provided for orders based on their delivery country" do
+      product = create(:yealink_headset, :initial_stock => 10)
+      france = create(:france)
+      uk = create(:uk)
+      delivery_service = create(:delivery_service)
+      france_only   = create(:delivery_price, price: 1.0, :code => 'france-only', :delivery_service => delivery_service, :country_ids => [france.id])
+      uk_only       = create(:delivery_price, price: 1.0, :code => 'uk-only', :delivery_service => delivery_service, :country_ids => [uk.id])
+      any_expensive = create(:delivery_price, price: 3.0, :code => 'any-expensive', :delivery_service => delivery_service)
+      any_cheap     = create(:delivery_price, price: 2.0, :code => 'any-cheap', :delivery_service => delivery_service)
+
+      # Uses france-only when France specified
+      order1 = create(:order, billing_country: france)
+      order1.order_items.create!(:quantity => 1, :ordered_item => product)
+      assert_equal france_only, order1.delivery_service_price
+
+      # Uses uk-only when UK specified
+      order2 = create(:order, billing_country: uk)
+      order2.order_items.create!(:quantity => 1, :ordered_item => product)
+      assert_equal uk_only, order2.delivery_service_price
+
+      # Uses cheapest available when no country specified
+      order3 = create(:order, billing_country: nil)
+      order3.order_items.create!(:quantity => 1, :ordered_item => product)
+      assert_equal any_cheap, order3.delivery_service_price
+    end
+
     test "that delivery details match the billing details if no seperate address has been given" do
       create_environment
       order = create_order_with_products
