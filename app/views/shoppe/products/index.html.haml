@@ -2,8 +2,10 @@
 
 = content_for :header do
   %p.buttons
-    = link_to t('shoppe.products.new_product'), :new_product, :class => 'button green'  
+    = link_to t('shoppe.products.new_product'), :new_product, :class => 'button green'
     = link_to t('shoppe.products.import_products'), :import_products, :class => 'button gray'
   %h2.products= t('shoppe.products.products')
 
 = render 'table', :products => @products
+
+= paginate @products_paged
