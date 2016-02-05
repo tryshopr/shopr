@@ -2,8 +2,14 @@
   %table.data
     %thead
       %tr
-        %th{:width => '20%'}= t('shoppe.products.sku')
-        %th{:width => '40%'}= t('shoppe.products.name')
+        %th{:width => '20%'}
+          = form_tag(:products, method: "get") do
+            = t('shoppe.products.sku')
+            = search_field_tag :sku, params[:sku], size: 25, min: 2, placeholder: t('shoppe.products.filter.sku')
+        %th{:width => '40%'}
+          = form_tag(:products, method: "get") do
+            = t('shoppe.products.name')
+            = search_field_tag :name, params[:name], size: 65, min: 3, placeholder: t('shoppe.products.filter.name_or_description')
         %th{:width => '25%'}= t('shoppe.products.price_variants')
         %th{:width => '15%'}= t('shoppe.products.stock')
     %tbody
@@ -39,4 +45,3 @@
                     = boolean_tag(product.in_stock?, nil, :true_text => product.stock, :false_text => t('shoppe.products.no_stock'))
                   - else
                     &#8734;
-
