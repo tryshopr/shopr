@@ -1,8 +1,7 @@
 module Shoppe
   class Attachment < ActiveRecord::Base
-
     # Set the table name
-    self.table_name = "shoppe_attachments"
+    self.table_name = 'shoppe_attachments'
 
     # Mount the Carrierwave uploader
     mount_uploader :file, AttachmentUploader
@@ -18,20 +17,20 @@ module Shoppe
     validates :token, presence: true, uniqueness: true
 
     # All attachments should have a token assigned to this
-    before_validation { self.token = SecureRandom.uuid if self.token.blank? }
+    before_validation { self.token = SecureRandom.uuid if token.blank? }
 
     # Set the appropriate values in the model
     before_validation do
-      if self.file
-        self.file_name = self.file.filename if self.file_name.blank?
-        self.file_type = self.file.content_type if self.file_type.blank?
-        self.file_size = self.file.size if self.file_size.blank?
+      if file
+        self.file_name = file.filename if file_name.blank?
+        self.file_type = file.content_type if file_type.blank?
+        self.file_size = file.size if file_size.blank?
       end
     end
 
     # Return the attachment for a given role
     def self.for(role)
-      self.where(role: role).first
+      where(role: role).first
     end
 
     # Return the path to the attachment
@@ -43,6 +42,5 @@ module Shoppe
     def image?
       file_type.match(/\Aimage\//).present?
     end
-
   end
 end

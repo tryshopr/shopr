@@ -1,12 +1,12 @@
-require "coffee-rails"
-require "sass-rails"
-require "jquery-rails"
+require 'coffee-rails'
+require 'sass-rails'
+require 'jquery-rails'
 require 'haml'
 require 'bcrypt'
 require 'dynamic_form'
 require 'kaminari'
 require 'ransack'
-require "globalize"
+require 'globalize'
 
 require 'nifty/utils'
 require 'nifty/key_value_store'
@@ -15,7 +15,6 @@ require 'carrierwave'
 
 module Shoppe
   class << self
-
     # The path to the root of the Shoppe application
     #
     # @return [String]
@@ -51,10 +50,8 @@ module Shoppe
     def settings_groups
       @settings_groups ||= {}
     end
-
   end
-
 end
 
 # Start your engines.
-require "shoppe/engine"
+require 'shoppe/engine'

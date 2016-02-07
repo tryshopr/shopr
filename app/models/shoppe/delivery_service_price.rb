@@ -1,6 +1,5 @@
 module Shoppe
   class DeliveryServicePrice < ActiveRecord::Base
-
     # Set the table name
     self.table_name = 'shoppe_delivery_service_prices'
 
@@ -10,7 +9,7 @@ module Shoppe
     belongs_to :delivery_service, class_name: 'Shoppe::DeliveryService'
 
     # The tax rate which should be applied
-    belongs_to :tax_rate, class_name: "Shoppe::TaxRate"
+    belongs_to :tax_rate, class_name: 'Shoppe::TaxRate'
 
     # Validations
     validates :code, presence: true
@@ -25,7 +24,6 @@ module Shoppe
     # All prices which are suitable for the weight passed.
     #
     # @param weight [BigDecimal] the weight of the order
-    scope :for_weight, -> weight { where("min_weight <= ? AND max_weight >= ?", weight, weight) }
-
+    scope :for_weight, -> (weight) { where('min_weight <= ? AND max_weight >= ?', weight, weight) }
   end
 end

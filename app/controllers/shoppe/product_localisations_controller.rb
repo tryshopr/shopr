@@ -2,7 +2,6 @@ require 'globalize'
 
 module Shoppe
   class ProductLocalisationsController < ApplicationController
-
     before_filter { @active_nav = :products }
     before_filter { @product = Shoppe::Product.find(params[:product_id]) }
     before_filter { params[:id] && @localisation = @product.translations.find(params[:id]) }
@@ -53,6 +52,5 @@ module Shoppe
     def safe_params
       params[:product_translation].permit(:name, :locale, :permalink, :description, :short_description)
     end
-
   end
 end

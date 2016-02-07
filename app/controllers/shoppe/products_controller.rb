@@ -1,34 +1,31 @@
 module Shoppe
   class ProductsController < Shoppe::ApplicationController
-
     before_filter { @active_nav = :products }
     before_filter { params[:id] && @product = Shoppe::Product.root.find(params[:id]) }
 
     def index
-      @products_paged = Shoppe::Product.root.
-                  includes(:translations, :stock_level_adjustments, :product_categories, :variants).
-                  order(:name)
+      @products_paged = Shoppe::Product.root
+                                       .includes(:translations, :stock_level_adjustments, :product_categories, :variants)
+                                       .order(:name)
       case
       when params[:sku]
-        @products_paged = @products_paged.
-                          with_translations(I18n.locale).
-                          page(params[:page]).
-                          ransack(sku_cont_all: params[:sku].split).result
+        @products_paged = @products_paged
+                          .with_translations(I18n.locale)
+                          .page(params[:page])
+                          .ransack(sku_cont_all: params[:sku].split).result
       when params[:name]
-        @products_paged = @products_paged.
-                          with_translations(I18n.locale).
-                          page(params[:page]).
-                          ransack(translations_name_or_translations_description_cont_all: params[:name].split).
-                          result
+        @products_paged = @products_paged
+                          .with_translations(I18n.locale)
+                          .page(params[:page])
+                          .ransack(translations_name_or_translations_description_cont_all: params[:name].split)
+                          .result
       else
         @products_paged = @products_paged.page(params[:page])
       end
 
-
-
-      @products = @products_paged.
-                  group_by(&:product_category).
-                  sort_by { |cat,pro| cat.name }
+      @products = @products_paged
+                  .group_by(&:product_category)
+                  .sort_by { |cat, _pro| cat.name }
     end
 
     def new

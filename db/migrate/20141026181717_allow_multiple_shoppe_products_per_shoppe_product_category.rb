@@ -11,8 +11,8 @@ class AllowMultipleShoppeProductsPerShoppeProductCategory < ActiveRecord::Migrat
     # define the old belongs_to association (as it's no longer on the model)
     Shoppe::Product.class_eval do
       belongs_to :old_category,
-                 :class_name => "Shoppe::ProductCategory",
-                 :foreign_key => "product_category_id"
+                 class_name: 'Shoppe::ProductCategory',
+                 foreign_key: 'product_category_id'
     end
     # migrate over to our new join table
     Shoppe::Product.all.each do |product|
@@ -31,8 +31,8 @@ class AllowMultipleShoppeProductsPerShoppeProductCategory < ActiveRecord::Migrat
     # define the old belongs_to association once again as we're going to re-add our goodies
     Shoppe::Product.class_eval do
       belongs_to :new_category,
-                 :class_name => "Shoppe::ProductCategory",
-                 :foreign_key => "product_category_id"
+                 class_name: 'Shoppe::ProductCategory',
+                 foreign_key: 'product_category_id'
     end
     # migrate over from the new table to the old association
     Shoppe::Product.all.each do |product|

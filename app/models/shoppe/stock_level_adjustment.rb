@@ -1,6 +1,5 @@
 module Shoppe
   class StockLevelAdjustment < ActiveRecord::Base
-
     # The orderable item which the stock level adjustment belongs to
     belongs_to :item, polymorphic: true
 
@@ -14,6 +13,5 @@ module Shoppe
 
     # All stock level adjustments ordered by their created date desending
     scope :ordered, -> { order(id: :desc) }
-
   end
 end

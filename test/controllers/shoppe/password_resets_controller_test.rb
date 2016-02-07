@@ -3,7 +3,7 @@ require 'test_helper'
 module Shoppe
   class PasswordResetsControllerTest
     class GetNewTest < ControllerTestCase
-      test "should render 200 response when GETing new action" do
+      test 'should render 200 response when GETing new action' do
         get :new, use_route: :shoppe
         assert_response :success
       end

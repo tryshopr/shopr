@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Declare your gem's dependencies in shoppe.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -13,6 +13,6 @@ gemspec
 # To use debugger
 # gem 'debugger'
 
-gem "pg" if ENV["DB"] == "postgresql"
+gem 'pg' if ENV['DB'] == 'postgresql'
 
-gem "awesome_nested_set", "~> 3.0"
+gem 'awesome_nested_set', '~> 3.0'

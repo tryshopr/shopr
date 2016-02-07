@@ -1,6 +1,5 @@
 module Shoppe
   class Order < ActiveRecord::Base
-
     # The country which this order should be billed to
     #
     # @return [Shoppe::Country]
@@ -10,7 +9,7 @@ module Shoppe
     has_many :payments, dependent: :destroy, class_name: 'Shoppe::Payment'
 
     # Validations
-    with_options if: Proc.new { |o| !o.building? } do |order|
+    with_options if: proc { |o| !o.building? } do |order|
       order.validates :first_name, presence: true
       order.validates :last_name, presence: true
       order.validates :billing_address1, presence: true
@@ -31,8 +30,8 @@ module Shoppe
     #
     # @return [BigDecimal]
     def total_cost
-      self.delivery_cost_price +
-      order_items.inject(BigDecimal(0)) { |t, i| t + i.total_cost }
+      delivery_cost_price +
+        order_items.inject(BigDecimal(0)) { |t, i| t + i.total_cost }
     end
 
     # Return the price for the order
@@ -53,24 +52,24 @@ module Shoppe
     #
     # @return [BigDecimal]
     def total_before_tax
-      self.delivery_price + self.items_sub_total
+      delivery_price + items_sub_total
     end
 
     # The total amount of tax due on this order
     #
     # @return [BigDecimal]
     def tax
-      self.delivery_tax_amount +
-      order_items.inject(BigDecimal(0)) { |t, i| t + i.tax_amount }
+      delivery_tax_amount +
+        order_items.inject(BigDecimal(0)) { |t, i| t + i.tax_amount }
     end
 
     # The total of the order including tax
     #
     # @return [BigDecimal]
     def total
-      self.delivery_price +
-      self.delivery_tax_amount +
-      order_items.inject(BigDecimal(0)) { |t, i| t + i.total }
+      delivery_price +
+        delivery_tax_amount +
+        order_items.inject(BigDecimal(0)) { |t, i| t + i.total }
     end
 
     # The total amount due on the order
@@ -100,6 +99,5 @@ module Shoppe
     def invoiced?
       !invoice_number.blank?
     end
-
   end
 end

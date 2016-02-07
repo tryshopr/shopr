@@ -1,6 +1,5 @@
 module Shoppe
   class CountriesController < Shoppe::ApplicationController
-
     before_filter { @active_nav = :countries }
     before_filter { params[:id] && @country = Shoppe::Country.find(params[:id]) }
 
@@ -42,6 +41,5 @@ module Shoppe
     def safe_params
       params[:country].permit(:name, :code2, :code3, :continent, :tld, :currency, :eu_member)
     end
-
   end
 end

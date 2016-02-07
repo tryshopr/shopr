@@ -1,8 +1,7 @@
 module Shoppe
   class OrdersController < Shoppe::ApplicationController
-
     before_filter { @active_nav = :orders }
-    before_filter { params[:id] && @order = Shoppe::Order.find(params[:id])}
+    before_filter { params[:id] && @order = Shoppe::Order.find(params[:id]) }
 
     def index
       @query = Shoppe::Order.ordered.received.includes(order_items: :ordered_item).page(params[:page]).search(params[:q])
@@ -51,7 +50,7 @@ module Shoppe
           redirect_to @order, flash: { notice: t('shoppe.orders.create_notice') }
         else
           @order.order_items.build(ordered_item_type: 'Shoppe::Product')
-          render action: "new"
+          render action: 'new'
         end
       end
     rescue Shoppe::Errors::InsufficientStockToFulfil => e
@@ -68,13 +67,13 @@ module Shoppe
       if !request.xhr? && @order.update_attributes(safe_params)
         redirect_to @order, flash: { notice: t('shoppe.orders.update_notice') }
       else
-        render action: "edit"
+        render action: 'edit'
       end
     end
 
     def search
       index
-      render action: "index"
+      render action: 'index'
     end
 
     def accept

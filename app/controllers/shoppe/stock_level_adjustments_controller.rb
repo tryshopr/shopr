@@ -1,9 +1,8 @@
 module Shoppe
   class StockLevelAdjustmentsController < ApplicationController
-
-    SUITABLE_OBJECTS = ['Shoppe::Product']
+    SUITABLE_OBJECTS = ['Shoppe::Product'].freeze
     before_filter do
-      raise Shoppe::Error, t('shoppe.stock_level_adjustments.invalid_item_type', suitable_objects:  SUITABLE_OBJECTS.to_sentence) unless SUITABLE_OBJECTS.include?(params[:item_type])
+      fail Shoppe::Error, t('shoppe.stock_level_adjustments.invalid_item_type', suitable_objects:  SUITABLE_OBJECTS.to_sentence) unless SUITABLE_OBJECTS.include?(params[:item_type])
       @item = params[:item_type].constantize.find(params[:item_id].to_i)
     end
     before_filter { params[:id] && @sla = @item.stock_level_adjustments.find(params[:id].to_i) }
@@ -11,9 +10,7 @@ module Shoppe
     def index
       @stock_level_adjustments = @item.stock_level_adjustments.ordered.page(params[:page]).per(10)
       @new_sla = @item.stock_level_adjustments.build if @new_sla.nil?
-      if request.xhr?
-        render action: 'index', layout: false
-      end
+      render action: 'index', layout: false if request.xhr?
     end
 
     def create

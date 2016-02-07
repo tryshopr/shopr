@@ -1,6 +1,5 @@
 module Shoppe
   class ProductCategoriesController < Shoppe::ApplicationController
-
     before_filter { @active_nav = :product_categories }
     before_filter { params[:id] && @product_category = Shoppe::ProductCategory.find(params[:id]) }
 
@@ -41,7 +40,7 @@ module Shoppe
 
     def safe_params
       file_params = [:file, :parent_id, :role, :parent_type, file: []]
-      params[:product_category].permit(:name, :permalink, :description, :parent_id, :permalink_includes_ancestors, attachments: [ image: file_params ])
+      params[:product_category].permit(:name, :permalink, :description, :parent_id, :permalink_includes_ancestors, attachments: [image: file_params])
     end
   end
 end

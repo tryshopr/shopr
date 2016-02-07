@@ -1,6 +1,5 @@
 module Shoppe
   class ProductAttribute < ActiveRecord::Base
-
     self.table_name = 'shoppe_product_attributes'
 
     # Validations
@@ -21,7 +20,7 @@ module Shoppe
     #
     # @return [Hash]
     def self.grouped_hash
-      all.group_by(&:key).inject(Hash.new) do |h, (key, attributes)|
+      all.group_by(&:key).inject({}) do |h, (key, attributes)|
         h[key] = attributes.map(&:value).uniq
         h
       end
@@ -32,17 +31,15 @@ module Shoppe
     #
     # @param array [Array]
     def self.update_from_array(array)
-      existing_keys = self.pluck(:key)
+      existing_keys = pluck(:key)
       index = 0
       array.each do |hash|
         next if hash['key'].blank?
         index += 1
-        params = hash.merge({
-          searchable: hash['searchable'].to_s == '1',
-          public: hash['public'].to_s == '1',
-          position: index
-        })
-        if existing_attr = self.where(key: hash['key']).first
+        params = hash.merge(searchable: hash['searchable'].to_s == '1',
+                            public: hash['public'].to_s == '1',
+                            position: index)
+        if existing_attr = where(key: hash['key']).first
           if hash['value'].blank?
             existing_attr.destroy
             index -= 1
@@ -50,17 +47,16 @@ module Shoppe
             existing_attr.update_attributes(params)
           end
         else
-          attribute = self.create(params)
+          attribute = create(params)
         end
       end
-      self.where(key: existing_keys - array.map { |h| h['key']}).delete_all
+      where(key: existing_keys - array.map { |h| h['key'] }).delete_all
       true
     end
 
     def self.public
-      ActiveSupport::Deprecation.warn("The use of Shoppe::ProductAttribute.public is deprecated. use Shoppe::ProductAttribute.publicly_accessible.")
-      self.publicly_accessible
+      ActiveSupport::Deprecation.warn('The use of Shoppe::ProductAttribute.public is deprecated. use Shoppe::ProductAttribute.publicly_accessible.')
+      publicly_accessible
     end
-
   end
 end
