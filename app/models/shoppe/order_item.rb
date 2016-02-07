@@ -1,6 +1,5 @@
 module Shoppe
   class OrderItem < ActiveRecord::Base
-
     self.table_name = 'shoppe_order_items'
 
     # The associated order
@@ -19,9 +18,7 @@ module Shoppe
     validates :ordered_item, presence: true
 
     validate do
-      unless in_stock?
-        errors.add :quantity, :too_high_quantity
-      end
+      errors.add :quantity, :too_high_quantity unless in_stock?
     end
 
     # Before saving an order item which belongs to a received order, cache the pricing again if appropriate.
@@ -33,9 +30,7 @@ module Shoppe
 
     # After saving, if the order has been shipped, reallocate stock appropriate
     after_save do
-      if order.shipped?
-        allocate_unallocated_stock!
-      end
+      allocate_unallocated_stock! if order.shipped?
     end
 
     # This allows you to add a product to the scoped order. For example Order.first.order_items.add_product(...).
@@ -46,13 +41,13 @@ module Shoppe
     # @param quantity [Fixnum] the number of items to order
     # @return [Shoppe::OrderItem]
     def self.add_item(ordered_item, quantity = 1)
-      raise Errors::UnorderableItem, ordered_item: ordered_item unless ordered_item.orderable?
+      fail Errors::UnorderableItem, ordered_item: ordered_item unless ordered_item.orderable?
       transaction do
-        if existing = self.where(ordered_item_id: ordered_item.id, ordered_item_type: ordered_item.class.to_s).first
+        if existing = where(ordered_item_id: ordered_item.id, ordered_item_type: ordered_item.class.to_s).first
           existing.increase!(quantity)
           existing
         else
-          new_item = self.create(ordered_item: ordered_item, quantity: 0)
+          new_item = create(ordered_item: ordered_item, quantity: 0)
           new_item.increase!(quantity)
           new_item
         end
@@ -65,8 +60,8 @@ module Shoppe
     # @return [Shoppe::OrderItem]
     def remove
       transaction do
-        self.destroy!
-        self.order.remove_delivery_service_if_invalid
+        destroy!
+        order.remove_delivery_service_if_invalid
         self
       end
     end
@@ -78,11 +73,11 @@ module Shoppe
     def increase!(amount = 1)
       transaction do
         self.quantity += amount
-        unless self.in_stock?
-          raise Shoppe::Errors::NotEnoughStock, ordered_item: self.ordered_item, requested_stock: self.quantity
+        unless in_stock?
+          fail Shoppe::Errors::NotEnoughStock, ordered_item: ordered_item, requested_stock: self.quantity
         end
-        self.save!
-        self.order.remove_delivery_service_if_invalid
+        save!
+        order.remove_delivery_service_if_invalid
       end
     end
 
@@ -92,8 +87,8 @@ module Shoppe
     def decrease!(amount = 1)
       transaction do
         self.quantity -= amount
-        self.quantity == 0 ? self.destroy : self.save!
-        self.order.remove_delivery_service_if_invalid
+        self.quantity == 0 ? destroy : save!
+        order.remove_delivery_service_if_invalid
       end
     end
 
@@ -129,14 +124,14 @@ module Shoppe
     #
     # @return [BigDecimal]
     def tax_rate
-      read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, self.order) || BigDecimal(0)
+      read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, order) || BigDecimal(0)
     end
 
     # The total tax for the item
     #
     # @return [BigDecimal]
     def tax_amount
-      read_attribute(:tax_amount) || (self.sub_total / BigDecimal(100)) * self.tax_rate
+      read_attribute(:tax_amount) || (sub_total / BigDecimal(100)) * tax_rate
     end
 
     # The total cost for the product
@@ -162,10 +157,10 @@ module Shoppe
 
     # Cache the pricing for this order item
     def cache_pricing
-      write_attribute :weight, self.weight
-      write_attribute :unit_price, self.unit_price
-      write_attribute :unit_cost_price, self.unit_cost_price
-      write_attribute :tax_rate, self.tax_rate
+      write_attribute :weight, weight
+      write_attribute :unit_price, unit_price
+      write_attribute :unit_cost_price, unit_cost_price
+      write_attribute :tax_rate, tax_rate
     end
 
     # Cache the pricing for this order item and save
@@ -187,15 +182,15 @@ module Shoppe
 
     # Trigged when the associated order is rejected..
     def reject!
-      self.stock_level_adjustments.destroy_all
+      stock_level_adjustments.destroy_all
     end
 
     # Do we have the stock needed to fulfil this order?
     #
     # @return [Boolean]
     def in_stock?
-      if self.ordered_item && self.ordered_item.stock_control?
-        self.ordered_item.stock >= unallocated_stock
+      if ordered_item && ordered_item.stock_control?
+        ordered_item.stock >= unallocated_stock
       else
         true
       end
@@ -212,7 +207,7 @@ module Shoppe
     #
     # @return [Fixnum]
     def allocated_stock
-      0 - self.stock_level_adjustments.sum(:adjustment)
+      0 - stock_level_adjustments.sum(:adjustment)
     end
 
     # Validate the stock level against the product and update as appropriate. This method will be executed
@@ -222,18 +217,17 @@ module Shoppe
       if in_stock?
         false
       else
-        self.quantity = self.ordered_item.stock
-        self.quantity == 0 ? self.destroy : self.save!
+        self.quantity = ordered_item.stock
+        self.quantity == 0 ? destroy : save!
         self
       end
     end
 
     # Allocate any unallocated stock for this order item. There is no return value.
     def allocate_unallocated_stock!
-      if self.ordered_item.stock_control? && self.unallocated_stock != 0
-        self.ordered_item.stock_level_adjustments.create!(parent: self, adjustment: 0 - self.unallocated_stock, description: "Order ##{self.order.number}")
+      if ordered_item.stock_control? && unallocated_stock != 0
+        ordered_item.stock_level_adjustments.create!(parent: self, adjustment: 0 - unallocated_stock, description: "Order ##{order.number}")
       end
     end
-
   end
 end

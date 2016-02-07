@@ -2,14 +2,13 @@ require 'ostruct'
 
 module Shoppe
   class Setting < ActiveRecord::Base
-
     # Validations
     validates :key, presence: true, uniqueness: true
     validates :value, presence: true
     validates :value_type, presence: true
 
     before_validation do
-      self.value_type = I18n.t("shoppe.settings.types")[self.key.to_sym].try(:capitalize) || self.value.class.to_s
+      self.value_type = I18n.t('shoppe.settings.types')[key.to_sym].try(:capitalize) || value.class.to_s
       self.value      = encoded_value
     end
 
@@ -52,17 +51,16 @@ module Shoppe
     #
     # @return [Hash]
     def self.update_from_hash(hash)
-      existing_settings = self.all.to_a
+      existing_settings = all.to_a
       hash.each do |key, value|
-        existing = existing_settings.select { |s| s.key.to_s == key.to_s }.first
+        existing = existing_settings.find { |s| s.key.to_s == key.to_s }
         if existing
           value.blank? ? existing.destroy! : existing.update!(value: value)
         else
-          value.blank? ? nil : self.create!(key: key, value: value)
+          value.blank? ? nil : create!(key: key, value: value)
         end
       end
       hash
     end
-
   end
 end

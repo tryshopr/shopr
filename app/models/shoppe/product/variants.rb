@@ -1,8 +1,7 @@
 module Shoppe
   class Product < ActiveRecord::Base
-
     # Validations
-    validate { errors.add :base, :can_belong_to_root if self.parent && self.parent.parent }
+    validate { errors.add :base, :can_belong_to_root if parent && parent.parent }
 
     # Variants of the product
     has_many :variants, class_name: 'Shoppe::Product', foreign_key: 'parent_id', dependent: :destroy
@@ -15,13 +14,13 @@ module Shoppe
 
     # If a variant is created, the base product should be updated so that it doesn't have stock control enabled
     after_save do
-      if self.parent
-        self.parent.price = 0
-        self.parent.cost_price = 0
-        self.parent.tax_rate = nil
-        self.parent.weight = 0
-        self.parent.stock_control = false
-        self.parent.save if self.parent.changed?
+      if parent
+        parent.price = 0
+        parent.cost_price = 0
+        parent.tax_rate = nil
+        parent.weight = 0
+        parent.stock_control = false
+        parent.save if parent.changed?
       end
     end
 
@@ -36,16 +35,15 @@ module Shoppe
     #
     # @return [Shoppe::Product]
     def default_variant
-      return nil if self.parent
-      @default_variant ||= self.variants.select { |v| v.default? }.first
+      return nil if parent
+      @default_variant ||= variants.find(&:default?)
     end
 
     # Is this product a variant of another?
     #
     # @return [Boolean]
     def variant?
-      !self.parent_id.blank?
+      !parent_id.blank?
     end
-
   end
 end

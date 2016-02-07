@@ -1,21 +1,17 @@
 module Shoppe
   class Error < StandardError
-
     def initialize(options = {})
-      if options.is_a?(String)
-        @options = {:message => options}
-      else
-        @options = options
+      @options = if options.is_a?(String)
+                   { message: options }
+                 else
+                   options
       end
     end
-    
+
     def message
       @options[:message]
     end
-    
-    def options
-      @options
-    end
-    
-  end  
+
+    attr_reader :options
+  end
 end

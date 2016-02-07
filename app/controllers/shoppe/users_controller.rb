@@ -1,11 +1,10 @@
 module Shoppe
   class UsersController < Shoppe::ApplicationController
-
     before_filter { @active_nav = :users }
     before_filter { params[:id] && @user = Shoppe::User.find(params[:id]) }
     before_filter(only: [:create, :update, :destroy]) do
       if Shoppe.settings.demo_mode?
-        raise Shoppe::Error, t('shoppe.users.demo_mode_error')
+        fail Shoppe::Error, t('shoppe.users.demo_mode_error')
       end
     end
 
@@ -38,7 +37,7 @@ module Shoppe
     end
 
     def destroy
-      raise Shoppe::Error, t('shoppe.users.self_remove_error') if @user == current_user
+      fail Shoppe::Error, t('shoppe.users.self_remove_error') if @user == current_user
       @user.destroy
       redirect_to :users, flash: { notice: t('shoppe.users.destroy_notice') }
     end

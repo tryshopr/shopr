@@ -1,6 +1,5 @@
 module Shoppe
   class DeliveryServicesController < Shoppe::ApplicationController
-
     before_filter { @active_nav = :delivery_services }
     before_filter { params[:id] && @delivery_service = Shoppe::DeliveryService.find(params[:id]) }
 
@@ -42,6 +41,5 @@ module Shoppe
     def safe_params
       params[:delivery_service].permit(:name, :code, :active, :default, :courier, :tracking_url)
     end
-
   end
 end

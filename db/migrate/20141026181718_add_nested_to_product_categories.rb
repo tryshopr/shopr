@@ -7,7 +7,7 @@ class AddNestedToProductCategories < ActiveRecord::Migration
 
     add_index :shoppe_product_categories, :lft
     add_index :shoppe_product_categories, :rgt
-    
+
     add_column :shoppe_product_categories, :ancestral_permalink, :string
     add_column :shoppe_product_categories, :permalink_includes_ancestors, :boolean, default: false
 

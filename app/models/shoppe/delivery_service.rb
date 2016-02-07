@@ -1,6 +1,5 @@
 module Shoppe
   class DeliveryService < ActiveRecord::Base
-
     self.table_name = 'shoppe_delivery_services'
 
     # Validations
@@ -14,20 +13,19 @@ module Shoppe
     has_many :delivery_service_prices, dependent: :destroy, class_name: 'Shoppe::DeliveryServicePrice'
 
     # All active delivery services
-    scope :active, -> { where(active: true)}
+    scope :active, -> { where(active: true) }
 
     # Returns a tracking URL for the passed order
     #
     # @param order [Shoppe::Order]
     # @return [String] the full URL for the order.
     def tracking_url_for(order)
-      return nil if self.tracking_url.blank?
+      return nil if tracking_url.blank?
       tracking_url = self.tracking_url.dup
-      tracking_url.gsub!("{{consignment_number}}", CGI.escape(order.consignment_number.to_s))
-      tracking_url.gsub!("{{delivery_postcode}}", CGI.escape(order.delivery_postcode.to_s))
-      tracking_url.gsub!("{{billing_postcode}}", CGI.escape(order.billing_postcode.to_s))
+      tracking_url.gsub!('{{consignment_number}}', CGI.escape(order.consignment_number.to_s))
+      tracking_url.gsub!('{{delivery_postcode}}', CGI.escape(order.delivery_postcode.to_s))
+      tracking_url.gsub!('{{billing_postcode}}', CGI.escape(order.billing_postcode.to_s))
       tracking_url
     end
-
   end
 end

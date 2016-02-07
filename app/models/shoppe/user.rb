@@ -1,6 +1,5 @@
 module Shoppe
   class User < ActiveRecord::Base
-
     self.table_name = 'shoppe_users'
 
     has_secure_password
@@ -21,14 +20,14 @@ module Shoppe
     #
     # @return [String]
     def short_name
-      "#{first_name} #{last_name[0,1]}"
+      "#{first_name} #{last_name[0, 1]}"
     end
 
     # Reset the user's password to something random and e-mail it to them
     def reset_password!
       self.password = SecureRandom.hex(8)
-      self.password_confirmation = self.password
-      self.save!
+      self.password_confirmation = password
+      save!
       Shoppe::UserMailer.new_password(self).deliver
     end
 
@@ -39,11 +38,10 @@ module Shoppe
     # @param paassword [String]
     # @return [Shoppe::User]
     def self.authenticate(email_address, password)
-      user = self.where(email_address: email_address).first
+      user = where(email_address: email_address).first
       return false if user.nil?
       return false unless user.authenticate(password)
       user
     end
-
   end
 end

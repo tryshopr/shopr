@@ -1,12 +1,11 @@
-ENV["RAILS_ENV"] = "test"
-require File.expand_path("../app/config/environment.rb",  __FILE__)
-require "rails/test_help"
+ENV['RAILS_ENV'] = 'test'
+require File.expand_path('../app/config/environment.rb', __FILE__)
+require 'rails/test_help'
 
 # Factory Girl
 require 'factory_girl'
 FactoryGirl.find_definitions
 class ActiveSupport::TestCase
-
   include FactoryGirl::Syntax::Methods
 
   setup do
@@ -18,15 +17,13 @@ class ActiveSupport::TestCase
   def create_order_with_products(options = {})
     order = create(:order)
     # create a product and a line
-    product1 = create(:yealink_t22p, :initial_stock => options[:stock] || 10)
-    item1 = order.order_items.create!(:quantity => options[:quantity] || 2, :ordered_item => product1)
+    product1 = create(:yealink_t22p, initial_stock: options[:stock] || 10)
+    item1 = order.order_items.create!(quantity: options[:quantity] || 2, ordered_item: product1)
     # create another product and a link
-    product2 = create(:snom_870, :initial_stock => options[:stock] || 10)
-    item2 = order.order_items.create!(:quantity => options[:quantity] || 1, :ordered_item => product2)
+    product2 = create(:snom_870, initial_stock: options[:stock] || 10)
+    item2 = order.order_items.create!(quantity: options[:quantity] || 1, ordered_item: product2)
 
-    if options[:confirmed]
-      order.confirm!
-    end
+    order.confirm! if options[:confirmed]
 
     # return the order
     order
@@ -42,7 +39,6 @@ class ActiveSupport::TestCase
     create(:us)
     create(:france)
   end
-
 end
 
 class ControllerTestCase < ActionController::TestCase

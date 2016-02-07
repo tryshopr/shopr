@@ -1,9 +1,8 @@
 module Shoppe
   class AddressesController < Shoppe::ApplicationController
-
     before_filter { @active_nav = :customers }
-    before_filter { params[:customer_id] && @customer = Shoppe::Customer.find(params[:customer_id])}
-    before_filter { params[:id] && @address = @customer.addresses.find(params[:id])}
+    before_filter { params[:customer_id] && @customer = Shoppe::Customer.find(params[:customer_id]) }
+    before_filter { params[:id] && @address = @customer.addresses.find(params[:id]) }
 
     def new
       @address = Shoppe::Address.new
@@ -15,9 +14,7 @@ module Shoppe
     def create
       @address = @customer.addresses.build(safe_params)
 
-      if @customer.addresses.count == 0
-        @address.default = true
-      end
+      @address.default = true if @customer.addresses.count == 0
 
       if @customer.save
         redirect_to @customer, flash: { notice: t('shoppe.addresses.created_successfully') }

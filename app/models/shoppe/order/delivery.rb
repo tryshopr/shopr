@@ -1,6 +1,5 @@
 module Shoppe
   class Order < ActiveRecord::Base
-
     # The associated delivery service
     #
     # @return [Shoppe::DeliveryService]
@@ -30,10 +29,10 @@ module Shoppe
     end
 
     validate do
-      if self.delivery_required?
-        if self.delivery_service.nil?
+      if delivery_required?
+        if delivery_service.nil?
           errors.add :delivery_service_id, :must_be_specified
-        elsif !self.valid_delivery_service?
+        elsif !valid_delivery_service?
           errors.add :delivery_service_id, :not_suitable
         end
       end
@@ -42,8 +41,8 @@ module Shoppe
     before_confirmation do
       # Ensure that before we confirm the order that the delivery service which has been selected
       # is appropritae for the contents of the order.
-      if self.delivery_required? && !self.valid_delivery_service?
-        raise Shoppe::Errors::InappropriateDeliveryService, order: self
+      if delivery_required? && !valid_delivery_service?
+        fail Shoppe::Errors::InappropriateDeliveryService, order: self
       end
       cache_delivery_pricing
     end
@@ -51,7 +50,7 @@ module Shoppe
     # If an order has been received and something changes the delivery service or the delivery price
     # is cleared, we will re-cache all the delivery pricing so that we have the latest.
     before_save do
-      if received? && (delivery_service_id_changed? || (self.delivery_price_changed? && read_attribute(:delivery_price).blank?))
+      if received? && (delivery_service_id_changed? || (delivery_price_changed? && read_attribute(:delivery_price).blank?))
         self.delivery_price = nil
         self.delivery_cost_price = nil
         self.delivery_tax_rate = nil
@@ -83,11 +82,11 @@ module Shoppe
 
     # Cache delivery prices for the order
     def cache_delivery_pricing
-      if self.delivery_service
-        write_attribute :delivery_service_id, self.delivery_service.id
-        write_attribute :delivery_price, self.delivery_price
-        write_attribute :delivery_cost_price, self.delivery_cost_price
-        write_attribute :delivery_tax_rate, self.delivery_tax_rate
+      if delivery_service
+        write_attribute :delivery_service_id, delivery_service.id
+        write_attribute :delivery_price, delivery_price
+        write_attribute :delivery_cost_price, delivery_cost_price
+        write_attribute :delivery_tax_rate, delivery_tax_rate
       else
         write_attribute :delivery_service_id, nil
         write_attribute :delivery_price, nil
@@ -107,14 +106,14 @@ module Shoppe
     #
     # @return [Boolean]
     def shipped?
-      !!self.shipped_at?
+      !!shipped_at?
     end
 
     # The total weight of the order
     #
     # @return [BigDecimal]
     def total_weight
-      order_items.inject(BigDecimal(0)) { |t,i| t + i.total_weight}
+      order_items.inject(BigDecimal(0)) { |t, i| t + i.total_weight }
     end
 
     # Is delivery required for this order?
@@ -137,9 +136,9 @@ module Shoppe
     # @return [Array] an array of Shoppe:DeliveryServicePrice objects
     def delivery_service_prices
       if delivery_required?
-        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(shoppe_delivery_services: {active: true}).order(:price).for_weight(total_weight)
-        prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
-        prices.sort{ |x,y| (y.delivery_service.default? ? 1 : 0) <=> (x.delivery_service.default? ? 1 : 0) } # Order by truthiness
+        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(shoppe_delivery_services: { active: true }).order(:price).for_weight(total_weight)
+        prices = prices.select { |p| p.countries.empty? || p.country?(delivery_country) }
+        prices.sort { |x, y| (y.delivery_service.default? ? 1 : 0) <=> (x.delivery_service.default? ? 1 : 0) } # Order by truthiness
       else
         []
       end
@@ -156,7 +155,7 @@ module Shoppe
     #
     # @return [BigDecimal]
     def delivery_service_price
-      self.delivery_service && delivery_service_prices.select{ |price| price.delivery_service == delivery_service }.first
+      delivery_service && delivery_service_prices.find { |price| price.delivery_service == delivery_service }
     end
 
     # The price for delivering this order in its current state
@@ -178,7 +177,7 @@ module Shoppe
     # @return [BigDecimal]
     def delivery_tax_amount
       read_attribute(:delivery_tax_amount) ||
-      delivery_price / BigDecimal(100) * delivery_tax_rate
+        delivery_price / BigDecimal(100) * delivery_tax_rate
     end
 
     # The tax rate for the delivery of this order in its current state
@@ -186,22 +185,22 @@ module Shoppe
     # @return [BigDecimal]
     def delivery_tax_rate
       read_attribute(:delivery_tax_rate) ||
-      delivery_service_price.try(:tax_rate).try(:rate_for, self) ||
-      BigDecimal(0)
+        delivery_service_price.try(:tax_rate).try(:rate_for, self) ||
+        BigDecimal(0)
     end
 
     # Is the currently assigned delivery service appropriate for this order?
     #
     # @return [Boolean]
     def valid_delivery_service?
-      self.delivery_service ? self.available_delivery_services.include?(self.delivery_service) : !self.delivery_required?
+      delivery_service ? available_delivery_services.include?(delivery_service) : !delivery_required?
     end
 
     # Remove the associated delivery service if it's invalid
     def remove_delivery_service_if_invalid
-      unless self.valid_delivery_service?
+      unless valid_delivery_service?
         self.delivery_service = nil
-        self.save
+        save
       end
     end
 
@@ -209,8 +208,8 @@ module Shoppe
     #
     # @return [String]
     def courier_tracking_url
-      return nil if self.shipped_at.blank? || self.consignment_number.blank?
-      @courier_tracking_url ||= self.delivery_service.tracking_url_for(self)
+      return nil if shipped_at.blank? || consignment_number.blank?
+      @courier_tracking_url ||= delivery_service.tracking_url_for(self)
     end
 
     # Mark this order as shipped
@@ -220,10 +219,9 @@ module Shoppe
         self.shipper = user if user
         self.status = 'shipped'
         self.consignment_number = consignment_number
-        self.save!
+        save!
         Shoppe::OrderMailer.shipped(self).deliver
       end
     end
-
   end
 end
