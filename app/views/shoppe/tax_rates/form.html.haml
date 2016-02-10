@@ -9,10 +9,10 @@
     .splitContainer
       %dl.half
         %dt= f.label :name, t('shoppe.tax_rates.name')
-        %dd= f.text_field :name, :class => 'focus text'
+        %dd= f.text_field :name, :class => 'focus text', :required => true
       %dl.half
         %dt= f.label :rate, t('shoppe.tax_rates.rate')
-        %dd= f.text_field :rate, :class => 'text'
+        %dd= f.number_field :rate, :class => 'text', :required => true
 
   = field_set_tag t('shoppe.tax_rates.country_restriction') do
     %dl

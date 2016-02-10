@@ -4,7 +4,7 @@
   = field_set_tag t('shoppe.product_category.category_details') do
     %dl
       %dt= f.label :name, t('shoppe.product_category.name')
-      %dd= f.text_field :name, :class => 'focus text'
+      %dd= f.text_field :name, :class => 'focus text', :required => true
     .splitContainer
       %dl.half
         %dt= f.label :permalink, t('shoppe.product_category.permalink')
@@ -21,7 +21,7 @@
   = field_set_tag t('shoppe.product_category.nesting.category_nesting') do
     %dl
       %dt= f.label :parent_id, t('shoppe.product_category.nesting.category_parent')
-      %dd= f.collection_select :parent_id, Shoppe::ProductCategory.except_descendants(@product_category).ordered, :id, :name, {:include_blank => t('shoppe.product_category.nesting.blank_option')}, {:class => 'chosen'}  
+      %dd= f.collection_select :parent_id, Shoppe::ProductCategory.except_descendants(@product_category).ordered, :id, :name, {:include_blank => t('shoppe.product_category.nesting.blank_option')}, {:class => 'chosen'}
     %dl
       %dt= f.label :child_ids, t('shoppe.product_category.nesting.hierarchy')
       %dd
@@ -34,7 +34,7 @@
             - else
               %tr
                 %td
-                  = "#{@product_category.name} (#{t('shoppe.product_category.nesting.current_category')})" 
+                  = "#{@product_category.name} (#{t('shoppe.product_category.nesting.current_category')})"
                 = nested_product_category_rows(@product_category, current_category = @product_category, link_to_current = false, relative_depth = @product_category.depth)
 
   = field_set_tag t('shoppe.product_category.attachments') do
