@@ -21,6 +21,7 @@ module Shoppe
             else
               s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth} &#8627; #{link_to(child.name, [:edit, child]).html_safe}"
             end
+            s << (link_to I18n.t('shoppe.products.products'), products_path(category_id: child.id), style: 'float: right')
             s << '</td>'
             s << '</tr>'
             s << nested_product_category_rows(child, current_category, link_to_current, relative_depth)
