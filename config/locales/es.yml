@@ -1,6 +1,9 @@
 es:
   activerecord:
     models:
+      shoppe/address:
+        one: Dirección
+        other: Direcciones
       shoppe/country:
         one: País
         other: Países
@@ -42,6 +45,14 @@ es:
         other: Usuarios
 
     attributes:
+      shoppe/address:
+        address_type: Tipo de dirección
+        address1: Dirección 1
+        address2: Dirección 3
+        address3: Dirección 3
+        address4: Dirección 4
+        postcode: Código postal
+        country: País
       shoppe/order:
         billing_address1: Dirección de facturación 1
         billing_address3: Dirección de facturación 3
@@ -119,6 +130,20 @@ es:
           many: ! '%{count} errores han impedido completar el guardado'
           other: ! '%{count} errors han impedido completar el guardado'
       models:
+        shoppe/address:
+          attributes:
+            adress1:
+              blank: se encuentra en blanco.
+            adress2:
+              blank: se encuentra en blanco.
+            adress3:
+              blank: se encuentra en blanco.
+            adress4:
+              blank: se encuentra en blanco.
+            postcode:
+              blank: se encuentra en blanco.
+            country:
+              blank: se encuentra en blanco.
         shoppe/customer:
           attributes:
             email:
@@ -729,6 +754,7 @@ es:
       deleted_successfully: Cliente ha sido eliminado exitosamente.
 
     addresses:
+      addresses: Nueva Dirección
       created_successfully: Dirección ha sido creada exitosamente.
       updated_successfully: Dirección ha sido actualizada exitosamente.
       deleted_successfully: Dirección ha sido eliminada exitosamente.
