@@ -732,6 +732,8 @@ en:
       deleted_successfully: Customer has been deleted successfully.
 
     addresses:
+      address_information: Address Information
+      back_to_customer: Back customer
       addresses: New Address
       created_successfully: Address has been created successfully.
       updated_successfully: Address has been updated successfully.
