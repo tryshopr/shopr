@@ -754,6 +754,7 @@ es:
       deleted_successfully: Cliente ha sido eliminado exitosamente.
 
     addresses:
+      back_to_customer: Volver al cliente
       addresses: Nueva Dirección
       created_successfully: Dirección ha sido creada exitosamente.
       updated_successfully: Dirección ha sido actualizada exitosamente.
