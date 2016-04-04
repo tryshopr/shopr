@@ -167,6 +167,10 @@ es:
               must_be_specified: Debe ser especificado
         shoppe/product:
           attributes:
+            description:
+              blank: no puede estar en blanco
+            short_description: 
+              blank: no puede estar en blanco
             permalink:
               wrong_format: "solo puede contener letras, números, - y _"
             base:
