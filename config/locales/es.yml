@@ -132,13 +132,13 @@ es:
       models:
         shoppe/address:
           attributes:
-            adress1:
+            address1:
               blank: se encuentra en blanco.
-            adress2:
+            address2:
               blank: se encuentra en blanco.
-            adress3:
+            address3:
               blank: se encuentra en blanco.
-            adress4:
+            address4:
               blank: se encuentra en blanco.
             postcode:
               blank: se encuentra en blanco.
