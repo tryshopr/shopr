@@ -691,7 +691,7 @@ es:
       new_customer: Nuevo cliente
       search_customer: Buscar cliente
       name: Nombre
-      company Compañía
+      company: Compañía
       email: E-Mail
       phone: Teléfono
       mobile_phone: Teléfono movil
