@@ -518,6 +518,10 @@ es:
       website_properties: Propiedades del sitio web
       weight: Peso
 
+      filter:
+        sku: filtro por prudcto sku
+        name_or_description: filtro por nombre de producto o descripción
+
       imports:
         help: Productos y categorías son identificados por nombre. Si no se encuentra ningún producto coincidente se creará uno nuevo con todos los atributos de la línea. Si se encuentra un producto coincidente, solo se actualizará la cantidad y se ignorarán todos los demás campos. Si no se encuentra ninguna categoría coincidente, se creará una con el mismo nombre. Un producto por línea. Puede dejar el campo del enlace permanente en blanco si prefiere que se genere automáticamente.
         success: Productos importados correctamente
