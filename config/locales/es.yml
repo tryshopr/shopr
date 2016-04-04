@@ -122,11 +122,11 @@ es:
         shoppe/customer:
           attributes:
             email:
-              blank: E-mail se encuentra en blanco.
-              invalid: E-mail es inválido.
+              blank: se encuentra en blanco.
+              invalid: es inválido.
             phone:
-              blank: Teléfono se encuentra en blanco.
-              invalid: Teléfono es inválido.
+              blank: se encuentra en blanco.
+              invalid: es inválido.
         shoppe/product_category:
           attributes:
             permalink:
