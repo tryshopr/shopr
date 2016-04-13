@@ -7,6 +7,11 @@ module Shoppe
       @products_paged = Shoppe::Product.root
                                        .includes(:translations, :stock_level_adjustments, :product_categories, :variants)
                                        .order(:name)
+      if params[:category_id].present?
+        @products_paged = @products_paged
+                          .where('shoppe_product_categorizations.product_category_id = ?', params[:category_id])
+      end
+
       case
       when params[:sku]
         @products_paged = @products_paged

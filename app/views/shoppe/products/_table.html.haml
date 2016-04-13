@@ -12,6 +12,12 @@
             = search_field_tag :name, params[:name], size: 65, min: 3, placeholder: t('shoppe.products.filter.name_or_description')
         %th{:width => '25%'}= t('shoppe.products.price_variants')
         %th{:width => '15%'}= t('shoppe.products.stock')
+      %tr
+        %th
+        %th(colspan='3')
+          = t('shoppe.product_category.product_categories')
+          - options = options_for_select(nested_set_options(Shoppe::ProductCategory) {|i| "#{'-' * i.level} #{i.name}" }, params[:category_id] )
+          = select_tag 'parent_id', options, { onchange: "window.location.href='#{products_url}/?category_id=' + $(this).val() + ''"}
     %tbody
       - if products.empty?
         %tr.empty
