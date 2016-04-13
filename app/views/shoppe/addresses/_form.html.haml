@@ -1,7 +1,7 @@
 = form_for @address, url: [@customer, @address] do |f|
   = f.error_messages
 
-  = field_set_tag 'Address Information' do
+  = field_set_tag t('shoppe.addresses.address_information') do
     %dl
       %dt= f.label :address_type
       %dd= f.select :address_type, Shoppe::Address::TYPES, {}, class: 'chosen'

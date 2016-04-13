@@ -1,6 +1,9 @@
 es:
   activerecord:
     models:
+      shoppe/address:
+        one: Dirección
+        other: Direcciones
       shoppe/country:
         one: País
         other: Países
@@ -42,6 +45,14 @@ es:
         other: Usuarios
 
     attributes:
+      shoppe/address:
+        address_type: Tipo de dirección
+        address1: Dirección 1
+        address2: Dirección 3
+        address3: Dirección 3
+        address4: Dirección 4
+        postcode: Código postal
+        country: País
       shoppe/order:
         billing_address1: Dirección de facturación 1
         billing_address3: Dirección de facturación 3
@@ -119,6 +130,28 @@ es:
           many: ! '%{count} errores han impedido completar el guardado'
           other: ! '%{count} errors han impedido completar el guardado'
       models:
+        shoppe/address:
+          attributes:
+            address1:
+              blank: se encuentra en blanco.
+            address2:
+              blank: se encuentra en blanco.
+            address3:
+              blank: se encuentra en blanco.
+            address4:
+              blank: se encuentra en blanco.
+            postcode:
+              blank: se encuentra en blanco.
+            country:
+              blank: se encuentra en blanco.
+        shoppe/customer:
+          attributes:
+            email:
+              blank: se encuentra en blanco.
+              invalid: es inválido.
+            phone:
+              blank: se encuentra en blanco.
+              invalid: es inválido.
         shoppe/product_category:
           attributes:
             permalink:
@@ -134,6 +167,10 @@ es:
               must_be_specified: Debe ser especificado
         shoppe/product:
           attributes:
+            description:
+              blank: no puede estar en blanco
+            short_description: 
+              blank: no puede estar en blanco
             permalink:
               wrong_format: "solo puede contener letras, números, - y _"
             base:
@@ -518,6 +555,10 @@ es:
       website_properties: Propiedades del sitio web
       weight: Peso
 
+      filter:
+        sku: filtro por prudcto sku
+        name_or_description: filtro por nombre de producto o descripción
+
       imports:
         help: Productos y categorías son identificados por nombre. Si no se encuentra ningún producto coincidente se creará uno nuevo con todos los atributos de la línea. Si se encuentra un producto coincidente, solo se actualizará la cantidad y se ignorarán todos los demás campos. Si no se encuentra ninguna categoría coincidente, se creará una con el mismo nombre. Un producto por línea. Puede dejar el campo del enlace permanente en blanco si prefiere que se genere automáticamente.
         success: Productos importados correctamente
@@ -682,10 +723,47 @@ es:
       no_localisations: Ninguna traducción a mostrar.
       delete_confirmation: ¿Seguro?
 
+    customers:
+      customers: Clientes
+      new_customer: Nuevo cliente
+      search_customer: Buscar cliente
+      name: Nombre
+      company: Compañía
+      email: E-Mail
+      phone: Teléfono
+      mobile_phone: Teléfono movil
+      no_customers: Sin clientes para mostrar.
+      search: Buscar
+      first_or_last_name: Primer nombre o apellido.
+      back_to_customers_list: Volver a lista de clientes.
+      new_address: Nueva dirección
+      edit: Editar
+      customer_information: Información de Cliente
+      cancel: Cancelar
+      first_name: Primer nombre
+      last_name: Apellido
+      delete: Eliminar
+      save: Guardar
+      creating_customer: Creando Cliente...
+      updating_customer: Actualizando Cliente...
+      delete_confirmation: ¿Estas seguro que deseas eliminar este cliente?
+      type: Tipo
+      default: Por defecto
+      address: Dirección
+      no_addresses: Sin dirección para mostrar
+      addresses: Direcciones
+      adresse: Dirección
+      created_successfully: Cliente ha sido creado exitosamente.
+      updated_successfully: Cliente ha sido actualizado exitosamente.
+      deleted_successfully: Cliente ha sido eliminado exitosamente.
+
     addresses:
-      created_successfully: Address has been created successfully.
-      updated_successfully: Address has been updated successfully.
-      deleted_successfully: Address has been deleted successfully.
+      address_information: Información de Dirección
+      back_to_customer: Volver al cliente
+      addresses: Nueva Dirección
+      created_successfully: Dirección ha sido creada exitosamente.
+      updated_successfully: Dirección ha sido actualizada exitosamente.
+      deleted_successfully: Dirección ha sido eliminada exitosamente.
 
     navigation:
       admin_primary:
@@ -748,3 +826,9 @@ es:
         goto: Ir
         logged_in_as: "Accediendo como %{user_name}"
         logout: Salir
+
+  time:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%b %d"
+      long: "%B %d, %Y"

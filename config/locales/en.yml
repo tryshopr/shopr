@@ -1,6 +1,9 @@
 en:
   activerecord:
     models:
+      shoppe/address:
+        one: Address
+        other: Addresses
       shoppe/country:
         one: Country
         other: Countries
@@ -42,6 +45,14 @@ en:
         other: Users
 
     attributes:
+      shoppe/address:
+        address_type: Address type
+        address1: Address 1
+        address2: Address 3
+        address3: Address 3
+        address4: Address 4
+        postcode: Postcode
+        country: Country
       shoppe/order:
         billing_address1: Billing address1
         billing_address3: Billing address3
@@ -721,6 +732,9 @@ en:
       deleted_successfully: Customer has been deleted successfully.
 
     addresses:
+      address_information: Address Information
+      back_to_customer: Back customer
+      addresses: New Address
       created_successfully: Address has been created successfully.
       updated_successfully: Address has been updated successfully.
       deleted_successfully: Address has been deleted successfully.
