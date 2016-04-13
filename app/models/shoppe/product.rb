@@ -176,13 +176,9 @@ module Shoppe
           product.permalink = row['permalink']
 
           product.product_categories << begin
-            if Shoppe::ProductCategory.where(name: row['category_name']).present?
-              Shoppe::ProductCategory.where(name: row['category_name']).take
-            else
-              Shoppe::ProductCategory.create(name: row['category_name'])
-            end
+            Shoppe::ProductCategory.find_or_initialize_by(name: row['category_name'])
           end
-
+          
           product.save!
 
           qty = row['qty'].to_i
