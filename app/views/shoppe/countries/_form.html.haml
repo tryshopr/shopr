@@ -5,7 +5,7 @@
     .splitContainer
       %dl.third
         %dt= f.label :name, t('shoppe.countries.name')
-        %dd= f.text_field :name, class: 'focus text'
+        %dd= f.text_field :name, class: 'focus text', :required => true
       %dl.third
         %dt= f.label :code2, t('shoppe.countries.iso_alpha_2')
         %dd= f.text_field :code2, class: 'text'
