@@ -1,0 +1,12 @@
+- @page_title =  t('shopr.sessions.reset_password')
+
+= display_flash
+.loginArea
+  %h2= t('shopr.sessions.reset_password')
+  = form_tag :login_reset, :class => 'login' do
+    %p.field
+      = text_field_tag 'email_address', params[:email_address], :class => 'focus', :placeholder => t('shopr.sessions.email')
+    %p.submit
+      = submit_tag t('shopr.sessions.reset')  , :class => 'button green'
+    %p.reset
+      = link_to t('shopr.sessions.back_to_login') , login_path

@@ -1,0 +1,17 @@
+- @page_title = t('shopr.tax_rates.tax_rates')
+
+= content_for :header do
+  %p.buttons= link_to t('shopr.tax_rates.new_tax_rate'), :new_tax_rate, :class => 'button green'
+  %h2.tax_rates= t('shopr.tax_rates.tax_rates')
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shopr.tax_rates.name')
+        %th= t('shopr.tax_rates.rate')
+    %tbody
+      - for tax_rate in @tax_rates
+        %tr
+          %td= link_to tax_rate.name, [:edit, tax_rate]
+          %td= tax_rate.rate

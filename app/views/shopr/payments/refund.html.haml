@@ -1,0 +1,13 @@
+
+= form_tag [:refund, @order, @payment], :class => 'refundForm' do
+  %h2= t('shopr.refund.issue_refund')
+  %p.intro
+    = t('shopr.refund.intro_html', amount: number_to_currency(@payment.refundable_amount))
+
+  .moneyInput
+    .currency= Shopr.settings.currency_unit.html_safe
+    = text_field_tag 'amount', @payment.refundable_amount, :class => 'text'
+  %p.submit
+    = submit_tag t('shopr.refund.refund'), :class => 'button green'
+    = link_to t('shopr.close'), '#', :class => 'button grey', :rel => 'closeDialog'
+

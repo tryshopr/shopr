@@ -1,48 +1,48 @@
 cs:
   activerecord:
     models:
-      shoppe/country:
+      shopr/country:
         one: Země
         other: Zemi
-      shoppe/delivery_service:
+      shopr/delivery_service:
         one: Způsob dopravy
         other: Způsoby dopravy
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         one: Cena za dopravu
         other: Ceny za dopravu
-      shoppe/order:
+      shopr/order:
         one: Objednávka
         other: Objednávek
-      shoppe/order_item:
+      shopr/order_item:
         one: Položka objednávky
         other: Položky objednávky
-      shoppe/payment:
+      shopr/payment:
         one: Platba
         other: Platby
-      shoppe/product:
+      shopr/product:
         one: Produkt
         other: Produkty
-      shoppe/product_attribute:
+      shopr/product_attribute:
         one: Parametr produktu
         other: Parametry produktu
-      shoppe/product_category:
+      shopr/product_category:
         one: Kategorie produktů
         other: Kategorie produktů
-      shoppe/setting:
+      shopr/setting:
         one: Nastavení
         other: Nastavení
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         one: Úprava zásob skladu
         other: Úpravy zásob skladu
-      shoppe/tax_rate:
+      shopr/tax_rate:
         one: sazba DPH
         other: sazby DPH
-      shoppe/user:
+      shopr/user:
         one: uživatel
         other: uživatelé
 
     attributes:
-      shoppe/order:
+      shopr/order:
         billing_address1: Fakturační adresa 1
         billing_address3: Fakturační adresa 2
         billing_address4: Fakturační adresa 3
@@ -61,25 +61,25 @@ cs:
         phone_number: Telefonní číslo
         status: Stav
         token: Тоken
-      shoppe/country:
+      shopr/country:
         name: Název
-      shoppe/delivery_service:
+      shopr/delivery_service:
         name: Název
         courier: Kurýr
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         code: Kód
         cost_price: Nákupní cena
         max_weight: Maximální hmotnost
         min_weight: Minimální hmotnost
         price: Cena
-      shoppe/order_item:
+      shopr/order_item:
         ordered_item: Objednané produkty
         quantity: Množství
-      shoppe/payment:
+      shopr/payment:
         amount: částka
         method: Metoda
         reference: Reference
-      shoppe/product:
+      shopr/product:
         cost_price: Nákupní cena
         description: Popis
         name: Název
@@ -88,24 +88,24 @@ cs:
         short_description: Krátký popis
         sku: Stock Keeping Unit
         weight: Váha
-      shoppe/product_attribute:
+      shopr/product_attribute:
         key: Klíč
-      shoppe/product_category:
+      shopr/product_category:
         name: Název
         permalink: Trvalý odkaz
-      shoppe/setting:
+      shopr/setting:
         key: Klíč
         value: Hodnota
         value_type: Typ hodnoty
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         adjustment: Úprava
         description: Popis
         must_be_greater_or_equal_zero: musí být větší nebo rovna nule.
-      shoppe/tax_rate:
+      shopr/tax_rate:
         address_type: Тyp adresy
         name: Název
         rate: Sazba
-      shoppe/user:
+      shopr/user:
         email_address: Emailová adresa
         first_name: Jméno
         last_name: Příjmení
@@ -119,30 +119,30 @@ cs:
           many: ! '%{count} chyb neumožňuje uložit %{model}'
           other: ! '%{count} chyb neumožňuje uložit %{model}'
       models:
-        shoppe/product_category:
+        shopr/product_category:
           attributes:
             permalink:
               wrong_format: "může obsahovat pouze písmena, čísla, (-) a (_)"
-        shoppe/delivery:
+        shopr/delivery:
           attributes:
             delivery_service_id:
               must_be_specified: Nutné uvést
               not_suitable: Nelze specifikovát pro tuto objednávku
-        shoppe/order:
+        shopr/order:
           attributes:
             delivery_service_id:
               must_be_specified: Nutné uvést
-        shoppe/product:
+        shopr/product:
           attributes:
             permalink:
               wrong_format: "může obsahovat pouze písmena, čísla, (-) a (_)"
             base:
               can_belong_to_root: může patřit pouze pod kořenový produkt
-        shoppe/order_item:
+        shopr/order_item:
           attributes:
             quantity:
               too_high_quantity: přesahuje skladovou dostupnost
-        shoppe/payment:
+        shopr/payment:
           refund_failed: "částka za vracení by měla být nižší než výše platby (%{refundable_amount})"
 
   will_paginate:
@@ -176,7 +176,7 @@ cs:
       delete_confirm: Opravdu chcete odstranit připojený soubor?
       no_attachment: Žádná příloha
 
-  shoppe:
+  shopr:
     # common
     cancel: Zrušit
     close: Uzavřít
@@ -193,7 +193,7 @@ cs:
     settings_title: Nastavení
     settings_not_in_demo: Nemůžete provádět změny v demo režimu.
     set_prices: Nastavit ceny
-    shoppe_back: Zpátky v Shoppe
+    shopr_back: Zpátky v Shopr
     sku: Stock Keeping Unit
     status: Stav
     stock: Sklad
@@ -571,7 +571,7 @@ cs:
       reset_notice: "Heslo bylo obnoveno a odesláno do %{email_address}"
 
     shared:
-      back_to_shoppe: Zpět na Shoppe
+      back_to_shopr: Zpět na Shopr
       error: Chyba
       error_occurred: Nastala chyba
 
@@ -761,7 +761,7 @@ cs:
       help:
         # Help text for individual fields
         currency_unit: Hlavní symbol měny vašeho obchodu.budou použity pouze v administrátorského rozhraní.
-        demo_mode: Pokud je povoleno, bude admin panel Shoppe dostupná pro všechny bez přihlášení, ale bez možnosti úpravy uživatele. Никогда не включайте этот режим на боевом сервере.
+        demo_mode: Pokud je povoleno, bude admin panel Shopr dostupná pro všechny bez přihlášení, ale bez možnosti úpravy uživatele. Никогда не включайте этот режим на боевом сервере.
         email_address: E-mailová adresa, ze které zprávy budou odeslány.
         store_name: Název vašeho obchodu, které bude použity jak v admin panelu, tak i v  odchozích zprávach.
         tax_name: Název daně k zobrazení v admin panelu. Obvykle je nahrazeno DPH pro SNS
@@ -777,7 +777,7 @@ cs:
         tax_name: DPH
 
   layouts:
-    shoppe:
+    shopr:
       application:
         goto: Přejít na
         logged_in_as: "V systému účet %{user_name}"

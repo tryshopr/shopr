@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Shoppe
+module Shopr
   class DeliveryServicesTest < ActiveSupport::TestCase
     test 'tracking urls can be generated' do
       # create an order and an environment

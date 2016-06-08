@@ -1,4 +1,4 @@
-Shoppe::Engine.routes.draw do
+Shopr::Engine.routes.draw do
   get 'attachment/:id/:filename.:extension' => 'attachments#show'
 
   resources :customers do

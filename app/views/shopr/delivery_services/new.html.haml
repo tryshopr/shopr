@@ -1,0 +1,6 @@
+- @page_title = t('shopr.delivery_services.delivery_services')
+
+= content_for :header do
+  %p.buttons= link_to t('shopr.delivery_services.back'), :delivery_services, class: 'button'
+  %h2.delivery_services= t('shopr.delivery_services.delivery_services')
+= render 'form'

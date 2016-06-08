@@ -1,48 +1,48 @@
 de:
   activerecord:
     models:
-      shoppe/country:
+      shopr/country:
         one: Land
         other: Länder
-      shoppe/delivery_service:
+      shopr/delivery_service:
         one: Lieferdienst
         other: Lieferdienste
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         one: Anlieferungskosten
         other: Anlieferungskosten
-      shoppe/order:
+      shopr/order:
         one: Bestellung
         other: Bestellungen
-      shoppe/order_item:
+      shopr/order_item:
         one: Artikel
         other: Artikel
-      shoppe/payment:
+      shopr/payment:
         one: Bezahlmethode
         other: Bezahlmethoden
-      shoppe/product:
+      shopr/product:
         one: Produkt
         other: Produkte
-      shoppe/product_attribute:
+      shopr/product_attribute:
         one: Produkteigenschaft
         other: Produkteigenschaften
-      shoppe/product_category:
+      shopr/product_category:
         one: Produktkategorie
         other: Produktkategorien
-      shoppe/setting:
+      shopr/setting:
         one: Einstellung
         other: Einstellungen
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         one: Änderung der Verfügbarkeit
         other: Änderungen der Verfügbarkeit
-      shoppe/tax_rate:
+      shopr/tax_rate:
         one: Steuersatz
         other: Steuersätze
-      shoppe/user:
+      shopr/user:
         one: Benutzer
         other: Benutzer
 
     attributes:
-      shoppe/order:
+      shopr/order:
         billing_address1: Rechnungsanschrift1
         billing_address3: Rechnungsanschrift3
         billing_address4: Rechnungsanschrift4
@@ -61,25 +61,25 @@ de:
         phone_number: Telefonnummer
         status: Status
         token: Token
-      shoppe/country:
+      shopr/country:
         name: Name
-      shoppe/delivery_service:
+      shopr/delivery_service:
         name: Name
         courier: Kurier
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         code: Code
         cost_price: Anschaffungspreis
         max_weight: Maximalgewicht
         min_weight: Minimalgewicht
         price: Preis
-      shoppe/order_item:
+      shopr/order_item:
         ordered_item: Bestellter Artikel
         quantity: Anzahl
-      shoppe/payment:
+      shopr/payment:
         amount: Betrag
         method: Bezahlmethode
         reference: Referenz
-      shoppe/product:
+      shopr/product:
         cost_price: Anschaffungspreis
         description: Beschreibung
         name: Name
@@ -88,24 +88,24 @@ de:
         short_description: Kurzbeschreibung
         sku: SKU
         weight: Gewicht
-      shoppe/product_attribute:
+      shopr/product_attribute:
         key: Schlüssel
-      shoppe/product_category:
+      shopr/product_category:
         name: Name
         permalink: Permalink
-      shoppe/setting:
+      shopr/setting:
         key: Schlüssel
         value: Wert
         value_type: Wertart
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         adjustment: Änderung
         description: Beschreibung
         must_be_greater_or_equal_zero: muss größer oder kleiner als Null sein
-      shoppe/tax_rate:
+      shopr/tax_rate:
         address_type: Art der Adresse
         name: Name
         rate: Steuersatz
-      shoppe/user:
+      shopr/user:
         email_address: E-Mail Adresse
         first_name: Vorname
         last_name: Nachname
@@ -119,30 +119,30 @@ de:
           many: ! 'Durch %{count} Fehler konnte %{model} nicht gespeichert werden'
           other: ! 'Durch %{count} Fehler konnte %{model} nicht gespeichert werden'
       models:
-        shoppe/product_category:
+        shopr/product_category:
           attributes:
             permalink:
               wrong_format: "darf nur Buchstaben, Ziffern, - und _ enthalten"
-        shoppe/delivery:
+        shopr/delivery:
           attributes:
             delivery_service_id:
               must_be_specified: darf nicht leer sein
               not_suitable: kann nicht für diese Bestellung verwendet werden
-        shoppe/order:
+        shopr/order:
           attributes:
             delivery_service_id:
               must_be_specified: darf nicht leer sein
-        shoppe/product:
+        shopr/product:
           attributes:
             permalink:
               wrong_format: "darf nur Buchstaben, Ziffern, - und _ enthalten"
             base:
               can_belong_to_root: muss einem anderem Produkt untergeordnet sein
-        shoppe/order_item:
+        shopr/order_item:
           attributes:
             quantity:
               too_high_quantity: übersteigt die Anzahl der Artikel im Lager
-        shoppe/payment:
+        shopr/payment:
           refund_failed: "Rückerstattungen müssen geringer als die Bezahlung sein (%{refundable_amount})"
 
   will_paginate:
@@ -176,7 +176,7 @@ de:
       delete_confirm: Möchten Sie diesen Anhang löschen?
       no_attachment: Kein Anhang
 
-  shoppe:
+  shopr:
 
     # common
     cancel: Abbrechen
@@ -501,7 +501,7 @@ de:
       reset_notice: "Es wurde ein neues Passwort per E-Mail an %{email_address} verschickt"
 
     shared:
-      back_to_shoppe: Zurück zu Shoppe
+      back_to_shopr: Zurück zu Shopr
       error: Fehler
       error_occurred: Ein Fehler ist aufgetreten
 
@@ -705,7 +705,7 @@ de:
         tax_name: Steuer
 
   layouts:
-    shoppe:
+    shopr:
       application:
         goto: Gehe zu
         logged_in_as: "Angemeldet als %{user_name}"

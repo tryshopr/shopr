@@ -1,48 +1,48 @@
 pt-BR:
   activerecord:
     models:
-      shoppe/country:
+      shopr/country:
         one: País
         other: Países
-      shoppe/delivery_service:
+      shopr/delivery_service:
         one: Serviço de Entrega
         other: Serviços de Entrega
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         one: Preço do Serviço de Entrega
         other: Preços do Serviço de Entrega
-      shoppe/order:
+      shopr/order:
         one: Pedido
         other: Pedidos
-      shoppe/order_item:
+      shopr/order_item:
         one: Item do Pedido
         other: Itens do Pedido
-      shoppe/payment:
+      shopr/payment:
         one: Pagamento
         other: Pagamentos
-      shoppe/product:
+      shopr/product:
         one: Produto
         other: Produtos
-      shoppe/product_attribute:
+      shopr/product_attribute:
         one: Atributo do Produto
         other: Atributos do Produto
-      shoppe/product_category:
+      shopr/product_category:
         one: Categoria de Produto
         other: Categorias de Produto
-      shoppe/setting:
+      shopr/setting:
         one: Preferência
         other: Preferências
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         one: Ajuste do Nível de Estoque
         other: Ajustes do Nível de Estoque
-      shoppe/tax_rate:
+      shopr/tax_rate:
         one: Taxa de Imposto
         other: Taxas de Imposto
-      shoppe/user:
+      shopr/user:
         one: Usuário
         other: Usuários
 
     attributes:
-      shoppe/order:
+      shopr/order:
         billing_address1: Endereço de cobrança1
         billing_address3: Endereço de cobrança3
         billing_address4: Endereço de cobrança4
@@ -61,25 +61,25 @@ pt-BR:
         phone_number: Número de telefone
         status: Status
         token: Token
-      shoppe/country:
+      shopr/country:
         name: Nome
-      shoppe/delivery_service:
+      shopr/delivery_service:
         name: Nome
         courier: Correio
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         code: Código
         cost_price: Preço de custo
         max_weight: Peso máximo
         min_weight: Peso mínimo
         price: Preço
-      shoppe/order_item:
+      shopr/order_item:
         ordered_item: Item encomendado
         quantity: Quantidade
-      shoppe/payment:
+      shopr/payment:
         amount: Montante
         method: Método
         reference: Referência
-      shoppe/product:
+      shopr/product:
         cost_price: Preço de custo
         description: Descrição
         name: Nome
@@ -88,24 +88,24 @@ pt-BR:
         short_description: Descrição curta
         sku: SKU
         weight: Peso
-      shoppe/product_attribute:
+      shopr/product_attribute:
         key: Chave
-      shoppe/product_category:
+      shopr/product_category:
         name: Nome
         permalink: Permalink
-      shoppe/setting:
+      shopr/setting:
         key: Chave
         value: Valor
         value_type: Tipo de valor
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         adjustment: Ajuste
         description: Descrição
         must_be_greater_or_equal_zero: precisa ser maior ou igual a zero
-      shoppe/tax_rate:
+      shopr/tax_rate:
         address_type: Tipo de endereço
         name: Nome
         rate: Taxa
-      shoppe/user:
+      shopr/user:
         email_address: Endereço de e-mail
         first_name: Primeiro nome
         last_name: Último nome
@@ -119,23 +119,23 @@ pt-BR:
           many: ! '%{count} erros proibiram este %{model} de ser salvo'
           other: ! '%{count} erros proibiram este %{model} de ser salvo'
       models:
-        shoppe/delivery:
+        shopr/delivery:
           attributes:
             delivery_service_id:
               must_be_specified: precisa ser especificado
               not_suitable: não é adequado para este pedido
-        shoppe/order:
+        shopr/order:
           attributes:
             delivery_service_id:
               must_be_specified: precisa ser especificado
-        shoppe/product:
+        shopr/product:
           attributes:
             base:
               can_belong_to_root: pode pertencer apenas ao produto principal
-        shoppe/order_item:
+        shopr/order_item:
           attributes:
             too_high_quantity: é muito alta para a quantidade em estoque
-        shoppe/payment:
+        shopr/payment:
           refund_failed: "Devoluções precisam ser menores que o pagamento (%{refundable_amount})"
 
   will_paginate:
@@ -169,7 +169,7 @@ pt-BR:
       delete_confirm: Tem certeza que deseja remover este anexo?
       no_attachment: Nenhum anexo
 
-  shoppe:
+  shopr:
 
     # commmon
     cancel: Cancelar
@@ -502,7 +502,7 @@ pt-BR:
       reset_notice: "Um e-mail foi enviado para %{email_address} com a nova senha"
 
     shared:
-      back_to_shoppe: Voltar para Shoppe
+      back_to_shopr: Voltar para Shopr
       error: Erro
       error_occurred: Um erro ocorreu
 
@@ -639,9 +639,9 @@ pt-BR:
       help:
         # Help text for individual fields
         currency_unit: O símbolo para ser mostrado antes de todos os números que são relacionados à dinheiro. Aplica-se apenas à interface administrativa e precisa ser implementado separadamente na sua aplicação principal.
-        demo_mode: Se ativado, a interface administrativa do Shoppe vai permitir que quaisquer usuários façam login e não vai permitir mudanças nos usuários. Isto deve ser usado com cuidado e nunca ativado numa loja em produção.
+        demo_mode: Se ativado, a interface administrativa do Shopr vai permitir que quaisquer usuários façam login e não vai permitir mudanças nos usuários. Isto deve ser usado com cuidado e nunca ativado numa loja em produção.
         email_address: O endereço de e-mail para usar quando enviar mensagens para fora. Precisa ser apenas um endereço de e-mail.
-        store_name: Este é o nome da sua loja que será usado em toda a interface administrativa do Shoppe como também nas mensagens de e-mail para fora.
+        store_name: Este é o nome da sua loja que será usado em toda a interface administrativa do Shopr como também nas mensagens de e-mail para fora.
         tax_name: O nome para o "Imposto" que será mostrado na interface administrativa. Comumente substituído por VAT nos países da união europeia.
 
       save_settings: Salvar Preferências
@@ -655,7 +655,7 @@ pt-BR:
         tax_name: Imposto
 
   layouts:
-    shoppe:
+    shopr:
       application:
         goto: Ir para
         logged_in_as: "Acessando como %{user_name}"

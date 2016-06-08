@@ -1,0 +1,5 @@
+- @page_title = t('shopr.users.users')
+= content_for :header do
+  %p.buttons= link_to t('shopr.users.back_to_users'), :users, :class => 'button'
+  %h2.users= t('shopr.users.users')
+= render 'form'

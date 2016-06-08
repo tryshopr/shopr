@@ -1,0 +1,27 @@
+- @page_title = t('shopr.delivery_services.delivery_services')
+
+= content_for :header do
+  %p.buttons= link_to t('shopr.delivery_services.new'), :new_delivery_service, class: 'button green'
+  %h2.delivery_services= t('shopr.delivery_services.delivery_services')
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shopr.delivery_services.name')
+        %th= t('shopr.delivery_services.prices')
+        %th= t('shopr.delivery_services.courier')
+        %th= t('shopr.delivery_services.active?')
+        %th= t('shopr.delivery_services.default?')
+    %tbody
+      - if @delivery_services.empty?
+        %tr.empty
+          %td{colspan: 5}= t('shopr.delivery_services.no_services')
+      - else
+        - for delivery_service in @delivery_services
+          %tr
+            %td= link_to delivery_service.name, [:edit, delivery_service]
+            %td= link_to t('shopr.delivery_services.set_prices'), [delivery_service, :delivery_service_prices]
+            %td= delivery_service.courier
+            %td= boolean_tag delivery_service.active?
+            %td= boolean_tag delivery_service.default?

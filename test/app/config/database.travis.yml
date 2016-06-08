@@ -1,18 +1,18 @@
 sqlite: &sqlite
   adapter: sqlite3
-  database: db/shoppe_test.sqlite3
+  database: db/shopr_test.sqlite3
 
 mysql: &mysql
   adapter: mysql2
   username: root
   password:
-  database: shoppe_test
+  database: shopr_test
 
 postgresql: &postgresql
   adapter: postgresql
   username: postgres
   password:
-  database: shoppe_test
+  database: shopr_test
   min_messages: ERROR
 
 defaults: &defaults

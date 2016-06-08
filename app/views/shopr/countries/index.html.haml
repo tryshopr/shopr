@@ -1,0 +1,25 @@
+- @page_title = t('shopr.countries.countries')
+
+= content_for :header do
+  %p.buttons=link_to t('shopr.countries.new_country') , :new_country, class: 'button green'
+  %h2.countries= t('shopr.countries.countries')
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shopr.countries.name')
+        %th= t('shopr.countries.iso_alpha_2')
+        %th= t('shopr.countries.iso_alpha_3')
+        %th= t('shopr.countries.continent')
+        %th= t('shopr.countries.tld')
+        %th= t('shopr.countries.eu?')
+    %tbody
+      - for country in @countries
+        %tr
+          %td= link_to country.name, [:edit, country]
+          %td= country.code2
+          %td= country.code3
+          %td= country.continent
+          %td= country.tld
+          %td= boolean_tag country.eu_member?

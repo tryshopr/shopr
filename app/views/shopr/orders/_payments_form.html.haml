@@ -1,0 +1,15 @@
+= form_for [@order, Shopr::Payment.new(:amount => @order.balance)] do |f|
+  %dl.text
+    %dt= f.label :method, t('shopr.orders.method')
+    %dd= f.text_field :method, :class => 'text'
+  %dl.text
+    %dt= f.label :reference, t('shopr.orders.reference')
+    %dd= f.text_field :reference, :class => 'text'
+  %dl.amount
+    %dt= f.label :amount, t('shopr.orders.amount')
+    %dd
+      .moneyInput
+        .currency= Shopr.settings.currency_unit.html_safe
+        = f.text_field :amount, :class => 'text'
+  %dl.submit
+    %dd= f.submit t('shopr.orders.add_payment') , :class => 'button green'

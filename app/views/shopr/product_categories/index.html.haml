@@ -1,0 +1,30 @@
+- @page_title = t('shopr.product_category.product_categories')
+
+= content_for :header do
+  %p.buttons=link_to t('shopr.product_category.new_category'), :new_product_category, :class => 'button green'
+  %h2.products= t('shopr.product_category.product_categories')
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shopr.product_category.name')
+        - unless @product_categories_without_parent.empty?
+          - I18n.available_locales.each do |i|
+            %th
+    %tbody
+      - if @product_categories_without_parent.empty?
+        %tr.empty
+          %td= t('shopr.product_category.no_categories')
+      - else
+        - for cat in @product_categories_without_parent
+          %tr
+            %td
+              = link_to cat.name, [:edit, cat]
+              = link_to I18n.t('shopr.products.products'), products_path(category_id: cat.id), style: 'float: right'
+            - I18n.available_locales.each do |i|
+              - if cat.translations.where(locale: i).count >= 1
+                %td= link_to i, edit_product_category_localisation_path(cat, cat.translations.where(locale: i).first.id)
+              - else
+                %td= link_to i, new_product_category_localisation_path(cat, locale_field: i)
+          = nested_product_category_rows(cat)

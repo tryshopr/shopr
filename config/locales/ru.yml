@@ -1,48 +1,48 @@
 ru:
   activerecord:
     models:
-      shoppe/country:
+      shopr/country:
         one: Страна
         other: Страны
-      shoppe/delivery_service:
+      shopr/delivery_service:
         one: Способ доставки
         other: Способы доставки
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         one: Стоимость доставки
         other: Стоимость доставок
-      shoppe/order:
+      shopr/order:
         one: Заказ
         other: Заказы
-      shoppe/order_item:
+      shopr/order_item:
         one: Предмет заказа
         other: Предметы заказа
-      shoppe/payment:
+      shopr/payment:
         one: Оплата
         other: Оплаты
-      shoppe/product:
+      shopr/product:
         one: Товар
         other: Товары
-      shoppe/product_attribute:
+      shopr/product_attribute:
         one: Параметр товара
         other: Параметры товара
-      shoppe/product_category:
+      shopr/product_category:
         one: Категория товара
         other: Категории товаров
-      shoppe/setting:
+      shopr/setting:
         one: Настройки
         other: Настройки
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         one: Корректировка складских запасов
         other: Корректировка складских запасов
-      shoppe/tax_rate:
+      shopr/tax_rate:
         one: ставка НДС
         other: ставки НДС
-      shoppe/user:
+      shopr/user:
         one: Пользователь
         other: Пользователи
 
     attributes:
-      shoppe/order:
+      shopr/order:
         billing_address1: Адрес для счета 1
         billing_address3: Адрес для счета 2
         billing_address4: Адрес для счета 3
@@ -61,25 +61,25 @@ ru:
         phone_number: Телефонный номер
         status: Статус
         token: Токен
-      shoppe/country:
+      shopr/country:
         name: Наименование
-      shoppe/delivery_service:
+      shopr/delivery_service:
         name: Наименование
         courier: Курьерская служба
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         code: Код
         cost_price: Закупочная цена
         max_weight: Максимальный вес
         min_weight: Минимальный вес
         price: Цена для пользователя
-      shoppe/order_item:
+      shopr/order_item:
         ordered_item: Заказанный товар
         quantity: Количество
-      shoppe/payment:
+      shopr/payment:
         amount: Сумма
         method: Метод оплаты
         reference: Основание
-      shoppe/product:
+      shopr/product:
         cost_price: Закупочная цена
         description: Описание
         name: Наименование
@@ -88,24 +88,24 @@ ru:
         short_description: Краткое описание
         sku: Артикул
         weight: Вес
-      shoppe/product_attribute:
+      shopr/product_attribute:
         key: Ключ
-      shoppe/product_category:
+      shopr/product_category:
         name: Наименование
         permalink: Постоянная ссылка
-      shoppe/setting:
+      shopr/setting:
         key: Ключ
         value: Значение
         value_type: Тип значения
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         adjustment: Корректировка
         description: Описание
         must_be_greater_or_equal_zero: должно быть больше или меньше нуля
-      shoppe/tax_rate:
+      shopr/tax_rate:
         address_type: Тип адреса
         name: Наименование
         rate: Размер налога
-      shoppe/user:
+      shopr/user:
         email_address: E-mail
         first_name: Имя
         last_name: Фамилия
@@ -119,30 +119,30 @@ ru:
           many: ! '%{count} не позволяют сохранить %{model}'
           other: ! '%{count} не позволяют сохранить %{model}'
       models:
-        shoppe/product_category:
+        shopr/product_category:
           attributes:
             permalink:
               wrong_format: "может содержать только латинские буквы, цифры, тире (-) и нижнее подчеркивание (_)"
-        shoppe/delivery:
+        shopr/delivery:
           attributes:
             delivery_service_id:
               must_be_specified: Нужно указать
               not_suitable: нельзя указать для этого заказа
-        shoppe/order:
+        shopr/order:
           attributes:
             delivery_service_id:
               must_be_specified: Нужно указать
-        shoppe/product:
+        shopr/product:
           attributes:
             permalink:
               wrong_format: "может содержать только латинские буквы, цифры, тире (-) и нижнее подчеркивание (_)"
             base:
               can_belong_to_root: можно привязать только к корневому товару
-        shoppe/order_item:
+        shopr/order_item:
           attributes:
             quantity:
               too_high_quantity: превышает доступное количество на складе
-        shoppe/payment:
+        shopr/payment:
           refund_failed: "Сумма возврата должна быть меньше суммы оплаты (%{refundable_amount})"
 
   will_paginate:
@@ -176,7 +176,7 @@ ru:
       delete_confirm: Вы действительно хотите удалить прикрепленный файл?
       no_attachment: Нет прикрепленных файлов
 
-  shoppe:
+  shopr:
 
     # common
     cancel: Отмена
@@ -194,7 +194,7 @@ ru:
     settings_title: Настройки
     settings_not_in_demo: Вы не можете вносить изменения в демо режиме.
     set_prices: Установить цены
-    shoppe_back: Назад в Shoppe
+    shopr_back: Назад в Shopr
     sku: Артикул
     status: Статус
     stock: Склад
@@ -576,7 +576,7 @@ ru:
       reset_notice: "Пароль сброшен и выслан на %{email_address}"
 
     shared:
-      back_to_shoppe: Назад в Shoppe
+      back_to_shopr: Назад в Shopr
       error: Ошибка
       error_occurred: Возникла ошибка
 
@@ -766,7 +766,7 @@ ru:
       help:
         # Help text for individual fields
         currency_unit: Основной символ валюты вашего магазина. Будет использоваться только в интерфейсе администратора.
-        demo_mode: Если включен, панель администратора Shoppe будет доступна для всех без логина, но редактировать пользоватей будет нельзя. Никогда не включайте этот режим на боевом сервере.
+        demo_mode: Если включен, панель администратора Shopr будет доступна для всех без логина, но редактировать пользоватей будет нельзя. Никогда не включайте этот режим на боевом сервере.
         email_address: E-mail, с которой будут отправляться сообщения.
         store_name: Наименование вашего магазина, которое будет использоваться как в панели администратора, так и в исходящих письмах.
         tax_name: Наименование Налога для отображения в панели администратора. Обычно заменяется на НДС для стран СНГ.
@@ -782,7 +782,7 @@ ru:
         tax_name: Налог
 
   layouts:
-    shoppe:
+    shopr:
       application:
         goto: Перейти
         logged_in_as: "В системе под аккаунтом %{user_name}"

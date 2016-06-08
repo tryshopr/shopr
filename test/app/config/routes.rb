@@ -1,3 +1,3 @@
 Dummy::Application.routes.draw do
-  mount Shoppe::Engine, at: '/shoppe'
+  mount Shopr::Engine, at: '/shopr'
 end

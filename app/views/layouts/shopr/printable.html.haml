@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title= @page_title
+    = stylesheet_link_tag 'shopr/printable', :media => :all
+    :javascript
+      window.print();
+  %body
+    #content
+      = yield
+

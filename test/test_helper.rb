@@ -42,5 +42,5 @@ class ActiveSupport::TestCase
 end
 
 class ControllerTestCase < ActionController::TestCase
-  include Shoppe::Engine.routes.url_helpers
+  include Shopr::Engine.routes.url_helpers
 end

@@ -1,51 +1,51 @@
 en:
   activerecord:
     models:
-      shoppe/address:
+      shopr/address:
         one: Address
         other: Addresses
-      shoppe/country:
+      shopr/country:
         one: Country
         other: Countries
-      shoppe/delivery_service:
+      shopr/delivery_service:
         one: Delivery service
         other: Delivery services
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         one: Delivery service price
         other: Delivery service prices
-      shoppe/order:
+      shopr/order:
         one: Order
         other: Orders
-      shoppe/order_item:
+      shopr/order_item:
         one: Order item
         other: Order items
-      shoppe/payment:
+      shopr/payment:
         one: Payment
         other: Payments
-      shoppe/product:
+      shopr/product:
         one: Product
         other: Products
-      shoppe/product_attribute:
+      shopr/product_attribute:
         one: Product attribute
         other: Product attributes
-      shoppe/product_category:
+      shopr/product_category:
         one: Product category
         other: Product categories
-      shoppe/setting:
+      shopr/setting:
         one: Setting
         other: Settings
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         one: Stock Level Adjustment
         other: Stock Level Adjustments
-      shoppe/tax_rate:
+      shopr/tax_rate:
         one: Tax Rate
         other: Tax Rates
-      shoppe/user:
+      shopr/user:
         one: User
         other: Users
 
     attributes:
-      shoppe/address:
+      shopr/address:
         address_type: Address type
         address1: Address 1
         address2: Address 3
@@ -53,7 +53,7 @@ en:
         address4: Address 4
         postcode: Postcode
         country: Country
-      shoppe/order:
+      shopr/order:
         billing_address1: Billing address1
         billing_address3: Billing address3
         billing_address4: Billing address4
@@ -72,25 +72,25 @@ en:
         phone_number: Phone number
         status: Status
         token: Token
-      shoppe/country:
+      shopr/country:
         name: Name
-      shoppe/delivery_service:
+      shopr/delivery_service:
         name: Name
         courier: Courier
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         code: Code
         cost_price: Cost price
         max_weight: Max weight
         min_weight: Min weight
         price: Price
-      shoppe/order_item:
+      shopr/order_item:
         ordered_item: Ordered Item
         quantity: Quantity
-      shoppe/payment:
+      shopr/payment:
         amount: Amount
         method: Method
         reference: Reference
-      shoppe/product:
+      shopr/product:
         cost_price: Cost price
         description: Description
         name: Name
@@ -99,24 +99,24 @@ en:
         short_description: Short description
         sku: SKU
         weight: Weight
-      shoppe/product_attribute:
+      shopr/product_attribute:
         key: Key
-      shoppe/product_category:
+      shopr/product_category:
         name: Name
         permalink: Permalink
-      shoppe/setting:
+      shopr/setting:
         key: Key
         value: Value
         value_type: Value type
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         adjustment: Adjustment
         description: Description
         must_be_greater_or_equal_zero: must be greater or less than zero
-      shoppe/tax_rate:
+      shopr/tax_rate:
         address_type: Address type
         name: Name
         rate: Rate
-      shoppe/user:
+      shopr/user:
         email_address: E-Mail address
         first_name: First name
         last_name: Last name
@@ -130,30 +130,30 @@ en:
           many: ! '%{count} errors prohibited this %{model} from being saved'
           other: ! '%{count} errors prohibited this %{model} from being saved'
       models:
-        shoppe/product_category:
+        shopr/product_category:
           attributes:
             permalink:
               wrong_format: "can only contain letters, numbers, - and _"
-        shoppe/delivery:
+        shopr/delivery:
           attributes:
             delivery_service_id:
               must_be_specified: must be specified
               not_suitable: is not suitable for this order
-        shoppe/order:
+        shopr/order:
           attributes:
             delivery_service_id:
               must_be_specified: Must be specified
-        shoppe/product:
+        shopr/product:
           attributes:
             permalink:
               wrong_format: "can only contain letters, numbers, - and _"
             base:
               can_belong_to_root: can only belong to a root product
-        shoppe/order_item:
+        shopr/order_item:
           attributes:
             quantity:
               too_high_quantity: is too high for the quantity in stock
-        shoppe/payment:
+        shopr/payment:
           refund_failed: "Refunds must be less than the payment (%{refundable_amount})"
 
   will_paginate:
@@ -187,7 +187,7 @@ en:
       delete_confirm: Are you sure you wish to remove this attachment?
       no_attachment: No attachment
 
-  shoppe:
+  shopr:
 
     # common
     cancel: Cancel
@@ -205,7 +205,7 @@ en:
     settings_title: Settings
     settings_not_in_demo: You cannot make changes to settings in demo mode. Sorry about that.
     set_prices: Set Prices
-    shoppe_back: Back to Shoppe
+    shopr_back: Back to Shopr
     sku: SKU
     status: Status
     stock: Stock
@@ -587,7 +587,7 @@ en:
       reset_notice: "An e-mail has been sent to %{email_address} with a new password"
 
     shared:
-      back_to_shoppe: Back to Shoppe
+      back_to_shopr: Back to Shopr
       error: Error
       error_occurred: An error has occurred
 
@@ -779,9 +779,9 @@ en:
       help:
         # Help text for individual fields
         currency_unit: The symbol to be displayed before all numbers which relate to money. Only applies to the admin interface and must be implemented separately in your base application.
-        demo_mode: If enabled, your Shoppe admin interface will allow any users to login and will not permit changes to your users. This should be used with caution and never enabled for a production store.
+        demo_mode: If enabled, your Shopr admin interface will allow any users to login and will not permit changes to your users. This should be used with caution and never enabled for a production store.
         email_address: The e-mail address to use when sending outbound messages. Must just be an e-mail address.
-        store_name: This is the name of your store which will be used through the Shoppe admin interface as well as in the default outbound e-mail messages.
+        store_name: This is the name of your store which will be used through the Shopr admin interface as well as in the default outbound e-mail messages.
         tax_name: The name for "Tax" which will be displayed in your admin interface. Commonly replaced with VAT in European countries.
 
       save_settings: Save Settings
@@ -795,7 +795,7 @@ en:
         tax_name: Tax
 
   layouts:
-    shoppe:
+    shopr:
       application:
         goto: Goto
         logged_in_as: "Logged in as %{user_name}"

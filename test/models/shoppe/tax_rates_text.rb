@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Shoppe
+module Shopr
   class TaxRatesTest < ActiveSupport::TestCase
     test 'description' do
       rate = create(:standard_tax)

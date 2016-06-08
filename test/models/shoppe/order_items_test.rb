@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Shoppe
+module Shopr
   class OrderItemsTest < ActiveSupport::TestCase
     setup do
       create_environment

@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: shoppe
+  database: shopr
   pool: 5
   username: root
   password:
@@ -13,7 +13,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: shoppe_test
+  database: shopr_test
   pool: 5
   username: root
   password:
@@ -22,7 +22,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: shoppe
+  database: shopr
   pool: 5
   username: root
   password:

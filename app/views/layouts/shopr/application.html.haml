@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title #{@page_title} - Shopr
+    = stylesheet_link_tag 'shopr/application'
+    = javascript_include_tag 'shopr/application'
+    = csrf_meta_tags
+    :javascript
+      window.Shopr = {}
+      window.Shopr.currencyUnit = "#{h Shopr.settings.currency_unit}";
+  %body
+    %nav.sidebar
+      %header.logo
+        %h1= link_to "Shopr", root_path
+        %p v#{Shopr::VERSION}
+      %p.logged= t('.logged_in_as', user_name: current_user.full_name)
+
+      %ul
+        - for item in Shopr::NavigationManager.find(:admin_primary).items
+          %li= navigation_manager_link item
+
+        %li= link_to t('.logout'), [:logout], :method => :delete
+
+    %header.main
+      = yield :header
+
+    #content
+      = display_flash
+      %section.main
+        = yield
+
+    %footer
+      %p.store= link_to "&larr; #{t('.goto')} #{Shopr.settings.store_name}".html_safe, '/'
+

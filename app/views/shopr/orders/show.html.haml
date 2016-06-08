@@ -1,0 +1,25 @@
+- @page_title = "#{t('shopr.orders.order')} ##{@order.number}"
+
+= content_for :header do
+  %p.buttons
+    = link_to t('shopr.edit'), [:edit, @order], :class => 'button'
+    - if @order.accepted?
+      = link_to t('shopr.orders.despatch_note.despatch_note'), [:despatch_note, @order], :class => 'button', :rel => 'print'
+    = link_to t('shopr.orders.back_to_orders'), :orders, :class => 'button grey'
+  %h2.orders= t('shopr.orders.order_no_html', order_number: @order.number)
+
+#order
+
+  - if @order.received?
+    = render 'order_details'
+    = render 'status_bar'
+  - else
+    %p.warning= t('shopr.orders.in_progress_warning')
+
+  = field_set_tag t('shopr.orders.order_items'), :class => 'padded' do
+    = render 'order_items'
+
+  - if @order.received?
+    = field_set_tag t('shopr.orders.payments'), :class => 'padded orderPayments' do
+      = render 'payments_table'
+      = render 'payments_form'

@@ -1,4 +1,4 @@
-module Shoppe
+module Shopr
   FactoryGirl.define do
     factory :product_category, class: ProductCategory do
       name 'Product Category'

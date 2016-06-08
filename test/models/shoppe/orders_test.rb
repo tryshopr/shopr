@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Shoppe
+module Shopr
   class OrdersTest < ActiveSupport::TestCase
     test 'a completely clean new order' do
       order = create(:order)

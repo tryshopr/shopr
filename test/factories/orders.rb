@@ -1,4 +1,4 @@
-module Shoppe
+module Shopr
   FactoryGirl.define do
     factory :order, class: Order do
       first_name          'Joe'

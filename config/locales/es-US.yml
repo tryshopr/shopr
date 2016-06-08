@@ -1,48 +1,48 @@
 es-US:
   activerecord:
     models:
-      shoppe/country:
+      shopr/country:
         one: País
         other: Paises
-      shoppe/delivery_service:
+      shopr/delivery_service:
         one: Servicio de envío
         other: Servicios de envío
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         one: Precio de envío
         other: Precios de envío
-      shoppe/order:
+      shopr/order:
         one: Órden
         other: Ordenes
-      shoppe/order_item:
+      shopr/order_item:
         one: Item
         other: Items
-      shoppe/payment:
+      shopr/payment:
         one: Pago
         other: Pagos
-      shoppe/product:
+      shopr/product:
         one: Producto
         other: Productos
-      shoppe/product_attribute:
+      shopr/product_attribute:
         one: Atributo de producto
         other: Atributos de producto
-      shoppe/product_category:
+      shopr/product_category:
         one: Categoría de producto
         other: Categorías de producto
-      shoppe/setting:
+      shopr/setting:
         one: Ajuste
         other: Ajustes
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         one: Ajuste de nivel de stock
         other: Ajustes de nivel de stock
-      shoppe/tax_rate:
+      shopr/tax_rate:
         one: Tasa de impuesto
         other: Tasas de impuesto
-      shoppe/user:
+      shopr/user:
         one: Usuario
         other: Usuarios
 
     attributes:
-      shoppe/order:
+      shopr/order:
         billing_address1: Dirección de facturación 1
         billing_address3: Dirección de facturación 3
         billing_address4: Dirección de facturación 4
@@ -61,25 +61,25 @@ es-US:
         phone_number: Teléfono
         status: Estado
         token: Token
-      shoppe/country:
+      shopr/country:
         name: Nombre
-      shoppe/delivery_service:
+      shopr/delivery_service:
         name: Nombre
         courier: Courier
-      shoppe/delivery_service_price:
+      shopr/delivery_service_price:
         code: Código
         cost_price: Precio de costo
         max_weight: Peso máx
         min_weight: Peso min
         price: Precio
-      shoppe/order_item:
+      shopr/order_item:
         ordered_item: Item
         quantity: Cantidad
-      shoppe/payment:
+      shopr/payment:
         amount: Monto
         method: Método
         reference: Referencia
-      shoppe/product:
+      shopr/product:
         cost_price: Precio de costo
         description: Descripción
         name: Nombre
@@ -88,24 +88,24 @@ es-US:
         short_description: Descripción corta
         sku: SKU
         weight: Peso
-      shoppe/product_attribute:
+      shopr/product_attribute:
         key: Clave
-      shoppe/product_category:
+      shopr/product_category:
         name: Nombre
         permalink: Permalink
-      shoppe/setting:
+      shopr/setting:
         key: Clave
         value: Valor
         value_type: Tipo de valor
-      shoppe/stock_level_adjustment:
+      shopr/stock_level_adjustment:
         adjustment: Ajuste
         description: Descripción
         must_be_greater_or_equal_zero: debe ser mayor o igual a cero
-      shoppe/tax_rate:
+      shopr/tax_rate:
         address_type: Tipo de dirección
         name: Nombre
         rate: Tasa
-      shoppe/user:
+      shopr/user:
         email_address: Dirección de e-mail
         first_name: Nombre
         last_name: Apellido
@@ -119,30 +119,30 @@ es-US:
           many: ! '%{count} errores evitaron que %{model} se haya guardado'
           other: ! '%{count} errores evitaron que %{model} se haya guardado'
       models:
-        shoppe/product_category:
+        shopr/product_category:
           attributes:
             permalink:
               wrong_format: "puede contener solo letras, números, - y _"
-        shoppe/delivery:
+        shopr/delivery:
           attributes:
             delivery_service_id:
               must_be_specified: debe ser especificado
               not_suitable: no es adecuado para esta órden
-        shoppe/order:
+        shopr/order:
           attributes:
             delivery_service_id:
               must_be_specified: debe ser especificado
-        shoppe/product:
+        shopr/product:
           attributes:
             permalink:
               wrong_format: "puede contener solo letras, números, - y _"
             base:
               can_belong_to_root: sólo puede pertencer a un producto raíz
-        shoppe/order_item:
+        shopr/order_item:
           attributes:
             quantity:
               too_high_quantity: es muy alto para la cantidad en stock
-        shoppe/payment:
+        shopr/payment:
           refund_failed: "Los reembolsos deben ser menores que el pago (%{refundable_amount})"
 
   will_paginate:
@@ -176,7 +176,7 @@ es-US:
       delete_confirm: ¿ Está seguro que desea remover éste adjunto ?
       no_attachment: No hay adjuntos
 
-  shoppe:
+  shopr:
 
     # common
     cancel: Cancelar
@@ -501,7 +501,7 @@ es-US:
       reset_notice: "Se ha enviado un e-mail a %{email_address} con una nueva contraseña"
 
     shared:
-      back_to_shoppe: Volver a Shoppe
+      back_to_shopr: Volver a Shopr
       error: Error
       error_occurred: Ha ocurrido un error
 
@@ -640,7 +640,7 @@ es-US:
         currency_unit: El símbolo que se mostrará antes de todos los números relacionados con dinero. Solo aplica a la interfaz de administración y deberá implementarse separadamente en su aplicación base.
         demo_mode: Si lo habilita, su interfaz de administración permitirá el ingreso a cualquier usuario y no permitirá realizar cambios a sus usuarios. Esto debe ser usado con cuidado y nunca ser habilitado en una tienda en producción.
         email_address: La dirección de e-mail que se usará al enviar mensajes. Debe ser solo una dirección de e-mail.
-        store_name: Este es el nombre de su tienda que será usado a través de la interfaz de administración de Shoppe, así como también en los mensajes de correo salientes por defecto.
+        store_name: Este es el nombre de su tienda que será usado a través de la interfaz de administración de Shopr, así como también en los mensajes de correo salientes por defecto.
         tax_name: El nombre para el "impuesto" que será mostrado en su interfaz de administración. Comunmente reemplazado con VAT en los países europeos.
 
       save_settings: Guardar configuración
@@ -654,7 +654,7 @@ es-US:
         tax_name: Tax
 
   layouts:
-    shoppe:
+    shopr:
       application:
         goto: Ir a
         logged_in_as: "Sesión iniciada como: %{user_name}"

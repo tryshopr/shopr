@@ -1,8 +1,8 @@
-# Shoppe Change Log
+# Shopr Change Log
 
 All notable changes to this project will be documented in this file.
 
-The full commit history can be found [on GitHub](http://github.com/tryshoppe/core).
+The full commit history can be found [on GitHub](http://github.com/tryshoppe/shoppe).
 
 ## Unreleased
 * ...
@@ -55,7 +55,7 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 
 * German translations ([#180](https://github.com/tryshoppe/shoppe/pull/180))
 * Multiple product categories with nesting ([#137](https://github.com/tryshoppe/shoppe/pull/137))
-* Added refund callback to Payment model 
+* Added refund callback to Payment model
 
 ## v1.0.5
 
@@ -93,14 +93,14 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 
 * Fixes issues with local jump errors in ActiveRecord blocks
 
-* Renames the `public` scope on `Shoppe::ProductAttribute` to `publicly_accessible` and add deprecation warning for public.
+* Renames the `public` scope on `Shopr::ProductAttribute` to `publicly_accessible` and add deprecation warning for public.
 
 ## v0.0.20
 
 * Add an admin-side order form for adding new orders and editing existing orders
 
-* Adds `Shoppe::NavigationManager` which is used for managing sets of navigation within
-  the Shoppe interface. This allows module developers to add their own when appropriate
+* Adds `Shopr::NavigationManager` which is used for managing sets of navigation within
+  the Shopr interface. This allows module developers to add their own when appropriate
   without needing to hack it into the view.
 
 ## v0.0.19
@@ -108,7 +108,7 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 * Only check that a delivery service is suitable if one has actually been selected. Ensures that
   some orders can have no delivery service associated.
 
-* Add country management to to the Shoppe UI.
+* Add country management to to the Shopr UI.
 
 * Split the order show page into some partials for easier updates later.
 
@@ -117,7 +117,7 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 * The seeds file is now less specific and the delivery services & tax rates contained within
   are not scoped to any countries so always apply.
 
-* Catch `Shoppe::Errors::PaymentDeclined` errors when accepting and rejecting orders.
+* Catch `Shopr::Errors::PaymentDeclined` errors when accepting and rejecting orders.
 
 ## v0.0.18
 
@@ -126,25 +126,25 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 ## v0.0.17
 
 * Adds `number_to_currency` view helper which will use the correct currency as defined in the
-  Shoppe settings.
+  Shopr settings.
 
 * Adds `number_to_weight` which accpets a number of kilogramts and returns the number with the
   appropriate 'kg' suffix.
-  
+
 * Tax rates can choose whether to work with the delivery or billing address on the order
 
-* Order details can be editted through the Shoppe UI
+* Order details can be editted through the Shopr UI
 
 * Orders now have multiple payments associated with them which can be refunded as appropriate
   and module can hook into this as appropriate.
 
-* `Shoppe::Order` and `Shoppe::Payment` models now have `exported` booleans in their schema
-  which module can use to record when an object has been exported to an external system. 
-  Shoppe does not enforce these and they are data-only attributes. 
+* `Shopr::Order` and `Shopr::Payment` models now have `exported` booleans in their schema
+  which module can use to record when an object has been exported to an external system.
+  Shopr does not enforce these and they are data-only attributes.
 
-* `Shoppe::Order` now has a `invoice_number` attribute which can be used by external systems
+* `Shopr::Order` now has a `invoice_number` attribute which can be used by external systems
   to store the invoice number along with the order if one is created. This is displayed with the
-  order details in the Shoppe UI.
+  order details in the Shopr UI.
 
 ## v0.0.16
 
@@ -152,35 +152,35 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 
 * Adds a default to product variants
 
-* **Breaking change:** `Shoppe::Order#address` has been split into `Shoppe::Order#billing_address`
-  and `Shoppe::Order#delivery_address`.
+* **Breaking change:** `Shopr::Order#address` has been split into `Shopr::Order#billing_address`
+  and `Shopr::Order#delivery_address`.
 
 * **Breaking change:** all migrations have been collapsed. You will need to reset your database
   when upgrading to this version.
-  
-* **Breaking change:** settings are now all stored in the database and set up using the 
-  Settings page within the Shoppe interface. There is no need for a `shoppe.yml` config
+
+* **Breaking change:** settings are now all stored in the database and set up using the
+  Settings page within the Shopr interface. There is no need for a `shopr.yml` config
   file. If you have settings in such a file, they should be transferred to your database
   version on upgrade.
 
 ## v0.0.15 - The break everything release
 
-* **Breaking change:** The `Shoppe::OrderItem` model no longer responds to `product` as part 
+* **Breaking change:** The `Shopr::OrderItem` model no longer responds to `product` as part
   of a change to allow items other than products to be ordered. Order items will now respond
-  to `ordered_item` which is a polymorphic association to any model which implements the 
-  `Shoppe::OrderableItem` protocol (see /lib/shoppe/orderable_item.rb). Base applications
+  to `ordered_item` which is a polymorphic association to any model which implements the
+  `Shopr::OrderableItem` protocol (see /lib/shopr/orderable_item.rb). Base applications
   which work with this will need to be updated to use this new association name. Also, the
-  `Shoppe::OrderItem.add_product` has been renamed to `Shoppe::OrderItem.add_item`.
+  `Shopr::OrderItem.add_product` has been renamed to `Shopr::OrderItem.add_item`.
 
-* **Breaking change:** `Shoppe::Product#title` has been renamed to `Shoppe::Product#name`
-  as title was a stupid name for a product. Base application will need to use `name` to 
+* **Breaking change:** `Shopr::Product#title` has been renamed to `Shopr::Product#name`
+  as title was a stupid name for a product. Base application will need to use `name` to
   display the name of a product.
-  
-* **Breaking change:** `Shoppe::StockLevelAdjustment` is now polymorphic rather than only
-  beloning to a product. `StockLevelAdjustment#product` has been replaced with 
+
+* **Breaking change:** `Shopr::StockLevelAdjustment` is now polymorphic rather than only
+  beloning to a product. `StockLevelAdjustment#product` has been replaced with
   `StockLevelAdjustment#item`. This shouldn't require any adjustments to base applications
   unless they interact with the stock level adjustments model directly.
-  
+
 * Moves stock level adjustments into their own polymorphic accessible controller.
 
 * Stock level adjustments are now managable from within a dialog (as well as without)
@@ -190,7 +190,7 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 
 * When accessing the name of an orderable item, you should use `full_name` rather than just
   `name`.
-  
+
 * Adds a demo mode to allow for auto logins and no user editting
 
 ## v0.0.14
@@ -199,8 +199,8 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 
 ## v0.0.13
 
-* Orders have notes which can be viewed & editted through the Shoppe UI.
-* Adjustments to the design in the Shoppe UI.
+* Orders have notes which can be viewed & editted through the Shopr UI.
+* Adjustments to the design in the Shopr UI.
 
 ## v0.0.12
 
@@ -214,10 +214,10 @@ The full commit history can be found [on GitHub](http://github.com/tryshoppe/cor
 * All countries are now stored in the database which will allow for delivery & tax rate decisions to
   be made as appropriate. There is now no need to use things like `country_select` in applications.
   Any existing order which has a country will have this data lost. A rake task method is provide to
-  allow a default set of countries to be imported (`rake shoppe:import_countries`). There is
-  currently no way to manage countries from the Shoppe interface.
+  allow a default set of countries to be imported (`rake shopr:import_countries`). There is
+  currently no way to manage countries from the Shopr interface.
 
-* Items with prices are now assigned to a `Shoppe::TaxRate` object rather than specifying a
+* Items with prices are now assigned to a `Shopr::TaxRate` object rather than specifying a
   percentage on each item manually. This allows rates to be changed globally and allows us to change
   how tax should be charged based
   on other factors (country?).

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Shoppe
+module Shopr
   class ProductCategoriesTest < ActiveSupport::TestCase
     test 'hierarchy_array' do
       parent = create(:parent_category_with_child)

@@ -1,4 +1,4 @@
-module Shoppe
+module Shopr
   FactoryGirl.define do
     factory :uk, class: Country do
       name        'United Kingdom'

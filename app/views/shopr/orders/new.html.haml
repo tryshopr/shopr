@@ -1,0 +1,14 @@
+- @page_title = t('shopr.orders.new_order')
+
+= content_for :header do
+  %p.buttons= link_to t('shopr.orders.back_to_orders'), :orders, :class => 'button grey'
+  %h2.orders= t('shopr.orders.new_order')
+
+= form_for @order, :html => {:class => 'orderForm newOrder'} do |f|
+  = f.error_messages
+  = render 'form', :f => f
+  = field_set_tag t('shopr.orders.ordered_products'), :class => 'padded' do
+    = render 'order_items_form', :f => f
+  %p.submit
+    = f.submit t('shopr.orders.create_order'), :class => 'button green'
+    = link_to t('shopr.cancel'), :orders, :class => 'button grey'

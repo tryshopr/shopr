@@ -1,0 +1,35 @@
+= form_for @country do |f|
+  = f.error_messages
+  = field_set_tag t('shopr.countries.country_details') do
+
+    .splitContainer
+      %dl.third
+        %dt= f.label :name, t('shopr.countries.name')
+        %dd= f.text_field :name, class: 'focus text', :required => true
+      %dl.third
+        %dt= f.label :code2, t('shopr.countries.iso_alpha_2')
+        %dd= f.text_field :code2, class: 'text'
+      %dl.third
+        %dt= f.label :code3, t('shopr.countries.iso_alpha_3')
+        %dd= f.text_field :code3, class: 'text'
+
+    .splitContainer
+      %dl.third
+        %dt= f.label :continent, t('shopr.countries.continent')
+        %dd= f.text_field :continent, class: 'text'
+      %dl.third
+        %dt= f.label :tld, t('shopr.countries.tld')
+        %dd= f.text_field :tld, class: 'text'
+      %dl.third
+        %dt= f.label :eu_member, t('shopr.countries.eu_member')
+        %dd.checkbox
+          = f.check_box :eu_member
+          = f.label :eu_member, t('shopr.countries.is_eu_member')
+
+  %p.submit
+    - unless @country.new_record?
+      %span.right
+        = link_to t('shopr.delete'), @country, class: 'button purple',
+          method: :delete, data: { confirm: t('shopr.countries.delete_confirmation') }
+    = f.submit t('shopr.submit'), class: 'button green'
+    = link_to t('shopr.cancel'), :countries, class: 'button'

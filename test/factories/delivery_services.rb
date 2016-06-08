@@ -1,4 +1,4 @@
-module Shoppe
+module Shopr
   FactoryGirl.define do
     factory :delivery_price, class: DeliveryServicePrice do
       price           5.0

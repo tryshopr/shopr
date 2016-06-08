@@ -1,0 +1,24 @@
+.orderSearch{:style => action_name == 'search' ? "display:block" : ''}
+  = search_form_for @query, :url => search_orders_path, :html => { :method => :post } do |f|
+    %dl.left
+      %dt= f.label :id_eq, t('shopr.orders.order_number')
+      %dd= f.text_field :id_eq
+      %dt= f.label :first_name_or_last_name_or_company_cont, t('shopr.orders.customer')
+      %dd= f.text_field :first_name_or_last_name_or_company_cont
+      %dt= f.label :address1_or_address2_or_address3_or_address4_or_postcode_cont, t('shopr.orders.billing_address')
+      %dd= f.text_field :billing_address1_or_billing_address2_or_billing_address3_or_billing_address4_or_billing_postcode_cont
+      %dt= f.label :consignment_number_cont, t('shopr.orders.consignment_number')
+      %dd= f.text_field :consignment_number_cont
+      %dt= f.label :received_at_eq, t('shopr.orders.received_between')
+      %dd
+        = f.text_field :received_at_gteq, :class => 'small'
+        &rarr;
+        = f.text_field :received_at_lteq, :class => 'small'
+    %dl.right
+      %dt= f.label :email_address_cont, t('shopr.orders.email_address')
+      %dd= f.text_field :email_address_cont
+      %dt= f.label :phone_number_cont, t('shopr.orders.phone_number')
+      %dd= f.text_field :phone_number_cont
+      %dt= f.label :status_eq, t('shopr.orders.status')
+      %dd= f.select :status_eq, [nil] + Shopr::Order::STATUSES.map { |s| [t("shopr.orders.statuses.#{s}"), s]}
+      %dd= f.submit  t('shopr.orders.search'), :class => 'button green button'
