@@ -12,7 +12,7 @@ body { font-family:$font; font-weight: normal; font-size: 100%; min-width:900px;
 @import 'variables';
 
 html.login {
-  background:image-url('shopr/logo.svg') #40454D no-repeat center 100px;
+  background:image-url('shopr/logomark_white.svg') $dark_blue no-repeat center 100px;
   background-size:70px;
 
 	#flash-alert {
@@ -66,7 +66,7 @@ html.login {
 			text-align:center;
 			font-weight:300;
 			font-size:1.4em;
-			color:#40454D;
+			color:$dark_blue;
 			margin-bottom:30px;
 		}
     p.field {

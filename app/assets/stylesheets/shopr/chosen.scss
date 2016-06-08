@@ -1,3 +1,5 @@
+@import 'variables';
+
 /* @group Base */
 .chosen-container {
   position: relative;
@@ -292,7 +294,7 @@
 /* @end */
 /* @group Active  */
 .chosen-container-active .chosen-single {
-  border: 1px solid #9AC835;
+  border: 1px solid $normal_blue;
   //box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 .chosen-container-active.chosen-with-drop .chosen-single {
@@ -316,7 +318,7 @@
   background-position: -18px 2px;
 }
 .chosen-container-active .chosen-choices {
-  border: 1px solid #9AC835;
+  border: 1px solid $normal_blue;
 }
 .chosen-container-active .chosen-choices li.search-field input[type="text"] {
   color: #111 !important;

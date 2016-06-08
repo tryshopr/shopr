@@ -1,7 +1,6 @@
 - @page_title = t('shopr.product_category.product_categories')
 = content_for :header do
   %p.buttons
-    = link_to t('shopr.localisations.localisations') , [@product_category, :localisations], :class => 'button'
     = link_to t('shopr.product_category.back_to_categories'), :product_categories, :class => 'button'
   %h2.products= t('shopr.product_category.product_categories')
 = render 'form'

@@ -13,13 +13,13 @@ html { font-family:$font; font-size:12px; color:#000; -webkit-font-smoothing:ant
 
 nav.sidebar {
 	width:200px;
-	background:#40454D;
+	background:$dark_blue;
 	position:fixed;
 	top:0;
 	bottom:0;
 	header.logo {
 		height:57px;
-		background:image-url('shopr/logo.svg') #9AC835 no-repeat 22px 25px;
+		background:image-url('shopr/logo_white.svg') $normal_blue no-repeat 22px 25px;
 		background-size:45px;
 		padding-left:80px;
 		padding-top:28px;
@@ -551,7 +551,7 @@ input.text, textarea.text {
   box-sizing: border-box;         /* Opera/IE 8+ */
 	font-size:1.1em;
 	font-family:$font;
-	&:focus { border-color:#9AC835; }
+	&:focus { border-color:$normal_blue; }
 	&.short { width:100px;}
 }
 
@@ -562,14 +562,14 @@ div.table {
 	p.info {
 		overflow:hidden;
 		margin-bottom:10px;
-		color:#40454D;
+		color:$dark_blue;
 	}
 }
 
 table.data {
 	width:100%;
 	th, td { padding:10px; vertical-align:middle;}
-	thead th { border:1px solid #40454D; background:#40454D; text-align:left; font-weight:normal; font-size:0.9em; color:#fff; }
+	thead th { border:1px solid $dark_blue; background:$dark_blue; text-align:left; font-weight:normal; font-size:0.9em; color:#fff; }
 	tbody td { border:1px solid #cfd4dd; background:#fff;}
 	a { color:inherit;}
 	tbody th { text-align:left; background:#5B6270; border:1px solid #5B6270;font-size:1.2em; color:#fff;}
@@ -591,7 +591,7 @@ table.data {
 	tbody tr.form {
 		td { background:#f2f6fb;}
 		input[type=text] { border:1px solid #CFD4DD; padding:5px;}
-		input[type=text]:focus { border-color:#9AC835;}
+		input[type=text]:focus { border-color:$normal_blue;}
 		td.desc input[type=text] { width:95%;}
 		td.adjustment input[type=text] { width:50px; margin-right:5px;}
 	}
@@ -612,7 +612,7 @@ nav.pagination {
 		margin-right:3px;
 		color:#333;
 		background:#fff;
-		&.current { background:#9AC835; border-color:#7B9F26; color:#fff; font-weight:600; padding:5px 10px;}
+		&.current { background:$normal_blue; border-color:#7B9F26; color:#fff; font-weight:600; padding:5px 10px;}
 		a {
 			padding:5px 10px;
 			display:inline-block;

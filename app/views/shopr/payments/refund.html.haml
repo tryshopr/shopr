@@ -8,6 +8,6 @@
     .currency= Shopr.settings.currency_unit.html_safe
     = text_field_tag 'amount', @payment.refundable_amount, :class => 'text'
   %p.submit
-    = submit_tag t('shopr.refund.refund'), :class => 'button green'
+    = submit_tag t('shopr.refund.refund'), :class => 'button blue'
     = link_to t('shopr.close'), '#', :class => 'button grey', :rel => 'closeDialog'
 

@@ -40,5 +40,5 @@
   %p.submit
     - unless @delivery_service_price.new_record?
       %span.right= link_to t('shopr.delete'), [@delivery_service, @delivery_service_price], :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this price?"}
-    = f.submit t('shopr.submit'), :class => 'button green'
+    = f.submit t('shopr.submit'), :class => 'button blue'
     = link_to t('shopr.cancel'), [@delivery_service, :delivery_service_prices], :class => 'button'

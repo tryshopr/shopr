@@ -48,10 +48,10 @@
           %dt.padding= label_tag 'consignment_number', t('shopr.orders.consignment_number')
           %dd= text_field_tag 'consignment_number', '', :class => 'text'
         %dl.form
-          %dd= submit_tag t('shopr.orders.mark_as_shipped') , :class => 'button green button-mini'
+          %dd= submit_tag t('shopr.orders.mark_as_shipped') , :class => 'button blue button-mini'
 
     - unless @order.accepted? || @order.rejected?
       %dl.form
         %dd
-          = link_to t('shopr.orders.accept'), [:accept, @order], :method => :post, :class => 'button green'
+          = link_to t('shopr.orders.accept'), [:accept, @order], :method => :post, :class => 'button blue'
           = link_to t('shopr.orders.reject'), [:reject, @order], :method => :post, :class => 'button purple'

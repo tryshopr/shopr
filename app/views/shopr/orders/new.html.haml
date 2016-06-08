@@ -10,5 +10,5 @@
   = field_set_tag t('shopr.orders.ordered_products'), :class => 'padded' do
     = render 'order_items_form', :f => f
   %p.submit
-    = f.submit t('shopr.orders.create_order'), :class => 'button green'
+    = f.submit t('shopr.orders.create_order'), :class => 'button blue'
     = link_to t('shopr.cancel'), :orders, :class => 'button grey'

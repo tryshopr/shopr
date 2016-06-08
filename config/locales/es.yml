@@ -705,24 +705,6 @@ es:
       destroy_notice: Pago eliminado correctamente
       refund_notice: Reembolso procesado correctamente.
 
-    localisations:
-      localisations: Traducciones
-      back: Volver
-      back_to_localisations: Volver
-      localisations_of: Traducciones de %{name}
-      product_information: Información de producto
-      locales: Idiomas
-      choose_locale: Por favor, elija un idioma
-      save_localisation: Guardar traducción
-      new_localisation: Nueva traducción
-      edit_localisation: Editar traducción
-      localisation_created: Traducción creada correctamente
-      localisation_updated: Traducción actualizada correctamente
-      localisation_destroyed: Localización eliminada correctamente
-      language: Idioma
-      no_localisations: Ninguna traducción a mostrar.
-      delete_confirmation: ¿Seguro?
-
     customers:
       customers: Clientes
       new_customer: Nuevo cliente

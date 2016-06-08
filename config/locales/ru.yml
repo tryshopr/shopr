@@ -669,24 +669,6 @@ ru:
       destroy_notice: Платеж успешно удален
       refund_notice: Возврат успешно обработан
 
-    localisations:
-      localisations: Переводы
-      back: Назад
-      back_to_localisations: Назад к переводам
-      localisations_of: Перевод для %{name}
-      product_information: Информация о товаре
-      locales: Языки
-      choose_locale: Пожалуйста, выберите язык
-      save_localisation: Сохранить перевод
-      new_localisation: Новый перевод
-      edit_localisation: Редактировать перевод
-      localisation_created: Перевод успешно создан
-      localisation_updated: Перевод успешно изменен
-      localisation_destroyed: Перевод успешно удален
-      language: Язык
-      no_localisations: Нет переводов для отображения
-      delete_confirmation: Вы уверены?
-
     customers:
       customers: Клиенты
       new_customer: Новый клиент

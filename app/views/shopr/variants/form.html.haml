@@ -63,5 +63,5 @@
   %p.submit
     - unless @variant.new_record?
       %span.right= link_to t('shopr.delete'), product_variant_path(@product, @variant), :class => 'button purple', :method => :delete, :data => {:confirm => t('shopr.variants.delete_confirmation')}
-    = f.submit t('shopr.variants.save_variant'), :class => 'button green'
+    = f.submit t('shopr.variants.save_variant'), :class => 'button blue'
     = link_to t('shopr.cancel'), :products, :class => 'button'

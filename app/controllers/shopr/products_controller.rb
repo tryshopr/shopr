@@ -5,7 +5,7 @@ module Shopr
 
     def index
       @products_paged = Shopr::Product.root
-                                       .includes(:translations, :stock_level_adjustments, :product_categories, :variants)
+                                       .includes(:stock_level_adjustments, :product_categories, :variants)
                                        .order(:name)
       if params[:category_id].present?
         @products_paged = @products_paged

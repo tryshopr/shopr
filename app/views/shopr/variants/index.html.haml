@@ -3,7 +3,7 @@
 = content_for :header do
   %p.buttons
     = link_to t('shopr.variants.edit_product'), [:edit, @product], :class => 'button'
-    = link_to t('shopr.variants.new_variant'), [:new, @product, :variant], :class => 'button green'
+    = link_to t('shopr.variants.new_variant'), [:new, @product, :variant], :class => 'button blue'
 
   %h2.products= t('shopr.variants.variants_of', product: @product.name)
 

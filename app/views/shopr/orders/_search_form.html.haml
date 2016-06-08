@@ -21,4 +21,4 @@
       %dd= f.text_field :phone_number_cont
       %dt= f.label :status_eq, t('shopr.orders.status')
       %dd= f.select :status_eq, [nil] + Shopr::Order::STATUSES.map { |s| [t("shopr.orders.statuses.#{s}"), s]}
-      %dd= f.submit  t('shopr.orders.search'), :class => 'button green button'
+      %dd= f.submit  t('shopr.orders.search'), :class => 'button blue button'

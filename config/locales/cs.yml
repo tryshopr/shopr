@@ -664,24 +664,6 @@ cs:
       destroy_notice: Platba byl úspěšně odstraněn
       refund_notice: vrácení bylo úspěšně zpracováne
 
-    localisations:
-      localisations: Lokalizace
-      back: Zpět
-      back_to_localisations: Zpět na lokalizace
-      localisations_of: lokalizace pro %{name}
-      product_information: Informace o produktu
-      locales: jazyky
-      choose_locale: Zvolte jazyk
-      save_localisation: Uložit překlad
-      new_localisation: Nový překlad
-      edit_localisation: Upravit překlad
-      localisation_created: překladu byl úspěšně vytvořen
-      localisation_updated: překladu úspěšně změněn
-      localisation_destroyed: překlad úspěšně odstraněn
-      language: jazyk
-      no_localisations: nejsou překlady k zobrazení
-      delete_confirmation: jste si jisti?
-
     customers:
       customers: Zákazníci
       new_customer: Nový zákazník

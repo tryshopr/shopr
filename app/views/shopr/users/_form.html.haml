@@ -23,5 +23,5 @@
   %p.submit
     - unless @user.new_record?
       %span.right= link_to t('shopr.delete'), @user, :class => 'button purple', :method => :delete, :data => {:confirm => t('shopr.users.delete_confirmation')}
-    = f.submit  t('shopr.submit'), :class => 'button green'
+    = f.submit  t('shopr.submit'), :class => 'button blue'
     = link_to t('shopr.cancel'), :users, :class => 'button'

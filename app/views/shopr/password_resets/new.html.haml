@@ -7,6 +7,6 @@
     %p.field
       = text_field_tag 'email_address', params[:email_address], :class => 'focus', :placeholder => t('shopr.sessions.email')
     %p.submit
-      = submit_tag t('shopr.sessions.reset')  , :class => 'button green'
+      = submit_tag t('shopr.sessions.reset')  , :class => 'button blue'
     %p.reset
       = link_to t('shopr.sessions.back_to_login') , login_path

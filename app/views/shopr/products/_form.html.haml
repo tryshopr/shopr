@@ -54,38 +54,38 @@
               %td.handle
       %p.addAttribute= link_to t('shopr.products.add_attribute') , '#', :data => {:behavior => 'addAttributeToAttributesTable'}, :class => 'button button-mini green'
 
-  = field_set_tag t('shopr.products.attachments') do
-    .splitContainer
-      %dl.half
-        %dt= f.label "attachments[default_image][file]", t('shopr.products.default_image')
-        %dd
-          = attachment_preview @product.default_image
-          %p= f.file_field "attachments[default_image][file]"
-          = f.hidden_field "attachments[default_image][role]", value: "default_image"
-          = f.hidden_field "attachments[default_image][parent_id]", value: @product.id
-      %dl.half
-        %dt= f.label "attachments[data_sheet][file]", t('shopr.products.datasheet')
-        %dd
-          = attachment_preview @product.data_sheet
-          %p= f.file_field "attachments[data_sheet][file]"
-          = f.hidden_field "attachments[data_sheet][role]", value: "data_sheet"
-          = f.hidden_field "attachments[data_sheet][parent_id]", value: @product.id
+  / = field_set_tag t('shopr.products.attachments') do
+  /   .splitContainer
+  /     %dl.half
+  /       %dt= f.label "attachments[default_image][file]", t('shopr.products.default_image')
+  /       %dd
+  /         = attachment_preview @product.default_image
+  /         %p= f.file_field "attachments[default_image][file]"
+  /         = f.hidden_field "attachments[default_image][role]", value: "default_image"
+  /         = f.hidden_field "attachments[default_image][parent_id]", value: @product.id
+  /     %dl.half
+  /       %dt= f.label "attachments[data_sheet][file]", t('shopr.products.datasheet')
+  /       %dd
+  /         = attachment_preview @product.data_sheet
+  /         %p= f.file_field "attachments[data_sheet][file]"
+  /         = f.hidden_field "attachments[data_sheet][role]", value: "data_sheet"
+  /         = f.hidden_field "attachments[data_sheet][parent_id]", value: @product.id
 
-    .splitContainer.extraAttachments
-      %dl.half
-        %dd
-          = attachment_preview nil, hide_if_blank: false
-          %p= f.file_field "attachments[extra][file]", :multiple => true
-          = f.hidden_field "attachments[extra][parent_type]", value: "Shopr::Product"
-          = f.hidden_field "attachments[extra][parent_id]", value: @product.id
+  /   .splitContainer.extraAttachments
+  /     %dl.half
+  /       %dd
+  /         = attachment_preview nil, hide_if_blank: false
+  /         %p= f.file_field "attachments[extra][file]", :multiple => true
+  /         = f.hidden_field "attachments[extra][parent_type]", value: "Shopr::Product"
+  /         = f.hidden_field "attachments[extra][parent_id]", value: @product.id
 
-      - @product.attachments.each do |attachment|
-        - unless ["default_image", "data_sheet"].include?(attachment.role)
-          %dl.half
-            %dd
-              = attachment_preview attachment
+  /     - @product.attachments.each do |attachment|
+  /       - unless ["default_image", "data_sheet"].include?(attachment.role)
+  /         %dl.half
+  /           %dd
+  /             = attachment_preview attachment
 
-    %p.addAttachments= link_to t('shopr.products.add_attachments') , '#', :data => {:behavior => 'addAttachmentToExtraAttachments'}, :class => 'button button-mini green'
+  /   %p.addAttachments= link_to t('shopr.products.add_attachments') , '#', :data => {:behavior => 'addAttachmentToExtraAttachments'}, :class => 'button button-mini green'
 
   - unless @product.has_variants?
     = field_set_tag t('shopr.products.pricing') do
@@ -134,5 +134,5 @@
   %p.submit
     - unless @product.new_record?
       %span.right= link_to t('shopr.delete') , @product, :class => 'button purple', :method => :delete, :data => {:confirm => "Are you sure you wish to remove this product?"}
-    = f.submit t('shopr.submit'),  :class => 'button green'
+    = f.submit t('shopr.submit'),  :class => 'button blue'
     = link_to t('shopr.cancel'), :products, :class => 'button'

@@ -6,12 +6,9 @@ Shopr::Engine.routes.draw do
     resources :addresses
   end
 
-  resources :product_categories do
-    resources :localisations, controller: 'product_category_localisations'
-  end
+  resources :product_categories
   resources :products do
     resources :variants
-    resources :localisations, controller: 'product_localisations'
     collection do
       get :import
       post :import

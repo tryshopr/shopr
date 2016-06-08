@@ -32,6 +32,6 @@
                   method: :delete,
                   data: {confirm: t('shopr.customers.delete_confirmation')}
     = f.submit t('shopr.customers.save'),
-               class: 'button green',
+               class: 'button blue',
                data: {disable_with: (@customer.new_record? ? t('shopr.customers.creating_customer') : t('shopr.customers.updating_customer'))}
     = link_to t('shopr.customers.cancel'), :customers, class: 'button'
