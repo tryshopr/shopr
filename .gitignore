@@ -11,10 +11,3 @@ spec/dummy/.sass-cache
 doc/
 .yardoc
 .DS_Store
-
-test_old/app/db/*.sqlite3
-test_old/app/db/*.sqlite3-journal
-test_old/app/config/database.yml
-test_old/app/log/*.log
-test_old/app/tmp/
-test_old/app/.sass-cache
