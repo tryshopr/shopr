@@ -396,7 +396,7 @@ Style/NegatedWhile:
 Style/NestedTernaryOperator:
   Description: 'Use one expression per branch in a ternary operator.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-nested-ternary'
-  Enabled: true
+  Enabled: false
 
 Style/Next:
   Description: 'Use `next` to skip iteration instead of a condition at the end.'
@@ -944,3 +944,9 @@ Lint/Void:
 
 Rails:
   Enabled: true
+
+Rails/FindBy:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false

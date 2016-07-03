@@ -1,11 +1,11 @@
 module Shopr
   FactoryGirl.define do
     factory :user, class: User do
-      first_name              'Adam'
-      last_name               'Cooke'
-      email_address           'adam@niftyware.io'
-      password                'llamafarm'
-      password_confirmation   'llamafarm'
+      first_name              'Someone'
+      last_name               'Something'
+      email                   'someone@something.com'
+      password                'password'
+      password_confirmation   'password'
     end
   end
 end
