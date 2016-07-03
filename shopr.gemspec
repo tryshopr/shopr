@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.description = 'Shopr is a fully featured ecommerce engine for Rails 5 (forked from Shoppe)'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency 'rails', '>= 5.0.0', '< 5.1'
   s.add_dependency 'devise'
@@ -43,4 +44,13 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'#, '~> 4.5'
   s.add_development_dependency 'brakeman'#, '~> 4.5'
   s.add_development_dependency 'rubocop'#, '~> 4.5'
+
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'rspec-core'
+  s.add_development_dependency 'rspec-expectations'
+  s.add_development_dependency 'rspec-mocks'
+  s.add_development_dependency 'rspec-support'
+  s.add_development_dependency 'shoulda-matchers'
+  s.add_development_dependency 'shoulda-callback-matchers'
 end

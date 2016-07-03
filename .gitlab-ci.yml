@@ -13,7 +13,7 @@ rspec:
   - cp test/app/config/database.test.yml test/app/config/database.yml
   - sed "s/_test/_test_$CI_BUILD_ID/" -i test/app/config/database.yml
   - bundle exec rake db:create db:schema:load
-  - bundle exec rake test
+  - bundle exec rspec
   stage: test
 
 rubocop:

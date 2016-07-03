@@ -1,0 +1,17 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: shopr
+  pool: 5
+  username: root
+  password:
+  host: localhost
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: shopr_test
+  pool: 5
+  username: root
+  password:
+  host: localhost

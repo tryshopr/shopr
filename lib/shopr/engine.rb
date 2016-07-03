@@ -10,7 +10,8 @@ module Shopr
     # We don't want any automatic generators in the engine.
     config.generators do |g|
       g.orm             :active_record
-      g.test_framework  false
+      g.test_framework  :rspec
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
       g.stylesheets     false
       g.javascripts     false
       g.helper          false
