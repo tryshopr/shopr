@@ -1,5 +1,7 @@
 # Shopr
 
+[![Build Status](https://travis-ci.org/shoprgem/shopr.svg?branch=master)](https://travis-ci.org/shoprgem/shopr)
+
 Shopr is an Rails ecommerce engine which allows you to easily introduce a store into your Rails 5 applications.
 
 ## Features
@@ -32,6 +34,12 @@ rails generate shopr:install:migrations
 rake db:migrate shopr:setup
 rails server
 ```
+
+## Differences from Shoppe
+
++ Devise is now used for authentication
++ Tested with RSpec
++ Product & Product Category translations have been removed
 
 ## Contribution
 
