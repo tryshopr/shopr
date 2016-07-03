@@ -40,4 +40,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'yard-activerecord'#, '~> 0'
   s.add_development_dependency 'markdown'#, '~> 1.0'
   s.add_development_dependency 'factory_girl_rails'#, '~> 4.5'
+  s.add_development_dependency 'brakeman'#, '~> 4.5'
+  s.add_development_dependency 'rubocop'#, '~> 4.5'
 end
