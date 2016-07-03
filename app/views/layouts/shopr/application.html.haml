@@ -19,7 +19,7 @@
         - for item in Shopr::NavigationManager.find(:admin_primary).items
           %li= navigation_manager_link item
 
-        %li=# link_to t('.logout'), [:logout], :method => :delete
+        %li= link_to t('.logout'), destroy_user_session_path, method: :delete
 
     %header.main
       = yield :header
