@@ -1,8 +1,8 @@
 module Shopr
   class DeliveryServicePricesController < Shopr::ApplicationController
-    before_filter { @active_nav = :delivery_services }
-    before_filter { @delivery_service = Shopr::DeliveryService.find(params[:delivery_service_id]) }
-    before_filter { params[:id] && @delivery_service_price = @delivery_service.delivery_service_prices.find(params[:id]) }
+    before_action { @active_nav = :delivery_services }
+    before_action { @delivery_service = Shopr::DeliveryService.find(params[:delivery_service_id]) }
+    before_action { params[:id] && @delivery_service_price = @delivery_service.delivery_service_prices.find(params[:id]) }
 
     def index
       @delivery_service_prices = @delivery_service.delivery_service_prices.ordered

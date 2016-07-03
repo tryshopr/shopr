@@ -30,7 +30,7 @@ module Shopr
 
     # Return the attachment for a given role
     def self.for(role)
-      where(role: role).first
+      find_by(role: role)
     end
 
     # Return the path to the attachment

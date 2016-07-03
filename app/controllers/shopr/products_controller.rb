@@ -1,32 +1,31 @@
 module Shopr
   class ProductsController < Shopr::ApplicationController
-    before_filter { @active_nav = :products }
-    before_filter { params[:id] && @product = Shopr::Product.root.find(params[:id]) }
+    before_action { @active_nav = :products }
+    before_action { params[:id] && @product = Shopr::Product.root.find(params[:id]) }
 
     def index
       @products_paged = Shopr::Product.root
-                                       .includes(:stock_level_adjustments, :product_categories, :variants)
-                                       .order(:name)
+                                      .includes(:stock_level_adjustments, :product_categories, :variants)
+                                      .order(:name)
       if params[:category_id].present?
         @products_paged = @products_paged
                           .where('shopr_product_categorizations.product_category_id = ?', params[:category_id])
       end
 
-      case
-      when params[:sku]
-        @products_paged = @products_paged
-                          .with_translations(I18n.locale)
-                          .page(params[:page])
-                          .ransack(sku_cont_all: params[:sku].split).result
-      when params[:name]
-        @products_paged = @products_paged
-                          .with_translations(I18n.locale)
-                          .page(params[:page])
-                          .ransack(translations_name_or_translations_description_cont_all: params[:name].split)
-                          .result
-      else
-        @products_paged = @products_paged.page(params[:page])
-      end
+      @products_paged = if params[:sku]
+                          @products_paged
+                            .with_translations(I18n.locale)
+                            .page(params[:page])
+                            .ransack(sku_cont_all: params[:sku].split).result
+                        elsif params[:name]
+                          @products_paged
+                            .with_translations(I18n.locale)
+                            .page(params[:page])
+                            .ransack(translations_name_or_translations_description_cont_all: params[:name].split)
+                            .result
+                        else
+                          @products_paged.page(params[:page])
+                        end
 
       @products = @products_paged
                   .group_by(&:product_category)

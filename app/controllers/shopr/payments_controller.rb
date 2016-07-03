@@ -1,7 +1,7 @@
 module Shopr
   class PaymentsController < ApplicationController
-    before_filter { @order = Shopr::Order.find(params[:order_id]) }
-    before_filter { params[:id] && @payment = @order.payments.find(params[:id]) }
+    before_action { @order = Shopr::Order.find(params[:order_id]) }
+    before_action { params[:id] && @payment = @order.payments.find(params[:id]) }
 
     def create
       payment = @order.payments.build(params[:payment].permit(:amount, :method, :reference))

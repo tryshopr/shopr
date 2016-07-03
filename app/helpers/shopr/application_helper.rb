@@ -25,14 +25,14 @@ module Shopr
           s << '</span>'
           s << '</div>'
           s << '</div>'
-        end.html_safe
+        end.safe_join
       elsif !options[:hide_if_blank]
-        "<div class='attachmentPreview'><div class='imgContainer'><div class='img none'></div></div><div class='desc none'>#{t('helpers.attachment_preview.no_attachment')},</div></div>".html_safe
+        "<div class='attachmentPreview'><div class='imgContainer'><div class='img none'></div></div><div class='desc none'>#{t('helpers.attachment_preview.no_attachment')},</div></div>".safe_join
       end
     end
 
     def settings_label(field)
-      "<label for='settings_#{field}'>#{t("shopr.settings.labels.#{field}")}</label>".html_safe
+      "<label for='settings_#{field}'>#{t("shopr.settings.labels.#{field}")}</label>".safe_join
     end
 
     def settings_field(field, options = {})
@@ -49,7 +49,7 @@ module Shopr
           s << radio_button_tag("settings[#{field}]", 'false', value == false, id: "settings_#{field}_false")
           s << label_tag("settings_#{field}_false", t("shopr.settings.options.#{field}.negative", default: 'No'))
           s << '</div>'
-        end.html_safe
+        end.safe_join
       else
         text_field_tag "settings[#{field}]", value, options.merge(placeholder: default, class: 'text')
       end

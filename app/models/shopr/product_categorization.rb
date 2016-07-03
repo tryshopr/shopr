@@ -7,6 +7,6 @@ module Shopr
     belongs_to :product_category, class_name: 'Shopr::ProductCategory'
 
     # Validations
-    validates_presence_of :product, :product_category
+    validates :product, :product_category, presence: true
   end
 end

@@ -96,7 +96,7 @@ module Shopr
     #
     # @return [BigDecimal]
     def weight
-      read_attribute(:weight) || ordered_item.try(:weight) || BigDecimal(0)
+      self[:weight] || ordered_item.try(:weight) || BigDecimal(0)
     end
 
     # Return the total weight of the item
@@ -110,28 +110,28 @@ module Shopr
     #
     # @return [BigDecimal]
     def unit_price
-      read_attribute(:unit_price) || ordered_item.try(:price) || BigDecimal(0)
+      self[:unit_price] || ordered_item.try(:price) || BigDecimal(0)
     end
 
     # The cost price for the item
     #
     # @return [BigDecimal]
     def unit_cost_price
-      read_attribute(:unit_cost_price) || ordered_item.try(:cost_price) || BigDecimal(0)
+      self[:unit_cost_price] || ordered_item.try(:cost_price) || BigDecimal(0)
     end
 
     # The tax rate for the item
     #
     # @return [BigDecimal]
     def tax_rate
-      read_attribute(:tax_rate) || ordered_item.try(:tax_rate).try(:rate_for, order) || BigDecimal(0)
+      self[:tax_rate] || ordered_item.try(:tax_rate).try(:rate_for, order) || BigDecimal(0)
     end
 
     # The total tax for the item
     #
     # @return [BigDecimal]
     def tax_amount
-      read_attribute(:tax_amount) || (sub_total / BigDecimal(100)) * tax_rate
+      self[:tax_amount] || (sub_total / BigDecimal(100)) * tax_rate
     end
 
     # The total cost for the product
@@ -157,10 +157,10 @@ module Shopr
 
     # Cache the pricing for this order item
     def cache_pricing
-      write_attribute :weight, weight
-      write_attribute :unit_price, unit_price
-      write_attribute :unit_cost_price, unit_cost_price
-      write_attribute :tax_rate, tax_rate
+      self[:weight] = weight
+      self[:unit_price] = unit_price
+      self[:unit_cost_price] = unit_cost_price
+      self[:tax_rate] = tax_rate
     end
 
     # Cache the pricing for this order item and save

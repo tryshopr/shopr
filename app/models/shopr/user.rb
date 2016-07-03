@@ -38,7 +38,7 @@ module Shopr
     # @param paassword [String]
     # @return [Shopr::User]
     def self.authenticate(email_address, password)
-      user = where(email_address: email_address).first
+      user = find_by(email_address: email_address)
       return false if user.nil?
       return false unless user.authenticate(password)
       user

@@ -2,7 +2,7 @@ module Shopr
   class ApplicationController < ActionController::Base
     protect_from_forgery
 
-    before_filter :login_required
+    before_action :login_required
 
     rescue_from ActiveRecord::DeleteRestrictionError do |e|
       redirect_to request.referer || root_path, alert: e.message

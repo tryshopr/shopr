@@ -17,7 +17,7 @@
   = field_set_tag t('shopr.tax_rates.country_restriction') do
     %dl
       %dd
-        = f.select :address_type, Shopr::TaxRate::ADDRESS_TYPES.map { |a| [t('shopr.tax_rates.address_type_option', address: t("shopr.tax_rates.#{a}")).html_safe, a]}, {}, :class => 'chosen-basic'
+        = f.select :address_type, Shopr::TaxRate::ADDRESS_TYPES.map { |a| [t('shopr.tax_rates.address_type_option', address: t("shopr.tax_rates.#{a}")).safe_join, a]}, {}, :class => 'chosen-basic'
     %dl
       %dd
         = f.collection_select :country_ids, Shopr::Country.ordered, :id, :name, {}, {:class => 'chosen', :multiple => true, :data => {:placeholder => t('shopr.tax_rates.all_countries') }}

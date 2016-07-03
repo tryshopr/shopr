@@ -3,4 +3,4 @@
 .error
   %h2= t('shopr.shared.error_occured')
   %p.message= @exception.message
-  %p.back= link_to "&larr;#{t('shopr.shared.back_to_shopr')}".html_safe, root_path, :class => 'button'
+  %p.back= link_to "&larr;#{t('shopr.shared.back_to_shopr')}".safe_join, root_path, :class => 'button'

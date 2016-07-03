@@ -1,7 +1,7 @@
 module Shopr
   class SessionsController < Shopr::ApplicationController
     layout 'shopr/sub'
-    skip_before_filter :login_required, only: [:new, :create]
+    skip_before_action :login_required, only: [:new, :create]
 
     def create
       if user = Shopr::User.authenticate(params[:email_address], params[:password])

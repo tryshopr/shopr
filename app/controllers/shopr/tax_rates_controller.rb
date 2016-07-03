@@ -1,7 +1,7 @@
 module Shopr
   class TaxRatesController < Shopr::ApplicationController
-    before_filter { @active_nav = :tax_rates }
-    before_filter { params[:id] && @tax_rate = Shopr::TaxRate.find(params[:id]) }
+    before_action { @active_nav = :tax_rates }
+    before_action { params[:id] && @tax_rate = Shopr::TaxRate.find(params[:id]) }
 
     def index
       @tax_rates = Shopr::TaxRate.ordered.all

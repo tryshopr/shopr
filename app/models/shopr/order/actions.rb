@@ -36,7 +36,7 @@ module Shopr
         # If we have successfully charged the card (i.e. no exception) we can go ahead and mark this
         # order as 'received' which means it can be accepted by staff.
         self.status = 'received'
-        self.received_at = Time.now
+        self.received_at = Time.current
         save!
 
         order_items.each(&:confirm!)
@@ -54,7 +54,7 @@ module Shopr
     # @param user [Shopr::User] the user who carried out this action
     def accept!(user = nil)
       run_callbacks :acceptance do
-        self.accepted_at = Time.now
+        self.accepted_at = Time.current
         self.accepter = user if user
         self.status = 'accepted'
         save!
@@ -68,7 +68,7 @@ module Shopr
     # @param user [Shopr::User] the user who carried out the action
     def reject!(user = nil)
       run_callbacks :rejection do
-        self.rejected_at = Time.now
+        self.rejected_at = Time.current
         self.rejecter = user if user
         self.status = 'rejected'
         save!

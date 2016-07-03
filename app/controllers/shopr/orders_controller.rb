@@ -1,7 +1,7 @@
 module Shopr
   class OrdersController < Shopr::ApplicationController
-    before_filter { @active_nav = :orders }
-    before_filter { params[:id] && @order = Shopr::Order.find(params[:id]) }
+    before_action { @active_nav = :orders }
+    before_action { params[:id] && @order = Shopr::Order.find(params[:id]) }
 
     def index
       @query = Shopr::Order.ordered.received.includes(order_items: :ordered_item).page(params[:page]).search(params[:q])

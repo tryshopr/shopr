@@ -50,7 +50,7 @@ module Shopr
     # If an order has been received and something changes the delivery service or the delivery price
     # is cleared, we will re-cache all the delivery pricing so that we have the latest.
     before_save do
-      if received? && (delivery_service_id_changed? || (delivery_price_changed? && read_attribute(:delivery_price).blank?))
+      if received? && (delivery_service_id_changed? || (delivery_price_changed? && self[:delivery_price].blank?))
         self.delivery_price = nil
         self.delivery_cost_price = nil
         self.delivery_tax_rate = nil
@@ -83,16 +83,16 @@ module Shopr
     # Cache delivery prices for the order
     def cache_delivery_pricing
       if delivery_service
-        write_attribute :delivery_service_id, delivery_service.id
-        write_attribute :delivery_price, delivery_price
-        write_attribute :delivery_cost_price, delivery_cost_price
-        write_attribute :delivery_tax_rate, delivery_tax_rate
+        self[:delivery_service_id] = delivery_service.id
+        self[:delivery_price] = delivery_price
+        self[:delivery_cost_price] = delivery_cost_price
+        self[:delivery_tax_rate] = delivery_tax_rate
       else
-        write_attribute :delivery_service_id, nil
-        write_attribute :delivery_price, nil
-        write_attribute :delivery_cost_price, nil
-        write_attribute :delivery_tax_rate, nil
-        write_attribute :delivery_tax_amount, nil
+        self[:delivery_service_id] = nil
+        self[:delivery_price] = nil
+        self[:delivery_cost_price] = nil
+        self[:delivery_tax_rate] = nil
+        self[:delivery_tax_amount] = nil
       end
     end
 
@@ -162,21 +162,21 @@ module Shopr
     #
     # @return [BigDecimal]
     def delivery_price
-      read_attribute(:delivery_price) || delivery_service_price.try(:price) || BigDecimal(0)
+      self[:delivery_price] || delivery_service_price.try(:price) || BigDecimal(0)
     end
 
     # The cost of delivering this order in its current state
     #
     # @return [BigDecimal]
     def delivery_cost_price
-      read_attribute(:delivery_cost_price) || delivery_service_price.try(:cost_price) || BigDecimal(0)
+      self[:delivery_cost_price] || delivery_service_price.try(:cost_price) || BigDecimal(0)
     end
 
     # The tax amount due for the delivery of this order in its current state
     #
     # @return [BigDecimal]
     def delivery_tax_amount
-      read_attribute(:delivery_tax_amount) ||
+      self[:delivery_tax_amount] ||
         delivery_price / BigDecimal(100) * delivery_tax_rate
     end
 
@@ -184,7 +184,7 @@ module Shopr
     #
     # @return [BigDecimal]
     def delivery_tax_rate
-      read_attribute(:delivery_tax_rate) ||
+      self[:delivery_tax_rate] ||
         delivery_service_price.try(:tax_rate).try(:rate_for, self) ||
         BigDecimal(0)
     end
@@ -215,7 +215,7 @@ module Shopr
     # Mark this order as shipped
     def ship!(consignment_number, user = nil)
       run_callbacks :ship do
-        self.shipped_at = Time.now
+        self.shipped_at = Time.current
         self.shipper = user if user
         self.status = 'shipped'
         self.consignment_number = consignment_number

@@ -1,8 +1,8 @@
 module Shopr
   class VariantsController < ApplicationController
-    before_filter { @active_nav = :products }
-    before_filter { @product = Shopr::Product.find(params[:product_id]) }
-    before_filter { params[:id] && @variant = @product.variants.find(params[:id]) }
+    before_action { @active_nav = :products }
+    before_action { @product = Shopr::Product.find(params[:product_id]) }
+    before_action { params[:id] && @variant = @product.variants.find(params[:id]) }
 
     def index
       @variants = @product.variants.ordered

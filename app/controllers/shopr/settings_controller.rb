@@ -1,6 +1,6 @@
 module Shopr
   class SettingsController < ApplicationController
-    before_filter { @active_nav = :settings }
+    before_action { @active_nav = :settings }
 
     def update
       if Shopr.settings.demo_mode?

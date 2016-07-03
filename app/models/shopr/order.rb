@@ -72,9 +72,7 @@ module Shopr
     # Is this order empty? (i.e. doesn't have any items associated with it)
     #
     # @return [Boolean]
-    def empty?
-      order_items.empty?
-    end
+    delegate :empty?, to: :order_items
 
     # Does this order have items?
     #

@@ -1,7 +1,7 @@
 module Shopr
   class PasswordResetsController < Shopr::ApplicationController
     layout 'shopr/sub'
-    skip_before_filter :login_required
+    skip_before_action :login_required
 
     def create
       if user = Shopr::User.find_by_email_address(params[:email_address])
