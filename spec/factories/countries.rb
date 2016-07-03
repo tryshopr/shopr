@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :uk, class: Shopr::Country do
+  factory :united_kingdom, class: Shopr::Country do
     name        'United Kingdom'
     code2       'GB'
     code3       'GBR'
@@ -9,7 +9,7 @@ FactoryGirl.define do
     eu_member   true
   end
 
-  factory :us, class: Shopr::Country do
+  factory :united_states, class: Shopr::Country do
     name        'United States of America'
     code2       'US'
     code3       'USA'
