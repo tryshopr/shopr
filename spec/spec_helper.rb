@@ -8,8 +8,12 @@ require 'factory_girl_rails'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Set Factory Girl factories locations
-FactoryGirl.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
-FactoryGirl.find_definitions
+# first init will load factories, this should only run on subsequent reloads
+unless FactoryGirl.factories.blank?
+  FactoryGirl.factories.clear
+  FactoryGirl.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
+  FactoryGirl.find_definitions
+end
 
 # Load Shoulda
 Shoulda::Matchers.configure do |config|

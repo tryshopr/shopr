@@ -395,7 +395,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  awesome_nested_set (~> 3.0)
   brakeman
   coffee-rails
   factory_girl_rails
