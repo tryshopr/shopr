@@ -9,7 +9,7 @@
     %dt= f.label :amount, t('shopr.orders.amount')
     %dd
       .moneyInput
-        .currency= Shopr.settings.currency_unit.safe_join
+        .currency= Shopr.settings.currency_unit.html_safe
         = f.text_field :amount, :class => 'text'
   %dl.submit
     %dd= f.submit t('shopr.orders.add_payment') , :class => 'button blue'

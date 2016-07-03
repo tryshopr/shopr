@@ -1,4 +1,7 @@
 Shopr::Engine.routes.draw do
+
+  devise_for :users, class_name: "Shopr::User", module: :devise
+
   get 'attachment/:id/:filename.:extension' => 'attachments#show'
 
   resources :customers do
@@ -40,12 +43,5 @@ Shopr::Engine.routes.draw do
   get 'settings' => 'settings#edit'
   post 'settings' => 'settings#update'
 
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-
-  get 'login/reset' => 'password_resets#new'
-  post 'login/reset' => 'password_resets#create'
-
-  delete 'logout' => 'sessions#destroy'
   root to: 'dashboard#home'
 end

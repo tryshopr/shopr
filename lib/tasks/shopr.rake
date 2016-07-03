@@ -6,7 +6,7 @@ namespace :shopr do
 
   desc 'Create a default admin user'
   task create_default_user: :environment do
-    Shopr::User.create(email_address: 'admin@example.com', password: 'password', password_confirmation: 'password', first_name: 'Default', last_name: 'Admin')
+    Shopr::User.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password', first_name: 'Default', last_name: 'Admin')
     puts
     puts '    New user has been created successfully.'
     puts

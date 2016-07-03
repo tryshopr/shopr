@@ -12,7 +12,7 @@
 
 .table
   %p.info
-    = t('shopr.stock_level_adjustments.current_stock_level_html', item_stock: @item.stock).safe_join
+    = t('shopr.stock_level_adjustments.current_stock_level_html', item_stock: @item.stock).html_safe
     %span.float-right= page_entries_info @stock_level_adjustments
 
   = form_for @new_sla do |f|

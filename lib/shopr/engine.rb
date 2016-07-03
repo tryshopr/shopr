@@ -17,6 +17,9 @@ module Shopr
     end
 
     config.to_prepare do
+      # Set Devise layout
+      Devise::SessionsController.layout "shopr/sub"
+
       Dir.glob(Rails.root + 'app/decorators/**/*_decorator*.rb').each do |c|
         require_dependency(c)
       end

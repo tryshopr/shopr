@@ -2,7 +2,8 @@ module Shopr
   class ApplicationController < ActionController::Base
     protect_from_forgery
 
-    before_action :login_required
+    # before_action :login_required
+    before_action :authenticate_user!
 
     rescue_from ActiveRecord::DeleteRestrictionError do |e|
       redirect_to request.referer || root_path, alert: e.message
@@ -15,27 +16,13 @@ module Shopr
 
     private
 
-    def login_required
-      redirect_to login_path unless logged_in?
-    end
-
-    def logged_in?
-      current_user.is_a?(User)
-    end
-
-    def current_user
-      @current_user ||= login_from_session || login_with_demo_mode || :false
-    end
-
-    def login_from_session
-      if session[:shopr_user_id]
-        @user = User.find_by_id(session[:shopr_user_id])
-      end
-    end
-
-    def login_with_demo_mode
-      @user = User.first if Shopr.settings.demo_mode?
-    end
+    # def login_required
+    #   if Shopr.settings.demo_mode?
+    #     current_user = User.first
+    #   elsif
+    #     :authenticate_user!
+    #   end
+    # end
 
     helper_method :current_user, :logged_in?
   end

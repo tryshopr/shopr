@@ -19,7 +19,7 @@
         - for item in Shopr::NavigationManager.find(:admin_primary).items
           %li= navigation_manager_link item
 
-        %li= link_to t('.logout'), [:logout], :method => :delete
+        %li=# link_to t('.logout'), [:logout], :method => :delete
 
     %header.main
       = yield :header
@@ -30,5 +30,5 @@
         = yield
 
     %footer
-      %p.store= link_to "&larr; #{t('.goto')} #{Shopr.settings.store_name}".safe_join, '/'
+      %p.store= link_to "&larr; #{t('.goto')} #{Shopr.settings.store_name}".html_safe, '/'
 

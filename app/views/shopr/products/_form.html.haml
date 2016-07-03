@@ -94,13 +94,13 @@
           %dt= f.label :price, t('shopr.products.price')
           %dd
             .moneyInput
-              .currency= Shopr.settings.currency_unit.safe_join
+              .currency= Shopr.settings.currency_unit.html_safe
               = f.text_field :price, :class => 'text'
         %dl.third
           %dt= f.label :cost_price, t('shopr.products.cost_price')
           %dd
             .moneyInput
-              .currency= Shopr.settings.currency_unit.safe_join
+              .currency= Shopr.settings.currency_unit.html_safe
               = f.text_field :cost_price, :class => 'text'
         %dl.third
           %dt= f.label :tax_rate_id, t('shopr.products.tax_rate')

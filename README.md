@@ -28,8 +28,7 @@ rails new my_store
 cd my_store
 echo "gem 'shopr'" >> Gemfile
 bundle
-rails generate shopr:setup
-rails generate nifty:key_value_store:migration
+rails generate shopr:install:migrations
 rake db:migrate shopr:setup
 rails server
 ```
