@@ -1,6 +1,6 @@
 # Shopr
 
-Shopr is an Rails ecommerce engine which allows you to easily introduce a store into your Rails 4 applications.
+Shopr is an Rails ecommerce engine which allows you to easily introduce a store into your Rails 5 applications.
 
 ## Features
 
@@ -37,7 +37,7 @@ rails server
 ## Contribution
 
 If you'd like to help with this project, please get in touch with me. The best place is on
-Twitter (@deanpcmad) or by e-mail to dean@deanpcmad.com.
+Twitter ([@deanpcmad](https://twitter.com/deanpcmad)) or by e-mail to dean@deanpcmad.com.
 
 ## License
 
