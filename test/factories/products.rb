@@ -9,7 +9,7 @@ module Shopr
       end
 
       after(:build) do |product, _ev|
-        pc = ProductCategory.joins(:translations).find_by_permalink('phones') || build(:phones_category)
+        pc = ProductCategory.find_by_permalink('phones') || build(:phones_category)
         product.product_categories << pc
       end
 
