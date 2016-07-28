@@ -1,8 +1,15 @@
 # Shopr
 
-[![Build Status](https://travis-ci.org/shoprgem/shopr.svg?branch=master)](https://travis-ci.org/shoprgem/shopr)
+[![Build Status](https://travis-ci.org/shoprgem/shopr.svg)](https://travis-ci.org/shoprgem/shopr)
+[![Gem Version](https://badge.fury.io/rb/shopr.svg)](http://badge.fury.io/rb/shopr)
 
 Shopr is an Rails ecommerce engine which allows you to easily introduce a store into your Rails 5 applications.
+
+Shopr is a rewrite of [Shoppe](https://github.com/tryshoppe/shoppe) (originally created by [Adam Cooke](http://twitter.com/adamcooke))
+and created and maintained by [Dean Perry](https://github.com/deanpcmad) and a great group of [contributors](https://github.com/shoprgem/shopr/graphs/contributors).
+While it supports many of the same features as Shoppe, its underlying implementation differs greatly and backwards compatibility is not a design goal.
+
+**Shopr is currently still under development.**
 
 ## Features
 
