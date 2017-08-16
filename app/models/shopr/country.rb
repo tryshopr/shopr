@@ -6,7 +6,7 @@ module Shopr
   # into your database. This automatically happens when you run the 'shopr:setup'
   # rake task.
 
-  class Country < ActiveRecord::Base
+  class Country < ApplicationRecord
     self.table_name = 'shopr_countries'
 
     # All orders which have this country set as their billing country

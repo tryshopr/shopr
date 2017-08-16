@@ -143,7 +143,7 @@ module Shopr
       # check the order requires delivery
       assert_equal true, order.delivery_required?
       # check that the default delivery service was automatically selected
-      assert_equal DeliveryService.find_by_code('ND'), order.delivery_service
+      assert_equal DeliveryService.find_by(code: 'ND'), order.delivery_service
       # check that there are two other services available
       assert_equal 2, order.available_delivery_services.size
       # check that the price has been made available
@@ -250,8 +250,8 @@ module Shopr
         assert_equal true, item.in_stock?
       end
       # ensure that the stock has been updated for the products
-      assert_equal 8, Product.find_by_sku('YT22P').stock
-      assert_equal 9, Product.find_by_sku('SN870').stock
+      assert_equal 8, Product.find_by(sku: 'YT22P').stock
+      assert_equal 9, Product.find_by(sku: 'SN870').stock
     end
 
     test "confirmation fails when there isn't enough stock to complete the order (and removes item without stock)" do
@@ -377,7 +377,7 @@ module Shopr
       assert_equal 3, order.available_delivery_services.size
       assert_equal 3, order.delivery_service_prices.size
       # check the default delivery service has been selected
-      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal DeliveryService.find_by(default: true), order.delivery_service
       # check that the prices for this service are correct
       assert_equal BigDecimal(5), order.delivery_price
       assert_equal BigDecimal(2.5, 8), order.delivery_cost_price
@@ -391,7 +391,7 @@ module Shopr
       # check that the lowest service has vanished leaving us with sat & nD
       assert_equal 2, order.available_delivery_services.size
       assert_equal 2, order.delivery_service_prices.size
-      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal DeliveryService.find_by(default: true), order.delivery_service
       assert_equal BigDecimal(8), order.delivery_price
       assert_equal BigDecimal(4), order.delivery_cost_price
       assert_equal BigDecimal(20), order.delivery_tax_rate
@@ -404,7 +404,7 @@ module Shopr
       # check that the lowest service has vanished leaving us with sat & nD
       assert_equal 2, order.available_delivery_services.size
       assert_equal 2, order.delivery_service_prices.size
-      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal DeliveryService.find_by(default: true), order.delivery_service
       assert_equal BigDecimal(12), order.delivery_price
       assert_equal BigDecimal(6), order.delivery_cost_price
       assert_equal BigDecimal(20), order.delivery_tax_rate
@@ -468,7 +468,7 @@ module Shopr
       order.delivery_address3 = 'Line 3'
       order.delivery_address4 = 'Line 4'
       order.delivery_postcode = 'AB12 3CD'
-      order.delivery_country = Country.find_by_code2('GB')
+      order.delivery_country = Country.find_by(code2: 'GB')
       # check it saves now
       assert_equal true, order.save
       # check the details are provided
@@ -477,7 +477,7 @@ module Shopr
       assert_equal 'Line 3', order.delivery_address3
       assert_equal 'Line 4', order.delivery_address4
       assert_equal 'AB12 3CD', order.delivery_postcode
-      assert_equal Country.find_by_code2('GB'), order.delivery_country
+      assert_equal Country.find_by(code2: 'GB'), order.delivery_country
     end
   end
 end

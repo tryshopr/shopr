@@ -27,11 +27,11 @@ Shopr::Engine.routes.draw do
       post :ship
       get :despatch_note
     end
-    resources :payments, only: [:create, :destroy] do
-      match :refund, on: :member, via: [:get, :post]
+    resources :payments, only: %i[create destroy] do
+      match :refund, on: :member, via: %i[get post]
     end
   end
-  resources :stock_level_adjustments, only: [:index, :create]
+  resources :stock_level_adjustments, only: %i[index create]
   resources :delivery_services do
     resources :delivery_service_prices
   end

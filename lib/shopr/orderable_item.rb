@@ -4,34 +4,24 @@ module Shopr
   module OrderableItem
     # stock_level_adjustments must be an association
 
-    def full_name
-    end
+    def full_name; end
 
-    def orderable?
-    end
+    def orderable?; end
 
-    def sku
-    end
+    def sku; end
 
-    def price
-    end
+    def price; end
 
-    def cost_price
-    end
+    def cost_price; end
 
-    def tax_rate
-    end
+    def tax_rate; end
 
-    def stock_control?
-    end
+    def stock_control?; end
 
-    def in_stock?
-    end
+    def in_stock?; end
 
-    def stock
-    end
+    def stock; end
 
-    def weight
-    end
+    def weight; end
   end
 end

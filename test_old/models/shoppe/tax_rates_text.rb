@@ -17,7 +17,7 @@ module Shopr
       # check that tax is applied to this order
       assert_equal BigDecimal(20), rate.rate_for(order)
       # change the orders country to the US and the rate
-      order.billing_country = Country.find_by_code2('US')
+      order.billing_country = Country.find_by(code2: 'US')
       # check it's rate is 0
       assert_equal BigDecimal(0), rate.rate_for(order)
       # change the rate so that it needs to use the delivery country
@@ -27,7 +27,7 @@ module Shopr
       assert_equal BigDecimal(0), rate.rate_for(order)
       # set the delivery address to be the UK
       order.separate_delivery_address = true
-      order.delivery_country = Country.find_by_code2('GB')
+      order.delivery_country = Country.find_by(code2: 'GB')
       # check the rate is now back to 20
       assert_equal BigDecimal(20), rate.rate_for(order)
     end

@@ -1,5 +1,5 @@
 module Shopr
-  class Order < ActiveRecord::Base
+  class Order < ApplicationRecord
     # The country which this order should be billed to
     #
     # @return [Shopr::Country]
@@ -97,7 +97,7 @@ module Shopr
     #
     # @return [Boolean]
     def invoiced?
-      !invoice_number.blank?
+      invoice_number.present?
     end
   end
 end

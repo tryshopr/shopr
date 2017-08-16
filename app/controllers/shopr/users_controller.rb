@@ -2,7 +2,7 @@ module Shopr
   class UsersController < Shopr::ApplicationController
     before_action { @active_nav = :users }
     before_action { params[:id] && @user = Shopr::User.find(params[:id]) }
-    before_action(only: [:create, :update, :destroy]) do
+    before_action(only: %i[create update destroy]) do
       if Shopr.settings.demo_mode?
         fail Shopr::Error, t('shopr.users.demo_mode_error')
       end
@@ -25,8 +25,7 @@ module Shopr
       end
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @user.update(safe_params)

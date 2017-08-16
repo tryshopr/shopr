@@ -20,8 +20,7 @@ module Shopr
       end
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @product_category.update(safe_params)

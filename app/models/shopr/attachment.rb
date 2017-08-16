@@ -1,5 +1,5 @@
 module Shopr
-  class Attachment < ActiveRecord::Base
+  class Attachment < ApplicationRecord
     # Set the table name
     self.table_name = 'shopr_attachments'
 

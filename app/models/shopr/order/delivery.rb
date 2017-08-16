@@ -1,5 +1,5 @@
 module Shopr
-  class Order < ActiveRecord::Base
+  class Order < ApplicationRecord
     # The associated delivery service
     #
     # @return [Shopr::DeliveryService]
@@ -74,7 +74,7 @@ module Shopr
 
     # Create some delivery_ methods which will mimic the billing methods if the order does
     # not need a seperate address.
-    [:delivery_name, :delivery_address1, :delivery_address2, :delivery_address3, :delivery_address4, :delivery_postcode, :delivery_country].each do |f|
+    %i[delivery_name delivery_address1 delivery_address2 delivery_address3 delivery_address4 delivery_postcode delivery_country].each do |f|
       define_method(f) do
         separate_delivery_address? ? super() : send(f.to_s.gsub('delivery_', 'billing_'))
       end

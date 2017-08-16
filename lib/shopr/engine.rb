@@ -11,7 +11,7 @@ module Shopr
     config.generators do |g|
       g.orm             :active_record
       g.test_framework  :rspec
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
       g.stylesheets     false
       g.javascripts     false
       g.helper          false
@@ -28,7 +28,7 @@ module Shopr
 
     initializer 'shopr.initialize' do |app|
       # Add the default settings
-      Shopr.add_settings_group :system_settings, [:store_name, :email_address, :currency_unit, :tax_name, :demo_mode]
+      Shopr.add_settings_group :system_settings, %i[store_name email_address currency_unit tax_name demo_mode]
 
       # Add middleware
       app.config.middleware.use Shopr::SettingsLoader

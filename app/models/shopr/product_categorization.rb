@@ -1,5 +1,5 @@
 module Shopr
-  class ProductCategorization < ActiveRecord::Base
+  class ProductCategorization < ApplicationRecord
     self.table_name = 'shopr_product_categorizations'
 
     # Links back

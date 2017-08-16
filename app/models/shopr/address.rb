@@ -1,5 +1,5 @@
 module Shopr
-  class Address < ActiveRecord::Base
+  class Address < ApplicationRecord
     # An array of all the available types for an address
     TYPES = %w(billing delivery).freeze
 

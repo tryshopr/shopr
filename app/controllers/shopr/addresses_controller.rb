@@ -8,8 +8,7 @@ module Shopr
       @address = Shopr::Address.new
     end
 
-    def edit
-    end
+    def edit; end
 
     def create
       @address = @customer.addresses.build(safe_params)

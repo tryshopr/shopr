@@ -1,7 +1,7 @@
 require 'roo'
 
 module Shopr
-  class Product < ActiveRecord::Base
+  class Product < ApplicationRecord
     self.table_name = 'shopr_products'
 
     # Add dependencies for products

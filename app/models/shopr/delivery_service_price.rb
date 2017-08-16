@@ -1,5 +1,5 @@
 module Shopr
-  class DeliveryServicePrice < ActiveRecord::Base
+  class DeliveryServicePrice < ApplicationRecord
     # Set the table name
     self.table_name = 'shopr_delivery_service_prices'
 
@@ -24,6 +24,6 @@ module Shopr
     # All prices which are suitable for the weight passed.
     #
     # @param weight [BigDecimal] the weight of the order
-    scope :for_weight, -> (weight) { where('min_weight <= ? AND max_weight >= ?', weight, weight) }
+    scope :for_weight, ->(weight) { where('min_weight <= ? AND max_weight >= ?', weight, weight) }
   end
 end

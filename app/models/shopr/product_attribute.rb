@@ -1,5 +1,5 @@
 module Shopr
-  class ProductAttribute < ActiveRecord::Base
+  class ProductAttribute < ApplicationRecord
     self.table_name = 'shopr_product_attributes'
 
     # Validations

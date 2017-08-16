@@ -1,5 +1,5 @@
 module Shopr
-  class TaxRate < ActiveRecord::Base
+  class TaxRate < ApplicationRecord
     self.table_name = 'shopr_tax_rates'
 
     include Shopr::AssociatedCountries

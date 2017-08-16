@@ -1,5 +1,5 @@
 module Shopr
-  class OrderItem < ActiveRecord::Base
+  class OrderItem < ApplicationRecord
     self.table_name = 'shopr_order_items'
 
     # The associated order
@@ -177,8 +177,7 @@ module Shopr
     end
 
     # Trigger when the associated order is accepted
-    def accept!
-    end
+    def accept!; end
 
     # Trigged when the associated order is rejected..
     def reject!

@@ -1,5 +1,5 @@
 module Shopr
-  class Order < ActiveRecord::Base
+  class Order < ApplicationRecord
     # An array of all the available statuses for an order
     STATUSES = %w(building confirming received accepted rejected shipped).freeze
 
