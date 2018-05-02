@@ -21,7 +21,7 @@ module Shopr
       # check it's rate is 0
       assert_equal BigDecimal(0), rate.rate_for(order)
       # change the rate so that it needs to use the delivery country
-      assert rate.update_attributes(:address_type, 'delivery')
+      assert rate.update(:address_type, 'delivery')
       # check that the rate is still zero because the order's delivery address
       # is the same as the biling address
       assert_equal BigDecimal(0), rate.rate_for(order)

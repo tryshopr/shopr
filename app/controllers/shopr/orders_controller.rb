@@ -64,7 +64,7 @@ module Shopr
 
     def update
       @order.attributes = safe_params
-      if !request.xhr? && @order.update_attributes(safe_params)
+      if !request.xhr? && @order.update(safe_params)
         redirect_to @order, flash: { notice: t('shopr.orders.update_notice') }
       else
         render action: 'edit'

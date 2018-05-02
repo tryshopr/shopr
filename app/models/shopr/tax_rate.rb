@@ -5,7 +5,7 @@ module Shopr
     include Shopr::AssociatedCountries
 
     # The order address types which may be used when choosing how to apply the tax rate
-    ADDRESS_TYPES = %w(billing delivery).freeze
+    ADDRESS_TYPES = %w[billing delivery].freeze
 
     # Validations
     validates :name, presence: true

@@ -27,9 +27,9 @@ module Shopr
 
     # Validations
     validates :token, presence: true
-    with_options if: proc { |o| !o.building? } do |order|
-      order.validates :email_address, format: { with: EMAIL_REGEX }
-      order.validates :phone_number, format: { with: PHONE_REGEX }
+    with_options if: proc { |o| !o.building? } do
+      validates :email_address, format: { with: EMAIL_REGEX }
+      validates :phone_number, format: { with: PHONE_REGEX }
     end
 
     # Set some defaults
@@ -89,7 +89,7 @@ module Shopr
     end
 
     def self.ransackable_attributes(_auth_object = nil)
-      %w(id billing_postcode billing_address1 billing_address2 billing_address3 billing_address4 first_name last_name company email_address phone_number consignment_number status received_at) + _ransackers.keys
+      %w[id billing_postcode billing_address1 billing_address2 billing_address3 billing_address4 first_name last_name company email_address phone_number consignment_number status received_at] + _ransackers.keys
     end
 
     def self.ransackable_associations(_auth_object = nil)

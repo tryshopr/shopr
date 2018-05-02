@@ -4,7 +4,7 @@ module Shopr
 
     def update
       if Shopr.settings.demo_mode?
-        fail Shopr::Error, t('shopr.settings.demo_mode_error')
+        raise Shopr::Error, t('shopr.settings.demo_mode_error')
       end
 
       Shopr::Setting.update_from_hash(params[:settings].permit!)

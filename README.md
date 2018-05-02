@@ -1,6 +1,6 @@
 # Shopr
 
-[![Build Status](https://travis-ci.org/shoprgem/shopr.svg)](https://travis-ci.org/shoprgem/shopr)
+[![Build Status](https://travis-ci.org/tryshopr/shopr.svg)](https://travis-ci.org/tryshopr/shopr)
 [![Gem Version](https://badge.fury.io/rb/shopr.svg)](http://badge.fury.io/rb/shopr)
 
 Shopr is an Rails ecommerce engine which allows you to easily introduce a store into your Rails 5 applications.

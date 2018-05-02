@@ -20,9 +20,8 @@ module Shopr
     #
     # @return [Hash]
     def self.grouped_hash
-      all.group_by(&:key).inject({}) do |h, (key, attributes)|
+      all.group_by(&:key).each_with_object({}) do |(key, attributes), h|
         h[key] = attributes.map(&:value).uniq
-        h
       end
     end
 
@@ -44,7 +43,7 @@ module Shopr
             existing_attr.destroy
             index -= 1
           else
-            existing_attr.update_attributes(params)
+            existing_attr.update(params)
           end
         else
           attribute = create(params)

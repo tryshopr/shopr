@@ -19,13 +19,13 @@ module Shopr
     define_model_callbacks :ship
 
     # Validations
-    with_options if: :separate_delivery_address? do |order|
-      order.validates :delivery_name, presence: true
-      order.validates :delivery_address1, presence: true
-      order.validates :delivery_address3, presence: true
-      order.validates :delivery_address4, presence: true
-      order.validates :delivery_postcode, presence: true
-      order.validates :delivery_country, presence: true
+    with_options if: :separate_delivery_address? do
+      validates :delivery_name, presence: true
+      validates :delivery_address1, presence: true
+      validates :delivery_address3, presence: true
+      validates :delivery_address4, presence: true
+      validates :delivery_postcode, presence: true
+      validates :delivery_country, presence: true
     end
 
     validate do
@@ -42,7 +42,7 @@ module Shopr
       # Ensure that before we confirm the order that the delivery service which has been selected
       # is appropritae for the contents of the order.
       if delivery_required? && !valid_delivery_service?
-        fail Shopr::Errors::InappropriateDeliveryService, order: self
+        raise Shopr::Errors::InappropriateDeliveryService, order: self
       end
       cache_delivery_pricing
     end

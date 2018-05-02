@@ -35,10 +35,10 @@ module Shopr
     has_many :stock_level_adjustments, dependent: :destroy, class_name: 'Shopr::StockLevelAdjustment', as: :item
 
     # Validations
-    with_options if: proc { |p| p.parent.nil? } do |product|
-      product.validate :has_at_least_one_product_category
-      product.validates :description, presence: true
-      product.validates :short_description, presence: true
+    with_options if: proc { |p| p.parent.nil? } do
+      validate :has_at_least_one_product_category
+      validates :description, presence: true
+      validates :short_description, presence: true
     end
     validates :name, presence: true
     validates :permalink, presence: true, uniqueness: true, permalink: true
@@ -108,7 +108,7 @@ module Shopr
     # @return [Shopr::ProductCategory]
     def product_category
       product_categories.first
-    rescue
+    rescue StandardError
       nil
     end
 
@@ -191,7 +191,7 @@ module Shopr
       when '.csv' then Roo::CSV.new(file.path)
       when '.xls' then Roo::Excel.new(file.path)
       when '.xlsx' then Roo::Excelx.new(file.path)
-      else fail I18n.t('shopr.imports.errors.unknown_format', filename: File.original_filename)
+      else raise I18n.t('shopr.imports.errors.unknown_format', filename: File.original_filename)
       end
     end
 

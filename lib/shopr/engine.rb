@@ -19,7 +19,7 @@ module Shopr
 
     config.to_prepare do
       # Set Devise layout
-      Devise::SessionsController.layout "shopr/sub"
+      Devise::SessionsController.layout 'shopr/sub'
 
       Dir.glob(Rails.root + 'app/decorators/**/*_decorator*.rb').each do |c|
         require_dependency(c)
@@ -48,7 +48,7 @@ module Shopr
 
       ActiveSupport.on_load(:active_record) do
         require 'shopr/model_extension'
-        ActiveRecord::Base.send :include, Shopr::ModelExtension
+        # ApplicationRecord.send :include, Shopr::ModelExtension
       end
 
       # Load default navigation

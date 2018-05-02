@@ -62,7 +62,7 @@ module Shopr
             true
           end
         else
-          fail Shopr::Errors::RefundFailed, message: I18n.t('.refund_failed', refundable_amount: refundable_amount)
+          raise Shopr::Errors::RefundFailed, message: I18n.t('.refund_failed', refundable_amount: refundable_amount)
         end
       end
     end

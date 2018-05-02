@@ -32,7 +32,7 @@ module Shopr
     end
 
     def self.ransackable_attributes(_auth_object = nil)
-      %w(id first_name last_name company email phone mobile) + _ransackers.keys
+      %w[id first_name last_name company email phone mobile] + _ransackers.keys
     end
 
     def self.ransackable_associations(_auth_object = nil)

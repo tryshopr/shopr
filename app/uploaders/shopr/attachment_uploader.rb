@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class Shopr::AttachmentUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 

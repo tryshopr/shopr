@@ -1,7 +1,7 @@
 module Shopr
   class Address < ApplicationRecord
     # An array of all the available types for an address
-    TYPES = %w(billing delivery).freeze
+    TYPES = %w[billing delivery].freeze
 
     # Set the table name
     self.table_name = 'shopr_addresses'

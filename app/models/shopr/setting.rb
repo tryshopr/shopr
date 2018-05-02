@@ -31,7 +31,7 @@ module Shopr
       when 'Fixnum'         then  value.to_i
       when 'Float'          then  value.to_f
       when 'Array', 'Hash'  then  JSON.parse(value)
-      when 'Boolean'        then  value == 'true' ? true : false
+      when 'Boolean'        then  value == 'true'
       else                        value.to_s
       end
     end
@@ -40,9 +40,8 @@ module Shopr
     #
     # @return [Hash]
     def self.to_hash
-      all.inject({}) do |h, setting|
+      all.each_with_object({}) do |setting, h|
         h[setting.key.to_s] = setting.decoded_value
-        h
       end
     end
 

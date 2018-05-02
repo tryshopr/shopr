@@ -40,7 +40,7 @@ module Shopr
 
     # Is the attachment an image?
     def image?
-      self.file_type.match(/\Aimage\//).present?
+      file_type.match(/\Aimage\//).present?
     end
   end
 end

@@ -4,7 +4,7 @@ module Shopr
     before_action { params[:id] && @user = Shopr::User.find(params[:id]) }
     before_action(only: %i[create update destroy]) do
       if Shopr.settings.demo_mode?
-        fail Shopr::Error, t('shopr.users.demo_mode_error')
+        raise Shopr::Error, t('shopr.users.demo_mode_error')
       end
     end
 
@@ -36,7 +36,7 @@ module Shopr
     end
 
     def destroy
-      fail Shopr::Error, t('shopr.users.self_remove_error') if @user == current_user
+      raise Shopr::Error, t('shopr.users.self_remove_error') if @user == current_user
       @user.destroy
       redirect_to :users, flash: { notice: t('shopr.users.destroy_notice') }
     end

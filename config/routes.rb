@@ -1,6 +1,5 @@
 Shopr::Engine.routes.draw do
-
-  devise_for :users, class_name: "Shopr::User", module: :devise
+  devise_for :users, class_name: 'Shopr::User', module: :devise
 
   get 'attachment/:id/:filename.:extension' => 'attachments#show'
 

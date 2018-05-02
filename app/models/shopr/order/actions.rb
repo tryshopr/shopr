@@ -29,7 +29,7 @@ module Shopr
     def confirm!
       no_stock_of = order_items.select(&:validate_stock_levels)
       unless no_stock_of.empty?
-        fail Shopr::Errors::InsufficientStockToFulfil, order: self, out_of_stock_items: no_stock_of
+        raise Shopr::Errors::InsufficientStockToFulfil, order: self, out_of_stock_items: no_stock_of
       end
 
       run_callbacks :confirmation do

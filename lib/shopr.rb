@@ -18,7 +18,7 @@ module Shopr
     #
     # @return [String]
     def root
-      File.expand_path('../../', __FILE__)
+      File.expand_path('..', __dir__)
     end
 
     # Shopr settings as configured in the database

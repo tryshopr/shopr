@@ -2,7 +2,7 @@ module Shopr
   class StockLevelAdjustmentsController < ApplicationController
     SUITABLE_OBJECTS = ['Shopr::Product'].freeze
     before_action do
-      fail Shopr::Error, t('shopr.stock_level_adjustments.invalid_item_type', suitable_objects:  SUITABLE_OBJECTS.to_sentence) unless SUITABLE_OBJECTS.include?(params[:item_type])
+      raise Shopr::Error, t('shopr.stock_level_adjustments.invalid_item_type', suitable_objects: SUITABLE_OBJECTS.to_sentence) unless SUITABLE_OBJECTS.include?(params[:item_type])
       @item = params[:item_type].constantize.find(params[:item_id].to_i)
     end
     before_action { params[:id] && @sla = @item.stock_level_adjustments.find(params[:id].to_i) }
@@ -24,7 +24,7 @@ module Shopr
         end
       else
         if request.xhr?
-          render text: @new_sla.errors.full_messages.to_sentence, status: 422
+          render text: @new_sla.errors.full_messages.to_sentence, status: :unprocessable_entity
         else
           index
           flash.now[:alert] = @new_sla.errors.full_messages.to_sentence

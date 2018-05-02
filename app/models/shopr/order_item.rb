@@ -41,7 +41,7 @@ module Shopr
     # @param quantity [Fixnum] the number of items to order
     # @return [Shopr::OrderItem]
     def self.add_item(ordered_item, quantity = 1)
-      fail Errors::UnorderableItem, ordered_item: ordered_item unless ordered_item.orderable?
+      raise Errors::UnorderableItem, ordered_item: ordered_item unless ordered_item.orderable?
       transaction do
         if existing = where(ordered_item_id: ordered_item.id, ordered_item_type: ordered_item.class.to_s).first
           existing.increase!(quantity)
@@ -74,7 +74,7 @@ module Shopr
       transaction do
         self.quantity += amount
         unless in_stock?
-          fail Shopr::Errors::NotEnoughStock, ordered_item: ordered_item, requested_stock: self.quantity
+          raise Shopr::Errors::NotEnoughStock, ordered_item: ordered_item, requested_stock: self.quantity
         end
         save!
         order.remove_delivery_service_if_invalid

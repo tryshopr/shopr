@@ -1,7 +1,7 @@
 module Shopr
   class Order < ApplicationRecord
     # An array of all the available statuses for an order
-    STATUSES = %w(building confirming received accepted rejected shipped).freeze
+    STATUSES = %w[building confirming received accepted rejected shipped].freeze
 
     # The Shopr::User who accepted the order
     #
