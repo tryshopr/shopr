@@ -1,4 +1,4 @@
-class CreateInitialShoprTables < ActiveRecord::Migration
+class CreateInitialShoprTables < ActiveRecord::Migration[4.2]
 
   create_table 'nifty_key_value_store' do |t|
     t.integer :parent_id

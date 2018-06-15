@@ -1,7 +1,5 @@
 module Shopr
   class ProductAttribute < ApplicationRecord
-    self.table_name = 'shopr_product_attributes'
-
     # Validations
     validates :key, presence: true
 

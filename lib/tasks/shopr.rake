@@ -22,9 +22,16 @@ namespace :shopr do
 
   desc 'Run the key setup tasks for a new application'
   task setup: :environment do
-    Rake::Task['shopr:import_countries'].invoke    if Shopr::Country.all.empty?
-    Rake::Task['shopr:create_default_user'].invoke if Shopr::User.all.empty?
+    # TODO: Solve this problem with a better approach.
+    if Rails.app_class == Dummy::Application
+      Rake::Task['app:shopr:import_countries'].invoke if Shopr::Country.all.empty?
+      Rake::Task['app:shopr:create_default_user'].invoke if Shopr::User.all.empty?
+    else
+      Rake::Task['shopr:import_countries'].invoke if Shopr::Country.all.empty?
+      Rake::Task['shopr:create_default_user'].invoke if Shopr::User.all.empty?
+    end
   end
+
 
   desc 'Converts nifty-attachment attachments to Shopr Attachments'
   task attachments: :environment do

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :order, class: Shopr::Order do
     first_name          'Joe'
     last_name           'Bloggs'

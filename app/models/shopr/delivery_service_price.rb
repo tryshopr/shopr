@@ -1,8 +1,5 @@
 module Shopr
   class DeliveryServicePrice < ApplicationRecord
-    # Set the table name
-    self.table_name = 'shopr_delivery_service_prices'
-
     include Shopr::AssociatedCountries
 
     # The delivery service which this price belongs to

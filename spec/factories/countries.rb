@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :united_kingdom, class: Shopr::Country do
     name        'United Kingdom'
     code2       'GB'

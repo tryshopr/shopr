@@ -1,14 +1,12 @@
+# The Shopr::Country model stores countries which can be used for delivery & billing
+# addresses for orders.
+#
+# You can use the Shopr::CountryImporter to import a pre-defined list of countries
+# into your database. This automatically happens when you run the 'shopr:setup'
+# rake task.
+
 module Shopr
-  # The Shopr::Country model stores countries which can be used for delivery & billing
-  # addresses for orders.
-  #
-  # You can use the Shopr::CountryImporter to import a pre-defined list of countries
-  # into your database. This automatically happens when you run the 'shopr:setup'
-  # rake task.
-
   class Country < ApplicationRecord
-    self.table_name = 'shopr_countries'
-
     # All orders which have this country set as their billing country
     has_many :billed_orders, dependent: :restrict_with_exception, class_name: 'Shopr::Order', foreign_key: 'billing_country_id'
 

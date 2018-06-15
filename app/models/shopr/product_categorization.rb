@@ -1,7 +1,5 @@
 module Shopr
   class ProductCategorization < ApplicationRecord
-    self.table_name = 'shopr_product_categorizations'
-
     # Links back
     belongs_to :product, class_name: 'Shopr::Product'
     belongs_to :product_category, class_name: 'Shopr::ProductCategory'
