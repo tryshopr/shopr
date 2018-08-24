@@ -1,7 +1,5 @@
 module Shopr
   class OrderItem < ApplicationRecord
-    self.table_name = 'shopr_order_items'
-
     # The associated order
     #
     # @return [Shopr::Order]

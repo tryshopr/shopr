@@ -11,7 +11,7 @@ module Shopr
     config.generators do |g|
       g.orm             :active_record
       g.test_framework  :rspec
-      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
       g.stylesheets     false
       g.javascripts     false
       g.helper          false

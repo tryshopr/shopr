@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :product_category, class: Shopr::ProductCategory do
     name 'Product Category'
   end

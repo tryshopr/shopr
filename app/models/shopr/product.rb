@@ -2,8 +2,6 @@ require 'roo'
 
 module Shopr
   class Product < ApplicationRecord
-    self.table_name = 'shopr_products'
-
     # Add dependencies for products
     require_dependency 'shopr/product/product_attributes'
     require_dependency 'shopr/product/variants'

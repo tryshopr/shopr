@@ -1,8 +1,5 @@
 module Shopr
   class Attachment < ApplicationRecord
-    # Set the table name
-    self.table_name = 'shopr_attachments'
-
     # Mount the Carrierwave uploader
     mount_uploader :file, AttachmentUploader
 

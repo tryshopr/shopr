@@ -1,7 +1,5 @@
 module Shopr
   class TaxRate < ApplicationRecord
-    self.table_name = 'shopr_tax_rates'
-
     include Shopr::AssociatedCountries
 
     # The order address types which may be used when choosing how to apply the tax rate

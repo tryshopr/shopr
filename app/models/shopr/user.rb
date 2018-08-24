@@ -4,8 +4,6 @@ module Shopr
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-    self.table_name = 'shopr_users'
-
     # Validations
     validates :first_name, presence: true
     validates :last_name, presence: true

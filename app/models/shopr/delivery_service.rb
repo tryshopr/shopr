@@ -1,7 +1,5 @@
 module Shopr
   class DeliveryService < ApplicationRecord
-    self.table_name = 'shopr_delivery_services'
-
     # Validations
     validates :name, presence: true
     validates :courier, presence: true

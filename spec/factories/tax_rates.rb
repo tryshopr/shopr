@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :standard_tax, class: Shopr::TaxRate do
     name          'Standard Tax'
     rate          20.0
