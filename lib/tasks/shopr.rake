@@ -23,7 +23,7 @@ namespace :shopr do
   desc 'Run the key setup tasks for a new application'
   task setup: :environment do
     # TODO: Solve this problem with a better approach.
-    if Rails.app_class == Dummy::Application
+    if Rails.application.class.parent_name == "Dummy"
       Rake::Task['app:shopr:import_countries'].invoke if Shopr::Country.all.empty?
       Rake::Task['app:shopr:create_default_user'].invoke if Shopr::User.all.empty?
     else
