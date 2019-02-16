@@ -37,6 +37,7 @@ module Shopr
 
     def destroy
       raise Shopr::Error, t('shopr.users.self_remove_error') if @user == current_user
+
       @user.destroy
       redirect_to :users, flash: { notice: t('shopr.users.destroy_notice') }
     end

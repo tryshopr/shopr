@@ -76,6 +76,7 @@ module Shopr
     def orderable?
       return false unless active?
       return false if has_variants?
+
       true
     end
 
@@ -154,6 +155,7 @@ module Shopr
 
         # Don't import products where the name is blank
         next if row['name'].nil?
+
         if product = find_by(name: row['name'])
           # Dont import products with the same name but update quantities
           qty = row['qty'].to_i

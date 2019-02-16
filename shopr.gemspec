@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.authors     = ['Dean Perry']
   s.email       = ['dean@voupe.com']
   s.homepage    = 'https://shoprgem.com'
-  s.summary     = 'A fully featured ecommerce engine for Rails 5'
+  s.summary     = 'A fully featured ecommerce engine for Rails 5.2'
   s.licenses    = ['MIT']
-  s.description = 'Shopr is a fully featured ecommerce engine for Rails 5 (forked from Shoppe)'
+  s.description = 'Shopr is a fully featured ecommerce engine for Rails 5.2 (forked from Shoppe)'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']

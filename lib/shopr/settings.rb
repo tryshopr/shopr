@@ -12,7 +12,7 @@ module Shopr
       key = key.to_s.gsub(/\?\z/, '')
       if value = @hash[key.to_s]
         value
-      elsif I18n.translate('shopr.settings.defaults').keys.include?(key.to_sym)
+      elsif I18n.translate('shopr.settings.defaults').key?(key.to_sym)
         I18n.translate('shopr.settings.defaults')[key.to_sym]
       end
     end

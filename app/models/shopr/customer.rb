@@ -1,7 +1,7 @@
 module Shopr
   class Customer < ApplicationRecord
-    EMAIL_REGEX = /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i
-    PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/
+    EMAIL_REGEX = /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i.freeze
+    PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/.freeze
 
     has_many :addresses, dependent: :restrict_with_exception, class_name: 'Shopr::Address'
 

@@ -1,7 +1,7 @@
 module Shopr
   class Order < ApplicationRecord
-    EMAIL_REGEX = /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i
-    PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/
+    EMAIL_REGEX = /\A\b[A-Z0-9\.\_\%\-\+]+@(?:[A-Z0-9\-]+\.)+[A-Z]{2,6}\b\z/i.freeze
+    PHONE_REGEX = /\A[+?\d\ \-x\(\)]{7,}\z/.freeze
 
     # Orders can have properties
     key_value_store :properties
@@ -49,6 +49,7 @@ module Shopr
     # @return [Float] - the length of time
     def build_time
       return nil if received_at.blank?
+
       created_at - received_at
     end
 

@@ -36,6 +36,7 @@ module Shopr
     # @return [Shopr::Product]
     def default_variant
       return nil if parent
+
       @default_variant ||= variants.find(&:default?)
     end
 

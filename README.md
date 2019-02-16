@@ -3,22 +3,21 @@
 [![Build Status](https://travis-ci.org/tryshopr/shopr.svg)](https://travis-ci.org/tryshopr/shopr)
 [![Gem Version](https://badge.fury.io/rb/shopr.svg)](http://badge.fury.io/rb/shopr)
 
-Shopr is an Rails ecommerce engine which allows you to easily introduce a store into your Rails 5 applications.
+Shopr is an Rails ecommerce engine which allows you to easily introduce a store into your Rails 5.2 applications.
 
-Shopr is a rewrite of [Shoppe](https://github.com/tryshoppe/shoppe) (originally created by [Adam Cooke](http://twitter.com/adamcooke))
-and created and maintained by [Dean Perry](https://github.com/deanpcmad) and a great group of [contributors](https://github.com/shoprgem/shopr/graphs/contributors).
+Shopr is a rewrite of [Shoppe](https://github.com/tryshoppe/shoppe) (originally created by [Adam Cooke](http://twitter.com/adamcooke)) created by [Dean Perry](https://github.com/deanpcmad) and maintained by great group of [contributors](https://github.com/tryshopr/shopr/graphs/contributors).
 While it supports many of the same features as Shoppe, its underlying implementation differs greatly and backwards compatibility is not a design goal.
 
 **Shopr is currently still under development.**
 
 ## Features
 
-* An attractive & easy to use admin interface with integrated authentication
-* Full product/catalogue management
-* Stock control
-* Tax management
-* Flexible & customisable order flow
-* Delivery/shipping control, management & weight-based calculation
+- An attractive & easy to use admin interface with integrated authentication
+- Full product/catalogue management
+- Stock control
+- Tax management
+- Flexible & customisable order flow
+- Delivery/shipping control, management & weight-based calculation
 
 ## Getting Started
 
@@ -44,14 +43,13 @@ rails server
 
 ## Differences from Shoppe
 
-+ Devise is now used for authentication
-+ Tested with RSpec
-+ Product & Product Category translations have been removed
+- Devise is now used for authentication
+- Tested with RSpec
+- Product & Product Category translations have been removed
 
 ## Contribution
 
-If you'd like to help with this project, please get in touch with me. The best place is on
-Twitter ([@deanpcmad](https://twitter.com/deanpcmad)) or by e-mail to dean@deanpcmad.com.
+If you'd like to help with this project, please get in touch with me here on github. You are welcome with new PRs.
 
 ## License
 

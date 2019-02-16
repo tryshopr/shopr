@@ -44,6 +44,7 @@ module Shopr
       if delivery_required? && !valid_delivery_service?
         raise Shopr::Errors::InappropriateDeliveryService, order: self
       end
+
       cache_delivery_pricing
     end
 
@@ -209,6 +210,7 @@ module Shopr
     # @return [String]
     def courier_tracking_url
       return nil if shipped_at.blank? || consignment_number.blank?
+
       @courier_tracking_url ||= delivery_service.tracking_url_for(self)
     end
 

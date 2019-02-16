@@ -3,6 +3,7 @@ module Shopr
     SUITABLE_OBJECTS = ['Shopr::Product'].freeze
     before_action do
       raise Shopr::Error, t('shopr.stock_level_adjustments.invalid_item_type', suitable_objects: SUITABLE_OBJECTS.to_sentence) unless SUITABLE_OBJECTS.include?(params[:item_type])
+
       @item = params[:item_type].constantize.find(params[:item_id].to_i)
     end
     before_action { params[:id] && @sla = @item.stock_level_adjustments.find(params[:id].to_i) }

@@ -36,6 +36,7 @@ module Shopr
       return rate if countries.empty?
       return rate if address_type == 'billing'  && (order.billing_country.nil?   || country?(order.billing_country))
       return rate if address_type == 'delivery' && (order.delivery_country.nil?  || country?(order.delivery_country))
+
       BigDecimal(0)
     end
   end

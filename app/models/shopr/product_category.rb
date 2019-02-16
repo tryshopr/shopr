@@ -48,6 +48,7 @@ module Shopr
     # in descending order
     def hierarchy_array
       return [self] unless parent
+
       parent.hierarchy_array.concat [self]
     end
 

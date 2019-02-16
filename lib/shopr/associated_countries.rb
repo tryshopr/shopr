@@ -12,6 +12,7 @@ module Shopr
 
     def countries
       return [] unless country_ids.is_a?(Array) && !country_ids.empty?
+
       Shopr::Country.where(id: country_ids)
     end
   end
