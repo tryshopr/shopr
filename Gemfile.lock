@@ -342,7 +342,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    net-ssh (5.0.1)
+    net-ssh (5.2.0)
     netrc (0.11.0)
     nifty-dialog (1.1.1)
     nifty-key-value-store (1.0.2)
