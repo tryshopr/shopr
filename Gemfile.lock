@@ -348,7 +348,7 @@ GEM
     nifty-key-value-store (1.0.2)
     nifty-utils (1.1.7)
     nio4r (2.3.1)
-    nokogiri (1.10.3)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     os (1.0.0)
