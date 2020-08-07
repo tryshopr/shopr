@@ -317,7 +317,8 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    kramdown (1.17.0)
+    kramdown (2.3.0)
+      rexml
     logutils (0.6.1)
     loofah (2.2.3)
       crass (~> 1.0.2)
@@ -417,6 +418,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
+    rexml (3.2.4)
     roo (2.8.2)
       nokogiri (~> 1)
       rubyzip (>= 1.2.1, < 2.0.0)
